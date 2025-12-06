@@ -15,7 +15,7 @@ import { PlanetaryTable } from "@/components/PlanetaryTable";
 import { MansionCard } from "@/components/MansionCard";
 import { ZodiacWheel } from "@/components/ZodiacWheel";
 import { ElementalBalance } from "@/components/ElementalBalance";
-import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search } from "lucide-react";
+import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -407,23 +407,66 @@ export default function Home() {
       <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        <h2 className="text-lg font-serif mb-3 text-center relative z-10">
-          <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 bg-clip-text text-transparent">
-            Current Sky Map
-          </span>
-          <span className="text-muted-foreground ml-2 text-sm font-light">
-            {useSidereal ? "(Sidereal)" : "(Tropical)"}
-          </span>
-        </h2>
+        
+        <div className="flex items-start justify-between mb-3 relative z-10">
+          <div className="bg-card/60 backdrop-blur-sm rounded-lg px-3 py-2 border border-border">
+            <div className="text-xs text-muted-foreground mb-1.5 font-medium">Legend</div>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+              <div className="flex items-center gap-1.5">
+                <Flame className="w-3 h-3 text-orange-400" />
+                <span className="text-muted-foreground">Fire</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Flower2 className="w-3 h-3 text-green-500" />
+                <span className="text-muted-foreground">Spring</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Mountain className="w-3 h-3 text-emerald-400" />
+                <span className="text-muted-foreground">Earth</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Sun className="w-3 h-3 text-amber-500" />
+                <span className="text-muted-foreground">Summer</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Wind className="w-3 h-3 text-sky-400" />
+                <span className="text-muted-foreground">Air</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Leaf className="w-3 h-3 text-orange-500" />
+                <span className="text-muted-foreground">Autumn</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Droplets className="w-3 h-3 text-blue-400" />
+                <span className="text-muted-foreground">Water</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Snowflake className="w-3 h-3 text-blue-300" />
+                <span className="text-muted-foreground">Winter</span>
+              </div>
+            </div>
+          </div>
+
+          <h2 className="text-lg font-serif text-center flex-1">
+            <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 bg-clip-text text-transparent">
+              Current Sky Map
+            </span>
+            <span className="text-muted-foreground ml-2 text-sm font-light">
+              {useSidereal ? "(Sidereal)" : "(Tropical)"}
+            </span>
+          </h2>
+
+          <div className="bg-card/60 backdrop-blur-sm rounded-lg px-3 py-2 border border-border text-right">
+            <div className="text-lg font-mono font-light tabular-nums">{format(now, "h:mm a")}</div>
+            <div className="text-xs text-muted-foreground">{format(now, "EEEE, MMMM d, yyyy")}</div>
+            <div className="text-sm text-gold/80 font-arabic">{hijriDate}</div>
+          </div>
+        </div>
+
         <div className="relative z-10">
           <ZodiacWheel 
             planets={planets} 
             variant="expanded"
-            gregorianDate={format(now, "EEEE, MMMM d, yyyy")}
-            hijriDate={hijriDate}
-            currentTime={format(now, "h:mm a")}
-            moonPhaseLabel={moonPhase?.label}
-            isWaxing={moonPhase?.isWaxing}
           />
         </div>
       </section>

@@ -355,69 +355,6 @@ export function ZodiacWheel({
         <circle cx={center} cy={center} r="2" fill="var(--color-background)" />
       </svg>
 
-      {variant === "expanded" && (
-        <>
-          {(gregorianDate || hijriDate || currentTime) && (
-            <div className="absolute top-2 right-2 text-right space-y-1 bg-card/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-border">
-              {currentTime && (
-                <div className="flex items-center justify-end gap-2">
-                  {moonPhaseLabel && (
-                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                      {isWaxing ? <SunIcon className="w-3.5 h-3.5" /> : <MoonIcon className="w-3.5 h-3.5" />}
-                      <span>{moonPhaseLabel}</span>
-                    </div>
-                  )}
-                  <span className="text-lg font-mono font-light tabular-nums">{currentTime}</span>
-                </div>
-              )}
-              {gregorianDate && (
-                <div className="text-xs text-muted-foreground">{gregorianDate}</div>
-              )}
-              {hijriDate && (
-                <div className="text-sm text-gold/80 font-arabic">{hijriDate}</div>
-              )}
-            </div>
-          )}
-
-          <div className="absolute bottom-2 left-2 bg-card/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-border">
-            <div className="text-xs text-muted-foreground mb-1.5 font-medium">Legend</div>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
-              <div className="flex items-center gap-1.5">
-                <Flame className="w-3 h-3 text-orange-400" />
-                <span className="text-muted-foreground">Fire</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Flower2 className="w-3 h-3 text-green-500" />
-                <span className="text-muted-foreground">Spring</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Mountain className="w-3 h-3 text-emerald-400" />
-                <span className="text-muted-foreground">Earth</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <SunIcon className="w-3 h-3 text-amber-500" />
-                <span className="text-muted-foreground">Summer</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Wind className="w-3 h-3 text-sky-400" />
-                <span className="text-muted-foreground">Air</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Leaf className="w-3 h-3 text-orange-500" />
-                <span className="text-muted-foreground">Autumn</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Droplets className="w-3 h-3 text-blue-400" />
-                <span className="text-muted-foreground">Water</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Snowflake className="w-3 h-3 text-blue-300" />
-                <span className="text-muted-foreground">Winter</span>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
 
       <AnimatePresence>
         {hoveredSignData && hoveredSign && !hoveredPlanet && (
