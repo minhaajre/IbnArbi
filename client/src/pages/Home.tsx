@@ -326,7 +326,11 @@ export default function Home() {
 
           <section className="flex-1">
             <h2 className="text-2xl font-serif mb-6 text-foreground/80">Celestial Dignities</h2>
-            <PlanetaryTable planets={planets} />
+            <PlanetaryTable 
+              planets={planets} 
+              useSidereal={useSidereal}
+              onToggleSystem={setUseSidereal}
+            />
           </section>
         </div>
 

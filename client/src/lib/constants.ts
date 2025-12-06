@@ -302,14 +302,15 @@ export const DAY_RULERS = {
 };
 
 // Ibn Arabi's Planet-Prophet Associations (Fusus al-Hikam)
-export const PLANET_PROPHETS: Record<string, string> = {
-  Saturn: "Abraham (Ibrahim)",
-  Jupiter: "Moses (Musa)",
-  Mars: "Aaron (Harun)",
-  Sun: "Idris (Enoch)",
-  Venus: "Joseph (Yusuf)",
-  Mercury: "Jesus (Isa)",
-  Moon: "Adam"
+// With Arabic script as requested
+export const PLANET_PROPHETS: Record<string, { name: string; arabic: string }> = {
+  Saturn: { name: "Abraham (Ibrahim)", arabic: "إبراهيم" },
+  Jupiter: { name: "Moses (Musa)", arabic: "موسى" },
+  Mars: { name: "Aaron (Harun)", arabic: "هارون" },
+  Sun: { name: "Idris (Enoch)", arabic: "إدريس" },
+  Venus: { name: "Joseph (Yusuf)", arabic: "يوسف" },
+  Mercury: { name: "Jesus (Isa)", arabic: "عيسى" },
+  Moon: { name: "Adam", arabic: "آدم" }
 };
 
 export const PLANET_STATUS_RULES = {

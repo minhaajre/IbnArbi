@@ -12,9 +12,9 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
   const [hoveredPos, setHoveredPos] = useState<{x: number, y: number} | null>(null);
 
   // SVG Constants
-  const size = 400;
+  const size = 450;
   const center = size / 2;
-  const radius = size / 2 - 20;
+  const radius = size / 2 - 40;
   const innerRadius = radius - 60;
   
   // Helper to get coordinates
@@ -26,21 +26,32 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
     };
   };
 
+  // Planet Orbit Radii (simulated for visual separation)
+  const PLANET_ORBITS: Record<string, number> = {
+    Moon: innerRadius - 20,
+    Mercury: innerRadius - 40,
+    Venus: innerRadius - 60,
+    Sun: innerRadius - 80,
+    Mars: innerRadius - 100,
+    Jupiter: innerRadius - 120,
+    Saturn: innerRadius - 140,
+  };
+
   const PLANET_SYMBOLS: Record<string, string> = {
     Sun: "☉", Moon: "☾", Mars: "♂", Mercury: "☿",
     Jupiter: "♃", Venus: "♀", Saturn: "♄"
   };
 
   return (
-    <div className="relative w-full aspect-square max-w-md mx-auto flex items-center justify-center group">
-      {/* Central Info */}
+    <div className="relative w-full aspect-square max-w-lg mx-auto flex items-center justify-center group">
+      {/* Central Info Tooltip */}
       <AnimatePresence>
         {hoveredPlanet && hoveredPos && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="absolute z-10 bg-background/90 backdrop-blur-md border border-white/10 p-3 rounded-lg shadow-xl pointer-events-none"
+            className="absolute z-20 bg-background/90 backdrop-blur-md border border-white/10 p-3 rounded-lg shadow-xl pointer-events-none min-w-[120px]"
             style={{ 
               left: hoveredPos.x > center ? 'auto' : hoveredPos.x + 20, 
               right: hoveredPos.x > center ? size - hoveredPos.x + 20 : 'auto',
@@ -49,14 +60,14 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
           >
             {planets.filter(p => p.name === hoveredPlanet).map(p => (
               <div key={p.name}>
-                <div className="font-serif text-gold text-lg flex items-center gap-2">
+                <div className="font-serif text-gold text-lg flex items-center gap-2 font-bold">
                   {PLANET_SYMBOLS[p.name]} {p.name}
                 </div>
-                <div className="text-xs text-muted-foreground">
+                <div className="text-xs text-muted-foreground font-medium mt-1">
                   {p.sign} {Math.floor(p.degree)}°{Math.round((p.degree % 1) * 60)}'
                 </div>
-                {p.isRetrograde && <div className="text-xs text-red-400 mt-1">Retrograde</div>}
-                {p.status !== 'Neutral' && <div className="text-xs text-primary mt-1">{p.status}</div>}
+                {p.isRetrograde && <div className="text-xs text-red-400 mt-1 font-bold">Retrograde (Rx)</div>}
+                {p.status !== 'Neutral' && <div className="text-xs text-primary mt-1 font-bold">{p.status}</div>}
               </div>
             ))}
           </motion.div>
@@ -94,7 +105,7 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
                 fill="currentColor"
                 opacity="0.7"
                 transform={`rotate(${midAngle}, ${labelPos.x}, ${labelPos.y})`}
-                className="select-none group-hover/sign:opacity-100 group-hover/sign:fill-gold transition-colors"
+                className="select-none font-medium tracking-wider group-hover/sign:opacity-100 group-hover/sign:fill-gold transition-colors cursor-default"
               >
                 {sign.substring(0, 3).toUpperCase()}
               </text>
@@ -102,9 +113,27 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
           );
         })}
 
+        {/* Planetary Spheres (Orbits) */}
+        {Object.values(PLANET_ORBITS).map((r) => (
+          <circle 
+            key={r} 
+            cx={center} 
+            cy={center} 
+            r={r} 
+            fill="none" 
+            stroke="currentColor" 
+            strokeOpacity="0.03" 
+            strokeDasharray="4 4" 
+          />
+        ))}
+
         {/* Planets */}
         {planets.map((p) => {
-          const pos = getCoords(p.longitude, innerRadius - 25);
+          // Use dedicated orbit radius if available, else default
+          const orbitRadius = PLANET_ORBITS[p.name] || innerRadius - 20;
+          const pos = getCoords(p.longitude, orbitRadius);
+          
+          const isSun = p.name === "Sun";
           
           return (
             <motion.g 
@@ -122,34 +151,28 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
                 setHoveredPos(null);
               }}
             >
-              <line 
-                x1={center} 
-                y1={center} 
-                x2={pos.x} 
-                y2={pos.y} 
-                stroke="currentColor" 
-                strokeOpacity="0.05" 
-                strokeDasharray="2 2"
-              />
+              {/* Connecting Line to Center (optional, maybe too cluttered with spheres) */}
+              {/* <line x1={center} y1={center} x2={pos.x} y2={pos.y} stroke="currentColor" strokeOpacity="0.02" /> */}
               
               {/* Interactive Hit Area */}
-              <circle cx={pos.x} cy={pos.y} r="15" fill="transparent" />
+              <circle cx={pos.x} cy={pos.y} r="20" fill="transparent" />
               
               <circle 
                 cx={pos.x} 
                 cy={pos.y} 
-                r="12" 
+                r={isSun ? 18 : 14} 
                 fill="var(--color-card)" 
                 stroke={hoveredPlanet === p.name ? "var(--color-primary)" : "var(--color-border)"}
                 strokeWidth={hoveredPlanet === p.name ? 2 : 1}
-                className="transition-colors duration-300"
+                className="transition-colors duration-300 shadow-sm"
               />
               <text 
                 x={pos.x} 
                 y={pos.y + 1} 
                 textAnchor="middle" 
                 dominantBaseline="middle" 
-                fontSize="14"
+                fontSize={isSun ? 18 : 14}
+                fontWeight={isSun ? "bold" : "normal"}
                 fill={p.status === 'Exalted' ? 'var(--color-primary)' : p.status === 'Debilitated' ? 'var(--color-destructive)' : 'currentColor'}
                 className="font-serif select-none pointer-events-none"
               >
@@ -160,8 +183,8 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
         })}
         
         {/* Center decoration */}
-        <circle cx={center} cy={center} r="10" fill="currentColor" fillOpacity="0.05" />
-        <circle cx={center} cy={center} r="2" fill="currentColor" fillOpacity="0.5" />
+        <circle cx={center} cy={center} r="4" fill="currentColor" fillOpacity="0.8" />
+        <circle cx={center} cy={center} r="1" fill="var(--color-background)" />
       </svg>
     </div>
   );

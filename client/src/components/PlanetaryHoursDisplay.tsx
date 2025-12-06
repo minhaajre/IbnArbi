@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PlanetaryHour, PlanetStatus } from "@/lib/astronomy";
 import { format } from "date-fns";
-import { Sun, Moon, Star, Clock, Sparkles } from "lucide-react";
+import { Sun, Moon, Star, Clock, Sparkles, AlertTriangle } from "lucide-react";
 import { PLANET_PROPHETS } from "@/lib/constants";
 
 const PLANET_SYMBOLS: Record<string, string> = {
@@ -40,9 +40,27 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, moonSt
   const progress = (elapsed / total) * 100;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 relative">
+      {/* Moon Status - Top Left */}
+      {moonStatus && (
+        <div className="absolute top-0 left-0 flex flex-col items-start">
+          <div className="flex items-center gap-1.5 text-sm font-medium text-foreground/80">
+            <Moon className="w-3.5 h-3.5" />
+            <span>{moonStatus.sign}</span>
+          </div>
+          <div className="text-xs text-muted-foreground pl-5">
+            {Math.floor(moonStatus.degree)}°{Math.round((moonStatus.degree % 1) * 60)}'
+          </div>
+          {moonStatus.isVoidOfCourse && (
+             <div className="mt-1 pl-1 text-xs text-yellow-500 font-bold flex items-center gap-1 bg-yellow-500/10 px-2 py-0.5 rounded-full animate-pulse">
+               <AlertTriangle className="w-3 h-3" /> VOC
+             </div>
+           )}
+        </div>
+      )}
+
       {/* Main Display */}
-      <div className="relative flex flex-col items-center justify-center py-8">
+      <div className="relative flex flex-col items-center justify-center py-8 mt-6">
         <motion.div 
           className="absolute inset-0 bg-primary/5 blur-[100px] rounded-full"
           animate={{ scale: [1, 1.1, 1] }}
@@ -103,35 +121,28 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, moonSt
       </div>
       
       {/* Info Footer */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-white/5 mt-4">
-        <div className="text-center md:text-left">
-          <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1 opacity-50">Day Ruler</p>
-          <div className="flex items-center justify-center md:justify-start gap-2">
-            <span className={`text-lg ${PLANET_COLORS[dayRuler]}`}>{PLANET_SYMBOLS[dayRuler]}</span>
-            <span className="text-foreground font-serif">{dayRuler}</span>
-            <span className="text-xs text-muted-foreground px-2 py-0.5 bg-white/5 rounded-full">
-              {format(now, "EEEE")}
-            </span>
+      <div className="pt-4 border-t border-white/5 mt-4">
+        <div className="text-center">
+          <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 opacity-50">Day Ruler</p>
+          <div className="flex items-center justify-center gap-3">
+            <span className={`text-2xl ${PLANET_COLORS[dayRuler]}`}>{PLANET_SYMBOLS[dayRuler]}</span>
+            <div className="text-left">
+              <div className="text-foreground font-serif text-lg leading-none">{dayRuler}</div>
+              <div className="text-xs text-muted-foreground">{format(now, "EEEE")}</div>
+            </div>
           </div>
-          <div className="text-xs text-gold/70 mt-1 flex items-center justify-center md:justify-start gap-1.5">
-            <Sparkles className="w-3 h-3" />
-            Prophet: {PLANET_PROPHETS[dayRuler]}
+          
+          <div className="mt-3 inline-flex items-center justify-center gap-2 bg-white/5 px-4 py-2 rounded-lg border border-white/5">
+            <Sparkles className="w-3 h-3 text-gold" />
+            <div className="text-sm">
+              <span className="text-muted-foreground mr-1">Prophet:</span>
+              <span className="text-gold font-medium">{PLANET_PROPHETS[dayRuler]?.name}</span>
+            </div>
+            <div className="text-lg font-arabic text-primary/80 ml-1">
+              {PLANET_PROPHETS[dayRuler]?.arabic}
+            </div>
           </div>
         </div>
-
-        {moonStatus && (
-          <div className="text-center md:text-right">
-            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1 opacity-50">Moon Status</p>
-            <div className="text-sm text-foreground">
-              {moonStatus.sign} <span className="opacity-50">at</span> {Math.floor(moonStatus.degree)}°{Math.round((moonStatus.degree % 1) * 60)}'
-            </div>
-            {moonStatus.isVoidOfCourse && (
-              <div className="text-xs text-yellow-400/80 mt-1 font-medium animate-pulse">
-                Void of Course
-              </div>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );
