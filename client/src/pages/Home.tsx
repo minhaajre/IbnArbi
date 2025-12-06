@@ -376,7 +376,7 @@ export default function Home() {
         </section>
       </div>
 
-      {/* Row 2: Dignities + Zodiac Wheel (side by side) */}
+      {/* Row 2: Dignities + Elemental Balance (side by side) */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         
         {/* Celestial Dignities - Glass Effect */}
@@ -393,22 +393,33 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Zodiac Wheel - Glass Effect */}
+        {/* Elemental Balance - Glass Effect */}
         <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <h2 className="text-lg font-serif mb-3 text-center text-foreground/80 relative z-10">
-            {useSidereal ? "Sidereal Wheel" : "Tropical Wheel"}
-          </h2>
+          <h2 className="text-lg font-serif mb-3 text-foreground/80 relative z-10">Elemental Balance</h2>
           <div className="relative z-10">
-            <ZodiacWheel planets={planets} />
+            <ElementalBalance planets={planets} />
           </div>
         </section>
       </div>
 
-      {/* Row 3: Elemental Balance (full width) */}
-      <section className="relative">
-        <ElementalBalance planets={planets} />
+      {/* Row 3: Celestial Zodiac Wheel (full width) */}
+      <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        <h2 className="text-lg font-serif mb-3 text-center text-foreground/80 relative z-10">
+          Celestial Chart {useSidereal ? "(Sidereal)" : "(Tropical)"}
+        </h2>
+        <div className="relative z-10">
+          <ZodiacWheel 
+            planets={planets} 
+            variant="expanded"
+            gregorianDate={format(now, "EEEE, MMMM d, yyyy")}
+            hijriDate={hijriDate}
+            currentTime={format(now, "h:mm a")}
+          />
+        </div>
       </section>
     </div>
   );
