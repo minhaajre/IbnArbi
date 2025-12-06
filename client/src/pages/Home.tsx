@@ -14,6 +14,7 @@ import { PlanetaryHoursDisplay } from "@/components/PlanetaryHoursDisplay";
 import { PlanetaryTable } from "@/components/PlanetaryTable";
 import { MansionCard } from "@/components/MansionCard";
 import { ZodiacWheel } from "@/components/ZodiacWheel";
+import { ElementalBalance } from "@/components/ElementalBalance";
 import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
@@ -405,22 +406,9 @@ export default function Home() {
         </section>
       </div>
 
-      {/* Row 3: Expanded Zodiac Wheel (full width) */}
-      <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        <h2 className="text-lg font-serif mb-3 text-center text-foreground/80 relative z-10">
-          Celestial Chart {useSidereal ? "(Sidereal)" : "(Tropical)"}
-        </h2>
-        <div className="relative z-10">
-          <ZodiacWheel 
-            planets={planets} 
-            variant="expanded"
-            gregorianDate={format(now, "EEEE, MMMM d, yyyy")}
-            hijriDate={hijriDate}
-            currentTime={format(now, "h:mm a")}
-          />
-        </div>
+      {/* Row 3: Elemental Balance (full width) */}
+      <section className="relative">
+        <ElementalBalance planets={planets} />
       </section>
     </div>
   );
