@@ -315,25 +315,25 @@ export default function Home() {
       </header>
 
       {/* Row 1: Station + Planetary Hour (side by side, equal height) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         
         {/* Current Station Card - Glass Effect */}
-        <section className="glass-card rounded-2xl p-6 relative overflow-hidden">
+        <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <h2 className="text-xl font-serif mb-4 text-foreground/80 relative z-10">Current Station</h2>
+          <h2 className="text-lg font-serif mb-3 text-foreground/80 relative z-10">Current Station</h2>
           <div className="relative z-10">
             <MansionCard mansion={mansion} />
           </div>
         </section>
 
         {/* Planetary Hour Card - Glass Effect */}
-        <section className="glass-card rounded-2xl p-6 relative overflow-hidden">
+        <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           
           {/* Top Row: Moon Sign (left) + Moon Phase (right) - horizontally aligned */}
-          <div className="flex items-start justify-between mb-4 relative z-10">
+          <div className="flex items-start justify-between mb-3 relative z-10">
             {/* Moon Sign - Left */}
             {moonPlanet && (
               <div className="flex items-center gap-3">
@@ -377,13 +377,13 @@ export default function Home() {
       </div>
 
       {/* Row 2: Dignities + Zodiac Wheel (side by side) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         
         {/* Celestial Dignities - Glass Effect */}
-        <section className="glass-card rounded-2xl p-6 relative overflow-hidden">
+        <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <h2 className="text-xl font-serif mb-4 text-foreground/80 relative z-10">Celestial Dignities</h2>
+          <h2 className="text-lg font-serif mb-3 text-foreground/80 relative z-10">Celestial Dignities</h2>
           <div className="relative z-10">
             <PlanetaryTable 
               planets={planets} 
@@ -394,10 +394,10 @@ export default function Home() {
         </section>
 
         {/* Zodiac Wheel - Glass Effect */}
-        <section className="glass-card rounded-2xl p-6 relative overflow-hidden flex flex-col items-center">
+        <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <h2 className="text-xl font-serif mb-4 text-center text-foreground/80 relative z-10">
+          <h2 className="text-lg font-serif mb-3 text-center text-foreground/80 relative z-10">
             {useSidereal ? "Sidereal Wheel" : "Tropical Wheel"}
           </h2>
           <div className="relative z-10">
@@ -407,10 +407,10 @@ export default function Home() {
       </div>
 
       {/* Row 3: Elemental Balance (full width) */}
-      <section className="glass-card rounded-2xl p-6 relative overflow-hidden">
+      <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        <h2 className="text-xl font-serif mb-4 text-foreground/80 relative z-10">Elemental State</h2>
+        <h2 className="text-lg font-serif mb-3 text-foreground/80 relative z-10">Elemental State</h2>
         <div className="relative z-10">
           <ElementalBalance planets={planets} />
         </div>
