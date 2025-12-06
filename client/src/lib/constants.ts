@@ -1,12 +1,16 @@
 import { Search, Sun, Moon, Circle, Eclipse, Star, Cloud, CloudRain, Zap, Snowflake, Wind } from "lucide-react";
 
+// Lahiri Ayanamsha Constants
+export const AYANAMSHA_J2000 = 23.85; // Degrees
+export const PRECESSION_RATE = 0.01397; // Degrees per year
+
 export const IBN_ARABI_MANSIONS = [
   {
     number: 1,
     name: "Al-Sharatain",
     arabic: "الشراطان",
     meaning: "The Two Signs",
-    attribute: "Divine Essence (The Preserver)",
+    attribute: "Al-Mubdi (The Originator)",
     letter: "Hamza & Alef",
     degrees: "0° Aries",
     description: "The beginning of the cycle. Represents the First Intellect and the Universal Pen."
@@ -16,7 +20,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Butain",
     arabic: "البطين",
     meaning: "The Belly",
-    attribute: "The One Who Calls Forth",
+    attribute: "Al-Ba'ith (The Resurrector)",
     letter: "Hâ'",
     degrees: "12°51' Aries",
     description: "Associated with the Universal Soul and the Preserved Tablet."
@@ -26,7 +30,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Thurayya",
     arabic: "الثريا",
     meaning: "The Pleiades",
-    attribute: "Primordial Nature",
+    attribute: "Al-Batin (The Hidden)",
     letter: "Ain",
     degrees: "25°42' Aries",
     description: "The Many Little Ones. Represents the multiplicity emerging from unity."
@@ -36,7 +40,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Dabaran",
     arabic: "الدبران",
     meaning: "The Follower",
-    attribute: "Universal Matter",
+    attribute: "Al-Akhir (The Last)",
     letter: "Haa",
     degrees: "8°34' Taurus",
     description: "Follows the Pleiades. Represents the raw material of the universe."
@@ -46,7 +50,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Haq'ah",
     arabic: "الهقعة",
     meaning: "The White Spot",
-    attribute: "The Ninth Heaven",
+    attribute: "Al-Zahir (The Manifest)",
     letter: "Ghain",
     degrees: "21°25' Taurus",
     description: "The mark on the horse. Represents the highest sphere."
@@ -56,7 +60,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Han'ah",
     arabic: "الهنعة",
     meaning: "The Brand",
-    attribute: "The Sphere of Fixed Stars",
+    attribute: "Al-Hakim (The Wise)",
     letter: "Kha",
     degrees: "4°17' Gemini",
     description: "The mark on the camel. Represents the patterns of destiny."
@@ -66,7 +70,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Dhira",
     arabic: "الذراع",
     meaning: "The Forearm",
-    attribute: "The All-Encompassing",
+    attribute: "Al-Muhit (The All-Encompassing)",
     letter: "Qaf",
     degrees: "17°08' Gemini",
     description: "The Throne of God in Ibn Arabi's cosmology."
@@ -76,7 +80,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Nathrah",
     arabic: "النثرة",
     meaning: "The Gap",
-    attribute: "The Footstool",
+    attribute: "Al-Shakur (The Grateful)",
     letter: "Kaf",
     degrees: "0° Cancer",
     description: "The mist or gap. Represents the pedestal of the universe."
@@ -86,7 +90,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Tarf",
     arabic: "الطرف",
     meaning: "The Glance",
-    attribute: "The Independent",
+    attribute: "Al-Ghani (The Independent)",
     letter: "Jeem",
     degrees: "12°51' Cancer",
     description: "The eye of the lion. Represents the Starless Sky."
@@ -96,7 +100,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Jabhah",
     arabic: "الجبهة",
     meaning: "The Forehead",
-    attribute: "The Powerful",
+    attribute: "Al-Muqtadir (The Powerful)",
     letter: "Sheen",
     degrees: "25°42' Cancer",
     description: "The forehead of the lion. Represents the Sphere of Stations."
@@ -106,7 +110,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Zubrah",
     arabic: "الزبرة",
     meaning: "The Mane",
-    attribute: "The Knowing",
+    attribute: "Al-Alim (The All-Knowing)",
     letter: "Ya",
     degrees: "8°34' Leo",
     description: "The mane of the lion. Associated with divine knowledge."
@@ -116,7 +120,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Sarfah",
     arabic: "الصرفة",
     meaning: "The Turner",
-    attribute: "The Willing",
+    attribute: "Al-Qahhar (The Subduer)",
     letter: "Dad",
     degrees: "21°25' Leo",
     description: "The weather changer. Represents divine will."
@@ -126,7 +130,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Awwa",
     arabic: "العواء",
     meaning: "The Barker",
-    attribute: "The Living",
+    attribute: "Al-Musawwir (The Shaper)",
     letter: "Lam",
     degrees: "4°17' Virgo",
     description: "The barking dog. Represents life and vitality."
@@ -136,7 +140,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Simak",
     arabic: "السماك",
     meaning: "The Uplifted",
-    attribute: "The Speaking",
+    attribute: "Al-Khaliq (The Creator)",
     letter: "Nun",
     degrees: "17°08' Virgo",
     description: "The unarmed one. Represents divine speech."
@@ -146,7 +150,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Ghafr",
     arabic: "الغفر",
     meaning: "The Covering",
-    attribute: "The Hearing",
+    attribute: "Al-Bari (The Maker)",
     letter: "Ra",
     degrees: "0° Libra",
     description: "The veil or covering. Represents divine hearing."
@@ -156,7 +160,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Zubana",
     arabic: "الزبانى",
     meaning: "The Claws",
-    attribute: "The Seeing",
+    attribute: "Al-Musawwir (The Fashioner)",
     letter: "Ta",
     degrees: "12°51' Libra",
     description: "The scorpion's claws. Represents divine sight."
@@ -166,7 +170,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Iklil",
     arabic: "الإكليل",
     meaning: "The Crown",
-    attribute: "The Clarifying",
+    attribute: "Al-Ghaffar (The Forgiver)",
     letter: "Dal",
     degrees: "25°42' Libra",
     description: "The crown of the scorpion. Associated with the Moon sphere."
@@ -176,7 +180,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Qalb",
     arabic: "القلب",
     meaning: "The Heart",
-    attribute: "The Seizer",
+    attribute: "Al-Qabid (The Constrictor)",
     letter: "Ta (emphatic)",
     degrees: "8°34' Scorpio",
     description: "The heart of the scorpion. Represents the Sphere of Ether."
@@ -186,7 +190,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Shaulah",
     arabic: "الشولة",
     meaning: "The Sting",
-    attribute: "The Expander",
+    attribute: "Al-Basit (The Expander)",
     letter: "Zay",
     degrees: "21°25' Scorpio",
     description: "The scorpion's sting. Represents expansion and release."
@@ -196,7 +200,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Na'am",
     arabic: "النعائم",
     meaning: "The Ostriches",
-    attribute: "The Life-Giver",
+    attribute: "Al-Muhyi (The Giver of Life)",
     letter: "Sin",
     degrees: "4°17' Sagittarius",
     description: "The ostriches going to water. Represents the element of Water."
@@ -206,7 +210,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Baldah",
     arabic: "البلدة",
     meaning: "The City",
-    attribute: "The Death-Giver",
+    attribute: "Al-Mumit (The Taker of Life)",
     letter: "Sad",
     degrees: "17°08' Sagittarius",
     description: "The empty city. Represents endings and the element of Earth."
@@ -216,7 +220,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Sa'd al-Dhabih",
     arabic: "سعد الذابح",
     meaning: "Fortune of the Slayer",
-    attribute: "The Nourisher",
+    attribute: "Al-Hayy (The Ever-Living)",
     letter: "Za (emphatic)",
     degrees: "0° Capricorn",
     description: "The lucky one of the slaughterers. Represents sustenance."
@@ -226,7 +230,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Sa'd Bula",
     arabic: "سعد بلع",
     meaning: "Fortune of the Glutton",
-    attribute: "The Reckoner",
+    attribute: "Al-Qayyum (The Self-Subsisting)",
     letter: "Thal",
     degrees: "12°51' Capricorn",
     description: "The lucky swallower. Represents calculation and accounting."
@@ -236,7 +240,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Sa'd al-Su'ud",
     arabic: "سعد السعود",
     meaning: "Fortune of Fortunes",
-    attribute: "The Restorer",
+    attribute: "Al-Wajid (The Finder)",
     letter: "Tha",
     degrees: "25°42' Capricorn",
     description: "The luckiest of the lucky. Represents restoration."
@@ -246,7 +250,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Sa'd al-Akhbiyah",
     arabic: "سعد الأخبية",
     meaning: "Fortune of Tents",
-    attribute: "The Avenger",
+    attribute: "Al-Majid (The Glorious)",
     letter: "Fa",
     degrees: "8°34' Aquarius",
     description: "The lucky stars of the tents. Hidden things revealed."
@@ -256,7 +260,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Fargh al-Muqaddam",
     arabic: "الفرغ المقدم",
     meaning: "The Fore Spout",
-    attribute: "The Gatherer",
+    attribute: "Al-Wahid (The One)",
     letter: "Ba",
     degrees: "21°25' Aquarius",
     description: "The front mouth of the bucket. Represents gathering together."
@@ -266,7 +270,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Fargh al-Mu'akhkhar",
     arabic: "الفرغ المؤخر",
     meaning: "The Rear Spout",
-    attribute: "The Unique",
+    attribute: "Al-Samad (The Eternal)",
     letter: "Mim",
     degrees: "4°17' Pisces",
     description: "The rear mouth of the bucket. Represents uniqueness."
@@ -276,7 +280,7 @@ export const IBN_ARABI_MANSIONS = [
     name: "Batn al-Hut",
     arabic: "بطن الحوت",
     meaning: "Belly of the Fish",
-    attribute: "The Finder",
+    attribute: "Al-Qadir (The Capable)",
     letter: "Waw",
     degrees: "17°08' Pisces",
     description: "The belly of the fish. Completion and finding."

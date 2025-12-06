@@ -1,5 +1,5 @@
 import * as Astronomy from "astronomy-engine";
-import { IBN_ARABI_MANSIONS, PLANETARY_RULERS_ORDER, DAY_RULERS, PLANET_STATUS_RULES, SIGNS } from "./constants";
+import { IBN_ARABI_MANSIONS, PLANETARY_RULERS_ORDER, DAY_RULERS, PLANET_STATUS_RULES, SIGNS, AYANAMSHA_J2000, PRECESSION_RATE } from "./constants";
 
 export interface PlanetaryHour {
   hour: number;
@@ -16,8 +16,36 @@ export interface PlanetStatus {
   sign: string;
   degree: number;
   status: 'Exalted' | 'Debilitated' | 'Neutral' | 'Own Sign';
-  exact: boolean; // If within 1 degree of exaltation/debilitation peak
+  exact: boolean;
   longitude: number;
+  isRetrograde: boolean;
+  speed: number;
+}
+
+export interface MoonPhaseInfo {
+  phase: number; // 0-1
+  isWaxing: boolean;
+  label: string;
+  illumination: number;
+}
+
+function getSiderealLongitude(tropicalLon: number, date: Date): number {
+  // Calculate years since J2000
+  const j2000 = new Date("2000-01-01T12:00:00Z");
+  const daysSinceJ2000 = (date.getTime() - j2000.getTime()) / (1000 * 60 * 60 * 24);
+  const yearsSinceJ2000 = daysSinceJ2000 / 365.25;
+  
+  // Calculate current Ayanamsha (Lahiri)
+  // Ayanamsha = Initial (2000) + (Rate * Years)
+  const currentAyanamsha = AYANAMSHA_J2000 + (PRECESSION_RATE * yearsSinceJ2000);
+  
+  let sidereal = tropicalLon - currentAyanamsha;
+  
+  // Normalize to 0-360
+  if (sidereal < 0) sidereal += 360;
+  if (sidereal >= 360) sidereal -= 360;
+  
+  return sidereal;
 }
 
 export function getPlanetaryHours(date: Date, lat: number, lng: number): {
@@ -27,29 +55,17 @@ export function getPlanetaryHours(date: Date, lat: number, lng: number): {
   sunrise: Date;
   sunset: Date;
 } {
-  // Astronomy Engine uses observer with lat, lng, elevation (0)
   const observer = new Astronomy.Observer(lat, lng, 0);
-  
-  // 1. Determine the "Planetary Day"
-  // A planetary day starts at sunrise. If the current time is before sunrise,
-  // it belongs to the previous calendar day's cycle.
-  
-  // First, get sunrise for the literal calendar date
   const midnight = new Date(date);
   midnight.setHours(0, 0, 0, 0);
   
   let sunriseEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, +1, midnight, 1);
-  
   if (!sunriseEvent) throw new Error("Could not calculate sunrise");
-  
   let sunrise = sunriseEvent.date;
   
-  // If current time is before sunrise, use previous day as the base
   let referenceDate = new Date(date);
   if (date < sunrise) {
     referenceDate.setDate(date.getDate() - 1);
-    
-    // Recalculate sunrise for the previous day
     const prevMidnight = new Date(referenceDate);
     prevMidnight.setHours(0, 0, 0, 0);
     sunriseEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, +1, prevMidnight, 1);
@@ -57,34 +73,24 @@ export function getPlanetaryHours(date: Date, lat: number, lng: number): {
     sunrise = sunriseEvent.date;
   }
   
-  // Now get sunset for this planetary day
-  // Search for sunset AFTER this sunrise
   const sunsetEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, -1, sunrise, 1);
   if (!sunsetEvent) throw new Error("Could not calculate sunset");
   const sunset = sunsetEvent.date;
   
-  // Get NEXT sunrise (start of next planetary day)
   const nextSunriseEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, +1, sunset, 1);
-  // Fallback if calculation fails (e.g., high latitudes), add 24h approx
   const nextSunrise = nextSunriseEvent ? nextSunriseEvent.date : new Date(sunrise.getTime() + 24 * 60 * 60 * 1000);
   
-  // Determine Day Ruler based on the REFERENCE date (week day)
-  const dayOfWeek = referenceDate.getDay(); // 0 = Sunday, etc.
+  const dayOfWeek = referenceDate.getDay();
   const dayRuler = DAY_RULERS[dayOfWeek as keyof typeof DAY_RULERS];
   
-  // Generate Hours
   const hours: PlanetaryHour[] = [];
   const startIdx = PLANETARY_RULERS_ORDER.indexOf(dayRuler);
   
-  // Day Duration
   const dayDuration = sunset.getTime() - sunrise.getTime();
   const dayHourLen = dayDuration / 12;
-  
-  // Night Duration
   const nightDuration = nextSunrise.getTime() - sunset.getTime();
   const nightHourLen = nightDuration / 12;
   
-  // Day Hours
   for (let i = 0; i < 12; i++) {
     const pIdx = (startIdx + i) % 7;
     const start = new Date(sunrise.getTime() + i * dayHourLen);
@@ -101,14 +107,13 @@ export function getPlanetaryHours(date: Date, lat: number, lng: number): {
     });
   }
   
-  // Night Hours
   for (let i = 0; i < 12; i++) {
-    const pIdx = (startIdx + 12 + i) % 7; // Continue sequence
+    const pIdx = (startIdx + 12 + i) % 7;
     const start = new Date(sunset.getTime() + i * nightHourLen);
     const end = new Date(sunset.getTime() + (i + 1) * nightHourLen);
     
     hours.push({
-      hour: i + 13, // 13-24
+      hour: i + 13,
       planet: PLANETARY_RULERS_ORDER[pIdx],
       type: 'night',
       start,
@@ -132,16 +137,35 @@ export function getPlanetaryHours(date: Date, lat: number, lng: number): {
 export function getPlanetaryPositions(date: Date): PlanetStatus[] {
   const planets = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn"];
   
+  // Time delta for velocity/retrograde check (1 hour before)
+  const prevDate = new Date(date.getTime() - 60 * 60 * 1000);
+
   return planets.map(name => {
     const body = Astronomy.Body[name as keyof typeof Astronomy.Body];
-    // Geocentric coordinates
+    
+    // Current Position
     const coords = Astronomy.GeoVector(body, date, false);
     const ecliptic = Astronomy.Ecliptic(coords);
+    const tropicalLon = ecliptic.elon;
+    const siderealLon = getSiderealLongitude(tropicalLon, date);
     
-    const longitude = ecliptic.elon; // 0-360
-    const signIndex = Math.floor(longitude / 30);
+    // Previous Position (for speed/retrograde)
+    const prevCoords = Astronomy.GeoVector(body, prevDate, false);
+    const prevEcliptic = Astronomy.Ecliptic(prevCoords);
+    const prevTropicalLon = prevEcliptic.elon;
+    const prevSiderealLon = getSiderealLongitude(prevTropicalLon, prevDate);
+    
+    // Calculate Speed (degrees per hour)
+    // Handle 360 wrap-around
+    let diff = siderealLon - prevSiderealLon;
+    if (diff < -300) diff += 360;
+    if (diff > 300) diff -= 360;
+    
+    const isRetrograde = diff < 0;
+
+    const signIndex = Math.floor(siderealLon / 30);
     const sign = SIGNS[signIndex];
-    const degree = longitude % 30;
+    const degree = siderealLon % 30;
     
     // Determine status
     let status: PlanetStatus['status'] = 'Neutral';
@@ -149,20 +173,13 @@ export function getPlanetaryPositions(date: Date): PlanetStatus[] {
     
     const rules = PLANET_STATUS_RULES[name as keyof typeof PLANET_STATUS_RULES];
     if (rules) {
-      // Check Exaltation
       if (sign === rules.exaltation) {
         status = 'Exalted';
-        // Exact exaltation check (within 3 degrees)
         if (Math.abs(degree - rules.exaltationDegree) <= 3) exact = true;
-      } 
-      // Check Debilitation
-      else if (sign === rules.debilitation) {
+      } else if (sign === rules.debilitation) {
         status = 'Debilitated';
-        // Exact debilitation check (within 3 degrees)
         if (Math.abs(degree - rules.debilitationDegree) <= 3) exact = true;
-      }
-      // Check Own Sign
-      else {
+      } else {
         const ownSigns: Record<string, string[]> = {
           Sun: ["Leo"], Moon: ["Cancer"], Mars: ["Aries", "Scorpio"],
           Mercury: ["Gemini", "Virgo"], Jupiter: ["Sagittarius", "Pisces"],
@@ -180,7 +197,9 @@ export function getPlanetaryPositions(date: Date): PlanetStatus[] {
       degree,
       status,
       exact,
-      longitude
+      longitude: siderealLon,
+      isRetrograde,
+      speed: diff
     };
   });
 }
@@ -189,16 +208,51 @@ export function getLunarMansion(date: Date) {
   const body = Astronomy.Body.Moon;
   const coords = Astronomy.GeoVector(body, date, false);
   const ecliptic = Astronomy.Ecliptic(coords);
+  const tropicalLon = ecliptic.elon;
   
-  const longitude = ecliptic.elon;
-  // 360 degrees / 28 mansions = 12.857... degrees per mansion
-  // Mansion 1 starts at 0 Aries (0 degrees)
-  const mansionIndex = Math.floor((longitude % 360) / (360 / 28));
+  // Ibn Arabi's mansions are typically mapped to the TROPICAL zodiac in western Sufi studies (starting 0 Aries).
+  // However, if the user requested "Sidereal Placements" generally, they might expect mansions to shift too.
+  // But traditionally, Manazil al-Qamar are fixed star based (Sidereal).
+  // Let's use Sidereal for consistency with the request "use fixed star based sidereal placements".
   
-  // Ensure index is within 0-27 bounds
+  const siderealLon = getSiderealLongitude(tropicalLon, date);
+  
+  const mansionIndex = Math.floor((siderealLon % 360) / (360 / 28));
   const safeIndex = Math.max(0, Math.min(27, mansionIndex));
   
   return IBN_ARABI_MANSIONS[safeIndex];
+}
+
+export function getMoonPhase(date: Date): MoonPhaseInfo {
+  const sunCoords = Astronomy.GeoVector(Astronomy.Body.Sun, date, false);
+  const moonCoords = Astronomy.GeoVector(Astronomy.Body.Moon, date, false);
+  
+  const sunEcl = Astronomy.Ecliptic(sunCoords);
+  const moonEcl = Astronomy.Ecliptic(moonCoords);
+  
+  // Phase angle: Moon - Sun
+  let diff = moonEcl.elon - sunEcl.elon;
+  if (diff < 0) diff += 360;
+  
+  const isWaxing = diff < 180;
+  const phase = Astronomy.MoonPhase(date); // 0-360
+  
+  let label = "";
+  if (diff < 10 || diff > 350) label = "New Moon";
+  else if (diff < 85) label = "Waxing Crescent";
+  else if (diff < 95) label = "First Quarter";
+  else if (diff < 175) label = "Waxing Gibbous";
+  else if (diff < 185) label = "Full Moon";
+  else if (diff < 265) label = "Waning Gibbous";
+  else if (diff < 275) label = "Last Quarter";
+  else label = "Waning Crescent";
+  
+  return {
+    phase: diff,
+    isWaxing,
+    label,
+    illumination: Astronomy.Illumination(Astronomy.Body.Moon, date).phase_fraction * 100
+  };
 }
 
 export function getHijriDate(date: Date) {
