@@ -414,3 +414,73 @@ export const ELEMENT_ACTIVITIES = {
 };
 
 export const API_KEY = "e511b43a614249ea9efbcda01488f374";
+
+export type CriticalDegreeType = 
+  | "first" 
+  | "anaretic" 
+  | "cardinal_critical" 
+  | "fixed_critical" 
+  | "mutable_critical" 
+  | null;
+
+export interface CriticalDegreeInfo {
+  type: CriticalDegreeType;
+  label: string;
+  description: string;
+}
+
+export function getCriticalDegree(degree: number, sign: string): CriticalDegreeInfo | null {
+  const signData = SIGN_DATA[sign];
+  if (!signData) return null;
+  
+  const degreeInSign = degree % 30;
+  const modality = signData.modality;
+  
+  if (degreeInSign >= 0 && degreeInSign < 1) {
+    return {
+      type: "first",
+      label: "0° Critical",
+      description: "Fresh start, new beginnings, pure energy"
+    };
+  }
+  
+  if (degreeInSign >= 29) {
+    return {
+      type: "anaretic",
+      label: "29° Anaretic",
+      description: "Degree of fate, karmic lessons, cycle completion"
+    };
+  }
+  
+  if (modality === "Cardinal") {
+    if ((degreeInSign >= 13 && degreeInSign < 14) || (degreeInSign >= 26 && degreeInSign < 27)) {
+      return {
+        type: "cardinal_critical",
+        label: `${Math.floor(degreeInSign)}° Cardinal Critical`,
+        description: "Heightened cardinal energy, pivotal turning point"
+      };
+    }
+  }
+  
+  if (modality === "Fixed") {
+    if ((degreeInSign >= 8 && degreeInSign < 10) || (degreeInSign >= 21 && degreeInSign < 23)) {
+      return {
+        type: "fixed_critical",
+        label: `${Math.floor(degreeInSign)}° Fixed Critical`,
+        description: "Intensified fixed energy, significant challenge"
+      };
+    }
+  }
+  
+  if (modality === "Mutable") {
+    if ((degreeInSign >= 4 && degreeInSign < 5) || (degreeInSign >= 17 && degreeInSign < 18)) {
+      return {
+        type: "mutable_critical",
+        label: `${Math.floor(degreeInSign)}° Mutable Critical`,
+        description: "Amplified mutable energy, key transition"
+      };
+    }
+  }
+  
+  return null;
+}
