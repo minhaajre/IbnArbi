@@ -10,6 +10,8 @@ interface ZodiacWheelProps {
   gregorianDate?: string;
   hijriDate?: string;
   currentTime?: string;
+  moonPhaseLabel?: string;
+  isWaxing?: boolean;
 }
 
 const ELEMENT_COLORS = {
@@ -87,7 +89,9 @@ export function ZodiacWheel({
   variant = "compact",
   gregorianDate,
   hijriDate,
-  currentTime
+  currentTime,
+  moonPhaseLabel,
+  isWaxing
 }: ZodiacWheelProps) {
   const [hoveredSign, setHoveredSign] = useState<string | null>(null);
   const [hoveredPlanet, setHoveredPlanet] = useState<string | null>(null);
@@ -349,62 +353,85 @@ export function ZodiacWheel({
 
         <circle cx={center} cy={center} r="6" fill="currentColor" fillOpacity="0.6" />
         <circle cx={center} cy={center} r="2" fill="var(--color-background)" />
-
-        {variant === "expanded" && (gregorianDate || hijriDate || currentTime) && (
-          <g>
-            {currentTime && (
-              <text
-                x={center}
-                y={center - 35}
-                textAnchor="middle"
-                fontSize="22"
-                fill="currentColor"
-                className="font-mono font-light"
-                opacity="0.9"
-              >
-                {currentTime}
-              </text>
-            )}
-            {gregorianDate && (
-              <text
-                x={center}
-                y={center + 20}
-                textAnchor="middle"
-                fontSize="11"
-                fill="currentColor"
-                className="font-sans"
-                opacity="0.6"
-              >
-                {gregorianDate}
-              </text>
-            )}
-            {hijriDate && (
-              <text
-                x={center}
-                y={center + 38}
-                textAnchor="middle"
-                fontSize="13"
-                fill="var(--color-gold, #d4af37)"
-                className="font-arabic"
-                opacity="0.85"
-              >
-                {hijriDate}
-              </text>
-            )}
-          </g>
-        )}
       </svg>
+
+      {variant === "expanded" && (
+        <>
+          {(gregorianDate || hijriDate || currentTime) && (
+            <div className="absolute top-2 right-2 text-right space-y-1 bg-card/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-border">
+              {currentTime && (
+                <div className="flex items-center justify-end gap-2">
+                  {moonPhaseLabel && (
+                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                      {isWaxing ? <SunIcon className="w-3.5 h-3.5" /> : <MoonIcon className="w-3.5 h-3.5" />}
+                      <span>{moonPhaseLabel}</span>
+                    </div>
+                  )}
+                  <span className="text-lg font-mono font-light tabular-nums">{currentTime}</span>
+                </div>
+              )}
+              {gregorianDate && (
+                <div className="text-xs text-muted-foreground">{gregorianDate}</div>
+              )}
+              {hijriDate && (
+                <div className="text-sm text-gold/80 font-arabic">{hijriDate}</div>
+              )}
+            </div>
+          )}
+
+          <div className="absolute bottom-2 left-2 bg-card/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-border">
+            <div className="text-xs text-muted-foreground mb-1.5 font-medium">Legend</div>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+              <div className="flex items-center gap-1.5">
+                <Flame className="w-3 h-3 text-orange-400" />
+                <span className="text-muted-foreground">Fire</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Flower2 className="w-3 h-3 text-green-500" />
+                <span className="text-muted-foreground">Spring</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Mountain className="w-3 h-3 text-emerald-400" />
+                <span className="text-muted-foreground">Earth</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <SunIcon className="w-3 h-3 text-amber-500" />
+                <span className="text-muted-foreground">Summer</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Wind className="w-3 h-3 text-sky-400" />
+                <span className="text-muted-foreground">Air</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Leaf className="w-3 h-3 text-orange-500" />
+                <span className="text-muted-foreground">Autumn</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Droplets className="w-3 h-3 text-blue-400" />
+                <span className="text-muted-foreground">Water</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Snowflake className="w-3 h-3 text-blue-300" />
+                <span className="text-muted-foreground">Winter</span>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
 
       <AnimatePresence>
         {hoveredSignData && hoveredSign && !hoveredPlanet && (
           <motion.div
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 5 }}
-            className="absolute left-1/2 -translate-x-1/2 -bottom-2 bg-card/95 backdrop-blur-md border border-border px-4 py-2 rounded-lg shadow-lg text-center min-w-[160px] z-20"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-card/95 backdrop-blur-md border border-border px-4 py-3 rounded-lg shadow-lg text-center min-w-[180px] z-20"
           >
-            <div className="font-serif text-lg text-primary mb-1.5">
+            <div className="font-serif text-lg text-primary mb-1">
               {SIGN_DATA[hoveredSign].symbol} {hoveredSign}
+            </div>
+            <div className="text-xs text-muted-foreground mb-2">
+              {hoveredSignData.dates}
             </div>
             <div className="flex items-center justify-center gap-4 text-xs">
               <div className="flex items-center gap-1" title={hoveredSignData.element}>

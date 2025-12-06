@@ -201,19 +201,18 @@ export default function Home() {
       
       {/* Header */}
       <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6 border-b border-border pb-8">
-        <div>
-          <h1 className="text-4xl md:text-5xl font-serif text-gold mb-2">Ibn Arabi's Cosmology</h1>
-          <p className="text-muted-foreground font-light tracking-wide flex items-center gap-2">
-            {useSidereal ? "Sidereal" : "Tropical"} Planetary Calendar
-            <span className="px-2 py-0.5 rounded-full bg-foreground/5 text-xs border border-border">
-              v2.1
-            </span>
-          </p>
-        </div>
+        <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 w-full">
+          <div className="flex-1">
+            <h1 className="text-4xl md:text-5xl font-serif text-gold mb-2">Ibn Arabi's Cosmology</h1>
+            <p className="text-muted-foreground font-light tracking-wide flex items-center gap-2">
+              {useSidereal ? "Sidereal" : "Tropical"} Planetary Calendar
+              <span className="px-2 py-0.5 rounded-full bg-foreground/5 text-xs border border-border">
+                v2.1
+              </span>
+            </p>
+          </div>
 
-        <div className="flex flex-col items-end gap-4">
-          
-          <div className="flex flex-wrap items-center justify-end gap-3">
+          <div className="flex flex-wrap items-center gap-3">
              {/* Theme Toggle */}
             <Button 
               variant="ghost" 
@@ -408,8 +407,13 @@ export default function Home() {
       <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        <h2 className="text-lg font-serif mb-3 text-center text-foreground/80 relative z-10">
-          Celestial Chart {useSidereal ? "(Sidereal)" : "(Tropical)"}
+        <h2 className="text-lg font-serif mb-3 text-center relative z-10">
+          <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 bg-clip-text text-transparent">
+            Current Sky Map
+          </span>
+          <span className="text-muted-foreground ml-2 text-sm font-light">
+            {useSidereal ? "(Sidereal)" : "(Tropical)"}
+          </span>
         </h2>
         <div className="relative z-10">
           <ZodiacWheel 
@@ -418,6 +422,8 @@ export default function Home() {
             gregorianDate={format(now, "EEEE, MMMM d, yyyy")}
             hijriDate={hijriDate}
             currentTime={format(now, "h:mm a")}
+            moonPhaseLabel={moonPhase?.label}
+            isWaxing={moonPhase?.isWaxing}
           />
         </div>
       </section>
