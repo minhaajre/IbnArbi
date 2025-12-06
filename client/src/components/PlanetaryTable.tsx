@@ -79,26 +79,25 @@ export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: Planeta
                   </div>
                 </TableCell>
                 <TableCell className="text-right">
-                  {planet.status === 'Neutral' ? (
-                    <span className="text-muted-foreground opacity-30">-</span>
-                  ) : (
-                    <span className={cn(
-                        "px-2 py-1 rounded text-xs font-medium border inline-flex items-center gap-1",
-                        planet.status === "Exalted"
-                          ? "bg-green-600/10 text-green-700 dark:text-green-400 border-green-600/20"
-                          : planet.status === "Debilitated"
-                          ? "bg-red-600/10 text-red-700 dark:text-red-400 border-red-600/20"
-                          : planet.status === "Own Sign"
-                          ? "bg-primary/10 text-primary border-primary/20"
-                          : "bg-foreground/5 text-muted-foreground border-transparent"
-                      )}>
-                      {planet.status === "Exalted" && <ArrowUpCircle className="w-3 h-3" />}
-                      {planet.status === "Debilitated" && <ArrowDownCircle className="w-3 h-3" />}
-                      {planet.status === "Own Sign" && <Crown className="w-3 h-3" />}
-                      {planet.status}
-                      {planet.exact && <span className="ml-1 opacity-70">*</span>}
-                    </span>
-                  )}
+                  <span className={cn(
+                      "px-2 py-1 rounded text-xs font-medium border inline-flex items-center gap-1",
+                      planet.status === "Exalted"
+                        ? "bg-green-600/10 text-green-700 dark:text-green-400 border-green-600/20"
+                        : planet.status === "Fall"
+                        ? "bg-red-600/10 text-red-700 dark:text-red-400 border-red-600/20"
+                        : planet.status === "Rulership"
+                        ? "bg-primary/10 text-primary border-primary/20"
+                        : planet.status === "Detriment"
+                        ? "bg-orange-600/10 text-orange-700 dark:text-orange-400 border-orange-600/20"
+                        : "bg-foreground/5 text-muted-foreground border-transparent"
+                    )}>
+                    {planet.status === "Exalted" && <ArrowUpCircle className="w-3 h-3" />}
+                    {planet.status === "Fall" && <ArrowDownCircle className="w-3 h-3" />}
+                    {planet.status === "Rulership" && <Crown className="w-3 h-3" />}
+                    {planet.status === "Detriment" && <Shield className="w-3 h-3" />}
+                    {planet.status}
+                    {planet.exact && <span className="ml-1 opacity-70">*</span>}
+                  </span>
                 </TableCell>
               </TableRow>
             ))}

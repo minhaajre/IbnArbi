@@ -17,7 +17,7 @@ export interface PlanetStatus {
   name: string;
   sign: string;
   degree: number;
-  status: 'Exalted' | 'Debilitated' | 'Neutral' | 'Own Sign';
+  status: 'Exalted' | 'Fall' | 'Rulership' | 'Detriment' | 'Neutral';
   exact: boolean;
   longitude: number;
   isRetrograde: boolean;
@@ -170,7 +170,7 @@ export function getPlanetaryPositions(date: Date, useSidereal: boolean = true): 
     const sign = SIGNS[signIndex];
     const degree = lon % 30;
     
-    // Determine status
+    // Determine status using full dignity system
     let status: PlanetStatus['status'] = 'Neutral';
     let exact = false;
     
@@ -179,18 +179,13 @@ export function getPlanetaryPositions(date: Date, useSidereal: boolean = true): 
       if (sign === rules.exaltation) {
         status = 'Exalted';
         if (Math.abs(degree - rules.exaltationDegree) <= 3) exact = true;
-      } else if (sign === rules.debilitation) {
-        status = 'Debilitated';
-        if (Math.abs(degree - rules.debilitationDegree) <= 3) exact = true;
-      } else {
-        const ownSigns: Record<string, string[]> = {
-          Sun: ["Leo"], Moon: ["Cancer"], Mars: ["Aries", "Scorpio"],
-          Mercury: ["Gemini", "Virgo"], Jupiter: ["Sagittarius", "Pisces"],
-          Venus: ["Taurus", "Libra"], Saturn: ["Capricorn", "Aquarius"]
-        };
-        if (ownSigns[name] && ownSigns[name].includes(sign)) {
-          status = 'Own Sign';
-        }
+      } else if (sign === rules.fall) {
+        status = 'Fall';
+        if (Math.abs(degree - rules.fallDegree) <= 3) exact = true;
+      } else if (rules.rulership.includes(sign)) {
+        status = 'Rulership';
+      } else if (rules.detriment.includes(sign)) {
+        status = 'Detriment';
       }
     }
     

@@ -314,13 +314,62 @@ export const PLANET_PROPHETS: Record<string, { name: string; arabic: string }> =
 };
 
 export const PLANET_STATUS_RULES = {
-  Sun: { exaltation: "Aries", debilitation: "Libra", exaltationDegree: 10, debilitationDegree: 10 },
-  Moon: { exaltation: "Taurus", debilitation: "Scorpio", exaltationDegree: 3, debilitationDegree: 3 },
-  Mars: { exaltation: "Capricorn", debilitation: "Cancer", exaltationDegree: 28, debilitationDegree: 28 },
-  Mercury: { exaltation: "Virgo", debilitation: "Pisces", exaltationDegree: 15, debilitationDegree: 15 },
-  Jupiter: { exaltation: "Cancer", debilitation: "Capricorn", exaltationDegree: 5, debilitationDegree: 5 },
-  Venus: { exaltation: "Pisces", debilitation: "Virgo", exaltationDegree: 27, debilitationDegree: 27 },
-  Saturn: { exaltation: "Libra", debilitation: "Aries", exaltationDegree: 20, debilitationDegree: 20 }
+  Sun: { 
+    rulership: ["Leo"], 
+    detriment: ["Aquarius"],
+    exaltation: "Aries", 
+    fall: "Libra", 
+    exaltationDegree: 10, 
+    fallDegree: 10 
+  },
+  Moon: { 
+    rulership: ["Cancer"], 
+    detriment: ["Capricorn"],
+    exaltation: "Taurus", 
+    fall: "Scorpio", 
+    exaltationDegree: 3, 
+    fallDegree: 3 
+  },
+  Mars: { 
+    rulership: ["Aries", "Scorpio"], 
+    detriment: ["Libra", "Taurus"],
+    exaltation: "Capricorn", 
+    fall: "Cancer", 
+    exaltationDegree: 28, 
+    fallDegree: 28 
+  },
+  Mercury: { 
+    rulership: ["Gemini", "Virgo"], 
+    detriment: ["Sagittarius", "Pisces"],
+    exaltation: "Virgo", 
+    fall: "Pisces", 
+    exaltationDegree: 15, 
+    fallDegree: 15 
+  },
+  Jupiter: { 
+    rulership: ["Sagittarius", "Pisces"], 
+    detriment: ["Gemini", "Virgo"],
+    exaltation: "Cancer", 
+    fall: "Capricorn", 
+    exaltationDegree: 5, 
+    fallDegree: 5 
+  },
+  Venus: { 
+    rulership: ["Taurus", "Libra"], 
+    detriment: ["Scorpio", "Aries"],
+    exaltation: "Pisces", 
+    fall: "Virgo", 
+    exaltationDegree: 27, 
+    fallDegree: 27 
+  },
+  Saturn: { 
+    rulership: ["Capricorn", "Aquarius"], 
+    detriment: ["Cancer", "Leo"],
+    exaltation: "Libra", 
+    fall: "Aries", 
+    exaltationDegree: 20, 
+    fallDegree: 20 
+  }
 };
 
 export const SIGNS = [
