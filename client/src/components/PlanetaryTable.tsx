@@ -28,8 +28,8 @@ const PLANET_SYMBOLS: Record<string, string> = {
 
 export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: PlanetaryTableProps) {
   return (
-    <div className="bg-card/50 border border-white/5 rounded-xl overflow-hidden backdrop-blur-sm">
-      <div className="p-4 border-b border-white/5 flex items-center justify-between">
+    <div className="bg-card/50 border border-border rounded-xl overflow-hidden backdrop-blur-sm">
+      <div className="p-4 border-b border-border flex items-center justify-between">
         <div>
            <h3 className="text-xl font-serif text-gold">Sidereal Dignities</h3>
            <span className="text-xs text-muted-foreground">
@@ -37,7 +37,7 @@ export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: Planeta
            </span>
         </div>
         {onToggleSystem !== undefined && (
-           <div className="flex items-center gap-2 bg-black/20 px-3 py-1.5 rounded-lg border border-white/5">
+           <div className="flex items-center gap-2 bg-foreground/10 px-3 py-1.5 rounded-lg border border-foreground/10">
               <span className={`text-xs ${!useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Tropical</span>
               <Switch checked={useSidereal} onCheckedChange={onToggleSystem} />
               <span className={`text-xs ${useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Sidereal</span>
@@ -47,8 +47,8 @@ export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: Planeta
       
       <div className="overflow-x-auto">
         <Table>
-          <TableHeader className="bg-white/5">
-            <TableRow className="hover:bg-transparent border-white/5">
+          <TableHeader className="bg-foreground/5">
+            <TableRow className="hover:bg-transparent border-border">
               <TableHead className="w-[100px] text-gold font-serif">Planet</TableHead>
               <TableHead className="text-gold font-serif">Position</TableHead>
               <TableHead className="text-gold font-serif text-right">Dignity</TableHead>
@@ -56,7 +56,7 @@ export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: Planeta
           </TableHeader>
           <TableBody>
             {planets.map((planet) => (
-              <TableRow key={planet.name} className="hover:bg-white/5 border-white/5 transition-colors">
+              <TableRow key={planet.name} className="hover:bg-foreground/5 border-border transition-colors">
                 <TableCell className="font-medium">
                   <div className="flex items-center gap-2">
                     <span className="text-lg text-muted-foreground font-serif">{PLANET_SYMBOLS[planet.name]}</span>
@@ -70,7 +70,7 @@ export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: Planeta
                     </span>
                     <div className="flex items-center gap-2 mt-0.5">
                        {planet.isRetrograde && (
-                        <span className="text-[10px] text-red-400 font-bold px-1 py-0.5 bg-red-400/10 rounded flex items-center gap-1">
+                        <span className="text-[10px] text-red-600 dark:text-red-400 font-bold px-1 py-0.5 bg-red-600/10 dark:bg-red-400/10 rounded flex items-center gap-1">
                           <Repeat className="w-2.5 h-2.5" /> Rx
                         </span>
                       )}
@@ -85,12 +85,12 @@ export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: Planeta
                     <span className={cn(
                         "px-2 py-1 rounded text-xs font-medium border inline-flex items-center gap-1",
                         planet.status === "Exalted"
-                          ? "bg-green-500/10 text-green-400 border-green-500/20"
+                          ? "bg-green-600/10 text-green-700 dark:text-green-400 border-green-600/20"
                           : planet.status === "Debilitated"
-                          ? "bg-red-500/10 text-red-400 border-red-500/20"
+                          ? "bg-red-600/10 text-red-700 dark:text-red-400 border-red-600/20"
                           : planet.status === "Own Sign"
                           ? "bg-primary/10 text-primary border-primary/20"
-                          : "bg-white/5 text-muted-foreground border-transparent"
+                          : "bg-foreground/5 text-muted-foreground border-transparent"
                       )}>
                       {planet.status === "Exalted" && <ArrowUpCircle className="w-3 h-3" />}
                       {planet.status === "Debilitated" && <ArrowDownCircle className="w-3 h-3" />}

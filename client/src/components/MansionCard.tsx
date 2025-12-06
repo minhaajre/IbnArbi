@@ -11,7 +11,7 @@ export function MansionCard({ mansion }: MansionCardProps) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-card/50 border border-white/5 rounded-xl p-6 backdrop-blur-md relative overflow-hidden h-full flex flex-col"
+      className="bg-card/50 border border-border rounded-xl p-6 backdrop-blur-md relative overflow-hidden h-full flex flex-col"
     >
       <div className="absolute top-0 right-0 p-4 opacity-5 text-9xl font-arabic select-none pointer-events-none">
         {mansion.arabic}
@@ -23,7 +23,7 @@ export function MansionCard({ mansion }: MansionCardProps) {
             <Moon className="w-3 h-3" />
             Station {mansion.number}
           </span>
-          <div className="h-px bg-white/10 flex-1" />
+          <div className="h-px bg-border flex-1" />
         </div>
 
         <h2 className="text-3xl font-serif text-gold mb-1 leading-tight">
@@ -50,7 +50,7 @@ export function MansionCard({ mansion }: MansionCardProps) {
             </div>
           </div>
 
-          <div className="pt-4 border-t border-white/5 mt-auto">
+          <div className="pt-4 border-t border-border mt-auto">
             <p className="italic opacity-80 text-xs leading-relaxed">"{mansion.description}"</p>
           </div>
         </div>

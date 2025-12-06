@@ -51,7 +51,7 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="absolute z-20 bg-background/90 backdrop-blur-md border border-white/10 p-3 rounded-lg shadow-xl pointer-events-none min-w-[120px]"
+            className="absolute z-20 bg-background/90 backdrop-blur-md border border-border p-3 rounded-lg shadow-xl pointer-events-none min-w-[120px]"
             style={{ 
               left: hoveredPos.x > center ? 'auto' : hoveredPos.x + 20, 
               right: hoveredPos.x > center ? size - hoveredPos.x + 20 : 'auto',
@@ -66,7 +66,7 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
                 <div className="text-xs text-muted-foreground font-medium mt-1">
                   {p.sign} {Math.floor(p.degree)}°{Math.round((p.degree % 1) * 60)}'
                 </div>
-                {p.isRetrograde && <div className="text-xs text-red-400 mt-1 font-bold">Retrograde (Rx)</div>}
+                {p.isRetrograde && <div className="text-xs text-red-600 dark:text-red-400 mt-1 font-bold">Retrograde (Rx)</div>}
                 {p.status !== 'Neutral' && <div className="text-xs text-primary mt-1 font-bold">{p.status}</div>}
               </div>
             ))}

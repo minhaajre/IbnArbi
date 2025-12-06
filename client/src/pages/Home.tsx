@@ -200,12 +200,12 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground p-6 md:p-12 max-w-7xl mx-auto transition-colors duration-500">
       
       {/* Header */}
-      <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6 border-b border-white/5 pb-8">
+      <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6 border-b border-border pb-8">
         <div>
           <h1 className="text-4xl md:text-5xl font-serif text-gold mb-2">Ibn Arabi's Cosmology</h1>
           <p className="text-muted-foreground font-light tracking-wide flex items-center gap-2">
             {useSidereal ? "Sidereal" : "Tropical"} Planetary Calendar
-            <span className="px-2 py-0.5 rounded-full bg-white/5 text-xs border border-white/10">
+            <span className="px-2 py-0.5 rounded-full bg-foreground/5 text-xs border border-border">
               v2.1
             </span>
           </p>
@@ -219,7 +219,7 @@ export default function Home() {
               variant="ghost" 
               size="icon" 
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-full w-9 h-9 border border-white/10"
+              className="rounded-full w-9 h-9 border border-border"
             >
               <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
               <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -227,7 +227,7 @@ export default function Home() {
             </Button>
 
             {/* Sidereal Toggle */}
-            <div className="flex items-center gap-2 bg-card/50 rounded-lg px-3 py-2 border border-white/10">
+            <div className="flex items-center gap-2 bg-card/50 rounded-lg px-3 py-2 border border-border">
               <span className={`text-xs ${!useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Tropical</span>
               <Switch checked={useSidereal} onCheckedChange={setUseSidereal} />
               <span className={`text-xs ${useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Sidereal</span>
@@ -236,7 +236,7 @@ export default function Home() {
             {/* Location Dialog */}
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline" size="sm" className="bg-card/50 border-white/10 h-9 max-w-[200px] truncate">
+                <Button variant="outline" size="sm" className="bg-card/50 border-border h-9 max-w-[200px] truncate">
                   <MapPin className="w-3 h-3 mr-2 shrink-0" />
                   {location?.name}
                 </Button>
@@ -266,7 +266,7 @@ export default function Home() {
             </Dialog>
 
             {/* Date Picker */}
-            <div className="flex items-center gap-2 bg-card/50 rounded-lg p-1 border border-white/10">
+            <div className="flex items-center gap-2 bg-card/50 rounded-lg p-1 border border-border">
                <Popover>
                 <PopoverTrigger asChild>
                   <Button
@@ -338,7 +338,7 @@ export default function Home() {
         <div className="lg:col-span-7 space-y-8">
           
           {/* Combined Status Card: Hour + Moon + Phase */}
-          <section className="bg-card/30 border border-white/5 rounded-2xl p-8 backdrop-blur-sm relative overflow-hidden">
+          <section className="bg-card/30 border border-border rounded-2xl p-8 backdrop-blur-sm relative overflow-hidden">
              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-50" />
              
              {/* Moon Phase Indicator */}
@@ -347,7 +347,7 @@ export default function Home() {
                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                    {moonPhase.isWaxing ? <Sun className="w-3 h-3" /> : <Moon className="w-3 h-3" />}
                    <span>{moonPhase.label}</span>
-                   <span className="text-xs px-1.5 py-0.5 rounded bg-white/10 font-mono">
+                   <span className="text-xs px-1.5 py-0.5 rounded bg-foreground/10 font-mono">
                      {Math.round(moonPhase.illumination)}%
                    </span>
                  </div>
@@ -374,7 +374,7 @@ export default function Home() {
              />
 
              {/* Integrated Mansion Info in Hour Section */}
-             <div className="mt-8 pt-6 border-t border-white/5 flex items-center justify-between text-sm text-muted-foreground">
+             <div className="mt-8 pt-6 border-t border-border flex items-center justify-between text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <span className="opacity-50">Current Mansion:</span>
                   <span className="text-foreground font-serif">{mansion.name}</span>
@@ -384,7 +384,7 @@ export default function Home() {
           </section>
 
           {/* Zodiac Wheel Visualization (Swapped from Left) */}
-          <section className="bg-card/20 border border-white/5 rounded-2xl p-8 flex flex-col items-center">
+          <section className="bg-card/20 border border-border rounded-2xl p-8 flex flex-col items-center">
             <h2 className="text-2xl font-serif mb-6 text-center text-foreground/80">
               {useSidereal ? "Sidereal Wheel" : "Tropical Wheel"}
             </h2>

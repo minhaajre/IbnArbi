@@ -11,13 +11,13 @@ const PLANET_SYMBOLS: Record<string, string> = {
 };
 
 const PLANET_COLORS: Record<string, string> = {
-  Sun: "text-yellow-400",
-  Moon: "text-slate-200",
-  Mars: "text-red-400",
-  Mercury: "text-emerald-300",
-  Jupiter: "text-orange-300",
-  Venus: "text-pink-300",
-  Saturn: "text-indigo-300"
+  Sun: "text-amber-500 dark:text-yellow-400",
+  Moon: "text-slate-600 dark:text-slate-200",
+  Mars: "text-red-600 dark:text-red-400",
+  Mercury: "text-emerald-600 dark:text-emerald-300",
+  Jupiter: "text-orange-600 dark:text-orange-300",
+  Venus: "text-pink-600 dark:text-pink-300",
+  Saturn: "text-indigo-600 dark:text-indigo-300"
 };
 
 interface PlanetaryHoursDisplayProps {
@@ -80,13 +80,13 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, moonSt
             Hour of {currentHour.planet}
           </h2>
           
-          <div className="flex items-center justify-center gap-2 text-muted-foreground mb-6 font-light tracking-wide bg-white/5 px-3 py-1 rounded-full w-fit mx-auto border border-white/5">
+          <div className="flex items-center justify-center gap-2 text-muted-foreground mb-6 font-light tracking-wide bg-foreground/5 px-3 py-1 rounded-full w-fit mx-auto border border-border">
             <Clock className="w-3 h-3" />
             {format(currentHour.start, "h:mm a")} — {format(currentHour.end, "h:mm a")}
           </div>
 
           {/* Progress Bar */}
-          <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden mx-auto mb-4 relative">
+          <div className="w-64 h-1 bg-foreground/10 rounded-full overflow-hidden mx-auto mb-4 relative">
             <motion.div 
               className="absolute top-0 bottom-0 bg-primary shadow-[0_0_10px_rgba(250,204,21,0.5)]"
               initial={{ width: 0 }}
@@ -105,7 +105,7 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, moonSt
         {nextHours.slice(0, 6).map((h) => (
           <div 
             key={h.hour + h.planet}
-            className="bg-white/5 border border-white/5 rounded-lg p-3 text-center backdrop-blur-sm hover:bg-white/10 transition-colors flex flex-col items-center justify-between h-full group"
+            className="bg-foreground/5 border border-border rounded-lg p-3 text-center backdrop-blur-sm hover:bg-foreground/10 transition-colors flex flex-col items-center justify-between h-full group"
           >
             <div className={`text-xl mb-1 ${PLANET_COLORS[h.planet]} group-hover:scale-110 transition-transform`}>
               {PLANET_SYMBOLS[h.planet]}
@@ -121,7 +121,7 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, moonSt
       </div>
       
       {/* Info Footer */}
-      <div className="pt-4 border-t border-white/5 mt-4">
+      <div className="pt-4 border-t border-border mt-4">
         <div className="text-center">
           <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 opacity-50">Day Ruler</p>
           <div className="flex items-center justify-center gap-3">
@@ -132,7 +132,7 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, moonSt
             </div>
           </div>
           
-          <div className="mt-3 inline-flex items-center justify-center gap-2 bg-white/5 px-4 py-2 rounded-lg border border-white/5">
+          <div className="mt-3 inline-flex items-center justify-center gap-2 bg-foreground/5 px-4 py-2 rounded-lg border border-border">
             <Sparkles className="w-3 h-3 text-gold" />
             <div className="text-sm">
               <span className="text-muted-foreground mr-1">Prophet:</span>

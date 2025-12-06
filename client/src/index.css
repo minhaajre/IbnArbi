@@ -4,31 +4,31 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-sans: 'Inter', sans-serif;
-  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Satoshi', 'Inter', sans-serif;
+  --font-serif: 'Clash Display', 'Cormorant Garamond', serif;
   --font-arabic: 'Amiri', serif;
   --radius: 0.5rem;
 
-  /* Light Mode Colors */
-  --background: 48 33% 97%;
-  --foreground: 240 30% 15%;
-  --card: 48 20% 94%;
-  --card-foreground: 240 30% 15%;
-  --popover: 48 20% 94%;
-  --popover-foreground: 240 30% 15%;
-  --primary: 45 90% 40%;
+  /* Light Mode Colors - High Contrast */
+  --background: 40 30% 96%;
+  --foreground: 240 25% 12%;
+  --card: 40 25% 92%;
+  --card-foreground: 240 25% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 25% 12%;
+  --primary: 35 85% 35%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 260 20% 90%;
-  --secondary-foreground: 260 30% 25%;
-  --muted: 48 15% 90%;
-  --muted-foreground: 240 10% 45%;
-  --accent: 260 30% 85%;
-  --accent-foreground: 260 50% 25%;
-  --destructive: 0 62% 50%;
+  --secondary: 260 15% 88%;
+  --secondary-foreground: 260 40% 20%;
+  --muted: 40 20% 88%;
+  --muted-foreground: 240 15% 35%;
+  --accent: 260 25% 82%;
+  --accent-foreground: 260 50% 20%;
+  --destructive: 0 70% 45%;
   --destructive-foreground: 0 0% 100%;
-  --border: 48 20% 85%;
-  --input: 48 20% 85%;
-  --ring: 45 90% 40%;
+  --border: 40 20% 80%;
+  --input: 40 20% 80%;
+  --ring: 35 85% 35%;
 }
 
 .dark {
@@ -37,7 +37,7 @@
   --foreground: 210 20% 90%;
   --card: 240 25% 6%;
   --card-foreground: 210 20% 90%;
-  --popover: 240 25% 6%;
+  --popover: 240 25% 8%;
   --popover-foreground: 210 20% 90%;
   --primary: 45 90% 60%;
   --primary-foreground: 240 30% 4%;
@@ -100,6 +100,29 @@
       radial-gradient(circle at 50% 0%, hsl(260 40% 10% / 0.4), transparent 70%),
       radial-gradient(circle at 80% 20%, hsl(220 40% 10% / 0.3), transparent 50%);
   }
+  
+  /* Typography Scale */
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-serif font-semibold tracking-tight;
+  }
+  h2 {
+    @apply text-2xl md:text-3xl font-serif font-medium;
+  }
+  h3 {
+    @apply text-xl md:text-2xl font-serif;
+  }
+  h4 {
+    @apply text-lg font-medium;
+  }
+  p {
+    @apply text-base leading-relaxed;
+  }
+  .text-sm {
+    @apply text-[0.875rem] leading-normal;
+  }
+  .text-xs {
+    @apply text-[0.75rem] leading-normal;
+  }
 }
 
 @layer utilities {
@@ -111,10 +134,13 @@
   }
   
   .glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10;
+    @apply bg-foreground/5 backdrop-blur-md border border-foreground/10;
   }
   
   .text-gold {
-    @apply text-primary drop-shadow-[0_0_8px_rgba(250,204,21,0.3)];
+    @apply text-primary;
+  }
+  .dark .text-gold {
+    @apply drop-shadow-[0_0_8px_rgba(250,204,21,0.3)];
   }
 }

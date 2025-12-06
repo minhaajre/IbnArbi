@@ -48,7 +48,7 @@ export function ElementalBalance({ planets }: ElementalBalanceProps) {
   const DominantIcon = icons[dominant];
 
   return (
-    <div className="bg-card/30 border border-white/5 rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden">
+    <div className="bg-card/30 border border-border rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden">
        <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           <Compass className="w-5 h-5 text-gold" />
@@ -75,7 +75,7 @@ export function ElementalBalance({ planets }: ElementalBalanceProps) {
                 </span>
                 <span>{count}</span>
               </div>
-              <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+              <div className="h-1.5 bg-foreground/10 rounded-full overflow-hidden">
                 <motion.div 
                   initial={{ width: 0 }}
                   animate={{ width: `${pct}%` }}
@@ -89,7 +89,7 @@ export function ElementalBalance({ planets }: ElementalBalanceProps) {
       </div>
 
       {/* Recommendation */}
-      <div className="bg-white/5 rounded-xl p-4 border border-white/5">
+      <div className="bg-foreground/5 rounded-xl p-4 border border-border">
         <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Recommended Activity</p>
         <p className="text-sm font-light leading-relaxed text-foreground/90">
           {ELEMENT_ACTIVITIES[dominant as keyof typeof ELEMENT_ACTIVITIES]}
