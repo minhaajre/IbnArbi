@@ -1,13 +1,43 @@
 import { motion } from "framer-motion";
 import { PlanetStatus, ELEMENT_RULES, ELEMENT_ACTIVITIES } from "@/lib/astronomy";
-import { Flame, Droplets, Wind, Mountain, Compass } from "lucide-react";
+import { Flame, Droplets, Wind, Mountain } from "lucide-react";
 
 interface ElementalBalanceProps {
   planets: PlanetStatus[];
 }
 
+const ELEMENT_CONFIG = {
+  Fire: { 
+    Icon: Flame, 
+    color: "text-orange-400", 
+    bg: "bg-orange-500/10", 
+    border: "border-orange-500/30",
+    glow: "shadow-orange-500/20"
+  },
+  Earth: { 
+    Icon: Mountain, 
+    color: "text-emerald-400", 
+    bg: "bg-emerald-500/10", 
+    border: "border-emerald-500/30",
+    glow: "shadow-emerald-500/20"
+  },
+  Air: { 
+    Icon: Wind, 
+    color: "text-sky-400", 
+    bg: "bg-sky-500/10", 
+    border: "border-sky-500/30",
+    glow: "shadow-sky-500/20"
+  },
+  Water: { 
+    Icon: Droplets, 
+    color: "text-blue-400", 
+    bg: "bg-blue-500/10", 
+    border: "border-blue-500/30",
+    glow: "shadow-blue-500/20"
+  }
+};
+
 export function ElementalBalance({ planets }: ElementalBalanceProps) {
-  // Calculate elemental distribution
   const counts = { Fire: 0, Earth: 0, Air: 0, Water: 0 };
   
   planets.forEach(p => {
@@ -17,10 +47,8 @@ export function ElementalBalance({ planets }: ElementalBalanceProps) {
     else if (ELEMENT_RULES.Water.includes(p.sign)) counts.Water++;
   });
 
-  // Determine dominant element
   let dominant = "Fire";
   let maxCount = -1;
-  
   Object.entries(counts).forEach(([element, count]) => {
     if (count > maxCount) {
       maxCount = count;
@@ -28,74 +56,44 @@ export function ElementalBalance({ planets }: ElementalBalanceProps) {
     }
   });
 
-  const total = planets.length;
-
-  // Icon mapping
-  const icons: Record<string, any> = {
-    Fire: Flame,
-    Earth: Mountain,
-    Air: Wind,
-    Water: Droplets
-  };
-
-  const colors: Record<string, string> = {
-    Fire: "text-orange-400 bg-orange-500/10 border-orange-500/20",
-    Earth: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-    Air: "text-sky-400 bg-sky-500/10 border-sky-500/20",
-    Water: "text-blue-400 bg-blue-500/10 border-blue-500/20"
-  };
-
-  const DominantIcon = icons[dominant];
+  const DominantConfig = ELEMENT_CONFIG[dominant as keyof typeof ELEMENT_CONFIG];
 
   return (
-    <div className="bg-card/30 border border-border rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden">
-       <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-2">
-          <Compass className="w-5 h-5 text-gold" />
-          <h3 className="text-xl font-serif text-foreground/90">Elemental Balance</h3>
-        </div>
-        <div className={`px-3 py-1 rounded-full text-xs font-medium border flex items-center gap-1.5 ${colors[dominant]}`}>
-          <DominantIcon className="w-3 h-3" />
-          {dominant} Dominant
-        </div>
-      </div>
-
-      {/* Needles / Bars */}
-      <div className="space-y-3 mb-6">
-        {Object.entries(counts).map(([element, count]) => {
-          const Icon = icons[element];
-          const pct = (count / total) * 100;
+    <div className="space-y-4">
+      <div className="grid grid-cols-4 gap-3">
+        {(Object.entries(counts) as [keyof typeof ELEMENT_CONFIG, number][]).map(([element, count]) => {
+          const config = ELEMENT_CONFIG[element];
+          const isDominant = element === dominant;
           
           return (
-            <div key={element} className="space-y-1">
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span className="flex items-center gap-1.5">
-                  <Icon className="w-3 h-3 opacity-70" />
-                  {element}
-                </span>
-                <span>{count}</span>
-              </div>
-              <div className="h-1.5 bg-foreground/10 rounded-full overflow-hidden">
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: `${pct}%` }}
-                  transition={{ duration: 1, delay: 0.2 }}
-                  className={`h-full rounded-full ${colors[element].split(' ')[0].replace('text-', 'bg-')}`}
-                />
-              </div>
-            </div>
+            <motion.div
+              key={element}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className={`
+                rounded-xl p-3 border text-center transition-all
+                ${config.bg} ${config.border}
+                ${isDominant ? `ring-1 ring-offset-1 ring-offset-background ${config.border.replace('border-', 'ring-')}` : ''}
+              `}
+            >
+              <config.Icon className={`w-6 h-6 mx-auto mb-1.5 ${config.color}`} />
+              <div className={`text-2xl font-semibold ${config.color}`}>{count}</div>
+              <div className="text-xs text-muted-foreground">{element}</div>
+            </motion.div>
           );
         })}
       </div>
 
-      {/* Recommendation */}
-      <div className="bg-foreground/5 rounded-xl p-4 border border-border">
-        <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Recommended Activity</p>
-        <p className="text-sm font-light leading-relaxed text-foreground/90">
+      <div className={`rounded-lg px-4 py-3 border ${DominantConfig.bg} ${DominantConfig.border}`}>
+        <div className="flex items-center gap-2 mb-1">
+          <DominantConfig.Icon className={`w-4 h-4 ${DominantConfig.color}`} />
+          <span className={`text-sm font-medium ${DominantConfig.color}`}>{dominant} Dominant</span>
+        </div>
+        <p className="text-sm text-foreground/80 leading-relaxed">
           {ELEMENT_ACTIVITIES[dominant as keyof typeof ELEMENT_ACTIVITIES]}
         </p>
       </div>
-
     </div>
   );
 }
