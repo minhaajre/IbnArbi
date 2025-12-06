@@ -15,7 +15,7 @@ import { PlanetaryTable } from "@/components/PlanetaryTable";
 import { MansionCard } from "@/components/MansionCard";
 import { ZodiacWheel } from "@/components/ZodiacWheel";
 import { ElementalBalance } from "@/components/ElementalBalance";
-import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle } from "lucide-react";
+import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -45,10 +45,11 @@ export default function Home() {
   const [useSidereal, setUseSidereal] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { theme, setTheme } = useTheme();
   
   // Manual Location State
-  const [manualLat, setManualLat] = useState("");
-  const [manualLng, setManualLng] = useState("");
+  const [manualCity, setManualCity] = useState("");
+  const [isLocating, setIsLocating] = useState(false);
 
   // Astronomical Data
   const [hoursData, setHoursData] = useState<ReturnType<typeof getPlanetaryHours> | null>(null);
@@ -94,30 +95,65 @@ export default function Home() {
   }, []);
 
   const detectLocation = () => {
+    setIsLocating(true);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
+        async (position) => {
+          // Attempt to find city name via reverse geocoding (OpenMeteo/BigDataCloud/etc - using client-side free API for demo)
+          // Simple fallback if no API available is just "Detected Location"
+          let cityName = "Detected Location";
+          try {
+             const res = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en`);
+             const data = await res.json();
+             if (data.city || data.locality) {
+               cityName = `${data.city || data.locality}, ${data.countryName}`;
+             }
+          } catch (e) {
+            console.warn("Reverse geocoding failed", e);
+          }
+
           setLocation({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
-            name: "Detected Location"
+            name: cityName
           });
+          setIsLocating(false);
         },
         (err) => {
           console.error("Geolocation error:", err);
           setLocation({ lat: 21.3891, lng: 39.8579, name: "Mecca (Default)" });
+          setError("Location access denied. Using default.");
+          setIsLocating(false);
         }
       );
     } else {
       setLocation({ lat: 21.3891, lng: 39.8579, name: "Mecca (Default)" });
+      setIsLocating(false);
     }
   };
 
-  const handleManualLocation = () => {
-    const lat = parseFloat(manualLat);
-    const lng = parseFloat(manualLng);
-    if (!isNaN(lat) && !isNaN(lng)) {
-      setLocation({ lat, lng, name: "Manual Location" });
+  const handleManualLocationSearch = async () => {
+    if (!manualCity) return;
+    setIsLocating(true);
+    try {
+      const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(manualCity)}&count=1&language=en&format=json`);
+      const data = await res.json();
+      
+      if (data.results && data.results.length > 0) {
+        const place = data.results[0];
+        setLocation({
+          lat: place.latitude,
+          lng: place.longitude,
+          name: `${place.name}, ${place.country}`
+        });
+      } else {
+        // Fallback or error
+        console.warn("City not found");
+      }
+    } catch (e) {
+      console.error("Geocoding error", e);
+    } finally {
+      setIsLocating(false);
     }
   };
 
@@ -157,17 +193,20 @@ export default function Home() {
   const nextHoursIndex = hoursData.hours.findIndex(h => h === hoursData.currentHour);
   const nextHours = hoursData.hours.slice(nextHoursIndex + 1).concat(hoursData.hours.slice(0, nextHoursIndex + 1));
 
+  // Find Moon info for display
+  const moonPlanet = planets.find(p => p.name === "Moon");
+
   return (
     <div className="min-h-screen bg-background text-foreground p-6 md:p-12 max-w-7xl mx-auto transition-colors duration-500">
       
       {/* Header */}
       <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6 border-b border-white/5 pb-8">
         <div>
-          <h1 className="text-4xl md:text-5xl font-serif text-gold mb-2">Al-Falak</h1>
+          <h1 className="text-4xl md:text-5xl font-serif text-gold mb-2">Ibn Arabi's Cosmology</h1>
           <p className="text-muted-foreground font-light tracking-wide flex items-center gap-2">
             {useSidereal ? "Sidereal" : "Tropical"} Planetary Calendar
             <span className="px-2 py-0.5 rounded-full bg-white/5 text-xs border border-white/10">
-              v2.0
+              v2.1
             </span>
           </p>
         </div>
@@ -175,7 +214,18 @@ export default function Home() {
         <div className="flex flex-col items-end gap-4">
           
           <div className="flex flex-wrap items-center justify-end gap-3">
-            
+             {/* Theme Toggle */}
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="rounded-full w-9 h-9 border border-white/10"
+            >
+              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+
             {/* Sidereal Toggle */}
             <div className="flex items-center gap-2 bg-card/50 rounded-lg px-3 py-2 border border-white/10">
               <span className={`text-xs ${!useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Tropical</span>
@@ -186,8 +236,8 @@ export default function Home() {
             {/* Location Dialog */}
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline" size="sm" className="bg-card/50 border-white/10 h-9">
-                  <MapPin className="w-3 h-3 mr-2" />
+                <Button variant="outline" size="sm" className="bg-card/50 border-white/10 h-9 max-w-[200px] truncate">
+                  <MapPin className="w-3 h-3 mr-2 shrink-0" />
                   {location?.name}
                 </Button>
               </DialogTrigger>
@@ -196,26 +246,21 @@ export default function Home() {
                   <DialogTitle>Location Settings</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-4 py-4">
-                  <div className="grid gap-2">
-                    <Label>Latitude</Label>
-                    <Input 
-                      placeholder="e.g. 40.7128" 
-                      value={manualLat} 
-                      onChange={(e) => setManualLat(e.target.value)} 
+                  <div className="flex gap-2">
+                     <Input 
+                      placeholder="Enter city name..." 
+                      value={manualCity} 
+                      onChange={(e) => setManualCity(e.target.value)} 
+                      onKeyDown={(e) => e.key === 'Enter' && handleManualLocationSearch()}
                     />
+                    <Button onClick={handleManualLocationSearch} disabled={isLocating}>
+                      {isLocating ? <span className="animate-spin">⟳</span> : <Search className="w-4 h-4" />}
+                    </Button>
                   </div>
-                  <div className="grid gap-2">
-                    <Label>Longitude</Label>
-                    <Input 
-                      placeholder="e.g. -74.0060" 
-                      value={manualLng} 
-                      onChange={(e) => setManualLng(e.target.value)} 
-                    />
-                  </div>
-                  <div className="flex gap-2 pt-2">
-                    <Button onClick={handleManualLocation} className="flex-1">Set Manual</Button>
-                    <Button variant="secondary" onClick={detectLocation} className="flex-1">Auto Detect</Button>
-                  </div>
+                  <div className="text-xs text-muted-foreground text-center">- OR -</div>
+                  <Button variant="secondary" onClick={detectLocation} className="w-full" disabled={isLocating}>
+                    {isLocating ? "Detecting..." : "Auto-Detect Location"}
+                  </Button>
                 </div>
               </DialogContent>
             </Dialog>
@@ -239,7 +284,6 @@ export default function Home() {
                     selected={selectedDate}
                     onSelect={handleDateSelect}
                     initialFocus
-                    // Add year navigation
                     captionLayout="dropdown"
                     fromYear={2000}
                     toYear={2050}
@@ -270,36 +314,23 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Void of Course Warning */}
-      {moonPhase?.isVoidOfCourse && (
-        <div className="mb-8 bg-yellow-500/10 border border-yellow-500/20 rounded-xl p-4 flex items-center gap-4 text-yellow-200">
-          <AlertTriangle className="w-6 h-6 shrink-0 animate-pulse" />
-          <div>
-            <h3 className="font-medium">Moon Void of Course</h3>
-            <p className="text-sm opacity-80">The Moon makes no further aspects in its current sign. Avoid starting new major ventures; focus on reflection and routine.</p>
-          </div>
-        </div>
-      )}
-
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
-        {/* Left Column: Wheel & Table */}
-        <div className="lg:col-span-5 space-y-8">
-           {/* Zodiac Wheel Visualization */}
-          <section className="bg-card/20 border border-white/5 rounded-2xl p-8 flex flex-col items-center">
-            <h2 className="text-2xl font-serif mb-6 text-center text-foreground/80">
-              {useSidereal ? "Sidereal Wheel" : "Tropical Wheel"}
-            </h2>
-            <ZodiacWheel planets={planets} />
-          </section>
+        {/* Left Column: Mansion & Table (Swapped from Wheel) */}
+        <div className="lg:col-span-5 space-y-8 flex flex-col">
+           
+           <section>
+              <h2 className="text-2xl font-serif mb-6 text-foreground/80">Current Station</h2>
+              <MansionCard mansion={mansion} />
+           </section>
 
-          <section>
+          <section className="flex-1">
             <h2 className="text-2xl font-serif mb-6 text-foreground/80">Celestial Dignities</h2>
             <PlanetaryTable planets={planets} />
           </section>
         </div>
 
-        {/* Right Column: Status, Mansion, Elements */}
+        {/* Right Column: Status, Wheel, Elements */}
         <div className="lg:col-span-7 space-y-8">
           
           {/* Combined Status Card: Hour + Moon + Phase */}
@@ -316,8 +347,13 @@ export default function Home() {
                      {Math.round(moonPhase.illumination)}%
                    </span>
                  </div>
-                 <div className="text-xs uppercase tracking-widest opacity-50">
-                   {moonPhase.isWaxing ? "Waxing" : "Waning"}
+                 <div className="text-xs uppercase tracking-widest opacity-50 flex flex-col items-end gap-1">
+                   <span>{moonPhase.isWaxing ? "Waxing" : "Waning"}</span>
+                   {moonPhase.isVoidOfCourse && (
+                     <span className="text-yellow-500 font-bold flex items-center gap-1">
+                       <AlertTriangle className="w-3 h-3" /> VOC
+                     </span>
+                   )}
                  </div>
                </div>
              )}
@@ -326,6 +362,11 @@ export default function Home() {
                currentHour={hoursData.currentHour}
                nextHours={nextHours}
                dayRuler={hoursData.dayRuler}
+               moonStatus={moonPlanet ? {
+                 sign: moonPlanet.sign,
+                 degree: moonPlanet.degree,
+                 isVoidOfCourse: moonPhase?.isVoidOfCourse || false
+               } : undefined}
              />
 
              {/* Integrated Mansion Info in Hour Section */}
@@ -338,19 +379,19 @@ export default function Home() {
              </div>
           </section>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Lunar Mansion Details */}
-            <section>
-              <h2 className="text-2xl font-serif mb-6 text-foreground/80">Mansion Details</h2>
-              <MansionCard mansion={mansion} />
-            </section>
+          {/* Zodiac Wheel Visualization (Swapped from Left) */}
+          <section className="bg-card/20 border border-white/5 rounded-2xl p-8 flex flex-col items-center">
+            <h2 className="text-2xl font-serif mb-6 text-center text-foreground/80">
+              {useSidereal ? "Sidereal Wheel" : "Tropical Wheel"}
+            </h2>
+            <ZodiacWheel planets={planets} />
+          </section>
 
-            {/* Elemental Balance */}
-            <section>
-              <h2 className="text-2xl font-serif mb-6 text-foreground/80">Elemental State</h2>
-              <ElementalBalance planets={planets} />
-            </section>
-          </div>
+          {/* Elemental Balance */}
+          <section>
+            <h2 className="text-2xl font-serif mb-6 text-foreground/80">Elemental State</h2>
+            <ElementalBalance planets={planets} />
+          </section>
 
         </div>
 

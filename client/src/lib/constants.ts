@@ -301,6 +301,17 @@ export const DAY_RULERS = {
   6: "Saturn"  // Saturday
 };
 
+// Ibn Arabi's Planet-Prophet Associations (Fusus al-Hikam)
+export const PLANET_PROPHETS: Record<string, string> = {
+  Saturn: "Abraham (Ibrahim)",
+  Jupiter: "Moses (Musa)",
+  Mars: "Aaron (Harun)",
+  Sun: "Idris (Enoch)",
+  Venus: "Joseph (Yusuf)",
+  Mercury: "Jesus (Isa)",
+  Moon: "Adam"
+};
+
 export const PLANET_STATUS_RULES = {
   Sun: { exaltation: "Aries", debilitation: "Libra", exaltationDegree: 10, debilitationDegree: 10 },
   Moon: { exaltation: "Taurus", debilitation: "Scorpio", exaltationDegree: 3, debilitationDegree: 3 },

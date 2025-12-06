@@ -1,12 +1,16 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { PlanetStatus } from "@/lib/astronomy";
 import { SIGNS } from "@/lib/constants";
+import { useState } from "react";
 
 interface ZodiacWheelProps {
   planets: PlanetStatus[];
 }
 
 export function ZodiacWheel({ planets }: ZodiacWheelProps) {
+  const [hoveredPlanet, setHoveredPlanet] = useState<string | null>(null);
+  const [hoveredPos, setHoveredPos] = useState<{x: number, y: number} | null>(null);
+
   // SVG Constants
   const size = 400;
   const center = size / 2;
@@ -28,7 +32,37 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
   };
 
   return (
-    <div className="relative w-full aspect-square max-w-md mx-auto flex items-center justify-center">
+    <div className="relative w-full aspect-square max-w-md mx-auto flex items-center justify-center group">
+      {/* Central Info */}
+      <AnimatePresence>
+        {hoveredPlanet && hoveredPos && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="absolute z-10 bg-background/90 backdrop-blur-md border border-white/10 p-3 rounded-lg shadow-xl pointer-events-none"
+            style={{ 
+              left: hoveredPos.x > center ? 'auto' : hoveredPos.x + 20, 
+              right: hoveredPos.x > center ? size - hoveredPos.x + 20 : 'auto',
+              top: hoveredPos.y - 40
+            }}
+          >
+            {planets.filter(p => p.name === hoveredPlanet).map(p => (
+              <div key={p.name}>
+                <div className="font-serif text-gold text-lg flex items-center gap-2">
+                  {PLANET_SYMBOLS[p.name]} {p.name}
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  {p.sign} {Math.floor(p.degree)}°{Math.round((p.degree % 1) * 60)}'
+                </div>
+                {p.isRetrograde && <div className="text-xs text-red-400 mt-1">Retrograde</div>}
+                {p.status !== 'Neutral' && <div className="text-xs text-primary mt-1">{p.status}</div>}
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <svg viewBox={`0 0 ${size} ${size}`} className="w-full h-full">
         
         {/* Zodiac Ring Background */}
@@ -49,7 +83,7 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
           const labelPos = getCoords(midAngle, radius);
 
           return (
-            <g key={sign}>
+            <g key={sign} className="group/sign">
               <line x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y} stroke="currentColor" strokeOpacity="0.1" />
               <text 
                 x={labelPos.x} 
@@ -60,6 +94,7 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
                 fill="currentColor"
                 opacity="0.7"
                 transform={`rotate(${midAngle}, ${labelPos.x}, ${labelPos.y})`}
+                className="select-none group-hover/sign:opacity-100 group-hover/sign:fill-gold transition-colors"
               >
                 {sign.substring(0, 3).toUpperCase()}
               </text>
@@ -69,9 +104,7 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
 
         {/* Planets */}
         {planets.map((p) => {
-          const pos = getCoords(p.longitude, innerRadius - 20);
-          // Add some random offset if multiple planets are close? 
-          // For simple visualization, we just place them.
+          const pos = getCoords(p.longitude, innerRadius - 25);
           
           return (
             <motion.g 
@@ -79,6 +112,15 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
+              className="cursor-pointer"
+              onMouseEnter={() => {
+                setHoveredPlanet(p.name);
+                setHoveredPos(pos);
+              }}
+              onMouseLeave={() => {
+                setHoveredPlanet(null);
+                setHoveredPos(null);
+              }}
             >
               <line 
                 x1={center} 
@@ -86,10 +128,22 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
                 x2={pos.x} 
                 y2={pos.y} 
                 stroke="currentColor" 
-                strokeOpacity="0.1" 
+                strokeOpacity="0.05" 
                 strokeDasharray="2 2"
               />
-              <circle cx={pos.x} cy={pos.y} r="12" fill="var(--color-card)" stroke="var(--color-border)" />
+              
+              {/* Interactive Hit Area */}
+              <circle cx={pos.x} cy={pos.y} r="15" fill="transparent" />
+              
+              <circle 
+                cx={pos.x} 
+                cy={pos.y} 
+                r="12" 
+                fill="var(--color-card)" 
+                stroke={hoveredPlanet === p.name ? "var(--color-primary)" : "var(--color-border)"}
+                strokeWidth={hoveredPlanet === p.name ? 2 : 1}
+                className="transition-colors duration-300"
+              />
               <text 
                 x={pos.x} 
                 y={pos.y + 1} 
@@ -97,7 +151,7 @@ export function ZodiacWheel({ planets }: ZodiacWheelProps) {
                 dominantBaseline="middle" 
                 fontSize="14"
                 fill={p.status === 'Exalted' ? 'var(--color-primary)' : p.status === 'Debilitated' ? 'var(--color-destructive)' : 'currentColor'}
-                className="font-serif"
+                className="font-serif select-none pointer-events-none"
               >
                 {PLANET_SYMBOLS[p.name]}
               </text>
