@@ -316,4 +316,18 @@ export const SIGNS = [
   "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
 ];
 
+export const ELEMENT_RULES = {
+  Fire: ["Aries", "Leo", "Sagittarius"],
+  Earth: ["Taurus", "Virgo", "Capricorn"],
+  Air: ["Gemini", "Libra", "Aquarius"],
+  Water: ["Cancer", "Scorpio", "Pisces"]
+};
+
+export const ELEMENT_ACTIVITIES = {
+  Fire: "Take action, start new projects, exercise, lead",
+  Earth: "Ground yourself, handle finances, organize, garden",
+  Air: "Communicate, study, socialize, plan",
+  Water: "Reflect, meditate, create art, connect emotionally"
+};
+
 export const API_KEY = "e511b43a614249ea9efbcda01488f374";

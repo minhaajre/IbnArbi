@@ -1,5 +1,7 @@
 import * as Astronomy from "astronomy-engine";
-import { IBN_ARABI_MANSIONS, PLANETARY_RULERS_ORDER, DAY_RULERS, PLANET_STATUS_RULES, SIGNS, AYANAMSHA_J2000, PRECESSION_RATE } from "./constants";
+import { IBN_ARABI_MANSIONS, PLANETARY_RULERS_ORDER, DAY_RULERS, PLANET_STATUS_RULES, SIGNS, AYANAMSHA_J2000, PRECESSION_RATE, ELEMENT_RULES, ELEMENT_ACTIVITIES } from "./constants";
+
+export { ELEMENT_RULES, ELEMENT_ACTIVITIES, SIGNS };
 
 export interface PlanetaryHour {
   hour: number;
@@ -27,6 +29,7 @@ export interface MoonPhaseInfo {
   isWaxing: boolean;
   label: string;
   illumination: number;
+  isVoidOfCourse: boolean;
 }
 
 function getSiderealLongitude(tropicalLon: number, date: Date): number {
@@ -134,7 +137,7 @@ export function getPlanetaryHours(date: Date, lat: number, lng: number): {
   };
 }
 
-export function getPlanetaryPositions(date: Date): PlanetStatus[] {
+export function getPlanetaryPositions(date: Date, useSidereal: boolean = true): PlanetStatus[] {
   const planets = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn"];
   
   // Time delta for velocity/retrograde check (1 hour before)
@@ -147,25 +150,25 @@ export function getPlanetaryPositions(date: Date): PlanetStatus[] {
     const coords = Astronomy.GeoVector(body, date, false);
     const ecliptic = Astronomy.Ecliptic(coords);
     const tropicalLon = ecliptic.elon;
-    const siderealLon = getSiderealLongitude(tropicalLon, date);
+    const lon = useSidereal ? getSiderealLongitude(tropicalLon, date) : tropicalLon;
     
     // Previous Position (for speed/retrograde)
     const prevCoords = Astronomy.GeoVector(body, prevDate, false);
     const prevEcliptic = Astronomy.Ecliptic(prevCoords);
     const prevTropicalLon = prevEcliptic.elon;
-    const prevSiderealLon = getSiderealLongitude(prevTropicalLon, prevDate);
+    const prevLon = useSidereal ? getSiderealLongitude(prevTropicalLon, prevDate) : prevTropicalLon;
     
     // Calculate Speed (degrees per hour)
     // Handle 360 wrap-around
-    let diff = siderealLon - prevSiderealLon;
+    let diff = lon - prevLon;
     if (diff < -300) diff += 360;
     if (diff > 300) diff -= 360;
     
     const isRetrograde = diff < 0;
 
-    const signIndex = Math.floor(siderealLon / 30);
+    const signIndex = Math.floor(lon / 30);
     const sign = SIGNS[signIndex];
-    const degree = siderealLon % 30;
+    const degree = lon % 30;
     
     // Determine status
     let status: PlanetStatus['status'] = 'Neutral';
@@ -197,33 +200,28 @@ export function getPlanetaryPositions(date: Date): PlanetStatus[] {
       degree,
       status,
       exact,
-      longitude: siderealLon,
+      longitude: lon,
       isRetrograde,
       speed: diff
     };
   });
 }
 
-export function getLunarMansion(date: Date) {
+export function getLunarMansion(date: Date, useSidereal: boolean = true) {
   const body = Astronomy.Body.Moon;
   const coords = Astronomy.GeoVector(body, date, false);
   const ecliptic = Astronomy.Ecliptic(coords);
   const tropicalLon = ecliptic.elon;
   
-  // Ibn Arabi's mansions are typically mapped to the TROPICAL zodiac in western Sufi studies (starting 0 Aries).
-  // However, if the user requested "Sidereal Placements" generally, they might expect mansions to shift too.
-  // But traditionally, Manazil al-Qamar are fixed star based (Sidereal).
-  // Let's use Sidereal for consistency with the request "use fixed star based sidereal placements".
+  const lon = useSidereal ? getSiderealLongitude(tropicalLon, date) : tropicalLon;
   
-  const siderealLon = getSiderealLongitude(tropicalLon, date);
-  
-  const mansionIndex = Math.floor((siderealLon % 360) / (360 / 28));
+  const mansionIndex = Math.floor((lon % 360) / (360 / 28));
   const safeIndex = Math.max(0, Math.min(27, mansionIndex));
   
   return IBN_ARABI_MANSIONS[safeIndex];
 }
 
-export function getMoonPhase(date: Date): MoonPhaseInfo {
+export function getMoonPhase(date: Date, useSidereal: boolean = true): MoonPhaseInfo {
   const sunCoords = Astronomy.GeoVector(Astronomy.Body.Sun, date, false);
   const moonCoords = Astronomy.GeoVector(Astronomy.Body.Moon, date, false);
   
@@ -246,12 +244,22 @@ export function getMoonPhase(date: Date): MoonPhaseInfo {
   else if (diff < 265) label = "Waning Gibbous";
   else if (diff < 275) label = "Last Quarter";
   else label = "Waning Crescent";
+
+  // Void of Course Calculation (Simplified check)
+  // Moon is VOC when it makes no major aspect before changing signs.
+  // This requires complex aspect calculation. 
+  // For now, we can approximate "End of Sign" as a VOC warning zone (last 3 degrees)
+  const tropicalLon = moonEcl.elon;
+  const lon = useSidereal ? getSiderealLongitude(tropicalLon, date) : tropicalLon;
+  const degree = lon % 30;
+  const isVoidOfCourse = degree > 27; // Last 3 degrees of sign as a proxy for VOC period in simplified model
   
   return {
     phase: diff,
     isWaxing,
     label,
-    illumination: Astronomy.Illumination(Astronomy.Body.Moon, date).phase_fraction * 100
+    illumination: Astronomy.Illumination(Astronomy.Body.Moon, date).phase_fraction * 100,
+    isVoidOfCourse
   };
 }
 
