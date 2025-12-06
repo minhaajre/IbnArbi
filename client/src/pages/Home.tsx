@@ -314,92 +314,107 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      {/* Row 1: Station + Planetary Hour (side by side, equal height) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         
-        {/* Left Column: Mansion & Table (Swapped from Wheel) */}
-        <div className="lg:col-span-5 space-y-8 flex flex-col">
-           
-           <section>
-              <h2 className="text-2xl font-serif mb-6 text-foreground/80">Current Station</h2>
-              <MansionCard mansion={mansion} />
-           </section>
+        {/* Current Station Card - Glass Effect */}
+        <section className="glass-card rounded-2xl p-6 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <h2 className="text-xl font-serif mb-4 text-foreground/80 relative z-10">Current Station</h2>
+          <div className="relative z-10">
+            <MansionCard mansion={mansion} />
+          </div>
+        </section>
 
-          <section className="flex-1">
-            <h2 className="text-2xl font-serif mb-6 text-foreground/80">Celestial Dignities</h2>
+        {/* Planetary Hour Card - Glass Effect */}
+        <section className="glass-card rounded-2xl p-6 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          
+          {/* Top Row: Moon Sign (left) + Moon Phase (right) - horizontally aligned */}
+          <div className="flex items-start justify-between mb-4 relative z-10">
+            {/* Moon Sign - Left */}
+            {moonPlanet && (
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5 text-sm font-medium text-foreground/80">
+                  <Moon className="w-4 h-4 text-muted-foreground" />
+                  <span>{moonPlanet.sign}</span>
+                </div>
+                <span className="text-xs text-muted-foreground font-mono">
+                  {Math.floor(moonPlanet.degree)}°{Math.round((moonPlanet.degree % 1) * 60)}'
+                </span>
+                {moonPhase?.isVoidOfCourse && (
+                  <span className="text-xs text-yellow-500 font-bold flex items-center gap-1 bg-yellow-500/10 px-2 py-0.5 rounded-full">
+                    <AlertTriangle className="w-3 h-3" /> VOC
+                  </span>
+                )}
+              </div>
+            )}
+            
+            {/* Moon Phase - Right */}
+            {moonPhase && (
+              <div className="flex items-center gap-3 text-right">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  {moonPhase.isWaxing ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                  <span>{moonPhase.label}</span>
+                </div>
+                <span className="text-xs px-2 py-0.5 rounded-full bg-foreground/10 font-mono border border-border">
+                  {Math.round(moonPhase.illumination)}%
+                </span>
+              </div>
+            )}
+          </div>
+           
+          <div className="relative z-10">
+            <PlanetaryHoursDisplay 
+              currentHour={hoursData.currentHour}
+              nextHours={nextHours}
+              dayRuler={hoursData.dayRuler}
+            />
+          </div>
+        </section>
+      </div>
+
+      {/* Row 2: Dignities + Zodiac Wheel (side by side) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        
+        {/* Celestial Dignities - Glass Effect */}
+        <section className="glass-card rounded-2xl p-6 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <h2 className="text-xl font-serif mb-4 text-foreground/80 relative z-10">Celestial Dignities</h2>
+          <div className="relative z-10">
             <PlanetaryTable 
               planets={planets} 
               useSidereal={useSidereal}
               onToggleSystem={setUseSidereal}
             />
-          </section>
-        </div>
+          </div>
+        </section>
 
-        {/* Right Column: Status, Wheel, Elements */}
-        <div className="lg:col-span-7 space-y-8">
-          
-          {/* Combined Status Card: Hour + Moon + Phase */}
-          <section className="bg-card/30 border border-border rounded-2xl p-8 backdrop-blur-sm relative overflow-hidden">
-             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-50" />
-             
-             {/* Moon Phase Indicator */}
-             {moonPhase && (
-               <div className="absolute top-4 right-4 flex flex-col items-end">
-                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
-                   {moonPhase.isWaxing ? <Sun className="w-3 h-3" /> : <Moon className="w-3 h-3" />}
-                   <span>{moonPhase.label}</span>
-                   <span className="text-xs px-1.5 py-0.5 rounded bg-foreground/10 font-mono">
-                     {Math.round(moonPhase.illumination)}%
-                   </span>
-                 </div>
-                 <div className="text-xs uppercase tracking-widest opacity-50 flex flex-col items-end gap-1">
-                   <span>{moonPhase.isWaxing ? "Waxing" : "Waning"}</span>
-                   {moonPhase.isVoidOfCourse && (
-                     <span className="text-yellow-500 font-bold flex items-center gap-1">
-                       <AlertTriangle className="w-3 h-3" /> VOC
-                     </span>
-                   )}
-                 </div>
-               </div>
-             )}
-
-             <PlanetaryHoursDisplay 
-               currentHour={hoursData.currentHour}
-               nextHours={nextHours}
-               dayRuler={hoursData.dayRuler}
-               moonStatus={moonPlanet ? {
-                 sign: moonPlanet.sign,
-                 degree: moonPlanet.degree,
-                 isVoidOfCourse: moonPhase?.isVoidOfCourse || false
-               } : undefined}
-             />
-
-             {/* Integrated Mansion Info in Hour Section */}
-             <div className="mt-8 pt-6 border-t border-border flex items-center justify-between text-sm text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <span className="opacity-50">Current Mansion:</span>
-                  <span className="text-foreground font-serif">{mansion.name}</span>
-                </div>
-                <div className="font-arabic text-gold/60">{mansion.arabic}</div>
-             </div>
-          </section>
-
-          {/* Zodiac Wheel Visualization (Swapped from Left) */}
-          <section className="bg-card/20 border border-border rounded-2xl p-8 flex flex-col items-center">
-            <h2 className="text-2xl font-serif mb-6 text-center text-foreground/80">
-              {useSidereal ? "Sidereal Wheel" : "Tropical Wheel"}
-            </h2>
+        {/* Zodiac Wheel - Glass Effect */}
+        <section className="glass-card rounded-2xl p-6 relative overflow-hidden flex flex-col items-center">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <h2 className="text-xl font-serif mb-4 text-center text-foreground/80 relative z-10">
+            {useSidereal ? "Sidereal Wheel" : "Tropical Wheel"}
+          </h2>
+          <div className="relative z-10">
             <ZodiacWheel planets={planets} />
-          </section>
-
-          {/* Elemental Balance */}
-          <section>
-            <h2 className="text-2xl font-serif mb-6 text-foreground/80">Elemental State</h2>
-            <ElementalBalance planets={planets} />
-          </section>
-
-        </div>
-
+          </div>
+        </section>
       </div>
+
+      {/* Row 3: Elemental Balance (full width) */}
+      <section className="glass-card rounded-2xl p-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        <h2 className="text-xl font-serif mb-4 text-foreground/80 relative z-10">Elemental State</h2>
+        <div className="relative z-10">
+          <ElementalBalance planets={planets} />
+        </div>
+      </section>
     </div>
   );
 }

@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { PlanetaryHour, PlanetStatus } from "@/lib/astronomy";
+import { motion } from "framer-motion";
+import { PlanetaryHour } from "@/lib/astronomy";
 import { format } from "date-fns";
-import { Sun, Moon, Star, Clock, Sparkles, AlertTriangle } from "lucide-react";
+import { Clock, Sparkles } from "lucide-react";
 import { PLANET_PROPHETS } from "@/lib/constants";
 
 const PLANET_SYMBOLS: Record<string, string> = {
@@ -24,14 +23,9 @@ interface PlanetaryHoursDisplayProps {
   currentHour: PlanetaryHour | null;
   nextHours: PlanetaryHour[];
   dayRuler: string;
-  moonStatus?: {
-    sign: string;
-    degree: number;
-    isVoidOfCourse: boolean;
-  };
 }
 
-export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, moonStatus }: PlanetaryHoursDisplayProps) {
+export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler }: PlanetaryHoursDisplayProps) {
   if (!currentHour) return null;
 
   const now = new Date();
@@ -40,27 +34,9 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, moonSt
   const progress = (elapsed / total) * 100;
 
   return (
-    <div className="space-y-8 relative">
-      {/* Moon Status - Top Left */}
-      {moonStatus && (
-        <div className="absolute top-0 left-0 flex flex-col items-start">
-          <div className="flex items-center gap-1.5 text-sm font-medium text-foreground/80">
-            <Moon className="w-3.5 h-3.5" />
-            <span>{moonStatus.sign}</span>
-          </div>
-          <div className="text-xs text-muted-foreground pl-5">
-            {Math.floor(moonStatus.degree)}°{Math.round((moonStatus.degree % 1) * 60)}'
-          </div>
-          {moonStatus.isVoidOfCourse && (
-             <div className="mt-1 pl-1 text-xs text-yellow-500 font-bold flex items-center gap-1 bg-yellow-500/10 px-2 py-0.5 rounded-full animate-pulse">
-               <AlertTriangle className="w-3 h-3" /> VOC
-             </div>
-           )}
-        </div>
-      )}
-
+    <div className="space-y-6">
       {/* Main Display */}
-      <div className="relative flex flex-col items-center justify-center py-8 mt-6">
+      <div className="relative flex flex-col items-center justify-center py-4">
         <motion.div 
           className="absolute inset-0 bg-primary/5 blur-[100px] rounded-full"
           animate={{ scale: [1, 1.1, 1] }}

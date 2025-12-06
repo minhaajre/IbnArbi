@@ -137,6 +137,27 @@
     @apply bg-foreground/5 backdrop-blur-md border border-foreground/10;
   }
   
+  .glass-card {
+    @apply bg-card/40 backdrop-blur-xl border border-border/50 shadow-lg;
+    background-image: 
+      linear-gradient(135deg, hsl(var(--foreground) / 0.03) 0%, transparent 50%),
+      linear-gradient(225deg, hsl(var(--primary) / 0.02) 0%, transparent 50%);
+  }
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, hsl(var(--foreground) / 0.05) 0%, transparent 40%);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  .dark .glass-card {
+    @apply bg-card/30 border-foreground/10;
+    box-shadow: 
+      0 4px 30px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  
   .text-gold {
     @apply text-primary;
   }
