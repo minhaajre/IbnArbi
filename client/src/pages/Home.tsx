@@ -5,9 +5,13 @@ import {
   getLunarMansion, 
   getHijriDate,
   getMoonPhase,
+  getLunarMansionProgress,
+  getWhiteDaysInfo,
   PlanetaryHour,
   PlanetStatus,
-  MoonPhaseInfo
+  MoonPhaseInfo,
+  MansionProgress,
+  WhiteDaysInfo
 } from "@/lib/astronomy";
 import { AYANAMSHA_J2000 } from "@/lib/constants";
 import { PlanetaryHoursDisplay } from "@/components/PlanetaryHoursDisplay";
@@ -58,6 +62,8 @@ export default function Home() {
   const [mansion, setMansion] = useState<any>(null);
   const [hijriDate, setHijriDate] = useState<string>("");
   const [moonPhase, setMoonPhase] = useState<MoonPhaseInfo | null>(null);
+  const [mansionProgress, setMansionProgress] = useState<MansionProgress | null>(null);
+  const [whiteDaysInfo, setWhiteDaysInfo] = useState<WhiteDaysInfo | null>(null);
   
   // Selected planet for protocol display
   const [selectedPlanet, setSelectedPlanet] = useState<string | null>(null);
@@ -172,11 +178,16 @@ export default function Home() {
       const hijri = getHijriDate(now);
       const phase = getMoonPhase(now, useSidereal);
 
+      const progress = getLunarMansionProgress(now, useSidereal);
+      const whiteInfo = getWhiteDaysInfo(now);
+
       setHoursData(hours);
       setPlanets(planetPos);
       setMansion(moonMansion);
       setHijriDate(hijri);
       setMoonPhase(phase);
+      setMansionProgress(progress);
+      setWhiteDaysInfo(whiteInfo);
       setLoading(false);
     } catch (e) {
       console.error("Calculation error:", e);
@@ -313,6 +324,17 @@ export default function Home() {
             <div className="text-gold/80 font-arabic text-xl">
               {hijriDate}
             </div>
+            {whiteDaysInfo && whiteDaysInfo.isWhiteDay && (
+              <div className="mt-1 text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-500 border border-amber-500/30 inline-flex items-center gap-1" data-testid="white-days-indicator">
+                <Moon className="w-3 h-3" />
+                <span>White Day - Blessed Fast</span>
+              </div>
+            )}
+            {whiteDaysInfo && !whiteDaysInfo.isWhiteDay && whiteDaysInfo.daysUntilNext <= 3 && (
+              <div className="mt-1 text-xs text-muted-foreground" data-testid="white-days-upcoming">
+                White days in {whiteDaysInfo.daysUntilNext} day{whiteDaysInfo.daysUntilNext !== 1 ? 's' : ''}
+              </div>
+            )}
           </div>
         </div>
       </header>
@@ -328,7 +350,7 @@ export default function Home() {
             Current Station <span className="font-arabic text-base text-foreground/60 ml-2">المنزلة الحالية</span>
           </h2>
           <div className="relative z-10">
-            <MansionCard mansion={mansion} />
+            <MansionCard mansion={mansion} progress={mansionProgress} />
           </div>
         </section>
 

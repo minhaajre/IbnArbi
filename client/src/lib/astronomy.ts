@@ -322,6 +322,7 @@ export interface WhiteDaysInfo {
   currentLunarDay: number;
   whiteDays: { day: number; gregorianDate: Date }[];
   message: string;
+  daysUntilNext: number;
 }
 
 export function getWhiteDaysInfo(date: Date): WhiteDaysInfo {
@@ -354,14 +355,20 @@ export function getWhiteDaysInfo(date: Date): WhiteDaysInfo {
   whiteDays.sort((a, b) => a.day - b.day);
   
   let message = "";
+  let daysUntilNext = 0;
+  
   if (isWhiteDay) {
     message = `Today is the ${currentLunarDay}th - a blessed White Day for fasting (Ayyam al-Bid)`;
-  } else if (currentLunarDay < 13 && currentLunarDay >= 10) {
-    const daysUntil = 13 - currentLunarDay;
-    message = `White Days begin in ${daysUntil} day${daysUntil > 1 ? 's' : ''}`;
+    daysUntilNext = 0;
   } else if (currentLunarDay < 13) {
-    message = `White Days (13-15) coming this lunar month`;
+    daysUntilNext = 13 - currentLunarDay;
+    message = daysUntilNext <= 3 
+      ? `White Days begin in ${daysUntilNext} day${daysUntilNext > 1 ? 's' : ''}`
+      : `White Days (13-15) coming this lunar month`;
   } else {
+    // After day 15, calculate days until day 13 of next month
+    // Lunar month is roughly 29.5 days
+    daysUntilNext = (29 - currentLunarDay) + 13;
     message = `White Days completed for this lunar month`;
   }
   
@@ -369,6 +376,7 @@ export function getWhiteDaysInfo(date: Date): WhiteDaysInfo {
     isWhiteDay,
     currentLunarDay,
     whiteDays,
-    message
+    message,
+    daysUntilNext
   };
 }
