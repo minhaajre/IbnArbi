@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { PlanetaryHour } from "@/lib/astronomy";
 import { format } from "date-fns";
 import { Clock, Sparkles } from "lucide-react";
-import { PLANET_PROPHETS } from "@/lib/constants";
+import { PLANET_PROPHETS, PLANET_ARABIC } from "@/lib/constants";
 
 const PLANET_SYMBOLS: Record<string, string> = {
   Sun: "☉", Moon: "☾", Mars: "♂", Mercury: "☿",
@@ -52,9 +52,12 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler }: Plan
             {PLANET_SYMBOLS[currentHour.planet]}
           </motion.div>
           
-          <h2 className="text-3xl font-serif text-foreground mb-1 flex items-center justify-center gap-3">
+          <h2 className="text-3xl font-serif text-foreground mb-0.5 flex items-center justify-center gap-3">
             Hour of {currentHour.planet}
           </h2>
+          <div className="text-lg font-arabic text-foreground/70 mb-1">
+            ساعة {PLANET_ARABIC[currentHour.planet]?.arabic}
+          </div>
           
           <div className="flex items-center justify-center gap-2 text-muted-foreground mb-6 font-light tracking-wide bg-foreground/5 px-3 py-1 rounded-full w-fit mx-auto border border-border">
             <Clock className="w-3 h-3" />
@@ -86,8 +89,11 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler }: Plan
             <div className={`text-xl mb-1 ${PLANET_COLORS[h.planet]} group-hover:scale-110 transition-transform`}>
               {PLANET_SYMBOLS[h.planet]}
             </div>
-            <div className="text-[10px] font-medium text-foreground/70 uppercase tracking-wider mb-1">
+            <div className="text-[10px] font-medium text-foreground/70 uppercase tracking-wider">
               {h.planet}
+            </div>
+            <div className="text-[10px] font-arabic text-foreground/50 mb-1">
+              {PLANET_ARABIC[h.planet]?.arabic}
             </div>
             <div className="text-[9px] text-muted-foreground bg-black/20 px-1.5 py-0.5 rounded">
               {format(h.start, "h:mm")}
@@ -104,6 +110,7 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler }: Plan
             <span className={`text-2xl ${PLANET_COLORS[dayRuler]}`}>{PLANET_SYMBOLS[dayRuler]}</span>
             <div className="text-left">
               <div className="text-foreground font-serif text-lg leading-none">{dayRuler}</div>
+              <div className="text-sm font-arabic text-foreground/60">{PLANET_ARABIC[dayRuler]?.arabic}</div>
               <div className="text-xs text-muted-foreground">{format(now, "EEEE")}</div>
             </div>
           </div>

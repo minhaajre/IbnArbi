@@ -385,19 +385,21 @@ export const SIGN_DATA: Record<string, {
   season: string;
   ruler: string;
   dates: string;
+  arabic: string;
+  arabicName: string;
 }> = {
-  Aries: { symbol: "♈", element: "Fire", modality: "Cardinal", polarity: "Masculine", season: "Spring", ruler: "Mars", dates: "Mar 21 - Apr 19" },
-  Taurus: { symbol: "♉", element: "Earth", modality: "Fixed", polarity: "Feminine", season: "Spring", ruler: "Venus", dates: "Apr 20 - May 20" },
-  Gemini: { symbol: "♊", element: "Air", modality: "Mutable", polarity: "Masculine", season: "Spring", ruler: "Mercury", dates: "May 21 - Jun 20" },
-  Cancer: { symbol: "♋", element: "Water", modality: "Cardinal", polarity: "Feminine", season: "Summer", ruler: "Moon", dates: "Jun 21 - Jul 22" },
-  Leo: { symbol: "♌", element: "Fire", modality: "Fixed", polarity: "Masculine", season: "Summer", ruler: "Sun", dates: "Jul 23 - Aug 22" },
-  Virgo: { symbol: "♍", element: "Earth", modality: "Mutable", polarity: "Feminine", season: "Summer", ruler: "Mercury", dates: "Aug 23 - Sep 22" },
-  Libra: { symbol: "♎", element: "Air", modality: "Cardinal", polarity: "Masculine", season: "Autumn", ruler: "Venus", dates: "Sep 23 - Oct 22" },
-  Scorpio: { symbol: "♏", element: "Water", modality: "Fixed", polarity: "Feminine", season: "Autumn", ruler: "Mars", dates: "Oct 23 - Nov 21" },
-  Sagittarius: { symbol: "♐", element: "Fire", modality: "Mutable", polarity: "Masculine", season: "Autumn", ruler: "Jupiter", dates: "Nov 22 - Dec 21" },
-  Capricorn: { symbol: "♑", element: "Earth", modality: "Cardinal", polarity: "Feminine", season: "Winter", ruler: "Saturn", dates: "Dec 22 - Jan 19" },
-  Aquarius: { symbol: "♒", element: "Air", modality: "Fixed", polarity: "Masculine", season: "Winter", ruler: "Saturn", dates: "Jan 20 - Feb 18" },
-  Pisces: { symbol: "♓", element: "Water", modality: "Mutable", polarity: "Feminine", season: "Winter", ruler: "Jupiter", dates: "Feb 19 - Mar 20" }
+  Aries: { symbol: "♈", element: "Fire", modality: "Cardinal", polarity: "Masculine", season: "Spring", ruler: "Mars", dates: "Mar 21 - Apr 19", arabic: "الحمل", arabicName: "Al-Hamal" },
+  Taurus: { symbol: "♉", element: "Earth", modality: "Fixed", polarity: "Feminine", season: "Spring", ruler: "Venus", dates: "Apr 20 - May 20", arabic: "الثور", arabicName: "Al-Thawr" },
+  Gemini: { symbol: "♊", element: "Air", modality: "Mutable", polarity: "Masculine", season: "Spring", ruler: "Mercury", dates: "May 21 - Jun 20", arabic: "الجوزاء", arabicName: "Al-Jawza" },
+  Cancer: { symbol: "♋", element: "Water", modality: "Cardinal", polarity: "Feminine", season: "Summer", ruler: "Moon", dates: "Jun 21 - Jul 22", arabic: "السرطان", arabicName: "Al-Saratan" },
+  Leo: { symbol: "♌", element: "Fire", modality: "Fixed", polarity: "Masculine", season: "Summer", ruler: "Sun", dates: "Jul 23 - Aug 22", arabic: "الأسد", arabicName: "Al-Asad" },
+  Virgo: { symbol: "♍", element: "Earth", modality: "Mutable", polarity: "Feminine", season: "Summer", ruler: "Mercury", dates: "Aug 23 - Sep 22", arabic: "العذراء", arabicName: "Al-Adhra" },
+  Libra: { symbol: "♎", element: "Air", modality: "Cardinal", polarity: "Masculine", season: "Autumn", ruler: "Venus", dates: "Sep 23 - Oct 22", arabic: "الميزان", arabicName: "Al-Mizan" },
+  Scorpio: { symbol: "♏", element: "Water", modality: "Fixed", polarity: "Feminine", season: "Autumn", ruler: "Mars", dates: "Oct 23 - Nov 21", arabic: "العقرب", arabicName: "Al-Aqrab" },
+  Sagittarius: { symbol: "♐", element: "Fire", modality: "Mutable", polarity: "Masculine", season: "Autumn", ruler: "Jupiter", dates: "Nov 22 - Dec 21", arabic: "القوس", arabicName: "Al-Qaws" },
+  Capricorn: { symbol: "♑", element: "Earth", modality: "Cardinal", polarity: "Feminine", season: "Winter", ruler: "Saturn", dates: "Dec 22 - Jan 19", arabic: "الجدي", arabicName: "Al-Jady" },
+  Aquarius: { symbol: "♒", element: "Air", modality: "Fixed", polarity: "Masculine", season: "Winter", ruler: "Saturn", dates: "Jan 20 - Feb 18", arabic: "الدلو", arabicName: "Al-Dalw" },
+  Pisces: { symbol: "♓", element: "Water", modality: "Mutable", polarity: "Feminine", season: "Winter", ruler: "Jupiter", dates: "Feb 19 - Mar 20", arabic: "الحوت", arabicName: "Al-Hut" }
 };
 
 export const ELEMENT_RULES = {
@@ -407,11 +409,35 @@ export const ELEMENT_RULES = {
   Water: ["Cancer", "Scorpio", "Pisces"]
 };
 
-export const ELEMENT_ACTIVITIES = {
-  Fire: "Take action, start new projects, exercise, lead",
-  Earth: "Ground yourself, handle finances, organize, garden",
-  Air: "Communicate, study, socialize, plan",
-  Water: "Reflect, meditate, create art, connect emotionally"
+export const ELEMENT_ACTIVITIES: Record<string, { english: string; arabic: string }> = {
+  Fire: { english: "Take action, start new projects, exercise, lead", arabic: "اتخذ إجراءً، ابدأ مشاريع جديدة، مارس الرياضة، قُد" },
+  Earth: { english: "Ground yourself, handle finances, organize, garden", arabic: "ثبّت نفسك، تعامل مع المالية، نظّم، ازرع" },
+  Air: { english: "Communicate, study, socialize, plan", arabic: "تواصل، ادرس، اختلط بالناس، خطط" },
+  Water: { english: "Reflect, meditate, create art, connect emotionally", arabic: "تأمل، تفكّر، أبدع فنًا، تواصل عاطفيًا" }
+};
+
+export const PLANET_ARABIC: Record<string, { arabic: string; arabicName: string }> = {
+  Sun: { arabic: "الشمس", arabicName: "Al-Shams" },
+  Moon: { arabic: "القمر", arabicName: "Al-Qamar" },
+  Mercury: { arabic: "عطارد", arabicName: "Utarid" },
+  Venus: { arabic: "الزهرة", arabicName: "Al-Zuhra" },
+  Mars: { arabic: "المريخ", arabicName: "Al-Mirrikh" },
+  Jupiter: { arabic: "المشتري", arabicName: "Al-Mushtari" },
+  Saturn: { arabic: "زحل", arabicName: "Zuhal" }
+};
+
+export const ELEMENT_ARABIC: Record<string, { arabic: string; arabicName: string }> = {
+  Fire: { arabic: "نار", arabicName: "Nar" },
+  Earth: { arabic: "أرض", arabicName: "Ard" },
+  Air: { arabic: "هواء", arabicName: "Hawa" },
+  Water: { arabic: "ماء", arabicName: "Ma" }
+};
+
+export const SEASON_ARABIC: Record<string, { arabic: string; arabicName: string }> = {
+  Spring: { arabic: "الربيع", arabicName: "Al-Rabi" },
+  Summer: { arabic: "الصيف", arabicName: "Al-Sayf" },
+  Autumn: { arabic: "الخريف", arabicName: "Al-Kharif" },
+  Winter: { arabic: "الشتاء", arabicName: "Al-Shita" }
 };
 
 export const API_KEY = "e511b43a614249ea9efbcda01488f374";

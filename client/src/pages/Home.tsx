@@ -320,7 +320,9 @@ export default function Home() {
         <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <h2 className="text-lg font-serif mb-3 text-foreground/80 relative z-10">Current Station</h2>
+          <h2 className="text-lg font-serif mb-3 text-foreground/80 relative z-10">
+            Current Station <span className="font-arabic text-base text-foreground/60 ml-2">المنزلة الحالية</span>
+          </h2>
           <div className="relative z-10">
             <MansionCard mansion={mansion} />
           </div>
@@ -382,7 +384,9 @@ export default function Home() {
         <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <h2 className="text-lg font-serif mb-3 text-foreground/80 relative z-10">Celestial Dignities</h2>
+          <h2 className="text-lg font-serif mb-3 text-foreground/80 relative z-10">
+            Celestial Dignities <span className="font-arabic text-base text-foreground/60 ml-2">الكرامات السماوية</span>
+          </h2>
           <div className="relative z-10">
             <PlanetaryTable 
               planets={planets} 
@@ -396,7 +400,9 @@ export default function Home() {
         <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <h2 className="text-lg font-serif mb-3 text-foreground/80 relative z-10">Elemental Balance</h2>
+          <h2 className="text-lg font-serif mb-3 text-foreground/80 relative z-10">
+            Elemental Balance <span className="font-arabic text-base text-foreground/60 ml-2">توازن العناصر</span>
+          </h2>
           <div className="relative z-10">
             <ElementalBalance planets={planets} />
           </div>
@@ -410,7 +416,7 @@ export default function Home() {
         
         <div className="flex items-start justify-between mb-3 relative z-10">
           <div className="bg-card/60 backdrop-blur-sm rounded-lg px-3 py-2 border border-border">
-            <div className="text-xs text-muted-foreground mb-1.5 font-medium">Legend</div>
+            <div className="text-xs text-muted-foreground mb-1.5 font-medium">Legend <span className="font-arabic">دليل</span></div>
             <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
               <div className="flex items-center gap-1.5">
                 <Flame className="w-3 h-3 text-orange-400" />
@@ -451,6 +457,7 @@ export default function Home() {
             <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 bg-clip-text text-transparent">
               Current Sky Map
             </span>
+            <span className="font-arabic text-base text-foreground/60 ml-2">خريطة السماء الحالية</span>
             <span className="text-muted-foreground ml-2 text-sm font-light">
               {useSidereal ? "(Sidereal)" : "(Tropical)"}
             </span>

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { PlanetStatus, ELEMENT_RULES, ELEMENT_ACTIVITIES } from "@/lib/astronomy";
+import { PlanetStatus, ELEMENT_RULES } from "@/lib/astronomy";
+import { ELEMENT_ACTIVITIES, ELEMENT_ARABIC } from "@/lib/constants";
 import { Flame, Droplets, Wind, Mountain } from "lucide-react";
 
 interface ElementalBalanceProps {
@@ -80,6 +81,7 @@ export function ElementalBalance({ planets }: ElementalBalanceProps) {
               <config.Icon className={`w-6 h-6 mx-auto mb-1.5 ${config.color}`} />
               <div className={`text-2xl font-semibold ${config.color}`}>{count}</div>
               <div className="text-xs text-muted-foreground">{element}</div>
+              <div className="text-xs text-muted-foreground/70 font-arabic">{ELEMENT_ARABIC[element]?.arabic}</div>
             </motion.div>
           );
         })}
@@ -88,10 +90,18 @@ export function ElementalBalance({ planets }: ElementalBalanceProps) {
       <div className={`rounded-lg px-4 py-3 border ${DominantConfig.bg} ${DominantConfig.border}`}>
         <div className="flex items-center gap-2 mb-1">
           <DominantConfig.Icon className={`w-4 h-4 ${DominantConfig.color}`} />
-          <span className={`text-sm font-medium ${DominantConfig.color}`}>{dominant} Dominant</span>
+          <span className={`text-sm font-medium ${DominantConfig.color}`}>
+            {dominant} Dominant
+            <span className="font-arabic ml-2 text-muted-foreground">
+              ({ELEMENT_ARABIC[dominant]?.arabic} غالب)
+            </span>
+          </span>
         </div>
         <p className="text-sm text-foreground/80 leading-relaxed">
-          {ELEMENT_ACTIVITIES[dominant as keyof typeof ELEMENT_ACTIVITIES]}
+          {ELEMENT_ACTIVITIES[dominant as keyof typeof ELEMENT_ACTIVITIES]?.english}
+        </p>
+        <p className="text-sm text-foreground/60 leading-relaxed font-arabic mt-1 text-right" dir="rtl">
+          {ELEMENT_ACTIVITIES[dominant as keyof typeof ELEMENT_ACTIVITIES]?.arabic}
         </p>
       </div>
     </div>

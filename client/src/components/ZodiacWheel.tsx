@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { PlanetStatus } from "@/lib/astronomy";
-import { SIGNS, SIGN_DATA, getCriticalDegree } from "@/lib/constants";
+import { SIGNS, SIGN_DATA, getCriticalDegree, PLANET_ARABIC } from "@/lib/constants";
 import { useState, useMemo } from "react";
 import { Flame, Mountain, Wind, Droplets, Sun as SunIcon, Moon as MoonIcon, Leaf, Snowflake, Flower2, CircleDot, Triangle, Mars } from "lucide-react";
 
@@ -364,8 +364,11 @@ export function ZodiacWheel({
             exit={{ opacity: 0, scale: 0.95 }}
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-card/95 backdrop-blur-md border border-border px-4 py-3 rounded-lg shadow-lg text-center min-w-[180px] z-20"
           >
-            <div className="font-serif text-lg text-primary mb-1">
+            <div className="font-serif text-lg text-primary mb-0.5">
               {SIGN_DATA[hoveredSign].symbol} {hoveredSign}
+            </div>
+            <div className="text-base font-arabic text-primary/80 mb-1">
+              {hoveredSignData.arabic}
             </div>
             <div className="text-xs text-muted-foreground mb-2">
               {hoveredSignData.dates}
@@ -386,6 +389,7 @@ export function ZodiacWheel({
             </div>
             <div className="text-xs mt-1.5 text-muted-foreground">
               Ruled by <span className="text-primary font-medium">{hoveredSignData.ruler}</span>
+              <span className="font-arabic ml-1 text-primary/70">({PLANET_ARABIC[hoveredSignData.ruler]?.arabic})</span>
             </div>
           </motion.div>
         )}
@@ -402,8 +406,12 @@ export function ZodiacWheel({
             <div className="font-serif text-base flex items-center justify-center gap-2" style={{ color: PLANET_COLORS[hoveredPlanetData.name] }}>
               {PLANET_SYMBOLS[hoveredPlanetData.name]} {hoveredPlanetData.name}
             </div>
+            <div className="text-sm font-arabic" style={{ color: PLANET_COLORS[hoveredPlanetData.name] }}>
+              {PLANET_ARABIC[hoveredPlanetData.name]?.arabic}
+            </div>
             <div className="text-xs text-muted-foreground mt-1">
               {hoveredPlanetData.sign} {Math.floor(hoveredPlanetData.degree)}°{Math.round((hoveredPlanetData.degree % 1) * 60)}'
+              <span className="font-arabic ml-1 text-muted-foreground/70">({SIGN_DATA[hoveredPlanetData.sign]?.arabic})</span>
             </div>
             {hoveredPlanetData.isRetrograde && (
               <div className="text-xs text-red-500 font-medium mt-0.5">Retrograde</div>
