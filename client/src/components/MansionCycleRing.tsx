@@ -1,25 +1,9 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { IBN_ARABI_MANSIONS } from "@/lib/constants";
 
 interface MansionCycleRingProps {
   mansionNumber: number;
-}
-
-// Simple SVG tree icon
-function TreeIcon({ size = 24 }: { size?: number }) {
-  return (
-    <svg viewBox="0 0 100 100" width={size} height={size} fill="currentColor" opacity="0.8">
-      {/* Trunk */}
-      <rect x="40" y="60" width="20" height="30" fill="currentColor" opacity="0.6" />
-      {/* Foliage layers */}
-      <circle cx="50" cy="50" r="20" fill="currentColor" opacity="0.9" />
-      <circle cx="35" cy="55" r="16" fill="currentColor" opacity="0.85" />
-      <circle cx="65" cy="55" r="16" fill="currentColor" opacity="0.85" />
-      <circle cx="30" cy="35" r="14" fill="currentColor" opacity="0.8" />
-      <circle cx="70" cy="35" r="14" fill="currentColor" opacity="0.8" />
-    </svg>
-  );
 }
 
 export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
@@ -28,12 +12,6 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
 
   const getMansionData = (position: number) => {
     return IBN_ARABI_MANSIONS[position - 1];
-  };
-
-  const getZodiacSign = (position: number) => {
-    const mansion = getMansionData(position);
-    const signMatch = mansion.degrees.match(/([A-Za-z]+)$/);
-    return signMatch ? signMatch[1] : null;
   };
 
   const getMansionColor = (position: number) => {
@@ -46,12 +24,38 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
       highlight: isBlessed ? "text-green-500" : "text-amber-500",
       statusText: isBlessed ? "Blessed" : "Challenging",
       light: isBlessed ? "text-green-100 dark:text-green-900" : "text-amber-100 dark:text-amber-900",
+      filterClass: isBlessed ? "brightness-90 hue-rotate-90" : "brightness-90 hue-rotate-30",
     };
   };
 
   const displayedMansion = hoveredMansion ? getMansionData(hoveredMansion) : getMansionData(mansionNumber);
   const displayNumber = hoveredMansion || mansionNumber;
   const displayColor = getMansionColor(displayNumber);
+
+  // Inline tree SVG that can be colored
+  const TreeIcon = ({ color, size = 32 }: { color: string; size?: number }) => (
+    <svg
+      viewBox="0 0 200 240"
+      width={size}
+      height={size}
+      fill={color}
+      opacity="0.9"
+      className="drop-shadow"
+    >
+      {/* Trunk */}
+      <path d="M 85 160 Q 85 180 95 200 Q 100 210 105 200 Q 115 180 115 160 Z" fill={color} />
+      {/* Main foliage crown */}
+      <ellipse cx="100" cy="80" rx="55" ry="65" fill={color} />
+      {/* Left branch foliage */}
+      <ellipse cx="55" cy="100" rx="35" ry="45" fill={color} opacity="0.9" />
+      {/* Right branch foliage */}
+      <ellipse cx="145" cy="100" rx="35" ry="45" fill={color} opacity="0.9" />
+      {/* Upper left */}
+      <ellipse cx="35" cy="60" rx="25" ry="35" fill={color} opacity="0.85" />
+      {/* Upper right */}
+      <ellipse cx="165" cy="60" rx="25" ry="35" fill={color} opacity="0.85" />
+    </svg>
+  );
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -78,15 +82,10 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
               className={`relative flex flex-col items-center justify-center cursor-pointer group`}
               data-testid={`mansion-tree-${position}`}
             >
-              {/* Tree icon */}
-              <div className={`${colors.text} transition-all ${isHovered ? "drop-shadow-lg" : ""}`}>
-                <TreeIcon size={28} />
+              {/* Tree icon colored by status */}
+              <div className={`transition-all ${isHovered ? "drop-shadow-lg" : ""}`}>
+                <TreeIcon color={colors.text === "text-green-500" ? "#22c55e" : "#f59e0b"} size={32} />
               </div>
-
-              {/* Status dot */}
-              <div
-                className={`absolute bottom-0 right-0 w-2 h-2 rounded-full ${colors.bg} border border-background ring-1 ring-${colors.border}`}
-              />
 
               {/* Mansion number on hover */}
               {isHovered && (
@@ -103,43 +102,52 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
         })}
       </div>
 
-      {/* Info card - stays stable, updates on hover */}
-      <motion.div
-        key={displayNumber}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className={`w-full p-4 rounded-lg border-2 ${displayColor.border} ${displayColor.light} bg-foreground/5`}
-      >
-        <div className="flex items-start gap-3">
-          {/* Icon */}
-          <div className={`text-3xl ${displayColor.text} flex-shrink-0 drop-shadow`}>
-            <TreeIcon size={32} />
-          </div>
+      {/* Info card - only shows when hovering */}
+      <AnimatePresence>
+        {hoveredMansion && (
+          <motion.div
+            key={displayNumber}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className={`w-full p-4 rounded-lg border-2 ${displayColor.border} ${displayColor.light} bg-foreground/5`}
+          >
+            <div className="flex items-start gap-3">
+              {/* Icon */}
+              <div className={`flex-shrink-0`}>
+                <TreeIcon
+                  color={displayColor.text === "text-green-500" ? "#22c55e" : "#f59e0b"}
+                  size={36}
+                />
+              </div>
 
-          {/* Content */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1.5">
-              <span className={`text-sm font-bold ${displayColor.text}`}>
-                Mansion {displayNumber}
-              </span>
-              <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full bg-foreground/10 ${displayColor.text}`}>
-                {displayColor.statusText}
-              </span>
+              {/* Content */}
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className={`text-sm font-bold ${displayColor.text}`}>
+                    Mansion {displayNumber}
+                  </span>
+                  <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full bg-foreground/10 ${displayColor.text}`}>
+                    {displayColor.statusText}
+                  </span>
+                </div>
+
+                <h3 className="text-sm font-serif text-gold mb-0.5 line-clamp-1">
+                  {displayedMansion.name}
+                </h3>
+                <div className="text-xs font-arabic text-foreground/60 mb-1.5">
+                  {displayedMansion.arabic}
+                </div>
+
+                <p className="text-xs text-foreground/70 leading-relaxed line-clamp-2">
+                  {displayedMansion.description}
+                </p>
+              </div>
             </div>
-
-            <h3 className="text-sm font-serif text-gold mb-0.5 line-clamp-1">
-              {displayedMansion.name}
-            </h3>
-            <div className="text-xs font-arabic text-foreground/60 mb-1.5">
-              {displayedMansion.arabic}
-            </div>
-
-            <p className="text-xs text-foreground/70 leading-relaxed line-clamp-2">
-              {displayedMansion.description}
-            </p>
-          </div>
-        </div>
-      </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
