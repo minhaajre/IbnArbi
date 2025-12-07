@@ -8,9 +8,11 @@ interface MansionCycleRingProps {
 }
 
 export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycleRingProps) {
-  const [hoveredNumber, setHoveredNumber] = useState<number | null>(null);
-  const positions = Array.from({ length: 28 }, (_, i) => i + 1);
-  const radius = 70; // Larger radius for bigger circle
+  const [hoveredSign, setHoveredSign] = useState<string | null>(null);
+
+  // Get unique zodiac signs in order
+  const zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", 
+                       "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
 
   const getMansionData = (position: number) => {
     return IBN_ARABI_MANSIONS[position - 1];
@@ -18,17 +20,25 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
 
   const getZodiacSign = (position: number) => {
     const mansion = getMansionData(position);
-    // Extract zodiac sign from degrees string like "0° Aries" or "12°51' Aries"
     const signMatch = mansion.degrees.match(/([A-Za-z]+)$/);
     return signMatch ? signMatch[1] : null;
   };
 
-  const getZodiacSymbol = (position: number) => {
-    const sign = getZodiacSign(position);
-    if (sign && sign in SIGN_DATA) {
+  const getZodiacSymbol = (sign: string) => {
+    if (sign in SIGN_DATA) {
       return SIGN_DATA[sign as keyof typeof SIGN_DATA].symbol;
     }
     return "";
+  };
+
+  // Get first mansion in a zodiac sign
+  const getFirstMansionInSign = (sign: string) => {
+    for (let i = 1; i <= 28; i++) {
+      if (getZodiacSign(i) === sign) {
+        return i;
+      }
+    }
+    return 1;
   };
 
   const getMansionColor = (position: number) => {
@@ -42,30 +52,31 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
     };
   };
 
-  const getNumberPosition = (position: number) => {
-    const angle = ((position - 1) / 28) * 360 - 90;
+  const getSymbolPosition = (index: number) => {
+    const angle = (index / 12) * 360 - 90;
     const radian = (angle * Math.PI) / 180;
-    const numberRadius = 120; // Expanded radius for numbers
-    const x = Math.cos(radian) * numberRadius;
-    const y = Math.sin(radian) * numberRadius;
-    return { x, y };
-  };
-
-  const getSymbolPosition = (position: number) => {
-    const angle = ((position - 1) / 28) * 360 - 90;
-    const radian = (angle * Math.PI) / 180;
-    const symbolRadius = 155; // Outer radius for zodiac symbols
+    const symbolRadius = 130; // Zodiac symbols at this radius
     const x = Math.cos(radian) * symbolRadius;
     const y = Math.sin(radian) * symbolRadius;
     return { x, y };
   };
 
-  const isCurrentMansion = (position: number) => position === mansionNumber;
-
   const currentMansion = getMansionData(mansionNumber);
   const currentZodiac = getZodiacSign(mansionNumber);
-  const currentSymbol = getZodiacSymbol(mansionNumber);
+  const currentSymbol = getZodiacSymbol(currentZodiac || "");
   const currentColor = getMansionColor(mansionNumber);
+
+  const handleZodiacClick = (sign: string) => {
+    const mansion = getFirstMansionInSign(sign);
+    onSelectMansion?.(mansion);
+    setHoveredSign(sign);
+  };
+
+  const handleZodiacHover = (sign: string) => {
+    const mansion = getFirstMansionInSign(sign);
+    onSelectMansion?.(mansion);
+    setHoveredSign(sign);
+  };
 
   return (
     <div className="flex flex-col items-center gap-3">
@@ -74,12 +85,12 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
       </div>
 
       {/* Large SVG Circle */}
-      <svg width="380" height="380" viewBox="0 0 380 380" className="drop-shadow-lg">
+      <svg width="340" height="340" viewBox="0 0 340 340" className="drop-shadow-lg">
         {/* Outer decorative ring */}
         <circle
-          cx="190"
-          cy="190"
-          r="170"
+          cx="170"
+          cy="170"
+          r="150"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -88,9 +99,9 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
 
         {/* Middle guide ring */}
         <circle
-          cx="190"
-          cy="190"
-          r="130"
+          cx="170"
+          cy="170"
+          r="110"
           fill="none"
           stroke="currentColor"
           strokeWidth="1.5"
@@ -99,28 +110,31 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
 
         {/* Inner circle */}
         <circle
-          cx="190"
-          cy="190"
-          r="60"
+          cx="170"
+          cy="170"
+          r="55"
           fill="currentColor"
           className="text-primary opacity-8"
         />
 
         {/* Current mansion highlight background arc */}
         {(() => {
-          const startAngle = ((mansionNumber - 1.5) / 28) * 360 - 90;
-          const endAngle = ((mansionNumber - 0.5) / 28) * 360 - 90;
+          const signIndex = zodiacSigns.indexOf(currentZodiac || "");
+          if (signIndex === -1) return null;
+          
+          const startAngle = ((signIndex - 0.5) / 12) * 360 - 90;
+          const endAngle = ((signIndex + 0.5) / 12) * 360 - 90;
           const startRad = (startAngle * Math.PI) / 180;
           const endRad = (endAngle * Math.PI) / 180;
 
-          const x1 = 190 + 168 * Math.cos(startRad);
-          const y1 = 190 + 168 * Math.sin(startRad);
-          const x2 = 190 + 168 * Math.cos(endRad);
-          const y2 = 190 + 168 * Math.sin(endRad);
+          const x1 = 170 + 148 * Math.cos(startRad);
+          const y1 = 170 + 148 * Math.sin(startRad);
+          const x2 = 170 + 148 * Math.cos(endRad);
+          const y2 = 170 + 148 * Math.sin(endRad);
 
           return (
             <path
-              d={`M ${x1} ${y1} A 168 168 0 0 1 ${x2} ${y2}`}
+              d={`M ${x1} ${y1} A 148 148 0 0 1 ${x2} ${y2}`}
               fill="none"
               stroke="currentColor"
               strokeWidth="3.5"
@@ -129,137 +143,90 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
           );
         })()}
 
-        {/* Radial lines for each mansion */}
-        {positions.map((position) => {
-          const angle = ((position - 1) / 28) * 360 - 90;
+        {/* Radial lines for each zodiac */}
+        {zodiacSigns.map((sign, index) => {
+          const angle = (index / 12) * 360 - 90;
           const radian = (angle * Math.PI) / 180;
-          const x1 = 190 + 60 * Math.cos(radian);
-          const y1 = 190 + 60 * Math.sin(radian);
-          const x2 = 190 + 168 * Math.cos(radian);
-          const y2 = 190 + 168 * Math.sin(radian);
-          const isActive = isCurrentMansion(position);
-          const isHovered = hoveredNumber === position;
+          const x1 = 170 + 55 * Math.cos(radian);
+          const y1 = 170 + 55 * Math.sin(radian);
+          const x2 = 170 + 148 * Math.cos(radian);
+          const y2 = 170 + 148 * Math.sin(radian);
+          const isActive = sign === currentZodiac;
+          const isHovered = hoveredSign === sign;
 
           return (
             <line
-              key={`line-${position}`}
+              key={`line-${sign}`}
               x1={x1}
               y1={y1}
               x2={x2}
               y2={y2}
               stroke="currentColor"
-              strokeWidth={isActive || isHovered ? 2.5 : 1.5}
-              className={
-                isActive
-                  ? getMansionColor(position).highlight
-                  : isHovered
-                    ? getMansionColor(position).text + " opacity-60"
-                    : "text-border opacity-20"
-              }
-              opacity={isActive || isHovered ? 1 : 0.4}
+              strokeWidth={isActive || isHovered ? "1.5" : "1"}
+              className={isActive || isHovered ? "text-primary" : "text-border opacity-20"}
+              opacity={isActive || isHovered ? 1 : 0.3}
             />
           );
         })}
 
-        {/* Mansion numbers */}
-        {positions.map((position) => {
-          const { x, y } = getNumberPosition(position);
-          const isActive = isCurrentMansion(position);
-          const isHovered = hoveredNumber === position;
-          const colors = getMansionColor(position);
+        {/* Zodiac symbols - large and interactive */}
+        {zodiacSigns.map((sign, index) => {
+          const { x, y } = getSymbolPosition(index);
+          const isActive = sign === currentZodiac;
+          const isHovered = hoveredSign === sign;
+          const symbol = getZodiacSymbol(sign);
 
           return (
-            <g key={`number-${position}`}>
-              {/* Invisible larger hitbox for hover and click */}
+            <g key={`zodiac-${sign}`}>
+              {/* Invisible hit box for interaction */}
               <circle
-                cx={190 + x}
-                cy={190 + y}
-                r="18"
+                cx={170 + x}
+                cy={170 + y}
+                r="22"
                 fill="transparent"
-                onMouseEnter={() => {
-                  setHoveredNumber(position);
-                  onSelectMansion?.(position);
-                }}
-                onMouseLeave={() => setHoveredNumber(null)}
-                onClick={() => {
-                  setHoveredNumber(position);
-                  onSelectMansion?.(position);
-                }}
+                onMouseEnter={() => handleZodiacHover(sign)}
+                onMouseLeave={() => setHoveredSign(null)}
+                onClick={() => handleZodiacClick(sign)}
                 style={{ cursor: "pointer" }}
               />
 
-              {/* Background circle for number */}
+              {/* Background circle for zodiac */}
               <motion.g
                 animate={{
-                  scale: isActive ? 1.5 : isHovered ? 1.3 : 1,
-                  opacity: isActive || isHovered ? 1 : 0.75,
+                  scale: isActive ? 1.6 : isHovered ? 1.4 : 1,
+                  opacity: isActive || isHovered ? 1 : 0.7,
                 }}
                 transition={{ duration: 0.2 }}
               >
                 <circle
-                  cx={190 + x}
-                  cy={190 + y}
-                  r="16"
+                  cx={170 + x}
+                  cy={170 + y}
+                  r="18"
                   fill="currentColor"
-                  className={`${colors.bg} ${colors.border}`}
+                  className={isActive ? "text-primary bg-primary/20" : "text-muted-foreground bg-muted/10"}
                   stroke="currentColor"
                   strokeWidth="2"
                 />
 
-                {/* Number */}
+                {/* Symbol */}
                 <text
-                  x={190 + x}
-                  y={190 + y}
+                  x={170 + x}
+                  y={170 + y}
                   textAnchor="middle"
                   dominantBaseline="middle"
-                  className={`font-bold select-none pointer-events-none ${colors.text}`}
-                  fontSize={isActive ? "13" : isHovered ? "12" : "11"}
+                  className="font-bold select-none pointer-events-none"
+                  fontSize={isActive ? "20" : isHovered ? "18" : "16"}
                   fill="currentColor"
                 >
-                  {position}
+                  {symbol}
                 </text>
               </motion.g>
             </g>
           );
         })}
 
-        {/* Zodiac symbols at outer rim */}
-        {positions.map((position) => {
-          const { x, y } = getSymbolPosition(position);
-          const symbol = getZodiacSymbol(position);
-          const isActive = isCurrentMansion(position);
-          const isHovered = hoveredNumber === position;
-
-          return (
-            <motion.g
-              key={`symbol-${position}`}
-              animate={{
-                scale: isActive ? 1.3 : isHovered ? 1.15 : 1,
-                opacity: isActive || isHovered ? 1 : 0.8,
-              }}
-              transition={{ duration: 0.2 }}
-              onMouseEnter={() => setHoveredNumber(position)}
-              onMouseLeave={() => setHoveredNumber(null)}
-              style={{ cursor: "pointer" }}
-            >
-              <text
-                x={190 + x}
-                y={190 + y}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                className="select-none pointer-events-none text-muted-foreground"
-                fontSize="16"
-                fontWeight="600"
-                fill="currentColor"
-              >
-                {symbol}
-              </text>
-            </motion.g>
-          );
-        })}
-
         {/* Center dot */}
-        <circle cx="190" cy="190" r="6" fill="currentColor" className="text-primary" />
+        <circle cx="170" cy="170" r="6" fill="currentColor" className="text-primary" />
       </svg>
 
       {/* Center Display Card */}
