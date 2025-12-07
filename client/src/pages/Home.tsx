@@ -393,57 +393,59 @@ export default function Home() {
               <span className={`text-[10px] sm:text-xs ${useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Sidereal</span>
             </div>
 
-            {/* Capture Moment Dialog */}
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button variant="outline" size="icon" className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9" data-testid="capture-moment" title="Capture Moment">
-                  <Mail className="w-4 h-4" />
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                  <DialogTitle>Email Moment Capture</DialogTitle>
-                </DialogHeader>
-                <div className="space-y-4 py-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="capture-email" className="text-xs sm:text-sm">Your Email</Label>
-                    <Input
-                      id="capture-email"
-                      type="email"
-                      placeholder="your@email.com"
-                      value={captureEmail}
-                      onChange={(e) => setCaptureEmail(e.target.value)}
-                      disabled={isCaptureSending}
-                      className="text-xs sm:text-sm"
-                      data-testid="capture-email-input"
-                    />
-                  </div>
-                  <Button
-                    onClick={handleSendMomentCapture}
-                    disabled={isCaptureSending}
-                    className="w-full text-xs sm:text-sm"
-                    data-testid="send-capture-button"
-                  >
-                    {isCaptureSending ? (
-                      <>
-                        <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 mr-2 animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Mail className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                        Send to Email
-                      </>
-                    )}
+            {/* Capture Moment Dialog - Dev only */}
+            {import.meta.env.DEV && (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="outline" size="icon" className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9" data-testid="capture-moment" title="Capture Moment">
+                    <Mail className="w-4 h-4" />
                   </Button>
-                  {captureMessage && (
-                    <p className={`text-xs sm:text-sm text-center ${captureMessage.includes('✓') ? 'text-green-500' : 'text-red-500'}`}>
-                      {captureMessage}
-                    </p>
-                  )}
-                </div>
-              </DialogContent>
-            </Dialog>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Email Moment Capture</DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4 py-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="capture-email" className="text-xs sm:text-sm">Your Email</Label>
+                      <Input
+                        id="capture-email"
+                        type="email"
+                        placeholder="your@email.com"
+                        value={captureEmail}
+                        onChange={(e) => setCaptureEmail(e.target.value)}
+                        disabled={isCaptureSending}
+                        className="text-xs sm:text-sm"
+                        data-testid="capture-email-input"
+                      />
+                    </div>
+                    <Button
+                      onClick={handleSendMomentCapture}
+                      disabled={isCaptureSending}
+                      className="w-full text-xs sm:text-sm"
+                      data-testid="send-capture-button"
+                    >
+                      {isCaptureSending ? (
+                        <>
+                          <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 mr-2 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Mail className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+                          Send to Email
+                        </>
+                      )}
+                    </Button>
+                    {captureMessage && (
+                      <p className={`text-xs sm:text-sm text-center ${captureMessage.includes('✓') ? 'text-green-500' : 'text-red-500'}`}>
+                        {captureMessage}
+                      </p>
+                    )}
+                  </div>
+                </DialogContent>
+              </Dialog>
+            )}
 
             {/* Location Dialog */}
             <Dialog>
@@ -476,17 +478,19 @@ export default function Home() {
               </DialogContent>
             </Dialog>
 
-            {/* Personal Chart Button */}
-            <Button 
-              variant="outline" 
-              size="icon" 
-              onClick={() => navigate("/chart")}
-              className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9"
-              data-testid="chart-button"
-              title="Personal Chart"
-            >
-              <User className="w-4 h-4" />
-            </Button>
+            {/* Personal Chart Button - Dev only */}
+            {import.meta.env.DEV && (
+              <Button 
+                variant="outline" 
+                size="icon" 
+                onClick={() => navigate("/chart")}
+                className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9"
+                data-testid="chart-button"
+                title="Personal Chart"
+              >
+                <User className="w-4 h-4" />
+              </Button>
+            )}
 
           </div>
         </div>
