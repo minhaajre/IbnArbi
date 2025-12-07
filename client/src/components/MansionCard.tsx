@@ -5,6 +5,7 @@ import { MANSION_GUIDANCE, CYCLE_ROLE_COLORS } from "@/lib/spiritualGuidance";
 import { MansionProgress, MoonPhaseInfo } from "@/lib/astronomy";
 import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, CheckCircle, XCircle, Compass, ChevronDown, ChevronUp } from "lucide-react";
 import { format } from "date-fns";
+import { MansionCycleRing } from "@/components/MansionCycleRing";
 import {
   Accordion,
   AccordionContent,
@@ -100,6 +101,30 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
             </div>
           </div>
         )}
+
+        {/* Quick Start Guide */}
+        <div className="mb-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
+          <div className="text-[10px] font-medium text-primary uppercase tracking-wide mb-2">How to Use This App</div>
+          <div className="space-y-1.5 text-xs text-foreground/80">
+            <div className="flex gap-2">
+              <span className="text-primary font-semibold shrink-0">①</span>
+              <span><strong>Check the Hour</strong> – What energy is active?</span>
+            </div>
+            <div className="flex gap-2">
+              <span className="text-primary font-semibold shrink-0">②</span>
+              <span><strong>Check the Mansion</strong> – What stage of the lunar cycle are we in?</span>
+            </div>
+            <div className="flex gap-2">
+              <span className="text-primary font-semibold shrink-0">③</span>
+              <span><strong>Align your action</strong> – Act, maintain, or release based on both.</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Mansion Cycle Ring */}
+        <div className="mb-3 flex justify-center">
+          <MansionCycleRing mansionNumber={mansion.number} />
+        </div>
 
         {/* NEW: Mansion Theme Card with Collapse/Expand */}
         {guidance && (
@@ -278,12 +303,12 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
                     </AccordionContent>
                   </AccordionItem>
 
-                  {/* Ibn Arabi Quote - Collapsible */}
+                  {/* Ibn Arabi's Cosmology Placement - Collapsible */}
                   <AccordionItem value="quote" className="border border-border rounded-lg bg-foreground/5">
                     <AccordionTrigger className="px-3 py-2 hover:no-underline text-xs font-medium text-foreground uppercase tracking-wide opacity-70">
                       <div className="flex items-center gap-2">
                         <BookOpen className="w-3.5 h-3.5 text-primary/70" />
-                        <span>Ibn Arabi's Wisdom</span>
+                        <span>Ibn Arabi's Cosmology Placement</span>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="px-3 pb-2 pt-1">
