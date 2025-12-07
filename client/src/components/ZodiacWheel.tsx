@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { PlanetStatus } from "@/lib/astronomy";
 import { SIGNS, SIGN_DATA, getCriticalDegree, PLANET_ARABIC, DIGNITY_ARABIC, UI_LABELS_ARABIC } from "@/lib/constants";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Flame, Mountain, Wind, Droplets, Sun as SunIcon, Moon as MoonIcon, Leaf, Snowflake, Flower2, CircleDot, Triangle, Mars } from "lucide-react";
 
 interface ZodiacWheelProps {
@@ -95,6 +95,15 @@ export function ZodiacWheel({
 }: ZodiacWheelProps) {
   const [hoveredSign, setHoveredSign] = useState<string | null>(null);
   const [hoveredPlanet, setHoveredPlanet] = useState<string | null>(null);
+  const [rotation, setRotation] = useState(0);
+  
+  // Animate rotation based on time
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRotation(prev => (prev + 0.02) % 360);
+    }, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   const size = variant === "expanded" ? 580 : 400;
   const center = size / 2;
@@ -373,6 +382,37 @@ export function ZodiacWheel({
                   R
                 </motion.text>
               )}
+              
+              {/* Permanent status label below planet */}
+              <motion.text
+                animate={{ x: pos.x, y: pos.y + circleSize + 10 }}
+                initial={{ x: pos.x, y: pos.y + circleSize + 10 }}
+                transition={{ type: "spring", stiffness: 60, damping: 15 }}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fontSize={variant === "expanded" ? "8" : "7"}
+                fill="currentColor"
+                fillOpacity="0.6"
+                className="font-mono pointer-events-none select-none"
+              >
+                {Math.floor(planet.degree)}°
+              </motion.text>
+              
+              {/* Dignity indicator */}
+              {planet.status !== 'Neutral' && (
+                <motion.text
+                  animate={{ x: pos.x, y: pos.y + circleSize + (variant === "expanded" ? 19 : 17) }}
+                  initial={{ x: pos.x, y: pos.y + circleSize + (variant === "expanded" ? 19 : 17) }}
+                  transition={{ type: "spring", stiffness: 60, damping: 15 }}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fontSize={variant === "expanded" ? "7" : "6"}
+                  fill={planet.status === 'Exalted' || planet.status === 'Rulership' ? '#22c55e' : '#f59e0b'}
+                  className="font-medium pointer-events-none select-none"
+                >
+                  {planet.status === 'Exalted' ? '↑' : planet.status === 'Rulership' ? '♔' : planet.status === 'Fall' ? '↓' : '✕'}
+                </motion.text>
+              )}
             </g>
           );
         })}
@@ -454,11 +494,9 @@ export function ZodiacWheel({
                 Retrograde <span className="font-arabic">{UI_LABELS_ARABIC["Retrograde"]}</span>
               </div>
             )}
-            {hoveredPlanetData.status !== 'Neutral' && (
-              <div className={`text-xs font-medium mt-0.5 ${hoveredPlanetData.status === 'Exalted' || hoveredPlanetData.status === 'Rulership' ? 'text-green-500' : 'text-amber-500'}`}>
-                {hoveredPlanetData.status} <span className="font-arabic">{DIGNITY_ARABIC[hoveredPlanetData.status]?.arabic}</span>
-              </div>
-            )}
+            <div className={`text-xs font-medium mt-0.5 ${hoveredPlanetData.status === 'Exalted' || hoveredPlanetData.status === 'Rulership' ? 'text-green-500' : hoveredPlanetData.status === 'Neutral' ? 'text-muted-foreground' : 'text-amber-500'}`}>
+              {hoveredPlanetData.status} <span className="font-arabic">{DIGNITY_ARABIC[hoveredPlanetData.status]?.arabic || ''}</span>
+            </div>
             {hoveredPlanetCritical && (
               <div 
                 className="text-xs font-medium mt-1 px-2 py-0.5 rounded-full" 

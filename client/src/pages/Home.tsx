@@ -268,47 +268,44 @@ export default function Home() {
   const moonPlanet = planets.find(p => p.name === "Moon");
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6 md:p-12 max-w-7xl mx-auto transition-colors duration-500">
+    <div className="min-h-screen bg-background text-foreground p-3 sm:p-6 md:p-12 max-w-7xl mx-auto transition-colors duration-500">
       
       {/* Header */}
-      <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6 border-b border-border pb-8">
-        <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 w-full">
-          <div className="flex-1">
-            <h1 className="text-4xl md:text-5xl font-serif text-gold mb-2">Ibn Arabi's Cosmology</h1>
-            <p className="text-muted-foreground font-light tracking-wide flex items-center gap-2">
+      <header className="flex flex-col gap-4 sm:gap-6 border-b border-border pb-4 sm:pb-8 mb-6 sm:mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 w-full">
+          <div className="flex-1 min-w-0">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-serif text-gold mb-1 sm:mb-2">Ibn Arabi's Cosmology</h1>
+            <p className="text-muted-foreground font-light tracking-wide text-sm sm:text-base">
               Guide to the Celestial Spheres
-              <span className="px-2 py-0.5 rounded-full bg-foreground/5 text-xs border border-border">
-                {useSidereal ? "Sidereal" : "Tropical"}
-              </span>
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
              {/* Theme Toggle */}
             <Button 
               variant="ghost" 
               size="icon" 
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-full w-9 h-9 border border-border"
+              className="rounded-full w-8 h-8 sm:w-9 sm:h-9 border border-border"
             >
-              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <Sun className="h-3 w-3 sm:h-4 sm:w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-3 w-3 sm:h-4 sm:w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               <span className="sr-only">Toggle theme</span>
             </Button>
 
             {/* Sidereal Toggle */}
-            <div className="flex items-center gap-2 bg-card/50 rounded-lg px-3 py-2 border border-border">
-              <span className={`text-xs ${!useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Tropical</span>
-              <Switch checked={useSidereal} onCheckedChange={setUseSidereal} />
-              <span className={`text-xs ${useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Sidereal</span>
+            <div className="flex items-center gap-1.5 sm:gap-2 bg-card/50 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 border border-border">
+              <span className={`text-[10px] sm:text-xs ${!useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Tropical</span>
+              <Switch checked={useSidereal} onCheckedChange={setUseSidereal} className="scale-90 sm:scale-100" />
+              <span className={`text-[10px] sm:text-xs ${useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Sidereal</span>
             </div>
 
             {/* Location Dialog */}
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline" size="sm" className="bg-card/50 border-border h-9 max-w-[200px] truncate">
-                  <MapPin className="w-3 h-3 mr-2 shrink-0" />
-                  {location?.name}
+                <Button variant="outline" size="sm" className="bg-card/50 border-border h-8 sm:h-9 max-w-[140px] sm:max-w-[200px] truncate text-xs sm:text-sm">
+                  <MapPin className="w-3 h-3 mr-1 sm:mr-2 shrink-0" />
+                  <span className="truncate">{location?.name}</span>
                 </Button>
               </DialogTrigger>
               <DialogContent>
@@ -336,16 +333,17 @@ export default function Home() {
             </Dialog>
 
             {/* Date Picker */}
-            <div className="flex items-center gap-2 bg-card/50 rounded-lg p-1 border border-border">
+            <div className="flex items-center gap-1 sm:gap-2 bg-card/50 rounded-lg p-1 border border-border">
                <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant={"ghost"}
                     size="sm"
-                    className={`w-[180px] justify-start text-left font-normal ${!selectedDate && "text-muted-foreground"}`}
+                    className={`w-auto sm:w-[180px] justify-start text-left font-normal text-xs sm:text-sm ${!selectedDate && "text-muted-foreground"}`}
                   >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {selectedDate ? format(selectedDate, "PPP") : <span>Pick a date</span>}
+                    <CalendarIcon className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                    {selectedDate ? format(selectedDate, "MMM d") : <span>Date</span>}
+                    <span className="hidden sm:inline ml-1">{selectedDate && format(selectedDate, ", yyyy")}</span>
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="end">
@@ -362,33 +360,36 @@ export default function Home() {
               </Popover>
               
               {!isAutoTime && (
-                <Button size="icon" variant="ghost" className="h-8 w-8" onClick={resetToNow} title="Reset to Now">
+                <Button size="icon" variant="ghost" className="h-7 w-7 sm:h-8 sm:w-8" onClick={resetToNow} title="Reset to Now">
                   <RotateCcw className="h-3 w-3" />
                 </Button>
               )}
             </div>
           </div>
+        </div>
 
-          {/* Time Display */}
-          <div className="text-right">
-            <div className="text-3xl font-mono font-light mb-1 tabular-nums tracking-tighter">
+        {/* Time Display - Mobile friendly row */}
+        <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-4 pt-2 sm:pt-0">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <div className="text-xl sm:text-3xl font-mono font-light tabular-nums tracking-tighter">
               {format(now, "h:mm a")}
             </div>
-            <div className="flex items-center justify-end gap-2 text-sm text-muted-foreground mb-1">
-              <span className="text-xs opacity-50">Last Update: {format(new Date(), "h:mm:ss a")}</span>
-            </div>
-            <div className="text-gold/80 font-arabic text-xl">
+            <div className="text-gold/80 font-arabic text-base sm:text-xl">
               {hijriDate}
             </div>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-[10px] sm:text-xs text-muted-foreground opacity-50">Updated: {format(new Date(), "h:mm a")}</span>
             {whiteDaysInfo && whiteDaysInfo.isWhiteDay && (
-              <div className="mt-1 text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-500 border border-amber-500/30 inline-flex items-center gap-1" data-testid="white-days-indicator">
-                <Moon className="w-3 h-3" />
-                <span>White Day - Blessed Fast</span>
+              <div className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-500 border border-amber-500/30 inline-flex items-center gap-1" data-testid="white-days-indicator">
+                <Moon className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                <span className="hidden sm:inline">White Day - Blessed Fast</span>
+                <span className="sm:hidden">White Day</span>
               </div>
             )}
             {whiteDaysInfo && !whiteDaysInfo.isWhiteDay && whiteDaysInfo.daysUntilNext <= 3 && (
-              <div className="mt-1 text-xs text-muted-foreground" data-testid="white-days-upcoming">
-                White days in {whiteDaysInfo.daysUntilNext} day{whiteDaysInfo.daysUntilNext !== 1 ? 's' : ''}
+              <div className="text-[10px] sm:text-xs text-muted-foreground" data-testid="white-days-upcoming">
+                White days in {whiteDaysInfo.daysUntilNext}d
               </div>
             )}
           </div>
@@ -396,14 +397,14 @@ export default function Home() {
       </header>
 
       {/* Row 1: Station + Planetary Hour (side by side, equal height) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
         
         {/* Current Station Card - Glass Effect */}
-        <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
+        <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <h2 className="text-lg font-serif mb-3 text-foreground/80 relative z-10">
-            Current Lunar Mansion <span className="font-arabic text-base text-foreground/60 ml-2">المنزلة القمرية الحالية</span>
+          <h2 className="text-base sm:text-lg font-serif mb-2 sm:mb-3 text-foreground/80 relative z-10">
+            Current Lunar Mansion <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">المنزلة القمرية الحالية</span>
           </h2>
           <div className="relative z-10">
             <MansionCard mansion={mansion} progress={mansionProgress ?? undefined} />
@@ -411,21 +412,21 @@ export default function Home() {
         </section>
 
         {/* Planetary Hour Card - Glass Effect */}
-        <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
+        <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           
           {/* Header with date picker */}
-          <div className="flex items-center justify-between mb-3 relative z-10">
-            <h2 className="text-lg font-serif text-foreground/80">
-              Planetary Hours <span className="font-arabic text-base text-foreground/60 ml-2">الساعات الكوكبية</span>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2 sm:mb-3 relative z-10">
+            <h2 className="text-base sm:text-lg font-serif text-foreground/80">
+              Planetary Hours <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الساعات الكوكبية</span>
             </h2>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2">
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button variant="ghost" size="sm" className="h-7 text-xs" data-testid="hours-date-picker">
-                    <CalendarIcon className="mr-1 h-3 w-3" />
-                    {hoursSelectedDate ? format(hoursSelectedDate, "MMM d") : "Pick date"}
+                  <Button variant="ghost" size="sm" className="h-6 sm:h-7 text-[10px] sm:text-xs px-2" data-testid="hours-date-picker">
+                    <CalendarIcon className="mr-1 h-2.5 w-2.5 sm:h-3 sm:w-3" />
+                    {hoursSelectedDate ? format(hoursSelectedDate, "MMM d") : "Date"}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="end">
@@ -441,32 +442,32 @@ export default function Home() {
                 type="time"
                 value={format(hoursTime, "HH:mm")}
                 onChange={handleHoursTimeChange}
-                className="h-7 text-xs px-2 rounded border border-border bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-6 sm:h-7 text-[10px] sm:text-xs px-1.5 sm:px-2 rounded border border-border bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary w-16 sm:w-auto"
                 data-testid="hours-time-picker"
               />
               {!hoursTimeAuto && (
-                <Button size="icon" variant="ghost" className="h-6 w-6" onClick={resetHoursToNow} title="Reset to Now" data-testid="hours-reset-button">
-                  <RotateCcw className="h-3 w-3" />
+                <Button size="icon" variant="ghost" className="h-5 w-5 sm:h-6 sm:w-6" onClick={resetHoursToNow} title="Reset to Now" data-testid="hours-reset-button">
+                  <RotateCcw className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                 </Button>
               )}
             </div>
           </div>
 
           {/* Moon Sign + Moon Phase Row */}
-          <div className="flex items-start justify-between mb-3 relative z-10">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-2 sm:mb-3 relative z-10">
             {/* Moon Sign - Left */}
             {moonPlanet && (
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5 text-sm font-medium text-foreground/80">
-                  <Moon className="w-4 h-4 text-muted-foreground" />
+              <div className="flex items-center gap-1.5 sm:gap-3">
+                <div className="flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm font-medium text-foreground/80">
+                  <Moon className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
                   <span>{moonPlanet.sign}</span>
                 </div>
-                <span className="text-xs text-muted-foreground font-mono">
+                <span className="text-[10px] sm:text-xs text-muted-foreground font-mono">
                   {Math.floor(moonPlanet.degree)}°{Math.round((moonPlanet.degree % 1) * 60)}'
                 </span>
                 {moonPhase?.isVoidOfCourse && (
-                  <span className="text-xs text-yellow-500 font-bold flex items-center gap-1 bg-yellow-500/10 px-2 py-0.5 rounded-full">
-                    <AlertTriangle className="w-3 h-3" /> VOC
+                  <span className="text-[10px] sm:text-xs text-yellow-500 font-bold flex items-center gap-0.5 sm:gap-1 bg-yellow-500/10 px-1.5 sm:px-2 py-0.5 rounded-full">
+                    <AlertTriangle className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> VOC
                   </span>
                 )}
               </div>
@@ -474,12 +475,12 @@ export default function Home() {
             
             {/* Moon Phase - Right */}
             {moonPhase && (
-              <div className="flex items-center gap-3 text-right">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  {moonPhase.isWaxing ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-                  <span>{moonPhase.label}</span>
+              <div className="flex items-center gap-1.5 sm:gap-3">
+                <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
+                  {moonPhase.isWaxing ? <Sun className="w-3 h-3 sm:w-4 sm:h-4" /> : <Moon className="w-3 h-3 sm:w-4 sm:h-4" />}
+                  <span className="hidden xs:inline">{moonPhase.label}</span>
                 </div>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-foreground/10 font-mono border border-border">
+                <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-foreground/10 font-mono border border-border">
                   {Math.round(moonPhase.illumination)}%
                 </span>
               </div>
@@ -505,64 +506,65 @@ export default function Home() {
           
           {/* Day Ruler & Planetary Protocol - Merged Section */}
           {(hoursSectionData || hoursData).currentHour && (
-            <div className="relative z-10 mt-4 pt-4 border-t border-border">
-              {/* Day Ruler + Protocol Header */}
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-2">
-                    <Crown className="w-4 h-4 text-gold" />
-                    <span className="text-sm font-medium text-foreground/70">Day Ruler</span>
-                    <span className="font-arabic text-xs text-foreground/50">حاكم اليوم</span>
-                  </div>
-                  <div className="h-4 w-px bg-border" />
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg" style={{ color: (hoursSectionData || hoursData).dayRuler === 'Sun' ? '#f59e0b' : (hoursSectionData || hoursData).dayRuler === 'Moon' ? '#94a3b8' : '#888' }}>
-                      {(hoursSectionData || hoursData).dayRuler === 'Sun' ? '☉' : (hoursSectionData || hoursData).dayRuler === 'Moon' ? '☽' : (hoursSectionData || hoursData).dayRuler === 'Mars' ? '♂' : (hoursSectionData || hoursData).dayRuler === 'Mercury' ? '☿' : (hoursSectionData || hoursData).dayRuler === 'Jupiter' ? '♃' : (hoursSectionData || hoursData).dayRuler === 'Venus' ? '♀' : '♄'}
-                    </span>
-                    <span className="font-serif text-foreground">{(hoursSectionData || hoursData).dayRuler}</span>
-                    <span className="font-arabic text-sm text-foreground/60">{PLANET_ARABIC[(hoursSectionData || hoursData).dayRuler]?.arabic}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 bg-foreground/5 px-2 py-1 rounded-lg border border-border">
-                    <Sparkles className="w-3 h-3 text-gold" />
-                    <span className="text-xs text-muted-foreground">Prophet:</span>
-                    <span className="text-xs text-gold font-medium">{PLANET_PROPHETS[(hoursSectionData || hoursData).dayRuler]?.name}</span>
-                    <span className="text-sm font-arabic text-primary/80">{PLANET_PROPHETS[(hoursSectionData || hoursData).dayRuler]?.arabic}</span>
-                  </div>
+            <div className="relative z-10 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-border space-y-3 sm:space-y-4">
+              {/* Day Ruler Row */}
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <Crown className="w-3 h-3 sm:w-4 sm:h-4 text-gold" />
+                  <span className="text-xs sm:text-sm font-medium text-foreground/70">Day Ruler</span>
+                  <span className="font-arabic text-[10px] sm:text-xs text-foreground/50">حاكم اليوم</span>
                 </div>
-                
-                <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-medium text-foreground/70 flex items-center gap-2">
+                <div className="h-4 w-px bg-border hidden sm:block" />
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <span className="text-base sm:text-lg" style={{ color: (hoursSectionData || hoursData).dayRuler === 'Sun' ? '#f59e0b' : (hoursSectionData || hoursData).dayRuler === 'Moon' ? '#94a3b8' : '#888' }}>
+                    {(hoursSectionData || hoursData).dayRuler === 'Sun' ? '☉' : (hoursSectionData || hoursData).dayRuler === 'Moon' ? '☽' : (hoursSectionData || hoursData).dayRuler === 'Mars' ? '♂' : (hoursSectionData || hoursData).dayRuler === 'Mercury' ? '☿' : (hoursSectionData || hoursData).dayRuler === 'Jupiter' ? '♃' : (hoursSectionData || hoursData).dayRuler === 'Venus' ? '♀' : '♄'}
+                  </span>
+                  <span className="font-serif text-sm sm:text-base text-foreground">{(hoursSectionData || hoursData).dayRuler}</span>
+                  <span className="font-arabic text-xs sm:text-sm text-foreground/60">{PLANET_ARABIC[(hoursSectionData || hoursData).dayRuler]?.arabic}</span>
+                </div>
+                <div className="flex items-center gap-1 sm:gap-1.5 bg-foreground/5 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-border">
+                  <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-gold" />
+                  <span className="text-[10px] sm:text-xs text-muted-foreground hidden sm:inline">Prophet:</span>
+                  <span className="text-[10px] sm:text-xs text-gold font-medium">{PLANET_PROPHETS[(hoursSectionData || hoursData).dayRuler]?.name}</span>
+                  <span className="text-xs sm:text-sm font-arabic text-primary/80">{PLANET_PROPHETS[(hoursSectionData || hoursData).dayRuler]?.arabic}</span>
+                </div>
+              </div>
+              
+              {/* Protocol Row */}
+              <div className="space-y-1.5 sm:space-y-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xs sm:text-sm font-medium text-foreground/70 flex items-center gap-1.5 sm:gap-2">
                     {selectedPlanet ? `${selectedPlanet} Protocol` : "Hour Protocol"} 
-                    <span className="font-arabic text-xs text-foreground/50">البروتوكول</span>
+                    <span className="font-arabic text-[10px] sm:text-xs text-foreground/50">البروتوكول</span>
                   </h3>
                   {selectedPlanet && (
                     <button 
                       onClick={() => setSelectedPlanet(null)}
-                      className="text-[10px] px-1.5 py-0.5 rounded bg-foreground/10 hover:bg-foreground/20 transition-colors"
+                      className="text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.5 rounded bg-foreground/10 hover:bg-foreground/20 transition-colors"
                       data-testid="reset-protocol-planet"
                     >
                       Reset
                     </button>
                   )}
                 </div>
+                <PlanetaryProtocol activePlanet={selectedPlanet || (hoursSectionData || hoursData).currentHour?.planet || (hoursSectionData || hoursData).dayRuler} />
               </div>
-              <PlanetaryProtocol activePlanet={selectedPlanet || (hoursSectionData || hoursData).currentHour?.planet || (hoursSectionData || hoursData).dayRuler} />
             </div>
           )}
         </section>
       </div>
 
       {/* Row 2: Dignities + Elemental Balance (side by side) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
         
         {/* Celestial Dignities - Glass Effect */}
-        <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
+        <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <h2 className="text-lg font-serif mb-3 text-foreground/80 relative z-10">
-            Celestial Dignities <span className="font-arabic text-base text-foreground/60 ml-2">الكرامات السماوية</span>
+          <h2 className="text-base sm:text-lg font-serif mb-2 sm:mb-3 text-foreground/80 relative z-10">
+            Celestial Dignities <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الكرامات السماوية</span>
           </h2>
-          <div className="relative z-10">
+          <div className="relative z-10 overflow-x-auto">
             <PlanetaryTable 
               planets={planets} 
               useSidereal={useSidereal}
@@ -572,11 +574,11 @@ export default function Home() {
         </section>
 
         {/* Elemental Balance - Glass Effect */}
-        <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
+        <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <h2 className="text-lg font-serif mb-3 text-foreground/80 relative z-10">
-            Elemental Balance <span className="font-arabic text-base text-foreground/60 ml-2">توازن العناصر</span>
+          <h2 className="text-base sm:text-lg font-serif mb-2 sm:mb-3 text-foreground/80 relative z-10">
+            Elemental Balance <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">توازن العناصر</span>
           </h2>
           <div className="relative z-10">
             <ElementalBalance planets={planets} />
@@ -585,107 +587,72 @@ export default function Home() {
       </div>
 
       {/* Row 3: Celestial Zodiac Wheel (full width) */}
-      <section className="glass-card rounded-2xl p-5 relative overflow-hidden">
+      <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         
-        <div className="flex items-start justify-between mb-3 relative z-10">
-          <div className="bg-card/60 backdrop-blur-sm rounded-lg px-3 py-2 border border-border">
-            <div className="text-xs text-muted-foreground mb-2 font-medium">Legend <span className="font-arabic">دليل</span></div>
-            <div className="space-y-2 text-xs">
-              {/* Elements */}
-              <div>
-                <div className="text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-1">Element <span className="font-arabic">عنصر</span></div>
-                <div className="flex gap-2">
-                  <div className="flex items-center gap-1">
-                    <Flame className="w-3 h-3 text-orange-400" />
-                    <span className="text-muted-foreground">Fire</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Mountain className="w-3 h-3 text-emerald-400" />
-                    <span className="text-muted-foreground">Earth</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Wind className="w-3 h-3 text-sky-400" />
-                    <span className="text-muted-foreground">Air</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Droplets className="w-3 h-3 text-blue-400" />
-                    <span className="text-muted-foreground">Water</span>
-                  </div>
-                </div>
-              </div>
-              {/* Season */}
-              <div>
-                <div className="text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-1">Season <span className="font-arabic">موسم</span></div>
-                <div className="flex gap-2">
-                  <div className="flex items-center gap-1">
-                    <Flower2 className="w-3 h-3 text-green-500" />
-                    <span className="text-muted-foreground">Spring</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Sun className="w-3 h-3 text-amber-500" />
-                    <span className="text-muted-foreground">Summer</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Leaf className="w-3 h-3 text-orange-500" />
-                    <span className="text-muted-foreground">Autumn</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Snowflake className="w-3 h-3 text-blue-300" />
-                    <span className="text-muted-foreground">Winter</span>
-                  </div>
-                </div>
-              </div>
-              {/* Modality */}
-              <div>
-                <div className="text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-1">Modality <span className="font-arabic">نمط</span></div>
-                <div className="flex gap-2">
-                  <div className="flex items-center gap-1">
-                    <ArrowRight className="w-3 h-3 text-red-400" />
-                    <span className="text-muted-foreground">Cardinal</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Circle className="w-3 h-3 text-purple-400" />
-                    <span className="text-muted-foreground">Fixed</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Repeat className="w-3 h-3 text-teal-400" />
-                    <span className="text-muted-foreground">Mutable</span>
-                  </div>
-                </div>
-              </div>
-              {/* Gender */}
-              <div>
-                <div className="text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-1">Gender <span className="font-arabic">جنس</span></div>
-                <div className="flex gap-2">
-                  <div className="flex items-center gap-1">
-                    <Mars className="w-3 h-3 text-red-500" />
-                    <span className="text-muted-foreground">Masculine</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Venus className="w-3 h-3 text-pink-400" />
-                    <span className="text-muted-foreground">Feminine</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <h2 className="text-lg font-serif text-center flex-1">
+        {/* Sky Map Header - Responsive */}
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3 relative z-10">
+          {/* Title - Centered on mobile */}
+          <h2 className="text-base sm:text-lg font-serif text-center sm:text-left order-first sm:order-2 flex-1">
             <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 bg-clip-text text-transparent">
               Current Sky Map
             </span>
-            <span className="font-arabic text-base text-foreground/60 ml-2">خريطة السماء الحالية</span>
-            <span className="text-muted-foreground ml-2 text-sm font-light">
+            <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">خريطة السماء الحالية</span>
+            <span className="text-muted-foreground ml-1 sm:ml-2 text-xs sm:text-sm font-light">
               {useSidereal ? "(Sidereal)" : "(Tropical)"}
             </span>
           </h2>
 
-          <div className="bg-card/60 backdrop-blur-sm rounded-lg px-3 py-2 border border-border text-right">
+          {/* Time info - Right on desktop, hidden on mobile (already shown in header) */}
+          <div className="hidden sm:block bg-card/60 backdrop-blur-sm rounded-lg px-3 py-2 border border-border text-right order-3">
             <div className="text-lg font-mono font-light tabular-nums">{format(now, "h:mm a")}</div>
             <div className="text-xs text-muted-foreground">{format(now, "EEEE, MMMM d, yyyy")}</div>
             <div className="text-sm text-gold/80 font-arabic">{hijriDate}</div>
+          </div>
+
+          {/* Legend - Collapsible on mobile */}
+          <div className="hidden md:block bg-card/60 backdrop-blur-sm rounded-lg px-2 sm:px-3 py-2 border border-border order-1">
+            <div className="text-[10px] sm:text-xs text-muted-foreground mb-1.5 sm:mb-2 font-medium">Legend <span className="font-arabic">دليل</span></div>
+            <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[10px] sm:text-xs">
+              {/* Elements */}
+              <div>
+                <div className="text-[8px] sm:text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-0.5">Element</div>
+                <div className="flex flex-wrap gap-1.5">
+                  <div className="flex items-center gap-0.5"><Flame className="w-2.5 h-2.5 text-orange-400" /><span className="text-muted-foreground">Fire</span></div>
+                  <div className="flex items-center gap-0.5"><Mountain className="w-2.5 h-2.5 text-emerald-400" /><span className="text-muted-foreground">Earth</span></div>
+                  <div className="flex items-center gap-0.5"><Wind className="w-2.5 h-2.5 text-sky-400" /><span className="text-muted-foreground">Air</span></div>
+                  <div className="flex items-center gap-0.5"><Droplets className="w-2.5 h-2.5 text-blue-400" /><span className="text-muted-foreground">Water</span></div>
+                </div>
+              </div>
+              {/* Season */}
+              <div>
+                <div className="text-[8px] sm:text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-0.5">Season</div>
+                <div className="flex flex-wrap gap-1.5">
+                  <div className="flex items-center gap-0.5"><Flower2 className="w-2.5 h-2.5 text-green-500" /><span className="text-muted-foreground">Spr</span></div>
+                  <div className="flex items-center gap-0.5"><Sun className="w-2.5 h-2.5 text-amber-500" /><span className="text-muted-foreground">Sum</span></div>
+                  <div className="flex items-center gap-0.5"><Leaf className="w-2.5 h-2.5 text-orange-500" /><span className="text-muted-foreground">Aut</span></div>
+                  <div className="flex items-center gap-0.5"><Snowflake className="w-2.5 h-2.5 text-blue-300" /><span className="text-muted-foreground">Win</span></div>
+                </div>
+              </div>
+              {/* Modality */}
+              <div>
+                <div className="text-[8px] sm:text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-0.5">Modality</div>
+                <div className="flex flex-wrap gap-1.5">
+                  <div className="flex items-center gap-0.5"><ArrowRight className="w-2.5 h-2.5 text-red-400" /><span className="text-muted-foreground">Card</span></div>
+                  <div className="flex items-center gap-0.5"><Circle className="w-2.5 h-2.5 text-purple-400" /><span className="text-muted-foreground">Fix</span></div>
+                  <div className="flex items-center gap-0.5"><Repeat className="w-2.5 h-2.5 text-teal-400" /><span className="text-muted-foreground">Mut</span></div>
+                </div>
+              </div>
+              {/* Gender */}
+              <div>
+                <div className="text-[8px] sm:text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-0.5">Gender</div>
+                <div className="flex flex-wrap gap-1.5">
+                  <div className="flex items-center gap-0.5"><Mars className="w-2.5 h-2.5 text-red-500" /><span className="text-muted-foreground">Masc</span></div>
+                  <div className="flex items-center gap-0.5"><Venus className="w-2.5 h-2.5 text-pink-400" /><span className="text-muted-foreground">Fem</span></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
