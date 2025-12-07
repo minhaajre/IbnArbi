@@ -41,11 +41,21 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
     };
   };
 
-  const getPosition = (position: number) => {
+  const getNumberPosition = (position: number) => {
     const angle = ((position - 1) / 28) * 360 - 90;
     const radian = (angle * Math.PI) / 180;
-    const x = Math.cos(radian) * radius;
-    const y = Math.sin(radian) * radius;
+    const numberRadius = 65; // Inner radius for numbers
+    const x = Math.cos(radian) * numberRadius;
+    const y = Math.sin(radian) * numberRadius;
+    return { x, y };
+  };
+
+  const getSymbolPosition = (position: number) => {
+    const angle = ((position - 1) / 28) * 360 - 90;
+    const radian = (angle * Math.PI) / 180;
+    const symbolRadius = 115; // Outer radius for zodiac symbols
+    const x = Math.cos(radian) * symbolRadius;
+    const y = Math.sin(radian) * symbolRadius;
     return { x, y };
   };
 
@@ -150,17 +160,15 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
           );
         })}
 
-        {/* Mansion boxes with zodiac symbols */}
+        {/* Mansion numbers */}
         {positions.map((position) => {
-          const { x, y } = getPosition(position);
+          const { x, y } = getNumberPosition(position);
           const isActive = isCurrentMansion(position);
           const isHovered = hoveredNumber === position;
           const colors = getMansionColor(position);
-          const symbol = getZodiacSymbol(position);
-          const mansion = getMansionData(position);
 
           return (
-            <g key={`box-${position}`}>
+            <g key={`number-${position}`}>
               {/* Invisible larger hitbox for hover */}
               <circle
                 cx={140 + x}
@@ -172,7 +180,7 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
                 style={{ cursor: "pointer" }}
               />
 
-              {/* Background circle/box */}
+              {/* Background circle for number */}
               <motion.g
                 animate={{
                   scale: isActive ? 1.5 : isHovered ? 1.3 : 1,
@@ -193,7 +201,7 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
                 {/* Number */}
                 <text
                   x={140 + x}
-                  y={140 + y - 2}
+                  y={140 + y}
                   textAnchor="middle"
                   dominantBaseline="middle"
                   className={`font-bold select-none pointer-events-none ${colors.text}`}
@@ -202,21 +210,43 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
                 >
                   {position}
                 </text>
-
-                {/* Zodiac symbol */}
-                <text
-                  x={140 + x}
-                  y={140 + y + 5}
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  className="select-none pointer-events-none"
-                  fontSize={isActive ? "10" : isHovered ? "9" : "8"}
-                  fill="currentColor"
-                >
-                  {symbol}
-                </text>
               </motion.g>
             </g>
+          );
+        })}
+
+        {/* Zodiac symbols at outer rim */}
+        {positions.map((position) => {
+          const { x, y } = getSymbolPosition(position);
+          const symbol = getZodiacSymbol(position);
+          const isActive = isCurrentMansion(position);
+          const isHovered = hoveredNumber === position;
+
+          return (
+            <motion.g
+              key={`symbol-${position}`}
+              animate={{
+                scale: isActive ? 1.3 : isHovered ? 1.15 : 1,
+                opacity: isActive || isHovered ? 1 : 0.8,
+              }}
+              transition={{ duration: 0.2 }}
+              onMouseEnter={() => setHoveredNumber(position)}
+              onMouseLeave={() => setHoveredNumber(null)}
+              style={{ cursor: "pointer" }}
+            >
+              <text
+                x={140 + x}
+                y={140 + y}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="select-none pointer-events-none text-muted-foreground"
+                fontSize="14"
+                fontWeight="600"
+                fill="currentColor"
+              >
+                {symbol}
+              </text>
+            </motion.g>
           );
         })}
 
