@@ -60,7 +60,11 @@ export function PlanetaryProtocol({ activePlanet }: PlanetaryProtocolProps) {
         </div>
 
         <button
-          onClick={() => setIsExpanded(!isExpanded)}
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsExpanded(!isExpanded);
+          }}
           className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors px-2 py-1 rounded-lg hover:bg-foreground/5"
           data-testid="toggle-protocol-details"
         >
