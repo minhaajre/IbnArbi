@@ -239,9 +239,11 @@ export function ZodiacWheel({
         </defs>
 
         <circle cx={center} cy={center} r={innerRadius} fill="none" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1" />
-        <circle cx={center} cy={center} r={innerRadius - 20} fill="none" stroke="currentColor" strokeOpacity="0.06" strokeWidth="1" strokeDasharray="4 4" />
-        <circle cx={center} cy={center} r={innerRadius - 56} fill="none" stroke="currentColor" strokeOpacity="0.04" strokeWidth="1" strokeDasharray="2 4" />
-        <circle cx={center} cy={center} r={innerRadius - 92} fill="none" stroke="currentColor" strokeOpacity="0.03" strokeWidth="1" strokeDasharray="2 4" />
+        <g style={{ transform: `rotate(${rotation}deg)`, transformOrigin: `${center}px ${center}px` }}>
+          <circle cx={center} cy={center} r={innerRadius - 20} fill="none" stroke="currentColor" strokeOpacity="0.06" strokeWidth="1" strokeDasharray="4 4" />
+          <circle cx={center} cy={center} r={innerRadius - 56} fill="none" stroke="currentColor" strokeOpacity="0.04" strokeWidth="1" strokeDasharray="2 4" />
+          <circle cx={center} cy={center} r={innerRadius - 92} fill="none" stroke="currentColor" strokeOpacity="0.03" strokeWidth="1" strokeDasharray="2 4" />
+        </g>
 
         {Array.from({ length: 12 }).map((_, i) => {
           const angle = i * 30;
