@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC } from "@/lib/constants";
 import { MansionProgress } from "@/lib/astronomy";
-import { Moon, Sparkles, Scroll, Clock, ArrowRight } from "lucide-react";
+import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star } from "lucide-react";
 import { format } from "date-fns";
 
 interface MansionCardProps {
@@ -68,6 +68,17 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
         )}
 
         <div className="space-y-3 text-sm text-muted-foreground/90 font-light leading-relaxed flex-1">
+          {/* Sphere/Realm - Most prominent */}
+          {'sphere' in mansion && mansion.sphere && (
+            <div className="flex gap-3 p-2 rounded-lg bg-primary/5 border border-primary/10">
+              <Orbit className="w-4 h-4 mt-0.5 text-gold shrink-0" />
+              <div>
+                <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">Celestial Sphere</strong>
+                <span className="text-gold/90 text-sm">{mansion.sphere}</span>
+              </div>
+            </div>
+          )}
+
           <div className="flex gap-3">
             <Sparkles className="w-4 h-4 mt-0.5 text-primary/50 shrink-0" />
             <div>
@@ -77,10 +88,18 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
           </div>
           
           <div className="flex gap-3">
-            <Scroll className="w-4 h-4 mt-0.5 text-primary/50 shrink-0" />
+            <Star className="w-4 h-4 mt-0.5 text-primary/50 shrink-0" />
             <div>
               <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">Divine Attribute</strong>
               {mansion.attribute}
+            </div>
+          </div>
+
+          <div className="flex gap-3">
+            <Scroll className="w-4 h-4 mt-0.5 text-primary/50 shrink-0" />
+            <div>
+              <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">Arabic Letter</strong>
+              {mansion.letter} • {mansion.degrees}
             </div>
           </div>
 

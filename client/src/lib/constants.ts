@@ -10,280 +10,308 @@ export const IBN_ARABI_MANSIONS = [
     name: "Al-Sharatain",
     arabic: "الشراطان",
     meaning: "The Two Signs",
-    attribute: "Al-Mubdi (The Originator)",
+    sphere: "The First Intellect, The Pen",
+    attribute: "Divine Essence",
     letter: "Hamza & Alef",
     degrees: "0° Aries",
-    description: "The beginning of the cycle. Represents the First Intellect and the Universal Pen."
+    description: "The beginning of the cosmic cycle. Represents the primordial consciousness from which all creation emanates."
   },
   {
     number: 2,
     name: "Al-Butain",
     arabic: "البطين",
-    meaning: "The Belly",
-    attribute: "Al-Ba'ith (The Resurrector)",
-    letter: "Hâ'",
+    meaning: "The Belly of Aries",
+    sphere: "The Universal Soul, The Preserved Tablet",
+    attribute: "The One Who Calls Forth",
+    letter: "Hā'",
     degrees: "12°51' Aries",
-    description: "Associated with the Universal Soul and the Preserved Tablet."
+    description: "The Guarded Tablet upon which all destinies are inscribed. The repository of divine decrees."
   },
   {
     number: 3,
     name: "Al-Thurayya",
     arabic: "الثريا",
     meaning: "The Pleiades",
-    attribute: "Al-Batin (The Hidden)",
-    letter: "Ain",
+    sphere: "Universal Nature",
+    attribute: "The Interior",
+    letter: "'Ayn",
     degrees: "25°42' Aries",
-    description: "The Many Little Ones. Represents the multiplicity emerging from unity."
+    description: "The Many Little Ones. Represents the multiplicity of forms emerging from unity."
   },
   {
     number: 4,
     name: "Al-Dabaran",
     arabic: "الدبران",
     meaning: "The Follower",
-    attribute: "Al-Akhir (The Last)",
-    letter: "Haa",
+    sphere: "Universal Substance (Prima Materia)",
+    attribute: "The Last",
+    letter: "Hā (stressed)",
     degrees: "8°34' Taurus",
-    description: "Follows the Pleiades. Represents the raw material of the universe."
+    description: "Al-jawhar al-hayūlī. The primordial matter from which all material forms arise."
   },
   {
     number: 5,
     name: "Al-Haq'ah",
     arabic: "الهقعة",
     meaning: "The White Spot",
-    attribute: "Al-Zahir (The Manifest)",
-    letter: "Ghain",
+    sphere: "The Universal Body",
+    attribute: "The Manifest",
+    letter: "Ghayn",
     degrees: "21°25' Taurus",
-    description: "The mark on the horse. Represents the highest sphere."
+    description: "The luminous mark signifying the manifestation of the divine in material form."
   },
   {
     number: 6,
     name: "Al-Han'ah",
     arabic: "الهنعة",
-    meaning: "The Brand",
-    attribute: "Al-Hakim (The Wise)",
-    letter: "Kha",
+    meaning: "The Mark",
+    sphere: "Form",
+    attribute: "The Wise",
+    letter: "Khā",
     degrees: "4°17' Gemini",
-    description: "The mark on the camel. Represents the patterns of destiny."
+    description: "The patterns of creation. Divine wisdom expressed through archetypal forms."
   },
   {
     number: 7,
     name: "Al-Dhira",
     arabic: "الذراع",
     meaning: "The Forearm",
-    attribute: "Al-Muhit (The All-Encompassing)",
-    letter: "Qaf",
+    sphere: "The Throne",
+    attribute: "The All-Encompassing",
+    letter: "Qāf",
     degrees: "17°08' Gemini",
-    description: "The Throne of God in Ibn Arabi's cosmology."
+    description: "The Divine Throne (Al-'Arsh) that encompasses all of creation."
   },
   {
     number: 8,
     name: "Al-Nathrah",
     arabic: "النثرة",
-    meaning: "The Gap",
-    attribute: "Al-Shakur (The Grateful)",
-    letter: "Kaf",
+    meaning: "The Gap (or Crib)",
+    sphere: "The Footstool",
+    attribute: "The Grateful",
+    letter: "Kāf",
     degrees: "0° Cancer",
-    description: "The mist or gap. Represents the pedestal of the universe."
+    description: "The Kursi. The pedestal of divine governance over the heavens and earth."
   },
   {
     number: 9,
     name: "Al-Tarf",
     arabic: "الطرف",
     meaning: "The Glance",
-    attribute: "Al-Ghani (The Independent)",
-    letter: "Jeem",
+    sphere: "The Self-Existing Ultimate Sphere, The Starless Sky, The Zodiacal Towers",
+    attribute: "The Independent, The Rich",
+    letter: "Jīm",
     degrees: "12°51' Cancer",
-    description: "The eye of the lion. Represents the Starless Sky."
+    description: "The outermost sphere where no stars reside. The boundary between creation and the divine."
   },
   {
     number: 10,
     name: "Al-Jabhah",
     arabic: "الجبهة",
     meaning: "The Forehead",
-    attribute: "Al-Muqtadir (The Powerful)",
-    letter: "Sheen",
+    sphere: "The Sky of Fixed Stars, The Sphere of Stations, The Sun of Paradise, The Roof of Hell",
+    attribute: "The Powerful",
+    letter: "Shīn",
     degrees: "25°42' Cancer",
-    description: "The forehead of the lion. Represents the Sphere of Stations."
+    description: "The sphere of the constellations. The realm where the zodiac signs dwell."
   },
   {
     number: 11,
     name: "Al-Zubrah",
     arabic: "الزبرة",
     meaning: "The Mane",
-    attribute: "Al-Alim (The All-Knowing)",
-    letter: "Ya",
+    sphere: "The First Heaven, The Sphere of Saturn, The Sky of the Visited House, Lotus of the Extreme Limit, The Abode of Ibrahim (Abraham)",
+    attribute: "The Lord",
+    letter: "Yā",
     degrees: "8°34' Leo",
-    description: "The mane of the lion. Associated with divine knowledge."
+    description: "Saturn's celestial domain. The abode where Prophet Ibrahim resides in eternal peace."
   },
   {
     number: 12,
     name: "Al-Sarfah",
     arabic: "الصرفة",
-    meaning: "The Turner",
-    attribute: "Al-Qahhar (The Subduer)",
-    letter: "Dad",
+    meaning: "The Changer",
+    sphere: "The Second Heaven, The Sphere of Jupiter, The Abode of Musa (Moses)",
+    attribute: "The Knowing",
+    letter: "Dād (stressed)",
     degrees: "21°25' Leo",
-    description: "The weather changer. Represents divine will."
+    description: "Jupiter's celestial domain. The abode where Prophet Musa received divine wisdom."
   },
   {
     number: 13,
     name: "Al-Awwa",
     arabic: "العواء",
     meaning: "The Barker",
-    attribute: "Al-Musawwir (The Shaper)",
-    letter: "Lam",
+    sphere: "The Third Heaven, The Sphere of Mars, The Abode of Harun (Aaron)",
+    attribute: "The Victorious",
+    letter: "Lām",
     degrees: "4°17' Virgo",
-    description: "The barking dog. Represents life and vitality."
+    description: "Mars' celestial domain. The abode where Prophet Harun dwells in radiant light."
   },
   {
     number: 14,
     name: "Al-Simak",
     arabic: "السماك",
-    meaning: "The Uplifted",
-    attribute: "Al-Khaliq (The Creator)",
-    letter: "Nun",
+    meaning: "The Unarmed",
+    sphere: "The Fourth Heaven, The Sphere of the Sun, The Abode of Idris (Enoch, Hermes)",
+    attribute: "The Light",
+    letter: "Nūn",
     degrees: "17°08' Virgo",
-    description: "The unarmed one. Represents divine speech."
+    description: "The Sun's celestial domain. The abode of Prophet Idris, master of sacred sciences."
   },
   {
     number: 15,
     name: "Al-Ghafr",
     arabic: "الغفر",
-    meaning: "The Covering",
-    attribute: "Al-Bari (The Maker)",
-    letter: "Ra",
+    meaning: "The Cover",
+    sphere: "The Fifth Heaven, The Sphere of Venus, The Abode of Yusuf (Joseph)",
+    attribute: "The Form-Giver",
+    letter: "Rā",
     degrees: "0° Libra",
-    description: "The veil or covering. Represents divine hearing."
+    description: "Venus' celestial domain. The abode of Prophet Yusuf, embodiment of divine beauty."
   },
   {
     number: 16,
     name: "Al-Zubana",
     arabic: "الزبانى",
     meaning: "The Claws",
-    attribute: "Al-Musawwir (The Fashioner)",
-    letter: "Ta",
+    sphere: "The Sixth Heaven, The Sphere of Mercury, The Abode of 'Isa (Jesus)",
+    attribute: "The Numberer",
+    letter: "Tā (stressed)",
     degrees: "12°51' Libra",
-    description: "The scorpion's claws. Represents divine sight."
+    description: "Mercury's celestial domain. The abode of Prophet 'Isa, the living word."
   },
   {
     number: 17,
     name: "Al-Iklil",
     arabic: "الإكليل",
-    meaning: "The Crown",
-    attribute: "Al-Ghaffar (The Forgiver)",
-    letter: "Dal",
+    meaning: "The Crown of the Forehead",
+    sphere: "The Seventh Heaven, The Sphere of the Moon, The Abode of Adam",
+    attribute: "The Evident",
+    letter: "Dāl",
     degrees: "25°42' Libra",
-    description: "The crown of the scorpion. Associated with the Moon sphere."
+    description: "The Moon's celestial domain. The abode of Prophet Adam, father of humanity."
   },
   {
     number: 18,
     name: "Al-Qalb",
     arabic: "القلب",
     meaning: "The Heart",
-    attribute: "Al-Qabid (The Constrictor)",
-    letter: "Ta (emphatic)",
+    sphere: "The Sphere of Ether, Meteors and Fire",
+    attribute: "The Seizer",
+    letter: "Tā (unstressed)",
     degrees: "8°34' Scorpio",
-    description: "The heart of the scorpion. Represents the Sphere of Ether."
+    description: "The heart of the scorpion. The ethereal realm where fire and light interweave."
   },
   {
     number: 19,
     name: "Al-Shaulah",
     arabic: "الشولة",
     meaning: "The Sting",
-    attribute: "Al-Basit (The Expander)",
-    letter: "Zay",
+    sphere: "Air",
+    attribute: "The Living One",
+    letter: "Zāy",
     degrees: "21°25' Scorpio",
-    description: "The scorpion's sting. Represents expansion and release."
+    description: "The realm of the aerial element. Life-breath permeating all existence."
   },
   {
     number: 20,
     name: "Al-Na'am",
     arabic: "النعائم",
     meaning: "The Ostriches",
-    attribute: "Al-Muhyi (The Giver of Life)",
-    letter: "Sin",
+    sphere: "Water",
+    attribute: "The Life-Giver",
+    letter: "Sīn",
     degrees: "4°17' Sagittarius",
-    description: "The ostriches going to water. Represents the element of Water."
+    description: "The realm of the water element. Source of all life and sustenance."
   },
   {
     number: 21,
     name: "Al-Baldah",
     arabic: "البلدة",
     meaning: "The City",
-    attribute: "Al-Mumit (The Taker of Life)",
-    letter: "Sad",
+    sphere: "Earth",
+    attribute: "The Death-Giver",
+    letter: "Sād (stressed)",
     degrees: "17°08' Sagittarius",
-    description: "The empty city. Represents endings and the element of Earth."
+    description: "The realm of the earth element. The domain of endings and transformation."
   },
   {
     number: 22,
     name: "Sa'd al-Dhabih",
     arabic: "سعد الذابح",
-    meaning: "Fortune of the Slayer",
-    attribute: "Al-Hayy (The Ever-Living)",
-    letter: "Za (emphatic)",
+    meaning: "Fortune of the Slayers",
+    sphere: "Minerals and Metals",
+    attribute: "The Precious",
+    letter: "Zā (stressed)",
     degrees: "0° Capricorn",
-    description: "The lucky one of the slaughterers. Represents sustenance."
+    description: "The mineral kingdom. Hidden treasures and precious substances of the earth."
   },
   {
     number: 23,
     name: "Sa'd Bula",
     arabic: "سعد بلع",
-    meaning: "Fortune of the Glutton",
-    attribute: "Al-Qayyum (The Self-Subsisting)",
-    letter: "Thal",
+    meaning: "Fortune of the Swallower",
+    sphere: "Plants",
+    attribute: "The Nourisher",
+    letter: "Thā",
     degrees: "12°51' Capricorn",
-    description: "The lucky swallower. Represents calculation and accounting."
+    description: "The plant kingdom. The realm of growth, nourishment, and verdant life."
   },
   {
     number: 24,
     name: "Sa'd al-Su'ud",
     arabic: "سعد السعود",
-    meaning: "Fortune of Fortunes",
-    attribute: "Al-Wajid (The Finder)",
-    letter: "Tha",
+    meaning: "Fortune of the Fortunate",
+    sphere: "Animals",
+    attribute: "The Humbler",
+    letter: "Dhāl",
     degrees: "25°42' Capricorn",
-    description: "The luckiest of the lucky. Represents restoration."
+    description: "The animal kingdom. Creatures of instinct and embodied souls."
   },
   {
     number: 25,
     name: "Sa'd al-Akhbiyah",
     arabic: "سعد الأخبية",
-    meaning: "Fortune of Tents",
-    attribute: "Al-Majid (The Glorious)",
-    letter: "Fa",
+    meaning: "Fortune of the Hidden",
+    sphere: "The Angels",
+    attribute: "The Strong",
+    letter: "Fā",
     degrees: "8°34' Aquarius",
-    description: "The lucky stars of the tents. Hidden things revealed."
+    description: "The angelic realm. Celestial beings of light who carry out divine commands."
   },
   {
     number: 26,
     name: "Al-Fargh al-Muqaddam",
     arabic: "الفرغ المقدم",
-    meaning: "The Fore Spout",
-    attribute: "Al-Wahid (The One)",
-    letter: "Ba",
+    meaning: "The First Spout",
+    sphere: "The Jinn",
+    attribute: "The Subtle",
+    letter: "Bā",
     degrees: "21°25' Aquarius",
-    description: "The front mouth of the bucket. Represents gathering together."
+    description: "The realm of the jinn. Beings of smokeless fire dwelling between worlds."
   },
   {
     number: 27,
     name: "Al-Fargh al-Mu'akhkhar",
     arabic: "الفرغ المؤخر",
-    meaning: "The Rear Spout",
-    attribute: "Al-Samad (The Eternal)",
-    letter: "Mim",
+    meaning: "The Second Spout",
+    sphere: "Humanity",
+    attribute: "The Uniter",
+    letter: "Mīm",
     degrees: "4°17' Pisces",
-    description: "The rear mouth of the bucket. Represents uniqueness."
+    description: "The human realm. The vicegerent of God uniting heavenly and earthly natures."
   },
   {
     number: 28,
     name: "Batn al-Hut",
     arabic: "بطن الحوت",
     meaning: "Belly of the Fish",
-    attribute: "Al-Qadir (The Capable)",
-    letter: "Waw",
+    sphere: "The Hierarchy of the Degrees of Existence, not their Manifestation",
+    attribute: "The One Who Elevates by Degrees",
+    letter: "Wāw",
     degrees: "17°08' Pisces",
-    description: "The belly of the fish. Completion and finding."
+    description: "The completion of the cycle. The hidden order underlying all manifest existence."
   }
 ];
 
