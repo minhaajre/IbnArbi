@@ -4,9 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-sans: 'Satoshi', 'Inter', sans-serif;
-  --font-serif: 'Clash Display', 'Cormorant Garamond', serif;
-  --font-arabic: 'Amiri', serif;
+  --font-sans: 'Source Sans 3', sans-serif;
+  --font-serif: 'Lora', serif;
+  --font-arabic: 'El Messiri', sans-serif;
   --radius: 0.5rem;
 
   /* Light Mode Colors - High Contrast */
