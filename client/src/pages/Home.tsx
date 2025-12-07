@@ -301,15 +301,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-3 sm:p-6 md:p-12 max-w-7xl mx-auto transition-colors duration-500">
-      
       {/* Header */}
       <header className="flex flex-col gap-4 sm:gap-6 border-b border-border pb-4 sm:pb-8 mb-6 sm:mb-12">
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 w-full">
           <div className="flex-1 min-w-0">
             <h1 className="text-2xl sm:text-4xl md:text-5xl font-serif text-gold mb-1 sm:mb-2">Ibn Arabi's Cosmology</h1>
-            <p className="text-muted-foreground font-light tracking-wide text-sm sm:text-base">
-              Guide to the Celestial Spheres
-            </p>
+            <p className="text-muted-foreground font-light tracking-wide text-sm sm:text-base">Guide to the Prayer Timings & Planetary Alignment</p>
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -416,7 +413,6 @@ export default function Home() {
           </div>
         </div>
       </header>
-
       {/* Row 1: Station + Planetary Hour (side by side) */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
         
@@ -628,7 +624,6 @@ export default function Home() {
           )}
         </section>
       </div>
-
       {/* Row 2: Dignities + Elemental Balance (side by side) */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
         
@@ -696,7 +691,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-
       {/* Row 3: Celestial Zodiac Wheel (full width) */}
       <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
