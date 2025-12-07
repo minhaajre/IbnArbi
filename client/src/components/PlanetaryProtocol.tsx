@@ -6,10 +6,21 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface PlanetaryProtocolProps {
   activePlanet: string;
+  isExpanded?: boolean;
+  onToggleExpanded?: () => void;
 }
 
-export function PlanetaryProtocol({ activePlanet }: PlanetaryProtocolProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
+export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpanded, onToggleExpanded }: PlanetaryProtocolProps) {
+  const [internalExpanded, setInternalExpanded] = useState(false);
+  const isExpanded = controlledIsExpanded ?? internalExpanded;
+  
+  const handleToggle = () => {
+    if (onToggleExpanded) {
+      onToggleExpanded();
+    } else {
+      setInternalExpanded(!internalExpanded);
+    }
+  };
   const profile = PLANET_PROFILES[activePlanet];
   const guidance = PLANETARY_HOUR_GUIDANCE[activePlanet];
   
@@ -61,10 +72,7 @@ export function PlanetaryProtocol({ activePlanet }: PlanetaryProtocolProps) {
 
         <button
           type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsExpanded(!isExpanded);
-          }}
+          onClick={handleToggle}
           className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors px-2 py-1 rounded-lg hover:bg-foreground/5"
           data-testid="toggle-protocol-details"
         >

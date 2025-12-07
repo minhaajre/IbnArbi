@@ -93,6 +93,7 @@ export default function Home() {
   
   // Selected planet for protocol display
   const [selectedPlanet, setSelectedPlanet] = useState<string | null>(null);
+  const [isProtocolExpanded, setIsProtocolExpanded] = useState(false);
   
   // Separate time for planetary hours section
   const [hoursTime, setHoursTime] = useState<Date>(new Date());
@@ -617,7 +618,11 @@ export default function Home() {
                     </button>
                   )}
                 </div>
-                <PlanetaryProtocol activePlanet={selectedPlanet || (hoursSectionData || hoursData).currentHour?.planet || (hoursSectionData || hoursData).dayRuler} />
+                <PlanetaryProtocol 
+                  activePlanet={selectedPlanet || (hoursSectionData || hoursData).currentHour?.planet || (hoursSectionData || hoursData).dayRuler}
+                  isExpanded={isProtocolExpanded}
+                  onToggleExpanded={() => setIsProtocolExpanded(!isProtocolExpanded)}
+                />
               </div>
             </div>
           )}
