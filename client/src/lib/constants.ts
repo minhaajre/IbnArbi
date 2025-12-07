@@ -527,6 +527,34 @@ export interface PlanetProfile {
   behaviorFocus: string;
 }
 
+// Sufi Spiritual Work Recommendations by Element
+export const SUFI_ELEMENT_PRACTICES: Record<string, { english: string; arabic: string; practice: string; arabicPractice: string }> = {
+  Fire: {
+    english: "Active Dhikr & Movement",
+    arabic: "الذكر الحركي",
+    practice: "Engage in standing dhikr, whirling meditation, or walking contemplation. Channel energy through sacred movement and vocal remembrance.",
+    arabicPractice: "انخرط في الذكر القائم أو التأمل الدوار أو المشي التأملي"
+  },
+  Earth: {
+    english: "Grounded Contemplation",
+    arabic: "التأمل المتين",
+    practice: "Practice sitting muraqaba (meditation), work with prayer beads (tasbih), or engage in mindful service. Ground spiritual energy through stillness.",
+    arabicPractice: "مارس المراقبة الجالسة أو العمل بالتسبيح أو الخدمة الواعية"
+  },
+  Air: {
+    english: "Breath & Recitation",
+    arabic: "التنفس والتلاوة",
+    practice: "Focus on breath awareness during dhikr, Quran recitation with tajweed, or contemplative study. Let knowledge flow through inspired breath.",
+    arabicPractice: "ركز على وعي التنفس أثناء الذكر أو تلاوة القرآن بالتجويد"
+  },
+  Water: {
+    english: "Heart Purification",
+    arabic: "تزكية القلب",
+    practice: "Engage in tearful supplication (du'a), heart-centered silent dhikr, or reflection on Divine mercy. Allow emotions to flow toward purification.",
+    arabicPractice: "انخرط في الدعاء الخاشع أو الذكر الصامت من القلب"
+  }
+};
+
 export const PLANET_PROFILES: Record<string, PlanetProfile> = {
   Saturn: {
     name: "Saturn",

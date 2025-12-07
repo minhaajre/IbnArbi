@@ -266,3 +266,109 @@ export function getHijriDate(date: Date) {
     weekday: 'long'
   }).format(date);
 }
+
+export interface MansionProgress {
+  currentMansionIndex: number;
+  progressPercent: number;
+  nextMansionDate: Date;
+  timeUntilNext: string;
+  nextMansion: typeof IBN_ARABI_MANSIONS[0];
+}
+
+export function getLunarMansionProgress(date: Date, useSidereal: boolean = true): MansionProgress {
+  const body = Astronomy.Body.Moon;
+  const coords = Astronomy.GeoVector(body, date, false);
+  const ecliptic = Astronomy.Ecliptic(coords);
+  const tropicalLon = ecliptic.elon;
+  
+  const lon = useSidereal ? getSiderealLongitude(tropicalLon, date) : tropicalLon;
+  const mansionSize = 360 / 28; // 12.857° per mansion
+  
+  const currentMansionIndex = Math.floor((lon % 360) / mansionSize);
+  const safeIndex = Math.max(0, Math.min(27, currentMansionIndex));
+  
+  // Progress within current mansion
+  const positionInMansion = lon % mansionSize;
+  const progressPercent = (positionInMansion / mansionSize) * 100;
+  
+  // Calculate next mansion boundary (in degrees)
+  const nextMansionLon = ((safeIndex + 1) % 28) * mansionSize;
+  
+  // Calculate average moon speed (~13° per day) to estimate time
+  const avgMoonSpeedPerHour = 13.0 / 24; // degrees per hour
+  const degreesToNext = mansionSize - positionInMansion;
+  const hoursUntilNext = degreesToNext / avgMoonSpeedPerHour;
+  
+  const nextMansionDate = new Date(date.getTime() + hoursUntilNext * 60 * 60 * 1000);
+  
+  // Format time until next
+  const hours = Math.floor(hoursUntilNext);
+  const minutes = Math.round((hoursUntilNext - hours) * 60);
+  const timeUntilNext = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+  
+  const nextIndex = (safeIndex + 1) % 28;
+  
+  return {
+    currentMansionIndex: safeIndex,
+    progressPercent,
+    nextMansionDate,
+    timeUntilNext,
+    nextMansion: IBN_ARABI_MANSIONS[nextIndex]
+  };
+}
+
+export interface WhiteDaysInfo {
+  isWhiteDay: boolean;
+  currentLunarDay: number;
+  whiteDays: { day: number; gregorianDate: Date }[];
+  message: string;
+}
+
+export function getWhiteDaysInfo(date: Date): WhiteDaysInfo {
+  // Parse Hijri date to get day of month
+  const formatter = new Intl.DateTimeFormat('en-u-ca-islamic', {
+    day: 'numeric'
+  });
+  const dayStr = formatter.format(date);
+  const currentLunarDay = parseInt(dayStr, 10);
+  
+  const isWhiteDay = currentLunarDay >= 13 && currentLunarDay <= 15;
+  
+  // Calculate approximate gregorian dates for white days this month
+  const whiteDays: { day: number; gregorianDate: Date }[] = [];
+  
+  // Find day 13, 14, 15 of current lunar month
+  for (let dayOffset = -15; dayOffset <= 15; dayOffset++) {
+    const testDate = new Date(date.getTime() + dayOffset * 24 * 60 * 60 * 1000);
+    const testDayStr = formatter.format(testDate);
+    const testDay = parseInt(testDayStr, 10);
+    
+    if (testDay >= 13 && testDay <= 15) {
+      if (!whiteDays.find(w => w.day === testDay)) {
+        whiteDays.push({ day: testDay, gregorianDate: testDate });
+      }
+    }
+  }
+  
+  // Sort by day
+  whiteDays.sort((a, b) => a.day - b.day);
+  
+  let message = "";
+  if (isWhiteDay) {
+    message = `Today is the ${currentLunarDay}th - a blessed White Day for fasting (Ayyam al-Bid)`;
+  } else if (currentLunarDay < 13 && currentLunarDay >= 10) {
+    const daysUntil = 13 - currentLunarDay;
+    message = `White Days begin in ${daysUntil} day${daysUntil > 1 ? 's' : ''}`;
+  } else if (currentLunarDay < 13) {
+    message = `White Days (13-15) coming this lunar month`;
+  } else {
+    message = `White Days completed for this lunar month`;
+  }
+  
+  return {
+    isWhiteDay,
+    currentLunarDay,
+    whiteDays,
+    message
+  };
+}

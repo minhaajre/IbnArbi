@@ -23,9 +23,11 @@ interface PlanetaryHoursDisplayProps {
   currentHour: PlanetaryHour | null;
   nextHours: PlanetaryHour[];
   dayRuler: string;
+  selectedPlanet: string | null;
+  onPlanetSelect: (planet: string | null) => void;
 }
 
-export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler }: PlanetaryHoursDisplayProps) {
+export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, selectedPlanet, onPlanetSelect }: PlanetaryHoursDisplayProps) {
   if (!currentHour) return null;
 
   const now = new Date();
@@ -81,25 +83,32 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler }: Plan
 
       {/* Upcoming Hours */}
       <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
-        {nextHours.slice(0, 6).map((h) => (
-          <div 
-            key={h.hour + h.planet}
-            className="bg-foreground/5 border border-border rounded-lg p-3 text-center backdrop-blur-sm hover:bg-foreground/10 transition-colors flex flex-col items-center justify-between h-full group"
-          >
-            <div className={`text-xl mb-1 ${PLANET_COLORS[h.planet]} group-hover:scale-110 transition-transform`}>
-              {PLANET_SYMBOLS[h.planet]}
-            </div>
-            <div className="text-[10px] font-medium text-foreground/70 uppercase tracking-wider">
-              {h.planet}
-            </div>
-            <div className="text-[10px] font-arabic text-foreground/50 mb-1">
-              {PLANET_ARABIC[h.planet]?.arabic}
-            </div>
-            <div className="text-[9px] text-muted-foreground bg-black/20 px-1.5 py-0.5 rounded">
-              {format(h.start, "h:mm")}
-            </div>
-          </div>
-        ))}
+        {nextHours.slice(0, 6).map((h) => {
+          const isSelected = selectedPlanet === h.planet;
+          return (
+            <button 
+              key={h.hour + h.planet}
+              onClick={() => onPlanetSelect(isSelected ? null : h.planet)}
+              data-testid={`hour-card-${h.planet}`}
+              className={`bg-foreground/5 border rounded-lg p-3 text-center backdrop-blur-sm hover:bg-foreground/10 transition-all flex flex-col items-center justify-between h-full group cursor-pointer ${
+                isSelected ? 'border-primary ring-2 ring-primary/30 bg-primary/10' : 'border-border'
+              }`}
+            >
+              <div className={`text-xl mb-1 ${PLANET_COLORS[h.planet]} group-hover:scale-110 transition-transform`}>
+                {PLANET_SYMBOLS[h.planet]}
+              </div>
+              <div className="text-[10px] font-medium text-foreground/70 uppercase tracking-wider">
+                {h.planet}
+              </div>
+              <div className="text-[10px] font-arabic text-foreground/50 mb-1">
+                {PLANET_ARABIC[h.planet]?.arabic}
+              </div>
+              <div className="text-[9px] text-muted-foreground bg-black/20 px-1.5 py-0.5 rounded">
+                {format(h.start, "h:mm")}
+              </div>
+            </button>
+          );
+        })}
       </div>
       
       {/* Info Footer */}

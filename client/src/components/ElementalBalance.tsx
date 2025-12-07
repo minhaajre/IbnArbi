@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { PlanetStatus, ELEMENT_RULES } from "@/lib/astronomy";
-import { ELEMENT_ACTIVITIES, ELEMENT_ARABIC } from "@/lib/constants";
-import { Flame, Droplets, Wind, Mountain } from "lucide-react";
+import { ELEMENT_ACTIVITIES, ELEMENT_ARABIC, SUFI_ELEMENT_PRACTICES } from "@/lib/constants";
+import { Flame, Droplets, Wind, Mountain, Sparkles } from "lucide-react";
 
 interface ElementalBalanceProps {
   planets: PlanetStatus[];
@@ -102,6 +102,31 @@ export function ElementalBalance({ planets }: ElementalBalanceProps) {
         </p>
         <p className="text-sm text-foreground/60 leading-relaxed font-arabic mt-1 text-right" dir="rtl">
           {ELEMENT_ACTIVITIES[dominant as keyof typeof ELEMENT_ACTIVITIES]?.arabic}
+        </p>
+      </div>
+
+      {/* Sufi Spiritual Practice Recommendation */}
+      <div className="rounded-lg px-4 py-3 border border-primary/30 bg-primary/5">
+        <div className="flex items-center gap-2 mb-2">
+          <Sparkles className="w-4 h-4 text-primary" />
+          <span className="text-sm font-medium text-primary">
+            Recommended Spiritual Work
+            <span className="font-arabic ml-2 text-primary/70">العمل الروحي</span>
+          </span>
+        </div>
+        <div className="flex items-start gap-2 mb-2">
+          <span className="text-sm font-semibold text-foreground">
+            {SUFI_ELEMENT_PRACTICES[dominant]?.english}
+          </span>
+          <span className="text-sm font-arabic text-foreground/70">
+            {SUFI_ELEMENT_PRACTICES[dominant]?.arabic}
+          </span>
+        </div>
+        <p className="text-sm text-foreground/80 leading-relaxed">
+          {SUFI_ELEMENT_PRACTICES[dominant]?.practice}
+        </p>
+        <p className="text-xs text-foreground/50 leading-relaxed font-arabic mt-1 text-right" dir="rtl">
+          {SUFI_ELEMENT_PRACTICES[dominant]?.arabicPractice}
         </p>
       </div>
     </div>

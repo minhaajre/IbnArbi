@@ -1,12 +1,15 @@
 import { motion } from "framer-motion";
 import { IBN_ARABI_MANSIONS } from "@/lib/constants";
-import { Moon, Sparkles, Scroll } from "lucide-react";
+import { MansionProgress } from "@/lib/astronomy";
+import { Moon, Sparkles, Scroll, Clock, ArrowRight } from "lucide-react";
+import { format } from "date-fns";
 
 interface MansionCardProps {
   mansion: typeof IBN_ARABI_MANSIONS[0];
+  progress?: MansionProgress;
 }
 
-export function MansionCard({ mansion }: MansionCardProps) {
+export function MansionCard({ mansion, progress }: MansionCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -32,6 +35,37 @@ export function MansionCard({ mansion }: MansionCardProps) {
         <h3 className="text-lg font-arabic mb-4 text-muted-foreground">
           {mansion.arabic}
         </h3>
+
+        {/* Progress Bar */}
+        {progress && (
+          <div className="mb-4 p-3 rounded-lg bg-foreground/5 border border-border">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs text-muted-foreground">Station Progress</span>
+              <span className="text-xs font-mono text-primary">{Math.round(progress.progressPercent)}%</span>
+            </div>
+            <div className="w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden mb-2">
+              <motion.div 
+                className="h-full bg-primary rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: `${progress.progressPercent}%` }}
+                transition={{ duration: 0.5 }}
+              />
+            </div>
+            <div className="flex items-center justify-between text-xs">
+              <div className="flex items-center gap-1.5 text-muted-foreground">
+                <Clock className="w-3 h-3" />
+                <span>Next station in <span className="text-foreground font-medium">{progress.timeUntilNext}</span></span>
+              </div>
+              <div className="flex items-center gap-1 text-muted-foreground">
+                <ArrowRight className="w-3 h-3" />
+                <span className="text-foreground/70">{progress.nextMansion.name}</span>
+              </div>
+            </div>
+            <div className="text-[10px] text-muted-foreground/60 mt-1 text-right">
+              {format(progress.nextMansionDate, "MMM d, h:mm a")}
+            </div>
+          </div>
+        )}
 
         <div className="space-y-3 text-sm text-muted-foreground/90 font-light leading-relaxed flex-1">
           <div className="flex gap-3">
