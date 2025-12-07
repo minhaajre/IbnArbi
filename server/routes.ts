@@ -1,7 +1,57 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import nodemailer from "nodemailer";
+import { google } from "googleapis";
+
+// Gmail Integration - See: google-mail blueprint
+let connectionSettings: any;
+
+async function getAccessToken() {
+  if (connectionSettings && connectionSettings.settings.expires_at && new Date(connectionSettings.settings.expires_at).getTime() > Date.now()) {
+    return connectionSettings.settings.access_token;
+  }
+  
+  const hostname = process.env.REPLIT_CONNECTORS_HOSTNAME
+  const xReplitToken = process.env.REPL_IDENTITY 
+    ? 'repl ' + process.env.REPL_IDENTITY 
+    : process.env.WEB_REPL_RENEWAL 
+    ? 'depl ' + process.env.WEB_REPL_RENEWAL 
+    : null;
+
+  if (!xReplitToken) {
+    throw new Error('X_REPLIT_TOKEN not found for repl/depl');
+  }
+
+  connectionSettings = await fetch(
+    'https://' + hostname + '/api/v2/connection?include_secrets=true&connector_names=google-mail',
+    {
+      headers: {
+        'Accept': 'application/json',
+        'X_REPLIT_TOKEN': xReplitToken
+      }
+    }
+  ).then(res => res.json()).then(data => data.items?.[0]);
+
+  const accessToken = connectionSettings?.settings?.access_token || connectionSettings.settings?.oauth?.credentials?.access_token;
+
+  if (!connectionSettings || !accessToken) {
+    throw new Error('Gmail not connected');
+  }
+  return accessToken;
+}
+
+// WARNING: Never cache this client.
+// Access tokens expire, so a new client must be created each time.
+async function getUncachableGmailClient() {
+  const accessToken = await getAccessToken();
+
+  const oauth2Client = new google.auth.OAuth2();
+  oauth2Client.setCredentials({
+    access_token: accessToken
+  });
+
+  return google.gmail({ version: 'v1', auth: oauth2Client });
+}
 
 export async function registerRoutes(
   httpServer: Server,
@@ -22,28 +72,33 @@ export async function registerRoutes(
         return res.status(400).json({ error: "Email and moment data are required" });
       }
 
-      // Setup email transporter (using environment variables)
-      const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST || "smtp.gmail.com",
-        port: parseInt(process.env.SMTP_PORT || "587"),
-        secure: process.env.SMTP_SECURE === "true",
-        auth: process.env.SMTP_USER && process.env.SMTP_PASS ? {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
-        } : undefined,
-      });
+      // Get Gmail client
+      const gmail = await getUncachableGmailClient();
 
       // Format the moment data into HTML email
       const htmlContent = formatMomentEmail(momentData);
 
-      const mailOptions = {
-        from: process.env.SMTP_FROM || "noreply@alfalak-app.com",
-        to: email,
-        subject: `Al-Falak Moment Capture - ${new Date().toLocaleString()}`,
-        html: htmlContent,
-      };
+      // Create RFC 2822 formatted email
+      const utf8Subject = `=?utf-8?B?${Buffer.from(`Al-Falak Moment Capture - ${new Date().toLocaleString()}`).toString("base64")}?=`;
+      const messageParts = [
+        `From: me`,
+        `To: ${email}`,
+        `Subject: ${utf8Subject}`,
+        `MIME-Version: 1.0`,
+        `Content-Type: text/html; charset=utf-8`,
+        `Content-Transfer-Encoding: quoted-printable`,
+        ``,
+        htmlContent,
+      ];
+      const message = messageParts.join("\n");
+      const encodedMessage = Buffer.from(message).toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 
-      await transporter.sendMail(mailOptions);
+      await gmail.users.messages.send({
+        userId: "me",
+        requestBody: {
+          raw: encodedMessage,
+        },
+      });
 
       res.json({ success: true, message: "Moment capture sent to your email" });
     } catch (error) {
