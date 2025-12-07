@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC } from "@/lib/constants";
+import { MANSION_GUIDANCE, CYCLE_ROLE_COLORS } from "@/lib/spiritualGuidance";
 import { MansionProgress, MoonPhaseInfo } from "@/lib/astronomy";
-import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb } from "lucide-react";
+import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, CheckCircle, XCircle, Compass } from "lucide-react";
 import { format } from "date-fns";
 
 interface MansionCardProps {
@@ -12,6 +13,8 @@ interface MansionCardProps {
 
 export function MansionCard({ mansion, progress }: MansionCardProps) {
   const isBlessed = mansion.nature === "blessed";
+  const guidance = MANSION_GUIDANCE[mansion.number];
+  const cycleColors = guidance ? CYCLE_ROLE_COLORS[guidance.cycleRole] : null;
   
   return (
     <motion.div
@@ -39,14 +42,24 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
           {mansion.arabic}
         </h3>
         
-        {/* Blessed/Challenging Indicator - Below names */}
-        <div className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium mb-4 ${
-          isBlessed 
-            ? 'bg-green-500/10 text-green-500 border border-green-500/30' 
-            : 'bg-amber-500/10 text-amber-500 border border-amber-500/30'
-        }`} data-testid="mansion-nature-indicator">
-          {isBlessed ? <Check className="w-2.5 h-2.5" /> : <X className="w-2.5 h-2.5" />}
-          <span>{isBlessed ? 'Blessed' : 'Challenging'}</span>
+        {/* Blessed/Challenging + Cycle Role Indicators */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          <div className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium ${
+            isBlessed 
+              ? 'bg-green-500/10 text-green-500 border border-green-500/30' 
+              : 'bg-amber-500/10 text-amber-500 border border-amber-500/30'
+          }`} data-testid="mansion-nature-indicator">
+            {isBlessed ? <Check className="w-2.5 h-2.5" /> : <X className="w-2.5 h-2.5" />}
+            <span>{isBlessed ? 'Blessed' : 'Challenging'}</span>
+          </div>
+          
+          {/* NEW: Cycle Role Tag */}
+          {guidance && cycleColors && (
+            <div className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium ${cycleColors.bg} ${cycleColors.text} border ${cycleColors.border}`} data-testid="mansion-cycle-role">
+              <span>{guidance.cycleRole}</span>
+              <span className="font-arabic text-[9px]">{guidance.cycleRoleArabic}</span>
+            </div>
+          )}
         </div>
 
         {/* Progress Bar */}
@@ -77,6 +90,81 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
             <div className="text-[10px] text-muted-foreground/60 mt-1 text-right">
               {format(progress.nextMansionDate, "MMM d, h:mm a")}
             </div>
+          </div>
+        )}
+
+        {/* NEW: Mansion Theme Card */}
+        {guidance && (
+          <div className="mb-3 p-3 rounded-lg bg-card/50 border border-border" data-testid="mansion-theme-card">
+            <div className="flex items-center gap-2 mb-2">
+              <BookOpen className="w-4 h-4 text-primary" />
+              <span className="text-xs font-medium text-foreground uppercase tracking-wide">Mansion Theme</span>
+              <span className="text-xs font-arabic text-muted-foreground">{guidance.themeArabic}</span>
+            </div>
+            <p className="text-sm text-foreground/90 leading-relaxed">
+              {guidance.theme}
+            </p>
+            <p className="text-xs text-muted-foreground mt-1.5 italic">
+              Energy: {guidance.energy === 'beginning' ? 'Beginning / Initiating' : guidance.energy === 'stabilizing' ? 'Stabilizing / Building' : 'Ending / Releasing'}
+            </p>
+          </div>
+        )}
+
+        {/* NEW: Good For / Not Ideal For Card */}
+        {guidance && (
+          <div className="mb-3 p-3 rounded-lg bg-foreground/5 border border-border" data-testid="mansion-guidance-card">
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <div className="flex items-center gap-1.5 mb-2">
+                  <CheckCircle className="w-3.5 h-3.5 text-green-500" />
+                  <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Good For</span>
+                </div>
+                <ul className="space-y-1">
+                  {guidance.goodFor.slice(0, 4).map((item, i) => (
+                    <li key={i} className="text-xs text-foreground/80 flex items-start gap-1.5">
+                      <span className="text-green-500 mt-0.5">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <div className="flex items-center gap-1.5 mb-2">
+                  <XCircle className="w-3.5 h-3.5 text-red-400" />
+                  <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Not Ideal For</span>
+                </div>
+                <ul className="space-y-1">
+                  {guidance.notIdealFor.slice(0, 4).map((item, i) => (
+                    <li key={i} className="text-xs text-foreground/60 flex items-start gap-1.5">
+                      <span className="text-red-400 mt-0.5">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* NEW: Suggested Dhikr & Practice Card */}
+        {guidance && (
+          <div className="mb-3 p-3 rounded-lg bg-primary/5 border border-primary/20" data-testid="mansion-dhikr-card">
+            <div className="flex items-center gap-2 mb-2">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-xs font-medium text-foreground uppercase tracking-wide">Suggested Dhikr & Practice</span>
+            </div>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-sm font-semibold text-foreground">{guidance.dhikr.name}</span>
+              <span className="font-arabic text-primary">{guidance.dhikr.nameArabic}</span>
+              <span className="text-xs text-muted-foreground">({guidance.dhikr.meaning})</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <Compass className="w-3.5 h-3.5 text-primary/70 mt-0.5 shrink-0" />
+              <p className="text-xs text-foreground/80 leading-relaxed">{guidance.practice}</p>
+            </div>
+            <p className="text-xs font-arabic text-muted-foreground/70 mt-1.5 text-right" dir="rtl">
+              {guidance.practiceArabic}
+            </p>
           </div>
         )}
 

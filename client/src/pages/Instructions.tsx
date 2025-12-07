@@ -696,6 +696,195 @@ export default function Instructions() {
             </div>
           </section>
 
+          {/* NEW EXPERIENTIAL SECTIONS */}
+          <section id="reading-planetary-hours" className="glass-card rounded-xl p-6 border border-border">
+            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
+              <Clock className="w-5 h-5" />
+              How to Read Planetary Hours Spiritually
+              <span className="font-arabic text-lg">كيفية قراءة الساعات الكوكبية روحياً</span>
+            </h2>
+            <div className="space-y-5 text-muted-foreground">
+              <div>
+                <h3 className="text-base font-medium text-foreground mb-2">Time Starts at Sunset</h3>
+                <p className="leading-relaxed text-base">
+                  In the Islamic tradition, the day begins at Maghrib (sunset), not midnight. This means the planetary day 
+                  and its ruling planet begin their influence as the sun sets. When you check the planetary hour, 
+                  remember that you are reading the current spiritual "breath" of time.
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="text-base font-medium text-foreground mb-2">Each Hour Has a Spiritual "Face"</h3>
+                <p className="leading-relaxed text-base">
+                  Every planetary hour carries a specific quality—mercy, strength, beauty, wisdom, or awe. Ibn Arabi teaches 
+                  that these are not mere influences but actual presences: angelic spirits attend each hour, and a Divine Name 
+                  governs it. Your inner state can harmonize with or resist this quality.
+                </p>
+                <div className="mt-3 p-4 rounded-lg bg-foreground/5 border border-border">
+                  <p className="text-sm">
+                    <strong className="text-foreground">Jalāl (جلال)</strong> hours (Mars, Saturn, Sun) carry majesty, strength, and awe.<br />
+                    <strong className="text-foreground">Jamāl (جمال)</strong> hours (Venus, Moon, Jupiter) carry beauty, gentleness, and expansion.<br />
+                    <strong className="text-foreground">Kamāl (كمال)</strong> hours (Mercury, Sun) carry perfection, balance, and integration.
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-base font-medium text-foreground mb-2">How to Use the Hour Cards</h3>
+                <ul className="list-disc list-inside space-y-2 ml-2 text-base">
+                  <li><strong className="text-foreground">Check the planet:</strong> See which planet rules the current hour.</li>
+                  <li><strong className="text-foreground">Read "Meaning of this hour":</strong> Understand what this hour opens or tests.</li>
+                  <li><strong className="text-foreground">Use "Recommended practice":</strong> Follow the suggested dhikr, action, and avoidance.</li>
+                  <li><strong className="text-foreground">Check "Inner state":</strong> If you feel expansion, act. If contraction, observe.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section id="reading-lunar-mansion" className="glass-card rounded-xl p-6 border border-border">
+            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
+              <Moon className="w-5 h-5" />
+              How to Read the Lunar Mansion
+              <span className="font-arabic text-lg">كيفية قراءة المنزلة القمرية</span>
+            </h2>
+            <div className="space-y-5 text-muted-foreground">
+              <div>
+                <h3 className="text-base font-medium text-foreground mb-2">What is a Lunar Mansion?</h3>
+                <p className="leading-relaxed text-base">
+                  The Moon travels through 28 stations (manazil) over its monthly cycle. Each mansion is not just a celestial 
+                  location but a doorway through which divine qualities descend. When the Moon enters a mansion, that mansion's 
+                  spiritual quality becomes accessible on Earth—influencing moods, events, and spiritual openings.
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="text-base font-medium text-foreground mb-2">The Four Mansion Phases</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/30">
+                    <strong className="text-green-400 text-sm">Seed (1-4)</strong>
+                    <p className="text-foreground/80 text-sm mt-1">Pure potential, vision, intention. Plant new seeds.</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                    <strong className="text-amber-400 text-sm">Build (5-8)</strong>
+                    <p className="text-foreground/80 text-sm mt-1">Structure, commitment, stabilization. Build foundations.</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/30">
+                    <strong className="text-blue-400 text-sm">Relate (9-20)</strong>
+                    <p className="text-foreground/80 text-sm mt-1">Connection, communication, relationships. Engage with others.</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-purple-500/10 border border-purple-500/30">
+                    <strong className="text-purple-400 text-sm">Release (21-28)</strong>
+                    <p className="text-foreground/80 text-sm mt-1">Endings, purification, surrender. Complete and let go.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-base font-medium text-foreground mb-2">How to Use the Mansion Cards</h3>
+                <ul className="list-disc list-inside space-y-2 ml-2 text-base">
+                  <li><strong className="text-foreground">Look at "Mansion Theme":</strong> Understand the core energy of this station.</li>
+                  <li><strong className="text-foreground">Check "Good For / Not Ideal For":</strong> Align your activities accordingly.</li>
+                  <li><strong className="text-foreground">Use "Suggested Dhikr & Practice":</strong> The Divine Name and practice for this mansion.</li>
+                  <li><strong className="text-foreground">Note the Cycle Role tag:</strong> See where you are in the 28-day cycle (Seed/Build/Relate/Release).</li>
+                  <li><strong className="text-foreground">Combine with Moon phase:</strong> Waxing supports beginning; waning supports ending.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section id="combining-hour-mansion" className="glass-card rounded-xl p-6 border border-border">
+            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
+              <Sparkles className="w-5 h-5" />
+              Combining Hour and Mansion
+              <span className="font-arabic text-lg">الجمع بين الساعة والمنزلة</span>
+            </h2>
+            <div className="space-y-4 text-muted-foreground">
+              <p className="leading-relaxed text-base">
+                The deepest reading comes from combining the current planetary hour with the current lunar mansion. 
+                Together they create a specific "moment-quality" that can guide your actions and inner state.
+              </p>
+              
+              <div className="space-y-3">
+                <div className="p-4 rounded-lg bg-foreground/5 border border-border">
+                  <h4 className="text-sm font-medium text-foreground mb-2">Example: Mars Hour + Release Mansion</h4>
+                  <p className="text-sm text-foreground/80">
+                    A Mars hour brings cutting energy. Combined with a Release-phase mansion (21-28), this is excellent 
+                    for cutting unhealthy patterns, ending procrastination, or severing attachments that no longer serve you. 
+                    The courage of Mars meets the letting-go energy of the mansion phase.
+                  </p>
+                </div>
+                
+                <div className="p-4 rounded-lg bg-foreground/5 border border-border">
+                  <h4 className="text-sm font-medium text-foreground mb-2">Example: Venus Hour + Build Mansion</h4>
+                  <p className="text-sm text-foreground/80">
+                    A Venus hour brings beauty and love. Combined with a Build-phase mansion (5-8), this is excellent 
+                    for stabilizing relationships, creating beauty in your environment, or formalizing commitments 
+                    with gentleness. The harmony of Venus meets the structuring energy of the mansion phase.
+                  </p>
+                </div>
+                
+                <div className="p-4 rounded-lg bg-foreground/5 border border-border">
+                  <h4 className="text-sm font-medium text-foreground mb-2">Example: Jupiter Hour + Seed Mansion</h4>
+                  <p className="text-sm text-foreground/80">
+                    A Jupiter hour brings expansion and wisdom. Combined with a Seed-phase mansion (1-4), this is excellent 
+                    for setting expansive intentions, beginning studies, or planning charitable endeavors. 
+                    The abundance of Jupiter meets the initiating energy of the mansion phase.
+                  </p>
+                </div>
+              </div>
+              
+              <p className="text-sm italic text-muted-foreground/80 pt-2">
+                Trust your inner state (expansion or contraction) to know whether to act outwardly or reflect inwardly.
+              </p>
+            </div>
+          </section>
+
+          <section id="ibn-arabi-background" className="glass-card rounded-xl p-6 border border-border">
+            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
+              <BookOpen className="w-5 h-5" />
+              Background: Ibn ʿArabi's View of Time
+              <span className="font-arabic text-lg">رؤية ابن عربي للزمن</span>
+            </h2>
+            <div className="space-y-4 text-muted-foreground">
+              <p className="leading-relaxed text-base">
+                For Ibn ʿArabi, time is not an empty container but a living reality. Each instant (waqt) is 
+                renewed by God—a new creation (khalq jadīd) that carries its own unique divine signature. 
+                The past is gone, the future is not yet, and only the present moment is real. This is why 
+                awareness of the spiritual quality of "now" matters.
+              </p>
+              
+              <p className="leading-relaxed text-base">
+                Every hour has an angelic spirit attending it and a ruling Divine Name that governs its quality. 
+                When you align your actions with the hour's nature, you act in harmony with the cosmos—this is 
+                the meaning of acting with <strong className="text-foreground">adab</strong> (right conduct). When you resist the hour's nature, 
+                you may find obstacles and friction.
+              </p>
+              
+              <p className="leading-relaxed text-base">
+                The Moon serves as the primary mirror for divine decrees descending into the material world. 
+                As it travels through the 28 mansions, it reflects different aspects of the divine qualities 
+                into earthly life. Each mansion marks a stage of that reflection—from the first spark of intention 
+                (Mansion 1) to the final surrender and completion (Mansion 28).
+              </p>
+              
+              <p className="leading-relaxed text-base">
+                This app uses this cosmological logic to help you act with <strong className="text-foreground">adab</strong> (أدب)—right conduct in 
+                each moment. By reading the hour and mansion, you can know what kind of action is supported, 
+                what kind of inner state to cultivate, and which Divine Name to invoke.
+              </p>
+
+              <div className="pt-4 border-t border-border mt-4">
+                <h3 className="text-base font-medium text-foreground mb-3">Key Sources for Further Reading</h3>
+                <ul className="list-disc list-inside space-y-2 ml-2 text-sm text-foreground/80">
+                  <li>Ibn ʿArabi – <em>Mawāqiʿ al-Nujūm</em> (The Setting of the Stars)</li>
+                  <li>Ibn ʿArabi – <em>al-Futūḥāt al-Makkiyya</em> (The Meccan Openings), especially chapters on time, imagination, hours, and planets</li>
+                  <li>Titus Burckhardt – <em>Mystical Astrology According to Ibn ʿArabi</em></li>
+                  <li>William Chittick – <em>The Sufi Path of Knowledge</em></li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
           <section className="glass-card rounded-xl p-6 border border-border bg-gold/5">
             <p className="text-center text-muted-foreground italic text-lg">
               "The cosmos is a book and every creature is a letter in it."
