@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC } from "@/lib/constants";
 import { MansionProgress, MoonPhaseInfo } from "@/lib/astronomy";
-import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Sun, Check, AlertTriangle, Lightbulb } from "lucide-react";
+import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb } from "lucide-react";
 import { format } from "date-fns";
 
 interface MansionCardProps {
@@ -11,6 +11,8 @@ interface MansionCardProps {
 }
 
 export function MansionCard({ mansion, progress }: MansionCardProps) {
+  const isBlessed = mansion.nature === "blessed";
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -25,9 +27,19 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
         <div className="flex items-center gap-3 mb-3">
           <span className="text-xs font-mono text-primary/80 uppercase tracking-widest flex items-center gap-2">
             <Moon className="w-3 h-3" />
-            Mansion {mansion.number}
+            Mansion {mansion.number} <span className="font-arabic">المنزلة {mansion.number}</span>
           </span>
           <div className="h-px bg-border flex-1" />
+          {/* Blessed/Challenging Indicator */}
+          <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-medium ${
+            isBlessed 
+              ? 'bg-green-500/10 text-green-500 border border-green-500/30' 
+              : 'bg-amber-500/10 text-amber-500 border border-amber-500/30'
+          }`} data-testid="mansion-nature-indicator">
+            {isBlessed ? <Check className="w-3 h-3" /> : <X className="w-3 h-3" />}
+            <span>{isBlessed ? 'Blessed' : 'Challenging'}</span>
+            <span className="font-arabic">{isBlessed ? 'مبارك' : 'صعب'}</span>
+          </div>
         </div>
 
         <h2 className="text-2xl font-serif text-gold mb-1 leading-tight">
@@ -69,13 +81,35 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
         )}
 
         <div className="space-y-3 text-sm text-muted-foreground/90 font-light leading-relaxed flex-1">
-          {/* Sphere/Realm - Most prominent */}
+          {/* Recommended Actions - Prominent */}
+          {'activities' in mansion && mansion.activities && (
+            <div className={`flex gap-3 p-2.5 rounded-lg border ${
+              isBlessed 
+                ? 'bg-green-500/5 border-green-500/20' 
+                : 'bg-amber-500/5 border-amber-500/20'
+            }`}>
+              <Lightbulb className={`w-4 h-4 mt-0.5 shrink-0 ${isBlessed ? 'text-green-500' : 'text-amber-500'}`} />
+              <div>
+                <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">
+                  Recommended Actions <span className="font-arabic">الأعمال المستحبة</span>
+                </strong>
+                <span className="text-foreground/80 text-sm">{mansion.activities}</span>
+              </div>
+            </div>
+          )}
+
+          {/* Sphere/Realm */}
           {'sphere' in mansion && mansion.sphere && (
             <div className="flex gap-3 p-2 rounded-lg bg-primary/5 border border-primary/10">
               <Orbit className="w-4 h-4 mt-0.5 text-gold shrink-0" />
               <div>
-                <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">Celestial Sphere</strong>
+                <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">
+                  Celestial Sphere <span className="font-arabic">الفلك السماوي</span>
+                </strong>
                 <span className="text-gold/90 text-sm">{mansion.sphere}</span>
+                {'sphereArabic' in mansion && mansion.sphereArabic && (
+                  <span className="block font-arabic text-xs text-muted-foreground mt-0.5">{mansion.sphereArabic}</span>
+                )}
               </div>
             </div>
           )}
@@ -83,7 +117,9 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
           <div className="flex gap-3">
             <Sparkles className="w-4 h-4 mt-0.5 text-primary/50 shrink-0" />
             <div>
-              <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">Meaning <span className="font-arabic">{UI_LABELS_ARABIC["Station Meaning"]}</span></strong>
+              <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">
+                Meaning <span className="font-arabic">{UI_LABELS_ARABIC["Station Meaning"]}</span>
+              </strong>
               {mansion.meaning}
             </div>
           </div>
@@ -91,22 +127,45 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
           <div className="flex gap-3">
             <Star className="w-4 h-4 mt-0.5 text-primary/50 shrink-0" />
             <div>
-              <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">Divine Attribute</strong>
+              <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">
+                Divine Attribute <span className="font-arabic">الصفة الإلهية</span>
+              </strong>
               {mansion.attribute}
+              {'attributeArabic' in mansion && mansion.attributeArabic && (
+                <span className="font-arabic text-xs text-muted-foreground ml-2">{mansion.attributeArabic}</span>
+              )}
             </div>
           </div>
 
           <div className="flex gap-3">
             <Scroll className="w-4 h-4 mt-0.5 text-primary/50 shrink-0" />
             <div>
-              <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">Arabic Letter</strong>
+              <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">
+                Arabic Letter <span className="font-arabic">الحرف العربي</span>
+              </strong>
               {mansion.letter} • {mansion.degrees}
+              {'letterArabic' in mansion && mansion.letterArabic && (
+                <span className="font-arabic text-lg text-primary ml-2">{mansion.letterArabic}</span>
+              )}
             </div>
           </div>
 
           <div className="pt-3 border-t border-border/50 mt-auto">
             <p className="italic opacity-70 text-xs leading-relaxed">"{mansion.description}"</p>
           </div>
+        </div>
+
+        {/* Mansion Wheel Image */}
+        <div className="mt-4 pt-3 border-t border-border/50">
+          <p className="text-[10px] text-muted-foreground mb-2 text-center">
+            Ibn Arabi's 28 Lunar Mansions Wheel <span className="font-arabic">عجلة المنازل القمرية الثمانية والعشرين</span>
+          </p>
+          <img 
+            src="/mansionwheel.jpg" 
+            alt="Ibn Arabi's 28 Lunar Mansions Wheel" 
+            className="w-full rounded-lg border border-border opacity-80 hover:opacity-100 transition-opacity"
+            data-testid="mansion-wheel-image"
+          />
         </div>
       </div>
     </motion.div>

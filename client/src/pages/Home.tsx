@@ -342,39 +342,6 @@ export default function Home() {
               </DialogContent>
             </Dialog>
 
-            {/* Date Picker */}
-            <div className="flex items-center gap-1 sm:gap-2 bg-card/50 rounded-lg p-1 border border-border">
-               <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant={"ghost"}
-                    size="sm"
-                    className={`w-auto sm:w-[180px] justify-start text-left font-normal text-xs sm:text-sm ${!selectedDate && "text-muted-foreground"}`}
-                  >
-                    <CalendarIcon className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                    {selectedDate ? format(selectedDate, "MMM d") : <span>Date</span>}
-                    <span className="hidden sm:inline ml-1">{selectedDate && format(selectedDate, ", yyyy")}</span>
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="end">
-                  <Calendar
-                    mode="single"
-                    selected={selectedDate}
-                    onSelect={handleDateSelect}
-                    initialFocus
-                    captionLayout="dropdown"
-                    fromYear={2000}
-                    toYear={2050}
-                  />
-                </PopoverContent>
-              </Popover>
-              
-              {!isAutoTime && (
-                <Button size="icon" variant="ghost" className="h-7 w-7 sm:h-8 sm:w-8" onClick={resetToNow} title="Reset to Now">
-                  <RotateCcw className="h-3 w-3" />
-                </Button>
-              )}
-            </div>
           </div>
         </div>
 
@@ -393,16 +360,6 @@ export default function Home() {
                   {hijriDate}
                 </div>
               </div>
-              {moonTimes && (
-                <div className="text-[10px] sm:text-xs text-muted-foreground flex items-center gap-2">
-                  {moonTimes.moonrise && (
-                    <span>☽↑ {format(moonTimes.moonrise, "h:mm a")}</span>
-                  )}
-                  {moonTimes.moonset && (
-                    <span>☽↓ {format(moonTimes.moonset, "h:mm a")}</span>
-                  )}
-                </div>
-              )}
             </div>
             <div className="text-[9px] text-muted-foreground/50 italic pl-0">
               * Islamic date begins at sunset, not midnight
@@ -505,14 +462,26 @@ export default function Home() {
             
             {/* Moon Phase - Right */}
             {moonPhase && (
-              <div className="flex items-center gap-1.5 sm:gap-3">
-                <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
-                  {moonPhase.isWaxing ? <Sun className="w-3 h-3 sm:w-4 sm:h-4" /> : <Moon className="w-3 h-3 sm:w-4 sm:h-4" />}
-                  <span className="hidden xs:inline">{moonPhase.label}</span>
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-1.5 sm:gap-3">
+                  <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
+                    {moonPhase.isWaxing ? <Sun className="w-3 h-3 sm:w-4 sm:h-4" /> : <Moon className="w-3 h-3 sm:w-4 sm:h-4" />}
+                    <span className="hidden xs:inline">{moonPhase.label}</span>
+                  </div>
+                  <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-foreground/10 font-mono border border-border">
+                    {Math.round(moonPhase.illumination)}%
+                  </span>
                 </div>
-                <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-foreground/10 font-mono border border-border">
-                  {Math.round(moonPhase.illumination)}%
-                </span>
+                {moonTimes && (
+                  <div className="text-[10px] sm:text-xs text-muted-foreground flex items-center gap-2">
+                    {moonTimes.moonrise && (
+                      <span>☽↑ {format(moonTimes.moonrise, "h:mm a")}</span>
+                    )}
+                    {moonTimes.moonset && (
+                      <span>☽↓ {format(moonTimes.moonset, "h:mm a")}</span>
+                    )}
+                  </div>
+                )}
               </div>
             )}
           </div>
