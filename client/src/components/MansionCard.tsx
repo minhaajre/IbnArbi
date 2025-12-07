@@ -40,14 +40,13 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
         </h3>
         
         {/* Blessed/Challenging Indicator - Below names */}
-        <div className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-medium mb-4 ${
+        <div className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium mb-4 ${
           isBlessed 
             ? 'bg-green-500/10 text-green-500 border border-green-500/30' 
             : 'bg-amber-500/10 text-amber-500 border border-amber-500/30'
         }`} data-testid="mansion-nature-indicator">
-          {isBlessed ? <Check className="w-3 h-3" /> : <X className="w-3 h-3" />}
+          {isBlessed ? <Check className="w-2.5 h-2.5" /> : <X className="w-2.5 h-2.5" />}
           <span>{isBlessed ? 'Blessed' : 'Challenging'}</span>
-          <span className="font-arabic">{isBlessed ? 'مبارك' : 'صعب'}</span>
         </div>
 
         {/* Progress Bar */}

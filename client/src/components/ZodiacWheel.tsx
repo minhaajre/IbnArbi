@@ -513,7 +513,8 @@ export function ZodiacWheel({
                 {hoveredPlanetCritical.label}
               </div>
             )}
-            {(() => {
+            {/* Only show ingress for Moon */}
+            {hoveredPlanetData.name === 'Moon' && (() => {
               const ingress = ingresses.find(i => i.name === hoveredPlanetData.name);
               if (!ingress) return null;
               return (

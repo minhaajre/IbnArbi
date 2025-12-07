@@ -422,7 +422,7 @@ export default function Instructions() {
         </div>
       </div>
 
-      <div className="relative z-10 p-4 sm:p-8 md:p-12 max-w-4xl mx-auto">
+      <div className="relative z-10 p-4 sm:p-8 md:p-12 max-w-6xl mx-auto">
         <header className="mb-8">
           <Link href="/">
             <Button variant="ghost" size="sm" className="mb-4" data-testid="back-to-home">

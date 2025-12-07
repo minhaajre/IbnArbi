@@ -42,9 +42,33 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useTheme } from "next-themes";
+
+const SECTION_INFO = {
+  lunarMansion: {
+    title: "Lunar Mansions",
+    description: "The Moon travels through each of the 28 mansions approximately every day. Each mansion is a place where a specific divine quality enters time, shaping events and spiritual openings. Check whether the mansion is Blessed or Challenging to know how to align your activities.",
+  },
+  planetaryHours: {
+    title: "Planetary Hours",
+    description: "Each day is divided into 24 planetary hours, with each hour ruled by one of the seven classical planets. The day ruler sets the spiritual tone for the entire day. The VOC (Void of Course) indicator means the Moon makes no major aspects before leaving its sign.",
+  },
+  dignities: {
+    title: "Celestial Dignities",
+    description: "Shows current positions of the seven classical planets and their dignities. Rulership (R) means strongest expression, Exaltation (E) means elevated influence, Detriment (d) means weakened, and Fall (f) means most challenged.",
+  },
+  elements: {
+    title: "Elemental Balance",
+    description: "The four elements (Fire, Earth, Air, Water) represent fundamental qualities of existence. This shows which elements are emphasized based on current planetary positions, helping you understand the day's overall energy.",
+  },
+};
 
 export default function Home() {
   // State
@@ -408,9 +432,20 @@ export default function Home() {
             <h2 className="text-base sm:text-lg font-serif text-foreground/80">
               Current Lunar Mansion <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">المنزلة القمرية الحالية</span>
             </h2>
-            <Link href="/instructions#lunar-mansions">
-              <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-lunar-mansion" />
-            </Link>
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-lunar-mansion" />
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80" align="end">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.lunarMansion.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.lunarMansion.description}</p>
+                  <Link href="/instructions#lunar-mansions" className="text-xs text-primary hover:underline block pt-1">
+                    Learn more →
+                  </Link>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
           </div>
           <div className="relative z-10">
             <MansionCard mansion={mansion} progress={mansionProgress ?? undefined} />
@@ -428,9 +463,20 @@ export default function Home() {
               <h2 className="text-base sm:text-lg font-serif text-foreground/80">
                 Planetary Hours <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الساعات الكوكبية</span>
               </h2>
-              <Link href="/instructions#planetary-hours">
-                <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-planetary-hours" />
-              </Link>
+              <HoverCard>
+                <HoverCardTrigger asChild>
+                  <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-planetary-hours" />
+                </HoverCardTrigger>
+                <HoverCardContent className="w-80" align="start">
+                  <div className="space-y-2">
+                    <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.planetaryHours.title}</h4>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.planetaryHours.description}</p>
+                    <Link href="/instructions#planetary-hours" className="text-xs text-primary hover:underline block pt-1">
+                      Learn more →
+                    </Link>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
             </div>
             <div className="flex items-center gap-1 sm:gap-2">
               <Popover>
@@ -590,9 +636,20 @@ export default function Home() {
             <h2 className="text-base sm:text-lg font-serif text-foreground/80">
               Celestial Dignities <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الكرامات السماوية</span>
             </h2>
-            <Link href="/instructions#celestial-dignities">
-              <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-dignities" />
-            </Link>
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-dignities" />
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80" align="end">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.dignities.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.dignities.description}</p>
+                  <Link href="/instructions#celestial-dignities" className="text-xs text-primary hover:underline block pt-1">
+                    Learn more →
+                  </Link>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
           </div>
           <div className="relative z-10 overflow-x-auto">
             <PlanetaryTable 
@@ -611,9 +668,20 @@ export default function Home() {
             <h2 className="text-base sm:text-lg font-serif text-foreground/80">
               Elemental Balance <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">توازن العناصر</span>
             </h2>
-            <Link href="/instructions#elemental-balance">
-              <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-elements" />
-            </Link>
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-elements" />
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80" align="end">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.elements.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.elements.description}</p>
+                  <Link href="/instructions#elemental-balance" className="text-xs text-primary hover:underline block pt-1">
+                    Learn more →
+                  </Link>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
           </div>
           <div className="relative z-10">
             <ElementalBalance planets={planets} />
