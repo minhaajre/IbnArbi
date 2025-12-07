@@ -364,13 +364,13 @@ export default function Home() {
              {/* Personal Chart Button */}
             <Button 
               variant="outline" 
-              size="sm" 
+              size="icon" 
               onClick={() => navigate("/chart")}
-              className="bg-card/50 border-border h-8 sm:h-9 text-xs sm:text-sm"
+              className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9"
               data-testid="chart-button"
+              title="Personal Chart"
             >
-              <User className="w-3 h-3 mr-1 sm:mr-2" />
-              <span className="hidden sm:inline">Chart</span>
+              <User className="w-4 h-4" />
             </Button>
 
             {/* Theme Toggle */}
@@ -385,17 +385,16 @@ export default function Home() {
               <span className="sr-only">Toggle theme</span>
             </Button>
 
-            {/* Instructions Button */}
+            {/* Guidance Button */}
             <Link href="/instructions">
               <Button 
                 variant="outline" 
-                size="sm" 
-                className="bg-card/50 border-border h-8 sm:h-9 text-xs sm:text-sm"
+                size="icon" 
+                className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9"
                 data-testid="link-instructions"
+                title="Guidance"
               >
-                <BookOpen className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                <span className="hidden sm:inline">Instructions</span>
-                <span className="sm:hidden">Guide</span>
+                <BookOpen className="w-4 h-4" />
               </Button>
             </Link>
 
@@ -409,9 +408,8 @@ export default function Home() {
             {/* Capture Moment Dialog */}
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline" size="sm" className="bg-card/50 border-border h-8 sm:h-9 text-xs sm:text-sm" data-testid="capture-moment">
-                  <Mail className="w-3 h-3 mr-1 sm:mr-2" />
-                  <span className="hidden sm:inline">Capture</span>
+                <Button variant="outline" size="icon" className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9" data-testid="capture-moment" title="Capture Moment">
+                  <Mail className="w-4 h-4" />
                 </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-md">
@@ -462,9 +460,8 @@ export default function Home() {
             {/* Location Dialog */}
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline" size="sm" className="bg-card/50 border-border h-8 sm:h-9 max-w-[140px] sm:max-w-[200px] truncate text-xs sm:text-sm">
-                  <MapPin className="w-3 h-3 mr-1 sm:mr-2 shrink-0" />
-                  <span className="truncate">{location?.name}</span>
+                <Button variant="outline" size="icon" className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9" title={location?.name}>
+                  <MapPin className="w-4 h-4 shrink-0" />
                 </Button>
               </DialogTrigger>
               <DialogContent>
