@@ -178,6 +178,19 @@ export function ZodiacWheel({
   const hoveredSignData = hoveredSign ? SIGN_DATA[hoveredSign] : null;
   const hoveredPlanetData = hoveredPlanet ? planets.find(p => p.name === hoveredPlanet) : null;
   const hoveredPlanetCritical = hoveredPlanetData ? getCriticalDegree(hoveredPlanetData.degree, hoveredPlanetData.sign) : null;
+  
+  // Calculate tooltip position for hovered planet
+  const hoveredPlanetPos = useMemo(() => {
+    if (!hoveredPlanet) return null;
+    const planetInfo = planetPositions.find(p => p.planet.name === hoveredPlanet);
+    if (!planetInfo) return null;
+    const pos = getCoords(planetInfo.angle, planetInfo.radius);
+    // Convert SVG coordinates to percentage
+    return {
+      x: (pos.x / size) * 100,
+      y: (pos.y / size) * 100
+    };
+  }, [hoveredPlanet, planetPositions, size]);
 
   return (
     <div className="relative w-full max-w-2xl mx-auto" data-testid="zodiac-wheel">
@@ -396,12 +409,17 @@ export function ZodiacWheel({
       </AnimatePresence>
 
       <AnimatePresence>
-        {hoveredPlanetData && (
+        {hoveredPlanetData && hoveredPlanetPos && (
           <motion.div
-            initial={{ opacity: 0, y: -5 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -5 }}
-            className="absolute left-1/2 -translate-x-1/2 -top-2 bg-card/95 backdrop-blur-md border border-border px-4 py-2 rounded-lg shadow-lg text-center min-w-[160px] z-20"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="absolute -translate-x-1/2 -translate-y-full bg-card/95 backdrop-blur-md border border-border px-4 py-2 rounded-lg shadow-lg text-center min-w-[160px] z-20 pointer-events-none"
+            style={{
+              left: `${hoveredPlanetPos.x}%`,
+              top: `${hoveredPlanetPos.y}%`,
+              marginTop: '-20px'
+            }}
           >
             <div className="font-serif text-base flex items-center justify-center gap-2" style={{ color: PLANET_COLORS[hoveredPlanetData.name] }}>
               {PLANET_SYMBOLS[hoveredPlanetData.name]} {hoveredPlanetData.name}
