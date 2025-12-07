@@ -394,7 +394,7 @@ export default function Home() {
             </div>
 
             {/* Capture Moment Dialog - Dev only */}
-            {import.meta.env.DEV && (
+            {import.meta.env.VITE_SHOW_DEV_FEATURES === 'true' && (
               <Dialog>
                 <DialogTrigger asChild>
                   <Button variant="outline" size="icon" className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9" data-testid="capture-moment" title="Capture Moment">
@@ -479,7 +479,7 @@ export default function Home() {
             </Dialog>
 
             {/* Personal Chart Button - Dev only */}
-            {import.meta.env.DEV && (
+            {import.meta.env.VITE_SHOW_DEV_FEATURES === 'true' && (
               <Button 
                 variant="outline" 
                 size="icon" 

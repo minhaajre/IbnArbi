@@ -61,3 +61,8 @@ waitForPort = 5000
 [agent]
 mockupState = "FULLSTACK"
 integrations = ["google-mail:1.0.0"]
+
+[userenv]
+
+[userenv.development]
+VITE_SHOW_DEV_FEATURES = "true"
