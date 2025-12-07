@@ -1,0 +1,108 @@
+Got it. Here are pure text rules your dev can plug into the existing app to make it match your Islamic / sunset-based system, without changing the whole engine.
+
+⸻
+
+1. Planetary “Day” Definition (Islamic Rule)
+	1.	A planetary day runs from local sunset to the next local sunset.
+	2.	The name of the planetary day is taken from the weekday of the next sunrise (i.e. the civil day after Maghrib):
+	•	After Sunday sunset → it is Monday / Moon day
+	•	After Monday sunset → Tuesday / Mars day
+	•	After Tuesday sunset → Wednesday / Mercury day
+	•	After Wednesday sunset → Thursday / Jupiter day
+	•	After Thursday sunset → Friday / Venus day
+	•	After Friday sunset → Saturday / Saturn day
+	•	After Saturday sunset → Sunday / Sun day
+	3.	In code terms:
+	•	If dt is after local sunset, the planetary day is the next civil weekday.
+	•	If dt is before local sunset, the planetary day is the current civil weekday.
+
+⸻
+
+2. Segmenting the Planetary Day (Night vs Day)
+
+Within each planetary day (sunset → sunset):
+	1.	Night segment = from sunset (D) to sunrise (D+1).
+	2.	Day segment = from sunrise (D+1) to sunset (D+1).
+
+Nothing else is needed. The app must always treat night first, then day within one planetary day.
+
+⸻
+
+3. Hour Lengths (Unequal Hours – keep this logic)
+
+Your existing planetary-hour engine likely already does this. If not, it must:
+	1.	Night hours:
+	•	Duration = sunrise_next − sunset_current.
+	•	Night hour length = this duration / 12.
+	2.	Day hours:
+	•	Duration = sunset_next − sunrise_next.
+	•	Day hour length = this duration / 12.
+
+If the app is using fixed 60-minute hours, that is wrong for this system and needs to be changed to solar (unequal) hours.
+
+⸻
+
+4. First Hour Ruler (Critical Change)
+
+This is where your app is currently wrong.
+
+Current classical / western approach (likely in your app):
+	•	First daytime hour (at sunrise) is the ruler of the planetary day.
+
+Your Islamic / sunset-based rule:
+	1.	The first hour after sunset (the start of the planetary day) is ruled by the planetary day ruler.
+	2.	The sequence of hour rulers starts at sunset, not sunrise.
+
+So:
+	•	On Moon day (Islamic Monday), first hour after sunset = Moon hour,
+not first hour after sunrise.
+
+⸻
+
+5. Chaldean Sequence (Keep, but Re-anchor)
+
+The planetary order is the standard Chaldean sequence:
+
+Saturn → Jupiter → Mars → Sun → Venus → Mercury → Moon → (repeat)
+
+Rules:
+	1.	Hour 1 of the planetary day (immediately after sunset) is the day ruler.
+	2.	Every hour after that (night and day) follows the Chaldean order continuously, without resetting at sunrise.
+
+So:
+	•	Night hour 1 (after sunset): planetary day ruler.
+	•	Night hours 2–12: continue Chaldean order.
+	•	Day hours 1–12 (after sunrise): continue the same sequence from where night hour 12 left off.
+
+Do not restart the sequence at sunrise.
+
+⸻
+
+6. How to Decide the Current Hour
+
+Given a local datetime dt:
+	1.	Determine the relevant planetary day:
+	•	Find sunset before dt and sunset after dt.
+	•	That interval sunset_before → sunset_after is the planetary day window.
+	•	The planetary day name = weekday of the date of sunset_after (Islamic rule).
+	2.	Within that planetary day:
+	•	If dt is between sunset_before and sunrise_between → night segment.
+	•	If dt is between sunrise_between and sunset_after → day segment.
+	3.	Based on night/day:
+	•	Compute hour index 1–12 as floor( elapsed / segment_hour_length ) + 1.
+	4.	Get the ruling planet:
+	•	Start from planet-of-planetary-day at night hour 1.
+	•	Advance through Chaldean order by (total hours since first night hour).
+
+Your coder already has most of this logic; they just need to:
+	•	Re-anchor day start at sunset, not sunrise.
+	•	Assign first night hour = planetary day ruler.
+	•	Keep hour sequence continuous across night and day.
+
+⸻
+
+If you hand these rules to the dev and tell them:
+
+“Our day starts at sunset, the planetary day is named after the next weekday, and the first planetary hour after sunset is ruled by that day’s planet. Night and day hours follow the same Chaldean sequence without reset.”
+
+they’ll know exactly what to fix.

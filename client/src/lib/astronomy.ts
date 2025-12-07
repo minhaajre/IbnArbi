@@ -88,70 +88,88 @@ export function getPlanetaryHours(date: Date, lat: number, lng: number): {
   sunrise: Date;
   sunset: Date;
 } {
+  // Islamic planetary hour system:
+  // 1. A planetary day runs from local sunset to next sunset
+  // 2. The planetary day is named after the NEXT civil weekday (after sunset)
+  // 3. Night segment is first (sunset to sunrise), then day segment
+  // 4. First hour after sunset is ruled by the planetary day ruler
+  // 5. Hours continue in Chaldean sequence without resetting at sunrise
+  
   const observer = new Astronomy.Observer(lat, lng, 0);
   const midnight = new Date(date);
   midnight.setHours(0, 0, 0, 0);
   
-  let sunriseEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, +1, midnight, 1);
-  if (!sunriseEvent) throw new Error("Could not calculate sunrise");
-  let sunrise = sunriseEvent.date;
+  // Find the sunset that starts the current planetary day
+  // We need the sunset BEFORE the current time
+  let sunsetBeforeEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, -1, midnight, 1);
+  if (!sunsetBeforeEvent) throw new Error("Could not calculate sunset");
+  let sunsetBefore = sunsetBeforeEvent.date;
   
-  let referenceDate = new Date(date);
-  if (date < sunrise) {
-    referenceDate.setDate(date.getDate() - 1);
-    const prevMidnight = new Date(referenceDate);
-    prevMidnight.setHours(0, 0, 0, 0);
-    sunriseEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, +1, prevMidnight, 1);
-    if (!sunriseEvent) throw new Error("Could not calculate sunrise");
-    sunrise = sunriseEvent.date;
+  // If date is before today's sunset, the planetary day started at yesterday's sunset
+  if (date < sunsetBefore) {
+    const prevMidnight = new Date(midnight);
+    prevMidnight.setDate(prevMidnight.getDate() - 1);
+    sunsetBeforeEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, -1, prevMidnight, 1);
+    if (!sunsetBeforeEvent) throw new Error("Could not calculate sunset");
+    sunsetBefore = sunsetBeforeEvent.date;
   }
   
-  const sunsetEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, -1, sunrise, 1);
-  if (!sunsetEvent) throw new Error("Could not calculate sunset");
-  const sunset = sunsetEvent.date;
+  // Find sunrise between sunsetBefore and next sunset
+  const sunriseBetweenEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, +1, sunsetBefore, 1);
+  if (!sunriseBetweenEvent) throw new Error("Could not calculate sunrise");
+  const sunriseBetween = sunriseBetweenEvent.date;
   
-  const nextSunriseEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, +1, sunset, 1);
-  const nextSunrise = nextSunriseEvent ? nextSunriseEvent.date : new Date(sunrise.getTime() + 24 * 60 * 60 * 1000);
+  // Find the sunset that ends the current planetary day
+  const sunsetAfterEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, -1, sunriseBetween, 1);
+  if (!sunsetAfterEvent) throw new Error("Could not calculate next sunset");
+  const sunsetAfter = sunsetAfterEvent.date;
   
-  const dayOfWeek = referenceDate.getDay();
+  // The planetary day is named after the weekday of sunsetAfter (the next civil day after Maghrib)
+  const planetaryDayDate = new Date(sunsetAfter);
+  const dayOfWeek = planetaryDayDate.getDay();
   const dayRuler = DAY_RULERS[dayOfWeek as keyof typeof DAY_RULERS];
   
   const hours: PlanetaryHour[] = [];
   const startIdx = PLANETARY_RULERS_ORDER.indexOf(dayRuler);
   
-  const dayDuration = sunset.getTime() - sunrise.getTime();
-  const dayHourLen = dayDuration / 12;
-  const nightDuration = nextSunrise.getTime() - sunset.getTime();
+  // Night segment: sunsetBefore to sunriseBetween
+  const nightDuration = sunriseBetween.getTime() - sunsetBefore.getTime();
   const nightHourLen = nightDuration / 12;
   
+  // Day segment: sunriseBetween to sunsetAfter
+  const dayDuration = sunsetAfter.getTime() - sunriseBetween.getTime();
+  const dayHourLen = dayDuration / 12;
+  
+  // Night hours (1-12): starting from sunset, first hour = day ruler
   for (let i = 0; i < 12; i++) {
     const pIdx = (startIdx + i) % 7;
-    const start = new Date(sunrise.getTime() + i * dayHourLen);
-    const end = new Date(sunrise.getTime() + (i + 1) * dayHourLen);
+    const start = new Date(sunsetBefore.getTime() + i * nightHourLen);
+    const end = new Date(sunsetBefore.getTime() + (i + 1) * nightHourLen);
     
     hours.push({
       hour: i + 1,
-      planet: PLANETARY_RULERS_ORDER[pIdx],
-      type: 'day',
-      start,
-      end,
-      duration: dayHourLen,
-      isCurrent: date >= start && date < end
-    });
-  }
-  
-  for (let i = 0; i < 12; i++) {
-    const pIdx = (startIdx + 12 + i) % 7;
-    const start = new Date(sunset.getTime() + i * nightHourLen);
-    const end = new Date(sunset.getTime() + (i + 1) * nightHourLen);
-    
-    hours.push({
-      hour: i + 13,
       planet: PLANETARY_RULERS_ORDER[pIdx],
       type: 'night',
       start,
       end,
       duration: nightHourLen,
+      isCurrent: date >= start && date < end
+    });
+  }
+  
+  // Day hours (13-24): continuing Chaldean sequence from night hour 12
+  for (let i = 0; i < 12; i++) {
+    const pIdx = (startIdx + 12 + i) % 7;
+    const start = new Date(sunriseBetween.getTime() + i * dayHourLen);
+    const end = new Date(sunriseBetween.getTime() + (i + 1) * dayHourLen);
+    
+    hours.push({
+      hour: i + 13,
+      planet: PLANETARY_RULERS_ORDER[pIdx],
+      type: 'day',
+      start,
+      end,
+      duration: dayHourLen,
       isCurrent: date >= start && date < end
     });
   }
@@ -162,8 +180,8 @@ export function getPlanetaryHours(date: Date, lat: number, lng: number): {
     dayRuler,
     currentHour,
     hours,
-    sunrise,
-    sunset
+    sunrise: sunriseBetween,
+    sunset: sunsetBefore
   };
 }
 
