@@ -390,8 +390,8 @@ export function ZodiacWheel({
               
               {/* Permanent status label below planet */}
               <motion.text
-                animate={{ x: pos.x, y: pos.y + circleSize + 10 }}
-                initial={{ x: pos.x, y: pos.y + circleSize + 10 }}
+                animate={{ x: pos.x, y: pos.y + circleSize + 4 }}
+                initial={{ x: pos.x, y: pos.y + circleSize + 4 }}
                 transition={{ type: "spring", stiffness: 60, damping: 15 }}
                 textAnchor="middle"
                 dominantBaseline="middle"
@@ -406,8 +406,8 @@ export function ZodiacWheel({
               {/* Dignity indicator */}
               {planet.status !== 'Neutral' && (
                 <motion.text
-                  animate={{ x: pos.x, y: pos.y + circleSize + (variant === "expanded" ? 19 : 17) }}
-                  initial={{ x: pos.x, y: pos.y + circleSize + (variant === "expanded" ? 19 : 17) }}
+                  animate={{ x: pos.x, y: pos.y + circleSize + (variant === "expanded" ? 12 : 11) }}
+                  initial={{ x: pos.x, y: pos.y + circleSize + (variant === "expanded" ? 12 : 11) }}
                   transition={{ type: "spring", stiffness: 60, damping: 15 }}
                   textAnchor="middle"
                   dominantBaseline="middle"

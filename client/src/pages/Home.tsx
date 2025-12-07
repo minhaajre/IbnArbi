@@ -599,15 +599,19 @@ export default function Home() {
         {/* Sky Map Header - Responsive */}
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3 relative z-10">
           {/* Title - Centered on mobile */}
-          <h2 className="text-base sm:text-lg font-serif text-center sm:text-left order-first sm:order-2 flex-1">
-            <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 bg-clip-text text-transparent">
-              Current Sky Map
-            </span>
-            <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">خريطة السماء الحالية</span>
-            <span className="text-muted-foreground ml-1 sm:ml-2 text-xs sm:text-sm font-light">
-              {useSidereal ? "(Sidereal)" : "(Tropical)"}
-            </span>
-          </h2>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 order-first sm:order-2 flex-1">
+            <h2 className="text-base sm:text-lg font-serif text-center sm:text-left">
+              <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 bg-clip-text text-transparent">
+                Current Sky Map
+              </span>
+              <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">خريطة السماء الحالية</span>
+            </h2>
+            <div className="flex items-center gap-1.5 bg-card/60 rounded-lg px-2 py-1 border border-border mx-auto sm:mx-0">
+              <span className={`text-[10px] ${!useSidereal ? 'text-primary font-medium' : 'text-muted-foreground'}`}>Tropical</span>
+              <Switch checked={useSidereal} onCheckedChange={setUseSidereal} className="scale-75" data-testid="skymap-zodiac-toggle" />
+              <span className={`text-[10px] ${useSidereal ? 'text-primary font-medium' : 'text-muted-foreground'}`}>Sidereal</span>
+            </div>
+          </div>
 
           {/* Time info - Right on desktop, hidden on mobile (already shown in header) */}
           <div className="hidden sm:block bg-card/60 backdrop-blur-sm rounded-lg px-3 py-2 border border-border text-right order-3">
