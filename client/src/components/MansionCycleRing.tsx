@@ -1,19 +1,21 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+
 interface MansionCycleRingProps {
   mansionNumber: number;
 }
 
 export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
-  const radius = 45;
-  const circumference = 2 * Math.PI * radius;
+  const [hoveredNumber, setHoveredNumber] = useState<number | null>(null);
   const positions = Array.from({ length: 28 }, (_, i) => i + 1);
+  const radius = 55; // Radius for number positioning inside the circle
 
-  const getPositionStyle = (position: number) => {
+  const getPosition = (position: number) => {
     const angle = ((position - 1) / 28) * 360 - 90;
-    const x = Math.cos((angle * Math.PI) / 180) * radius;
-    const y = Math.sin((angle * Math.PI) / 180) * radius;
-    return {
-      transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
-    };
+    const radian = (angle * Math.PI) / 180;
+    const x = Math.cos(radian) * radius;
+    const y = Math.sin(radian) * radius;
+    return { x, y };
   };
 
   const isCurrentMansion = (position: number) => position === mansionNumber;
@@ -21,117 +23,159 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
   return (
     <div className="flex flex-col items-center gap-2">
       <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
-        Lunar Position
+        Lunar Position in Cycle
       </div>
-      <div className="relative w-40 h-40 flex items-center justify-center">
-        {/* SVG Circle background */}
-        <svg
-          className="absolute inset-0 w-full h-full"
-          viewBox="0 0 200 200"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Outer ring */}
-          <circle
-            cx="100"
-            cy="100"
-            r="85"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            className="text-border opacity-30"
-          />
+      
+      <svg width="200" height="200" viewBox="0 0 200 200" className="drop-shadow-md">
+        {/* Outer decorative ring */}
+        <circle
+          cx="100"
+          cy="100"
+          r="90"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="text-border opacity-30"
+        />
 
-          {/* Inner circle for current mansion indicator */}
-          <circle
-            cx="100"
-            cy="100"
-            r="60"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            className="text-primary opacity-20"
-          />
+        {/* Middle guide ring */}
+        <circle
+          cx="100"
+          cy="100"
+          r="65"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+          className="text-primary opacity-15"
+        />
 
-          {/* Center dot */}
-          <circle cx="100" cy="100" r="3" fill="currentColor" className="text-primary" />
+        {/* Inner circle */}
+        <circle
+          cx="100"
+          cy="100"
+          r="40"
+          fill="currentColor"
+          className="text-primary opacity-5"
+        />
 
-          {/* Radial lines for each mansion */}
-          {positions.map((position) => {
-            const angle = ((position - 1) / 28) * 360 - 90;
-            const x1 = 100 + 60 * Math.cos((angle * Math.PI) / 180);
-            const y1 = 100 + 60 * Math.sin((angle * Math.PI) / 180);
-            const x2 = 100 + 85 * Math.cos((angle * Math.PI) / 180);
-            const y2 = 100 + 85 * Math.sin((angle * Math.PI) / 180);
-            const isActive = isCurrentMansion(position);
+        {/* Current mansion highlight background arc */}
+        {(() => {
+          const startAngle = ((mansionNumber - 1.5) / 28) * 360 - 90;
+          const endAngle = ((mansionNumber - 0.5) / 28) * 360 - 90;
+          const startRad = (startAngle * Math.PI) / 180;
+          const endRad = (endAngle * Math.PI) / 180;
 
-            return (
-              <line
-                key={`line-${position}`}
-                x1={x1}
-                y1={y1}
-                x2={x2}
-                y2={y2}
-                stroke="currentColor"
-                strokeWidth={isActive ? 2 : 1}
-                className={isActive ? "text-primary" : "text-border opacity-20"}
-                opacity={isActive ? 1 : 0.5}
+          const x1 = 100 + 88 * Math.cos(startRad);
+          const y1 = 100 + 88 * Math.sin(startRad);
+          const x2 = 100 + 88 * Math.cos(endRad);
+          const y2 = 100 + 88 * Math.sin(endRad);
+
+          return (
+            <path
+              d={`M ${x1} ${y1} A 88 88 0 0 1 ${x2} ${y2}`}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              className="text-primary opacity-40"
+            />
+          );
+        })()}
+
+        {/* Radial lines for each mansion */}
+        {positions.map((position) => {
+          const angle = ((position - 1) / 28) * 360 - 90;
+          const radian = (angle * Math.PI) / 180;
+          const x1 = 100 + 40 * Math.cos(radian);
+          const y1 = 100 + 40 * Math.sin(radian);
+          const x2 = 100 + 88 * Math.cos(radian);
+          const y2 = 100 + 88 * Math.sin(radian);
+          const isActive = isCurrentMansion(position);
+          const isHovered = hoveredNumber === position;
+
+          return (
+            <line
+              key={`line-${position}`}
+              x1={x1}
+              y1={y1}
+              x2={x2}
+              y2={y2}
+              stroke="currentColor"
+              strokeWidth={isActive || isHovered ? 2.5 : 1}
+              className={
+                isActive
+                  ? "text-primary"
+                  : isHovered
+                    ? "text-primary/60"
+                    : "text-border opacity-20"
+              }
+              opacity={isActive || isHovered ? 1 : 0.4}
+            />
+          );
+        })}
+
+        {/* Center dot */}
+        <circle cx="100" cy="100" r="4" fill="currentColor" className="text-primary" />
+
+        {/* Position numbers as foreign objects for better text rendering */}
+        {positions.map((position) => {
+          const { x, y } = getPosition(position);
+          const isActive = isCurrentMansion(position);
+          const isHovered = hoveredNumber === position;
+
+          return (
+            <g key={`num-${position}`}>
+              {/* Invisible larger hitbox for hover */}
+              <circle
+                cx={100 + x}
+                cy={100 + y}
+                r="10"
+                fill="transparent"
+                onMouseEnter={() => setHoveredNumber(position)}
+                onMouseLeave={() => setHoveredNumber(null)}
+                style={{ cursor: "pointer" }}
               />
-            );
-          })}
 
-          {/* Current mansion highlight arc */}
-          {(() => {
-            const startAngle = ((mansionNumber - 1.5) / 28) * 360 - 90;
-            const endAngle = ((mansionNumber - 0.5) / 28) * 360 - 90;
-            const startRad = (startAngle * Math.PI) / 180;
-            const endRad = (endAngle * Math.PI) / 180;
-
-            const x1 = 100 + 75 * Math.cos(startRad);
-            const y1 = 100 + 75 * Math.sin(startRad);
-            const x2 = 100 + 75 * Math.cos(endRad);
-            const y2 = 100 + 75 * Math.sin(endRad);
-
-            const largeArc = 0;
-            const sweep = 1;
-
-            return (
-              <path
-                d={`M ${x1} ${y1} A 75 75 0 ${largeArc} ${sweep} ${x2} ${y2}`}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="text-primary opacity-50"
-              />
-            );
-          })()}
-        </svg>
-
-        {/* Number labels positioned around the circle */}
-        <div className="absolute inset-0">
-          {positions.map((position) => (
-            <div
-              key={`number-${position}`}
-              className="absolute w-5 h-5 flex items-center justify-center text-[9px] font-mono font-semibold"
-              style={getPositionStyle(position)}
-            >
-              <span
-                className={`${
-                  isCurrentMansion(position)
-                    ? "text-primary bg-primary/20 rounded-full w-5 h-5 flex items-center justify-center font-bold"
-                    : "text-muted-foreground"
-                }`}
+              {/* Number with animation */}
+              <motion.g
+                animate={{
+                  scale: isActive ? 1.4 : isHovered ? 1.25 : 1,
+                  opacity: isActive || isHovered ? 1 : 0.7,
+                }}
+                transition={{ duration: 0.2 }}
               >
-                {position}
-              </span>
-            </div>
-          ))}
-        </div>
+                {isActive && (
+                  <circle
+                    cx={100 + x}
+                    cy={100 + y}
+                    r="9"
+                    fill="currentColor"
+                    className="text-primary/20"
+                  />
+                )}
 
-        {/* Center label */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <div className="text-lg font-bold text-primary">{mansionNumber}</div>
-          <div className="text-[10px] text-muted-foreground">/ 28</div>
-        </div>
+                <text
+                  x={100 + x}
+                  y={100 + y}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className={`font-bold select-none pointer-events-none ${
+                    isActive ? "text-primary" : isHovered ? "text-primary/70" : "text-muted-foreground"
+                  }`}
+                  fontSize={isActive ? "12" : isHovered ? "11" : "10"}
+                  fill="currentColor"
+                >
+                  {position}
+                </text>
+              </motion.g>
+            </g>
+          );
+        })}
+      </svg>
+
+      {/* Center label */}
+      <div className="text-center -mt-2">
+        <div className="text-2xl font-bold text-primary">{mansionNumber}</div>
+        <div className="text-[10px] text-muted-foreground">of 28</div>
       </div>
     </div>
   );
