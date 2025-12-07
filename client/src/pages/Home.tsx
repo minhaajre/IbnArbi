@@ -380,23 +380,33 @@ export default function Home() {
 
         {/* Time Display - Mobile friendly row */}
         <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-4 pt-2 sm:pt-0">
-          <div className="flex items-center gap-2 sm:gap-4">
-            <div className="text-xl sm:text-3xl font-mono font-light tabular-nums tracking-tighter">
-              {format(now, "h:mm a")}
-            </div>
-            <div className="text-gold/80 font-arabic text-base sm:text-xl">
-              {hijriDate}
-            </div>
-            {moonTimes && (
-              <div className="text-[10px] sm:text-xs text-muted-foreground flex items-center gap-2">
-                {moonTimes.moonrise && (
-                  <span>☽↑ {format(moonTimes.moonrise, "h:mm a")}</span>
-                )}
-                {moonTimes.moonset && (
-                  <span>☽↓ {format(moonTimes.moonset, "h:mm a")}</span>
-                )}
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="text-xl sm:text-3xl font-mono font-light tabular-nums tracking-tighter">
+                {format(now, "h:mm a")}
               </div>
-            )}
+              <div className="flex flex-col gap-0.5">
+                <div className="text-muted-foreground text-xs">
+                  {format(now, "MMM d, yyyy")}
+                </div>
+                <div className="text-gold/80 font-arabic text-sm sm:text-base">
+                  {hijriDate}
+                </div>
+              </div>
+              {moonTimes && (
+                <div className="text-[10px] sm:text-xs text-muted-foreground flex items-center gap-2">
+                  {moonTimes.moonrise && (
+                    <span>☽↑ {format(moonTimes.moonrise, "h:mm a")}</span>
+                  )}
+                  {moonTimes.moonset && (
+                    <span>☽↓ {format(moonTimes.moonset, "h:mm a")}</span>
+                  )}
+                </div>
+              )}
+            </div>
+            <div className="text-[9px] text-muted-foreground/50 italic pl-0">
+              * Islamic date begins at sunset, not midnight
+            </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-[10px] sm:text-xs text-muted-foreground opacity-50">Updated: {format(new Date(), "h:mm a")}</span>
