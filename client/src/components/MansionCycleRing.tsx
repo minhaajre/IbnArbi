@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IBN_ARABI_MANSIONS } from "@/lib/constants";
 
@@ -7,7 +7,8 @@ interface MansionCycleRingProps {
 }
 
 export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
-  const [hoveredMansion, setHoveredMansion] = useState<number | null>(null);
+  const [selectedMansion, setSelectedMansion] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const positions = Array.from({ length: 28 }, (_, i) => i + 1);
 
   const getMansionData = (position: number) => {
@@ -24,12 +25,27 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
       highlight: isBlessed ? "text-green-500" : "text-amber-500",
       statusText: isBlessed ? "Blessed" : "Challenging",
       light: isBlessed ? "text-green-100 dark:text-green-900" : "text-amber-100 dark:text-amber-900",
-      filterClass: isBlessed ? "brightness-90 hue-rotate-90" : "brightness-90 hue-rotate-30",
     };
   };
 
-  const displayedMansion = hoveredMansion ? getMansionData(hoveredMansion) : getMansionData(mansionNumber);
-  const displayNumber = hoveredMansion || mansionNumber;
+  const handleTreeClick = (position: number) => {
+    setSelectedMansion(position);
+  };
+
+  // Close card when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setSelectedMansion(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const displayedMansion = selectedMansion ? getMansionData(selectedMansion) : getMansionData(mansionNumber);
+  const displayNumber = selectedMansion || mansionNumber;
   const displayColor = getMansionColor(displayNumber);
 
   // Inline tree SVG that can be colored
@@ -58,7 +74,7 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
   );
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div ref={containerRef} className="flex flex-col items-center gap-4">
       <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
         All 28 Lunar Mansions
       </div>
@@ -67,28 +83,28 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
       <div className="grid grid-cols-7 gap-3">
         {positions.map((position) => {
           const colors = getMansionColor(position);
-          const isActive = position === mansionNumber;
-          const isHovered = hoveredMansion === position;
+          const isSelected = selectedMansion === position;
 
           return (
             <motion.button
               key={position}
-              onMouseEnter={() => setHoveredMansion(position)}
-              onMouseLeave={() => setHoveredMansion(null)}
+              onClick={() => handleTreeClick(position)}
               animate={{
-                scale: isHovered ? 1.15 : 1,
+                scale: isSelected ? 1.2 : 1,
               }}
               transition={{ duration: 0.15 }}
-              className={`relative flex flex-col items-center justify-center cursor-pointer group`}
+              className={`relative flex flex-col items-center justify-center cursor-pointer group transition-all ${
+                isSelected ? "drop-shadow-lg" : ""
+              }`}
               data-testid={`mansion-tree-${position}`}
             >
               {/* Tree icon colored by status */}
-              <div className={`transition-all ${isHovered ? "drop-shadow-lg" : ""}`}>
+              <div>
                 <TreeIcon color={colors.text === "text-green-500" ? "#22c55e" : "#f59e0b"} size={32} />
               </div>
 
-              {/* Mansion number on hover */}
-              {isHovered && (
+              {/* Mansion number on click */}
+              {isSelected && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -102,9 +118,9 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
         })}
       </div>
 
-      {/* Info card - only shows when hovering */}
+      {/* Info card - only shows when clicked */}
       <AnimatePresence>
-        {hoveredMansion && (
+        {selectedMansion && (
           <motion.div
             key={displayNumber}
             initial={{ opacity: 0, y: -10 }}
