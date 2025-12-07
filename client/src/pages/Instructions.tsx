@@ -421,7 +421,6 @@ export default function Instructions() {
           {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK}
         </div>
       </div>
-
       <div className="relative z-10 p-4 sm:p-8 md:p-12 max-w-6xl mx-auto">
         <header className="mb-8">
           <Link href="/">
@@ -897,7 +896,7 @@ export default function Instructions() {
         </div>
 
         <footer className="mt-12 pt-6 border-t border-border text-center text-sm text-muted-foreground">
-          <p>Based on the teachings of Muhyiddin Ibn Arabi (1165-1240 CE)</p>
+          <p className="font-semibold">Based on the teachings of Muhyiddin Ibn Arabi (1165-1240 CE)</p>
           <p className="font-arabic mt-1 text-base">مبني على تعاليم محيي الدين ابن عربي</p>
         </footer>
       </div>
