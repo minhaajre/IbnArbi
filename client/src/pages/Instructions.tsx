@@ -404,301 +404,314 @@ const MANSION_DETAILS = [
 ];
 
 const CATEGORY_COLORS: Record<string, string> = {
-  "Initiating": "bg-blue-500/10 text-blue-500 border-blue-500/30",
-  "Stabilizing": "bg-emerald-500/10 text-emerald-500 border-emerald-500/30",
-  "Relational": "bg-purple-500/10 text-purple-500 border-purple-500/30",
-  "Threshold": "bg-amber-500/10 text-amber-500 border-amber-500/30"
+  "Initiating": "bg-blue-500/20 text-blue-400 border-blue-500/40",
+  "Stabilizing": "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
+  "Relational": "bg-purple-500/20 text-purple-400 border-purple-500/40",
+  "Threshold": "bg-amber-500/20 text-amber-400 border-amber-500/40"
 };
+
+const DIVINE_NAMES_WATERMARK = "الله الرحمن الرحيم الملك القدوس السلام المؤمن المهيمن العزيز الجبار المتكبر الخالق البارئ المصور الغفار القهار الوهاب الرزاق الفتاح العليم";
 
 export default function Instructions() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 sm:p-8 md:p-12 max-w-4xl mx-auto">
-      <header className="mb-8">
-        <Link href="/">
-          <Button variant="ghost" size="sm" className="mb-4" data-testid="back-to-home">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to App
-          </Button>
-        </Link>
-        <h1 className="text-3xl sm:text-4xl font-serif text-gold mb-2">
-          Instructions <span className="font-arabic">تعليمات</span>
-        </h1>
-        <p className="text-muted-foreground">
-          A guide to using Ibn Arabi's Cosmology App based on his spiritual teachings
-        </p>
-      </header>
-
-      <div className="space-y-8">
-        <section className="glass-card rounded-xl p-5 border border-border">
-          <h2 className="text-xl font-serif text-gold mb-3 flex items-center gap-2">
-            <Scroll className="w-5 h-5" />
-            About This App
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-3">
-            This application is based on the cosmological teachings of Muhyiddin Ibn Arabi (1165-1240 CE), 
-            the great Sufi master known as "Sheikh al-Akbar" (The Greatest Master). His work describes 
-            the hierarchical structure of existence from the Divine Essence down through the celestial 
-            spheres to the material world.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            The 28 Lunar Mansions (Manazil al-Qamar) represent stages of spiritual ascent and are 
-            connected to the Arabic letters, Divine Names, and prophetic stations as outlined in 
-            Ibn Arabi's Fusus al-Hikam and other works.
-          </p>
-        </section>
-
-        <section className="glass-card rounded-xl p-5 border border-border">
-          <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-            <Moon className="w-5 h-5" />
-            Lunar Mansions <span className="font-arabic text-base">المنازل القمرية</span>
-          </h2>
-          <div className="space-y-3 text-muted-foreground mb-6">
-            <p className="leading-relaxed">
-              The Moon travels through each of the 28 mansions approximately every day. Each mansion is not just a region 
-              of space but a <strong className="text-foreground">place where a specific divine quality enters time</strong>, 
-              shaping events, moods, and spiritual openings.
-            </p>
-            <ul className="list-disc list-inside space-y-2 ml-2">
-              <li><strong className="text-foreground">Check the Current Mansion:</strong> See which lunar mansion the Moon currently occupies and its spiritual significance.</li>
-              <li><strong className="text-foreground">Blessed vs Challenging:</strong> Green indicates a blessed time for action; amber indicates a time for caution and inner work.</li>
-              <li><strong className="text-foreground">Recommended Actions:</strong> Each mansion has specific activities that are spiritually aligned with its nature.</li>
-              <li><strong className="text-foreground">Divine Attributes:</strong> Meditate on the Divine Name associated with the current mansion.</li>
-              <li><strong className="text-foreground">Arabic Letters:</strong> The letters connect to practices of dhikr (remembrance) and spiritual recitation.</li>
-            </ul>
-          </div>
-
-          {/* Four Categories */}
-          <div className="mb-6 p-4 rounded-lg bg-foreground/5 border border-border">
-            <h3 className="text-sm font-medium text-foreground mb-3">The Four Categories of Mansions</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <div className="flex items-start gap-2">
-                <span className="px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/30 font-medium">1-4</span>
-                <div>
-                  <strong className="text-foreground">Initiating:</strong>
-                  <span className="text-muted-foreground ml-1">Seed energy, vision, raw potential. Good for beginnings.</span>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/30 font-medium">5-8</span>
-                <div>
-                  <strong className="text-foreground">Stabilizing:</strong>
-                  <span className="text-muted-foreground ml-1">Form, structure, commitment. Good for building.</span>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-500 border border-purple-500/30 font-medium">9-20</span>
-                <div>
-                  <strong className="text-foreground">Relational:</strong>
-                  <span className="text-muted-foreground ml-1">Communication, travel, learning, emotion, creativity.</span>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/30 font-medium">21-28</span>
-                <div>
-                  <strong className="text-foreground">Threshold:</strong>
-                  <span className="text-muted-foreground ml-1">Endings, karma, transitions. Good for closure.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Waxing vs Waning */}
-          <div className="mb-6 p-4 rounded-lg bg-foreground/5 border border-border">
-            <h3 className="text-sm font-medium text-foreground mb-3">Waxing vs Waning Moon</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <div className="flex items-start gap-2">
-                <Sun className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                <div>
-                  <strong className="text-foreground">Waxing (New → Full):</strong>
-                  <span className="text-muted-foreground block mt-1">Best for starting things. Supports growth, attraction, gathering. Opens doors outwardly.</span>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <Moon className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-                <div>
-                  <strong className="text-foreground">Waning (Full → New):</strong>
-                  <span className="text-muted-foreground block mt-1">Best for ending things. Supports release, healing, forgiveness. Closes unnecessary loops.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Collapsible Mansion Guide */}
-          <div className="border border-border rounded-lg overflow-hidden">
-            <div className="bg-foreground/5 px-4 py-3 border-b border-border">
-              <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-gold" />
-                Complete Guide to All 28 Mansions
-                <span className="font-arabic text-xs text-muted-foreground">دليل المنازل الثمانية والعشرين</span>
-              </h3>
-            </div>
-            <Accordion type="single" collapsible className="w-full">
-              {MANSION_DETAILS.map((mansion) => (
-                <AccordionItem key={mansion.number} value={`mansion-${mansion.number}`} className="border-b border-border last:border-0">
-                  <AccordionTrigger className="px-4 py-3 hover:bg-foreground/5 text-left" data-testid={`mansion-accordion-${mansion.number}`}>
-                    <div className="flex items-center gap-3 flex-1">
-                      <span className="text-xs font-mono text-primary/80 w-6">{mansion.number}</span>
-                      <div className="flex-1 min-w-0">
-                        <span className="font-medium text-foreground">{mansion.name}</span>
-                        <span className="font-arabic text-muted-foreground ml-2">{mansion.arabic}</span>
-                      </div>
-                      <span className={`px-2 py-0.5 rounded-full text-[10px] border ${CATEGORY_COLORS[mansion.category]}`}>
-                        {mansion.category}
-                      </span>
-                      {mansion.nature === "blessed" ? (
-                        <Check className="w-4 h-4 text-green-500" />
-                      ) : (
-                        <X className="w-4 h-4 text-amber-500" />
-                      )}
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-4 pb-4">
-                    <div className="space-y-3 text-sm">
-                      <div className="flex items-start gap-2">
-                        <Sparkles className="w-4 h-4 text-gold shrink-0 mt-0.5" />
-                        <div>
-                          <strong className="text-foreground text-xs uppercase tracking-wide">Theme:</strong>
-                          <p className="text-muted-foreground">{mansion.theme}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div className="p-2.5 rounded-lg bg-green-500/5 border border-green-500/20">
-                          <strong className="text-green-500 text-xs uppercase tracking-wide block mb-1">Best For:</strong>
-                          <p className="text-muted-foreground text-xs">{mansion.bestFor}</p>
-                        </div>
-                        <div className="p-2.5 rounded-lg bg-red-500/5 border border-red-500/20">
-                          <strong className="text-red-500 text-xs uppercase tracking-wide block mb-1">Avoid:</strong>
-                          <p className="text-muted-foreground text-xs">{mansion.avoid}</p>
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div className="flex items-start gap-2 p-2.5 rounded-lg bg-amber-500/5 border border-amber-500/20">
-                          <Sun className="w-3 h-3 text-amber-400 shrink-0 mt-0.5" />
-                          <div>
-                            <strong className="text-amber-500 text-xs uppercase tracking-wide">Waxing:</strong>
-                            <p className="text-muted-foreground text-xs">{mansion.waxing}</p>
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-2 p-2.5 rounded-lg bg-slate-500/5 border border-slate-500/20">
-                          <Moon className="w-3 h-3 text-slate-400 shrink-0 mt-0.5" />
-                          <div>
-                            <strong className="text-slate-400 text-xs uppercase tracking-wide">Waning:</strong>
-                            <p className="text-muted-foreground text-xs">{mansion.waning}</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-wrap gap-3 pt-2 border-t border-border">
-                        <div className="flex items-center gap-1.5">
-                          <Star className="w-3 h-3 text-gold" />
-                          <span className="text-xs text-muted-foreground">Divine Name:</span>
-                          <span className="text-xs text-gold font-medium">{mansion.divineName}</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <Heart className="w-3 h-3 text-primary" />
-                          <span className="text-xs text-muted-foreground">Ritual:</span>
-                          <span className="text-xs text-foreground">{mansion.ritual}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
-
-        <section className="glass-card rounded-xl p-5 border border-border">
-          <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-            <Clock className="w-5 h-5" />
-            Planetary Hours <span className="font-arabic text-base">الساعات الكوكبية</span>
-          </h2>
-          <div className="space-y-3 text-muted-foreground">
-            <p className="leading-relaxed">
-              Each day is divided into 24 planetary hours, with each hour ruled by one of the seven 
-              classical planets. The day ruler sets the spiritual tone for the entire day.
-            </p>
-            <ul className="list-disc list-inside space-y-2 ml-2">
-              <li><strong className="text-foreground">Current Hour:</strong> The highlighted hour shows the current planetary influence.</li>
-              <li><strong className="text-foreground">Day Ruler:</strong> The planet ruling the day (Sun for Sunday, Moon for Monday, etc.).</li>
-              <li><strong className="text-foreground">Prophet Association:</strong> Each planet is linked to a prophet in Ibn Arabi's system, guiding spiritual focus.</li>
-              <li><strong className="text-foreground">Protocol:</strong> Suggested spiritual practices for the current planetary hour.</li>
-              <li><strong className="text-foreground">Void of Course Moon:</strong> Yellow VOC indicator means the Moon makes no major aspects before leaving its sign—traditionally a time to avoid important decisions.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section className="glass-card rounded-xl p-5 border border-border">
-          <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-            <Orbit className="w-5 h-5" />
-            Celestial Dignities <span className="font-arabic text-base">الكرامات السماوية</span>
-          </h2>
-          <div className="space-y-3 text-muted-foreground">
-            <p className="leading-relaxed">
-              This table shows the current positions of the seven classical planets and their dignities:
-            </p>
-            <ul className="list-disc list-inside space-y-2 ml-2">
-              <li><strong className="text-foreground">Rulership (R):</strong> Planet in its home sign—strongest expression.</li>
-              <li><strong className="text-foreground">Exaltation (E):</strong> Planet in its sign of honor—elevated influence.</li>
-              <li><strong className="text-foreground">Detriment (d):</strong> Planet in the sign opposite its home—weakened.</li>
-              <li><strong className="text-foreground">Fall (f):</strong> Planet in the sign opposite its exaltation—most challenged.</li>
-              <li><strong className="text-foreground">Tropical vs Sidereal:</strong> Toggle between Western (tropical) and Vedic/traditional (sidereal) zodiac calculations.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section className="glass-card rounded-xl p-5 border border-border">
-          <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-            <Star className="w-5 h-5" />
-            Elemental Balance <span className="font-arabic text-base">توازن العناصر</span>
-          </h2>
-          <div className="space-y-3 text-muted-foreground">
-            <p className="leading-relaxed">
-              The four elements (Fire, Earth, Air, Water) represent fundamental qualities of existence. 
-              This section shows which elements are emphasized based on current planetary positions:
-            </p>
-            <ul className="list-disc list-inside space-y-2 ml-2">
-              <li><strong className="text-foreground text-red-400">Fire (النار):</strong> Action, will, transformation, spiritual aspiration.</li>
-              <li><strong className="text-foreground text-amber-600">Earth (التراب):</strong> Stability, manifestation, practical matters.</li>
-              <li><strong className="text-foreground text-sky-400">Air (الهواء):</strong> Intellect, communication, social connection.</li>
-              <li><strong className="text-foreground text-blue-400">Water (الماء):</strong> Emotion, intuition, purification, receptivity.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section className="glass-card rounded-xl p-5 border border-border">
-          <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-            <Calendar className="w-5 h-5" />
-            How to Use Daily
-          </h2>
-          <div className="space-y-3 text-muted-foreground">
-            <ol className="list-decimal list-inside space-y-3 ml-2">
-              <li><strong className="text-foreground">Morning Check:</strong> Review the day ruler and current lunar mansion to understand the spiritual climate.</li>
-              <li><strong className="text-foreground">Plan Activities:</strong> Align important tasks with favorable planetary hours and mansion indications.</li>
-              <li><strong className="text-foreground">Spiritual Practice:</strong> Use the Divine Attributes and Arabic letters for dhikr and meditation.</li>
-              <li><strong className="text-foreground">Evening Reflection:</strong> Note how the day's energies manifested in your experience.</li>
-              <li><strong className="text-foreground">White Days:</strong> Consider fasting on the 13th, 14th, and 15th of each Islamic month when indicated.</li>
-            </ol>
-          </div>
-        </section>
-
-        <section className="glass-card rounded-xl p-5 border border-border bg-gold/5">
-          <p className="text-center text-muted-foreground italic">
-            "The cosmos is a book and every creature is a letter in it."
-          </p>
-          <p className="text-center font-arabic text-lg mt-2 text-gold">
-            الكون كتاب وكل مخلوق حرف فيه
-          </p>
-          <p className="text-center text-xs text-muted-foreground mt-2">— Ibn Arabi</p>
-        </section>
+    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+      {/* Andalusian Divine Names Watermark Background */}
+      <div className="fixed inset-0 pointer-events-none select-none overflow-hidden opacity-[0.03] z-0">
+        <div className="absolute inset-0 font-arabic text-6xl sm:text-8xl leading-loose text-foreground whitespace-pre-wrap break-words p-8 transform rotate-[-5deg] scale-110">
+          {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK}
+        </div>
       </div>
 
-      <footer className="mt-12 pt-6 border-t border-border text-center text-xs text-muted-foreground">
-        <p>Based on the teachings of Muhyiddin Ibn Arabi (1165-1240 CE)</p>
-        <p className="font-arabic mt-1">مبني على تعاليم محيي الدين ابن عربي</p>
-      </footer>
+      <div className="relative z-10 p-4 sm:p-8 md:p-12 max-w-4xl mx-auto">
+        <header className="mb-8">
+          <Link href="/">
+            <Button variant="ghost" size="sm" className="mb-4" data-testid="back-to-home">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to App
+            </Button>
+          </Link>
+          <h1 className="text-3xl sm:text-4xl font-serif text-gold mb-2">
+            Instructions <span className="font-arabic">تعليمات</span>
+          </h1>
+          <p className="text-muted-foreground text-lg">
+            A guide to using Ibn Arabi's Cosmology App based on his spiritual teachings
+          </p>
+        </header>
+
+        <div className="space-y-8">
+          <section className="glass-card rounded-xl p-6 border border-border">
+            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
+              <Scroll className="w-5 h-5" />
+              About This App
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4 text-base">
+              This application is based on the cosmological teachings of Muhyiddin Ibn Arabi (1165-1240 CE), 
+              the great Sufi master known as "Sheikh al-Akbar" (The Greatest Master). His work describes 
+              the hierarchical structure of existence from the Divine Essence down through the celestial 
+              spheres to the material world.
+            </p>
+            <p className="text-muted-foreground leading-relaxed text-base">
+              The 28 Lunar Mansions (Manazil al-Qamar) represent stages of spiritual ascent and are 
+              connected to the Arabic letters, Divine Names, and prophetic stations as outlined in 
+              Ibn Arabi's Fusus al-Hikam and other works.
+            </p>
+          </section>
+
+          <section id="lunar-mansions" className="glass-card rounded-xl p-6 border border-border">
+            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
+              <Moon className="w-5 h-5" />
+              Lunar Mansions <span className="font-arabic text-lg">المنازل القمرية</span>
+            </h2>
+            <div className="space-y-4 text-muted-foreground mb-6">
+              <p className="leading-relaxed text-base">
+                The Moon travels through each of the 28 mansions approximately every day. Each mansion is not just a region 
+                of space but a <strong className="text-foreground">place where a specific divine quality enters time</strong>, 
+                shaping events, moods, and spiritual openings.
+              </p>
+              <ul className="list-disc list-inside space-y-2 ml-2 text-base">
+                <li><strong className="text-foreground">Check the Current Mansion:</strong> See which lunar mansion the Moon currently occupies.</li>
+                <li><strong className="text-foreground">Blessed vs Challenging:</strong> Green indicates a blessed time; amber indicates caution.</li>
+                <li><strong className="text-foreground">Recommended Actions:</strong> Activities spiritually aligned with the mansion's nature.</li>
+                <li><strong className="text-foreground">Divine Attributes:</strong> Meditate on the Divine Name associated with the mansion.</li>
+              </ul>
+            </div>
+
+            {/* Four Categories */}
+            <div className="mb-6 p-5 rounded-lg bg-foreground/5 border border-border">
+              <h3 className="text-base font-medium text-foreground mb-4">The Four Categories of Mansions</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex items-start gap-3">
+                  <span className="px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/40 font-medium text-sm">1-4</span>
+                  <div>
+                    <strong className="text-foreground text-base">Initiating</strong>
+                    <p className="text-muted-foreground text-sm mt-1">Seed energy, vision, raw potential. Good for beginnings.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-medium text-sm">5-8</span>
+                  <div>
+                    <strong className="text-foreground text-base">Stabilizing</strong>
+                    <p className="text-muted-foreground text-sm mt-1">Form, structure, commitment. Good for building.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/40 font-medium text-sm">9-20</span>
+                  <div>
+                    <strong className="text-foreground text-base">Relational</strong>
+                    <p className="text-muted-foreground text-sm mt-1">Communication, travel, learning, emotion, creativity.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 font-medium text-sm">21-28</span>
+                  <div>
+                    <strong className="text-foreground text-base">Threshold</strong>
+                    <p className="text-muted-foreground text-sm mt-1">Endings, karma, transitions. Good for closure.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Waxing vs Waning */}
+            <div className="mb-6 p-5 rounded-lg bg-foreground/5 border border-border">
+              <h3 className="text-base font-medium text-foreground mb-4">Waxing vs Waning Moon</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="flex items-start gap-3">
+                  <Sun className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="text-foreground text-base">Waxing (New → Full)</strong>
+                    <p className="text-muted-foreground text-sm mt-1">Best for starting things. Supports growth, attraction, gathering. Opens doors outwardly.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Moon className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="text-foreground text-base">Waning (Full → New)</strong>
+                    <p className="text-muted-foreground text-sm mt-1">Best for ending things. Supports release, healing, forgiveness. Closes unnecessary loops.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Collapsible Mansion Guide */}
+            <div className="border border-border rounded-lg overflow-hidden">
+              <div className="bg-foreground/5 px-5 py-4 border-b border-border">
+                <h3 className="text-base font-medium text-foreground flex items-center gap-2">
+                  <BookOpen className="w-5 h-5 text-gold" />
+                  Complete Guide to All 28 Mansions
+                  <span className="font-arabic text-sm text-muted-foreground ml-2">دليل المنازل الثمانية والعشرين</span>
+                </h3>
+              </div>
+              <Accordion type="single" collapsible className="w-full">
+                {MANSION_DETAILS.map((mansion) => (
+                  <AccordionItem key={mansion.number} value={`mansion-${mansion.number}`} className="border-b border-border last:border-0">
+                    <AccordionTrigger className="px-5 py-4 hover:bg-foreground/5" data-testid={`mansion-accordion-${mansion.number}`}>
+                      <div className="flex items-center gap-4 flex-1 text-left">
+                        <span className="text-base font-mono text-gold w-8">{mansion.number}</span>
+                        <div className="flex-1 min-w-0">
+                          <span className="font-medium text-foreground text-base">{mansion.name}</span>
+                          <span className="font-arabic text-muted-foreground ml-2 text-base">{mansion.arabic}</span>
+                        </div>
+                        <span className={`px-2.5 py-1 rounded-full text-xs border hidden sm:inline-block ${CATEGORY_COLORS[mansion.category]}`}>
+                          {mansion.category}
+                        </span>
+                        {mansion.nature === "blessed" ? (
+                          <Check className="w-5 h-5 text-green-500 shrink-0" />
+                        ) : (
+                          <X className="w-5 h-5 text-amber-500 shrink-0" />
+                        )}
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-5 pb-5 pt-2">
+                      <div className="space-y-4">
+                        {/* Theme */}
+                        <div className="flex items-start gap-3">
+                          <Sparkles className="w-5 h-5 text-gold shrink-0 mt-0.5" />
+                          <div>
+                            <strong className="text-foreground text-sm uppercase tracking-wide">Theme</strong>
+                            <p className="text-foreground/80 text-base mt-1">{mansion.theme}</p>
+                          </div>
+                        </div>
+                        
+                        {/* Best For / Avoid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/30">
+                            <strong className="text-green-400 text-sm uppercase tracking-wide block mb-2">Best For</strong>
+                            <p className="text-foreground/80 text-base">{mansion.bestFor}</p>
+                          </div>
+                          <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/30">
+                            <strong className="text-red-400 text-sm uppercase tracking-wide block mb-2">Avoid</strong>
+                            <p className="text-foreground/80 text-base">{mansion.avoid}</p>
+                          </div>
+                        </div>
+
+                        {/* Waxing / Waning */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div className="flex items-start gap-3 p-4 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                            <Sun className="w-4 h-4 text-amber-400 shrink-0 mt-1" />
+                            <div>
+                              <strong className="text-amber-400 text-sm uppercase tracking-wide">Waxing Moon</strong>
+                              <p className="text-foreground/80 text-sm mt-1">{mansion.waxing}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-start gap-3 p-4 rounded-lg bg-slate-500/10 border border-slate-500/30">
+                            <Moon className="w-4 h-4 text-slate-400 shrink-0 mt-1" />
+                            <div>
+                              <strong className="text-slate-400 text-sm uppercase tracking-wide">Waning Moon</strong>
+                              <p className="text-foreground/80 text-sm mt-1">{mansion.waning}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Divine Name & Ritual */}
+                        <div className="flex flex-col sm:flex-row gap-4 pt-3 border-t border-border">
+                          <div className="flex items-center gap-2">
+                            <Star className="w-4 h-4 text-gold" />
+                            <span className="text-muted-foreground text-sm">Divine Name:</span>
+                            <span className="text-gold font-medium text-base">{mansion.divineName}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Heart className="w-4 h-4 text-primary" />
+                            <span className="text-muted-foreground text-sm">Ritual:</span>
+                            <span className="text-foreground text-base">{mansion.ritual}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </section>
+
+          <section id="planetary-hours" className="glass-card rounded-xl p-6 border border-border">
+            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
+              <Clock className="w-5 h-5" />
+              Planetary Hours <span className="font-arabic text-lg">الساعات الكوكبية</span>
+            </h2>
+            <div className="space-y-4 text-muted-foreground">
+              <p className="leading-relaxed text-base">
+                Each day is divided into 24 planetary hours, with each hour ruled by one of the seven 
+                classical planets. The day ruler sets the spiritual tone for the entire day.
+              </p>
+              <ul className="list-disc list-inside space-y-3 ml-2 text-base">
+                <li><strong className="text-foreground">Current Hour:</strong> The highlighted hour shows the current planetary influence.</li>
+                <li><strong className="text-foreground">Day Ruler:</strong> The planet ruling the day (Sun for Sunday, Moon for Monday, etc.).</li>
+                <li><strong className="text-foreground">Prophet Association:</strong> Each planet is linked to a prophet in Ibn Arabi's system.</li>
+                <li><strong className="text-foreground">Protocol:</strong> Suggested spiritual practices for the current planetary hour.</li>
+                <li><strong className="text-foreground">Void of Course Moon:</strong> Yellow VOC indicator means avoid important decisions.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section id="celestial-dignities" className="glass-card rounded-xl p-6 border border-border">
+            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
+              <Orbit className="w-5 h-5" />
+              Celestial Dignities <span className="font-arabic text-lg">الكرامات السماوية</span>
+            </h2>
+            <div className="space-y-4 text-muted-foreground">
+              <p className="leading-relaxed text-base">
+                This table shows the current positions of the seven classical planets and their dignities:
+              </p>
+              <ul className="list-disc list-inside space-y-3 ml-2 text-base">
+                <li><strong className="text-foreground">Rulership (R):</strong> Planet in its home sign—strongest expression.</li>
+                <li><strong className="text-foreground">Exaltation (E):</strong> Planet in its sign of honor—elevated influence.</li>
+                <li><strong className="text-foreground">Detriment (d):</strong> Planet in the sign opposite its home—weakened.</li>
+                <li><strong className="text-foreground">Fall (f):</strong> Planet in the sign opposite its exaltation—most challenged.</li>
+                <li><strong className="text-foreground">Tropical vs Sidereal:</strong> Toggle between Western and Vedic zodiac calculations.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section id="elemental-balance" className="glass-card rounded-xl p-6 border border-border">
+            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
+              <Star className="w-5 h-5" />
+              Elemental Balance <span className="font-arabic text-lg">توازن العناصر</span>
+            </h2>
+            <div className="space-y-4 text-muted-foreground">
+              <p className="leading-relaxed text-base">
+                The four elements represent fundamental qualities of existence:
+              </p>
+              <ul className="list-disc list-inside space-y-3 ml-2 text-base">
+                <li><strong className="text-red-400">Fire (النار):</strong> Action, will, transformation, spiritual aspiration.</li>
+                <li><strong className="text-amber-600">Earth (التراب):</strong> Stability, manifestation, practical matters.</li>
+                <li><strong className="text-sky-400">Air (الهواء):</strong> Intellect, communication, social connection.</li>
+                <li><strong className="text-blue-400">Water (الماء):</strong> Emotion, intuition, purification, receptivity.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section className="glass-card rounded-xl p-6 border border-border">
+            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
+              <Calendar className="w-5 h-5" />
+              How to Use Daily
+            </h2>
+            <div className="space-y-4 text-muted-foreground">
+              <ol className="list-decimal list-inside space-y-4 ml-2 text-base">
+                <li><strong className="text-foreground">Morning Check:</strong> Review the day ruler and current lunar mansion.</li>
+                <li><strong className="text-foreground">Plan Activities:</strong> Align tasks with favorable planetary hours.</li>
+                <li><strong className="text-foreground">Spiritual Practice:</strong> Use Divine Attributes for dhikr and meditation.</li>
+                <li><strong className="text-foreground">Evening Reflection:</strong> Note how the day's energies manifested.</li>
+                <li><strong className="text-foreground">White Days:</strong> Fast on the 13th, 14th, and 15th of each Islamic month.</li>
+              </ol>
+            </div>
+          </section>
+
+          <section className="glass-card rounded-xl p-6 border border-border bg-gold/5">
+            <p className="text-center text-muted-foreground italic text-lg">
+              "The cosmos is a book and every creature is a letter in it."
+            </p>
+            <p className="text-center font-arabic text-2xl mt-3 text-gold">
+              الكون كتاب وكل مخلوق حرف فيه
+            </p>
+            <p className="text-center text-sm text-muted-foreground mt-3">— Ibn Arabi</p>
+          </section>
+        </div>
+
+        <footer className="mt-12 pt-6 border-t border-border text-center text-sm text-muted-foreground">
+          <p>Based on the teachings of Muhyiddin Ibn Arabi (1165-1240 CE)</p>
+          <p className="font-arabic mt-1 text-base">مبني على تعاليم محيي الدين ابن عربي</p>
+        </footer>
+      </div>
     </div>
   );
 }

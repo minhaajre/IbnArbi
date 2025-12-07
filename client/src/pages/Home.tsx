@@ -25,7 +25,7 @@ import { MansionCard } from "@/components/MansionCard";
 import { ZodiacWheel } from "@/components/ZodiacWheel";
 import { ElementalBalance } from "@/components/ElementalBalance";
 import { PlanetaryProtocol } from "@/components/PlanetaryProtocol";
-import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen } from "lucide-react";
+import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen, Info } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -292,6 +292,18 @@ export default function Home() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+             {/* Theme Toggle */}
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="rounded-full w-8 h-8 sm:w-9 sm:h-9 border border-border"
+            >
+              <Sun className="h-3 w-3 sm:h-4 sm:w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-3 w-3 sm:h-4 sm:w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+
             {/* Instructions Button */}
             <Link href="/instructions">
               <Button 
@@ -305,18 +317,6 @@ export default function Home() {
                 <span className="sm:hidden">Guide</span>
               </Button>
             </Link>
-
-             {/* Theme Toggle */}
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-full w-8 h-8 sm:w-9 sm:h-9 border border-border"
-            >
-              <Sun className="h-3 w-3 sm:h-4 sm:w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-3 w-3 sm:h-4 sm:w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
 
             {/* Sidereal Toggle */}
             <div className="flex items-center gap-1.5 sm:gap-2 bg-card/50 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 border border-border">
@@ -381,7 +381,6 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[10px] sm:text-xs text-muted-foreground opacity-50">Last Updated: {format(new Date(), "h:mm a")}</span>
             {whiteDaysInfo && whiteDaysInfo.isWhiteDay && (
               <div className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-500 border border-amber-500/30 inline-flex items-center gap-1" data-testid="white-days-indicator">
                 <Moon className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
@@ -405,9 +404,14 @@ export default function Home() {
         <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <h2 className="text-base sm:text-lg font-serif mb-2 sm:mb-3 text-foreground/80 relative z-10">
-            Current Lunar Mansion <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">المنزلة القمرية الحالية</span>
-          </h2>
+          <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
+            <h2 className="text-base sm:text-lg font-serif text-foreground/80">
+              Current Lunar Mansion <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">المنزلة القمرية الحالية</span>
+            </h2>
+            <Link href="/instructions#lunar-mansions">
+              <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-lunar-mansion" />
+            </Link>
+          </div>
           <div className="relative z-10">
             <MansionCard mansion={mansion} progress={mansionProgress ?? undefined} />
           </div>
@@ -420,9 +424,14 @@ export default function Home() {
           
           {/* Header with date picker */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2 sm:mb-3 relative z-10">
-            <h2 className="text-base sm:text-lg font-serif text-foreground/80">
-              Planetary Hours <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الساعات الكوكبية</span>
-            </h2>
+            <div className="flex items-center gap-2">
+              <h2 className="text-base sm:text-lg font-serif text-foreground/80">
+                Planetary Hours <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الساعات الكوكبية</span>
+              </h2>
+              <Link href="/instructions#planetary-hours">
+                <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-planetary-hours" />
+              </Link>
+            </div>
             <div className="flex items-center gap-1 sm:gap-2">
               <Popover>
                 <PopoverTrigger asChild>
@@ -514,6 +523,10 @@ export default function Home() {
                 />
               );
             })()}
+            {/* Last Updated */}
+            <div className="text-[10px] sm:text-xs text-muted-foreground/50 mt-2 text-right">
+              Last Updated: {format(new Date(), "h:mm a")}
+            </div>
           </div>
           
           {/* Day Ruler & Planetary Protocol - Merged Section */}
@@ -573,9 +586,14 @@ export default function Home() {
         <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <h2 className="text-base sm:text-lg font-serif mb-2 sm:mb-3 text-foreground/80 relative z-10">
-            Celestial Dignities <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الكرامات السماوية</span>
-          </h2>
+          <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
+            <h2 className="text-base sm:text-lg font-serif text-foreground/80">
+              Celestial Dignities <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الكرامات السماوية</span>
+            </h2>
+            <Link href="/instructions#celestial-dignities">
+              <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-dignities" />
+            </Link>
+          </div>
           <div className="relative z-10 overflow-x-auto">
             <PlanetaryTable 
               planets={planets} 
@@ -589,9 +607,14 @@ export default function Home() {
         <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <h2 className="text-base sm:text-lg font-serif mb-2 sm:mb-3 text-foreground/80 relative z-10">
-            Elemental Balance <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">توازن العناصر</span>
-          </h2>
+          <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
+            <h2 className="text-base sm:text-lg font-serif text-foreground/80">
+              Elemental Balance <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">توازن العناصر</span>
+            </h2>
+            <Link href="/instructions#elemental-balance">
+              <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-elements" />
+            </Link>
+          </div>
           <div className="relative z-10">
             <ElementalBalance planets={planets} />
           </div>
