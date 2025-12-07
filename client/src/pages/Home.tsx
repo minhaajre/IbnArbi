@@ -25,7 +25,7 @@ import { MansionCard } from "@/components/MansionCard";
 import { ZodiacWheel } from "@/components/ZodiacWheel";
 import { ElementalBalance } from "@/components/ElementalBalance";
 import { PlanetaryProtocol } from "@/components/PlanetaryProtocol";
-import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen, Info, Mail, Loader2, User } from "lucide-react";
+import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen, Info, Loader2 } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -96,11 +96,6 @@ export default function Home() {
   const [selectedPlanet, setSelectedPlanet] = useState<string | null>(null);
   const [isProtocolExpanded, setIsProtocolExpanded] = useState(false);
   
-  // Moment capture state
-  const [captureEmail, setCaptureEmail] = useState("");
-  const [isCaptureSending, setIsCaptureSending] = useState(false);
-  const [captureMessage, setCaptureMessage] = useState("");
-  
   // Separate time for planetary hours section
   const [hoursTime, setHoursTime] = useState<Date>(new Date());
   const [hoursTimeAuto, setHoursTimeAuto] = useState(true);
@@ -128,49 +123,6 @@ export default function Home() {
     }, 60000);
     return () => clearInterval(timer);
   }, [hoursTimeAuto]);
-
-  // Send moment capture email
-  const handleSendMomentCapture = async () => {
-    if (!captureEmail) {
-      setCaptureMessage("Please enter your email");
-      return;
-    }
-
-    setIsCaptureSending(true);
-    setCaptureMessage("");
-
-    try {
-      const momentData = {
-        currentTime: now,
-        currentMansion: mansion,
-        planetaryHour: (hoursSectionData || hoursData)?.currentHour,
-        dayRuler: (hoursSectionData || hoursData)?.dayRuler,
-        location,
-        moonPhase,
-        planets: planets.slice(0, 7),
-        hijriDate,
-        dominant_element: planets.length > 0 ? planets[0].sign : null,
-      };
-
-      const response = await fetch("/api/send-moment-capture", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: captureEmail, momentData }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to send email");
-      }
-
-      setCaptureMessage("✓ Moment capture sent to your email!");
-      setCaptureEmail("");
-      setTimeout(() => setCaptureMessage(""), 3000);
-    } catch (error) {
-      setCaptureMessage("Failed to send. Please try again.");
-    } finally {
-      setIsCaptureSending(false);
-    }
-  };
 
   // Handle Date Selection
   const handleDateSelect = (date: Date | undefined) => {
@@ -393,59 +345,6 @@ export default function Home() {
               <span className={`text-[10px] sm:text-xs ${useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Sidereal</span>
             </div>
 
-            {/* Capture Moment Dialog - Dev only */}
-            {import.meta.env.VITE_SHOW_DEV_FEATURES === 'true' && (
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="outline" size="icon" className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9" data-testid="capture-moment" title="Capture Moment">
-                    <Mail className="w-4 h-4" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
-                  <DialogHeader>
-                    <DialogTitle>Email Moment Capture</DialogTitle>
-                  </DialogHeader>
-                  <div className="space-y-4 py-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="capture-email" className="text-xs sm:text-sm">Your Email</Label>
-                      <Input
-                        id="capture-email"
-                        type="email"
-                        placeholder="your@email.com"
-                        value={captureEmail}
-                        onChange={(e) => setCaptureEmail(e.target.value)}
-                        disabled={isCaptureSending}
-                        className="text-xs sm:text-sm"
-                        data-testid="capture-email-input"
-                      />
-                    </div>
-                    <Button
-                      onClick={handleSendMomentCapture}
-                      disabled={isCaptureSending}
-                      className="w-full text-xs sm:text-sm"
-                      data-testid="send-capture-button"
-                    >
-                      {isCaptureSending ? (
-                        <>
-                          <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 mr-2 animate-spin" />
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          <Mail className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                          Send to Email
-                        </>
-                      )}
-                    </Button>
-                    {captureMessage && (
-                      <p className={`text-xs sm:text-sm text-center ${captureMessage.includes('✓') ? 'text-green-500' : 'text-red-500'}`}>
-                        {captureMessage}
-                      </p>
-                    )}
-                  </div>
-                </DialogContent>
-              </Dialog>
-            )}
 
             {/* Location Dialog */}
             <Dialog>
@@ -477,20 +376,6 @@ export default function Home() {
                 </div>
               </DialogContent>
             </Dialog>
-
-            {/* Personal Chart Button - Dev only */}
-            {import.meta.env.VITE_SHOW_DEV_FEATURES === 'true' && (
-              <Button 
-                variant="outline" 
-                size="icon" 
-                onClick={() => navigate("/chart")}
-                className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9"
-                data-testid="chart-button"
-                title="Personal Chart"
-              >
-                <User className="w-4 h-4" />
-              </Button>
-            )}
 
           </div>
         </div>
