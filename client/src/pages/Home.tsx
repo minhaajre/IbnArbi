@@ -298,42 +298,58 @@ export default function Home() {
   const moonPlanet = planets.find(p => p.name === "Moon");
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground p-3 sm:p-6 md:p-12 max-w-7xl mx-auto transition-colors duration-500">
       
-      {/* Hero Section */}
-      <header className="container-premium py-8 md:py-12">
-        {/* Top Row: Title + Controls */}
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
-          <div>
-            <h1 className="text-primary mb-2">Ibn Arabi's Cosmology</h1>
-            <p className="text-muted-foreground text-base md:text-lg">
+      {/* Header */}
+      <header className="flex flex-col gap-4 sm:gap-6 border-b border-border pb-4 sm:pb-8 mb-6 sm:mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 w-full">
+          <div className="flex-1 min-w-0">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-serif text-gold mb-1 sm:mb-2">Ibn Arabi's Cosmology</h1>
+            <p className="text-muted-foreground font-light tracking-wide text-sm sm:text-base">
               Guide to the Celestial Spheres
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            {/* Sidereal/Tropical Pills */}
-            <div className="flex items-center gap-1 p-1 bg-secondary rounded-full">
-              <button 
-                onClick={() => setUseSidereal(false)}
-                className={`pill ${!useSidereal ? 'pill-active' : 'pill-inactive border-0'}`}
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+             {/* Theme Toggle */}
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="rounded-full w-8 h-8 sm:w-9 sm:h-9 border border-border"
+            >
+              <Sun className="h-3 w-3 sm:h-4 sm:w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-3 w-3 sm:h-4 sm:w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+
+            {/* Instructions Button */}
+            <Link href="/instructions">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="bg-card/50 border-border h-8 sm:h-9 text-xs sm:text-sm"
+                data-testid="link-instructions"
               >
-                Tropical
-              </button>
-              <button 
-                onClick={() => setUseSidereal(true)}
-                className={`pill ${useSidereal ? 'pill-active' : 'pill-inactive border-0'}`}
-              >
-                Sidereal
-              </button>
+                <BookOpen className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Instructions</span>
+                <span className="sm:hidden">Guide</span>
+              </Button>
+            </Link>
+
+            {/* Sidereal Toggle */}
+            <div className="flex items-center gap-1.5 sm:gap-2 bg-card/50 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 border border-border">
+              <span className={`text-[10px] sm:text-xs ${!useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Tropical</span>
+              <Switch checked={useSidereal} onCheckedChange={setUseSidereal} className="scale-90 sm:scale-100" />
+              <span className={`text-[10px] sm:text-xs ${useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Sidereal</span>
             </div>
 
-            {/* Location */}
+            {/* Location Dialog */}
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline" size="sm" className="rounded-full h-10 px-4 border-border">
-                  <MapPin className="w-4 h-4 mr-2" />
-                  <span className="truncate max-w-[120px]">{location?.name}</span>
+                <Button variant="outline" size="sm" className="bg-card/50 border-border h-8 sm:h-9 max-w-[140px] sm:max-w-[200px] truncate text-xs sm:text-sm">
+                  <MapPin className="w-3 h-3 mr-1 sm:mr-2 shrink-0" />
+                  <span className="truncate">{location?.name}</span>
                 </Button>
               </DialogTrigger>
               <DialogContent>
@@ -342,7 +358,7 @@ export default function Home() {
                 </DialogHeader>
                 <div className="space-y-4 py-4">
                   <div className="flex gap-2">
-                    <Input 
+                     <Input 
                       placeholder="Enter city name..." 
                       value={manualCity} 
                       onChange={(e) => setManualCity(e.target.value)} 
@@ -360,178 +376,184 @@ export default function Home() {
               </DialogContent>
             </Dialog>
 
-            {/* Theme Toggle */}
-            <Button 
-              variant="outline" 
-              size="icon" 
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-full w-10 h-10 border-border"
-            >
-              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            </Button>
-
-            {/* Instructions */}
-            <Link href="/instructions">
-              <Button variant="outline" size="sm" className="rounded-full h-10 px-4 border-border" data-testid="link-instructions">
-                <BookOpen className="w-4 h-4 mr-2" />
-                Instructions
-              </Button>
-            </Link>
           </div>
         </div>
 
-        {/* Date & Time Row */}
-        <div className="flex flex-wrap items-end justify-between gap-4 pb-8 border-b border-border">
-          <div className="space-y-1">
-            <div className="flex items-baseline gap-4">
-              <span className="text-4xl md:text-5xl font-light tabular-nums tracking-tight">
-                {format(now, "h:mm")}
-              </span>
-              <span className="text-xl text-muted-foreground">{format(now, "a")}</span>
+        {/* Time Display - Mobile friendly row */}
+        <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-4 pt-2 sm:pt-0">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="text-xl sm:text-3xl font-mono font-light tabular-nums tracking-tighter">
+                {format(now, "h:mm a")}
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <div className="text-muted-foreground text-xs">
+                  {format(now, "MMM d, yyyy")}
+                </div>
+                <div className="text-gold/80 font-arabic text-sm sm:text-base">
+                  {hijriDate}
+                </div>
+              </div>
             </div>
-            <div className="flex items-center gap-3 text-sm">
-              <span className="text-muted-foreground">{format(now, "EEEE, MMMM d, yyyy")}</span>
-              <span className="text-primary/70">•</span>
-              <span className="font-arabic text-primary">{hijriDate}</span>
+            <div className="text-[9px] text-muted-foreground/50 italic pl-0">
+              * Islamic date begins at sunset, not midnight
             </div>
-            <p className="text-xs text-muted-foreground/60 mt-1">
-              * Islamic date begins at sunset
-            </p>
           </div>
-          
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2">
             {whiteDaysInfo && whiteDaysInfo.isWhiteDay && (
-              <div className="pill bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20" data-testid="white-days-indicator">
-                <Moon className="w-4 h-4 mr-2" />
-                White Day - Blessed Fast
+              <div className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-500 border border-amber-500/30 inline-flex items-center gap-1" data-testid="white-days-indicator">
+                <Moon className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                <span className="hidden sm:inline">White Day - Blessed Fast</span>
+                <span className="sm:hidden">White Day</span>
               </div>
             )}
             {whiteDaysInfo && !whiteDaysInfo.isWhiteDay && whiteDaysInfo.daysUntilNext <= 3 && (
-              <span className="meta-text" data-testid="white-days-upcoming">
-                White days in {whiteDaysInfo.daysUntilNext} days
-              </span>
+              <div className="text-[10px] sm:text-xs text-muted-foreground" data-testid="white-days-upcoming">
+                White days in {whiteDaysInfo.daysUntilNext}d
+              </div>
             )}
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="container-premium py-12 space-y-12">
+      {/* Row 1: Station + Planetary Hour (side by side, equal height) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
         
-        {/* Row 1: Lunar Mansion + Planetary Hours */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Current Station Card - Glass Effect */}
+        <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
+            <h2 className="text-base sm:text-lg font-serif text-foreground/80">
+              Current Lunar Mansion <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">المنزلة القمرية الحالية</span>
+            </h2>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
+                  <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-lunar-mansion" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80" align="end">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.lunarMansion.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.lunarMansion.description}</p>
+                  <Link href="/instructions#lunar-mansions" className="text-xs text-primary hover:underline block pt-1">
+                    Learn more →
+                  </Link>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+          <div className="relative z-10">
+            <MansionCard mansion={mansion} progress={mansionProgress ?? undefined} />
+          </div>
+        </section>
+
+        {/* Planetary Hour Card - Glass Effect */}
+        <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           
-          {/* Lunar Mansion Card */}
-          <section className="premium-card hover-lift">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <p className="section-label">Current Lunar Mansion</p>
-                <p className="font-arabic text-muted-foreground/70 text-sm text-right">المنزلة القمرية الحالية</p>
-              </div>
+          {/* Header with date picker */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2 sm:mb-3 relative z-10">
+            <div className="flex items-center gap-2">
+              <h2 className="text-base sm:text-lg font-serif text-foreground/80">
+                Planetary Hours <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الساعات الكوكبية</span>
+              </h2>
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
-                    <Info className="w-4 h-4 text-muted-foreground hover:text-primary" data-testid="info-lunar-mansion" />
+                  <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
+                    <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-planetary-hours" />
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-80" align="end">
-                  <div className="space-y-3">
-                    <h4 className="font-semibold text-foreground">{SECTION_INFO.lunarMansion.title}</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{SECTION_INFO.lunarMansion.description}</p>
-                    <Link href="/instructions#lunar-mansions" className="text-sm text-primary hover:underline block pt-1 font-medium">
+                <PopoverContent className="w-80" align="start">
+                  <div className="space-y-2">
+                    <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.planetaryHours.title}</h4>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.planetaryHours.description}</p>
+                    <Link href="/instructions#planetary-hours" className="text-xs text-primary hover:underline block pt-1">
                       Learn more →
                     </Link>
                   </div>
                 </PopoverContent>
               </Popover>
             </div>
-            <MansionCard mansion={mansion} progress={mansionProgress ?? undefined} />
-          </section>
-
-          {/* Planetary Hours Card */}
-          <section className="premium-card hover-lift">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <p className="section-label">Planetary Hours</p>
-                <p className="font-arabic text-muted-foreground/70 text-sm text-right">الساعات الكوكبية</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button variant="outline" size="sm" className="h-9 rounded-full" data-testid="hours-date-picker">
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {hoursSelectedDate ? format(hoursSelectedDate, "MMM d") : "Date"}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="end">
-                    <Calendar mode="single" selected={hoursSelectedDate} onSelect={handleHoursDateSelect} initialFocus />
-                  </PopoverContent>
-                </Popover>
-                <input
-                  type="time"
-                  value={format(hoursTime, "HH:mm")}
-                  onChange={handleHoursTimeChange}
-                  className="h-9 text-sm px-3 rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/30"
-                  data-testid="hours-time-picker"
-                />
-                {!hoursTimeAuto && (
-                  <Button size="icon" variant="ghost" className="h-9 w-9 rounded-full" onClick={resetHoursToNow} data-testid="hours-reset-button">
-                    <RotateCcw className="h-4 w-4" />
+            <div className="flex items-center gap-1 sm:gap-2">
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="ghost" size="sm" className="h-6 sm:h-7 text-[10px] sm:text-xs px-2" data-testid="hours-date-picker">
+                    <CalendarIcon className="mr-1 h-2.5 w-2.5 sm:h-3 sm:w-3" />
+                    {hoursSelectedDate ? format(hoursSelectedDate, "MMM d") : "Date"}
                   </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="end">
+                  <Calendar
+                    mode="single"
+                    selected={hoursSelectedDate}
+                    onSelect={handleHoursDateSelect}
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
+              <input
+                type="time"
+                value={format(hoursTime, "HH:mm")}
+                onChange={handleHoursTimeChange}
+                className="h-6 sm:h-7 text-[10px] sm:text-xs px-1.5 sm:px-2 rounded border border-border bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary w-16 sm:w-auto"
+                data-testid="hours-time-picker"
+              />
+              {!hoursTimeAuto && (
+                <Button size="icon" variant="ghost" className="h-5 w-5 sm:h-6 sm:w-6" onClick={resetHoursToNow} title="Reset to Now" data-testid="hours-reset-button">
+                  <RotateCcw className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
+                </Button>
+              )}
+            </div>
+          </div>
+
+          {/* Moon Sign + Moon Phase Row */}
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-2 sm:mb-3 relative z-10">
+            {/* Moon Sign - Left */}
+            {moonPlanet && (
+              <div className="flex items-center gap-1.5 sm:gap-3">
+                <div className="flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm font-medium text-foreground/80">
+                  <Moon className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
+                  <span>{moonPlanet.sign}</span>
+                </div>
+                <span className="text-[10px] sm:text-xs text-muted-foreground font-mono">
+                  {Math.floor(moonPlanet.degree)}°{Math.round((moonPlanet.degree % 1) * 60)}'
+                </span>
+                {moonPhase?.isVoidOfCourse && (
+                  <span className="text-[10px] sm:text-xs text-yellow-500 font-bold flex items-center gap-0.5 sm:gap-1 bg-yellow-500/10 px-1.5 sm:px-2 py-0.5 rounded-full">
+                    <AlertTriangle className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> VOC
+                  </span>
                 )}
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
-                      <Info className="w-4 h-4 text-muted-foreground hover:text-primary" data-testid="info-planetary-hours" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-80" align="end">
-                    <div className="space-y-3">
-                      <h4 className="font-semibold text-foreground">{SECTION_INFO.planetaryHours.title}</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{SECTION_INFO.planetaryHours.description}</p>
-                      <Link href="/instructions#planetary-hours" className="text-sm text-primary hover:underline block pt-1 font-medium">
-                        Learn more →
-                      </Link>
-                    </div>
-                  </PopoverContent>
-                </Popover>
               </div>
-            </div>
-
-            {/* Moon Info Row */}
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-6 border-b border-border/50">
-              {moonPlanet && (
-                <div className="flex items-center gap-3">
-                  <Moon className="w-5 h-5 text-muted-foreground" />
-                  <span className="font-medium">{moonPlanet.sign}</span>
-                  <span className="text-sm text-muted-foreground font-mono">
-                    {Math.floor(moonPlanet.degree)}°{Math.round((moonPlanet.degree % 1) * 60)}'
-                  </span>
-                  {moonPhase?.isVoidOfCourse && (
-                    <span className="text-xs font-semibold text-amber-500 bg-amber-500/10 px-2 py-1 rounded-full flex items-center gap-1">
-                      <AlertTriangle className="w-3 h-3" /> VOC
-                    </span>
-                  )}
+            )}
+            
+            {/* Moon Phase - Right */}
+            {moonPhase && (
+              <div className="flex items-center gap-1.5 sm:gap-3 flex-wrap">
+                <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
+                  {moonPhase.isWaxing ? <Sun className="w-3 h-3 sm:w-4 sm:h-4" /> : <Moon className="w-3 h-3 sm:w-4 sm:h-4" />}
+                  <span className="hidden xs:inline">{moonPhase.label}</span>
                 </div>
-              )}
-              {moonPhase && (
-                <div className="flex items-center gap-3">
-                  <span className="text-sm text-muted-foreground">{moonPhase.label}</span>
-                  <span className="text-sm px-2 py-1 rounded-full bg-secondary font-mono">
-                    {Math.round(moonPhase.illumination)}%
-                  </span>
-                  {moonTimes && (
-                    <div className="text-sm text-muted-foreground flex items-center gap-3">
-                      {moonTimes.moonrise && <span>↑ {format(moonTimes.moonrise, "h:mm a")}</span>}
-                      {moonTimes.moonset && <span>↓ {format(moonTimes.moonset, "h:mm a")}</span>}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Hours Display */}
+                <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-foreground/10 font-mono border border-border">
+                  {Math.round(moonPhase.illumination)}%
+                </span>
+                {moonTimes && (
+                  <div className="text-[10px] sm:text-xs text-muted-foreground flex items-center gap-2">
+                    {moonTimes.moonrise && (
+                      <span>☽↑ {format(moonTimes.moonrise, "h:mm a")}</span>
+                    )}
+                    {moonTimes.moonset && (
+                      <span>☽↓ {format(moonTimes.moonset, "h:mm a")}</span>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+           
+          <div className="relative z-10">
             {(() => {
               const hoursToUse = hoursSectionData || hoursData;
               const nextHoursIndexForSection = hoursToUse.hours.findIndex(h => h === hoursToUse.currentHour);
@@ -546,179 +568,212 @@ export default function Home() {
                 />
               );
             })()}
-            
-            <p className="meta-text text-right mt-4">Last Updated: {format(new Date(), "h:mm a")}</p>
-
-            {/* Day Ruler & Protocol */}
-            {(hoursSectionData || hoursData).currentHour && (
-              <div className="mt-6 pt-6 border-t border-border/50 space-y-4">
-                <div className="flex flex-wrap items-center gap-4">
-                  <div className="flex items-center gap-2">
-                    <Crown className="w-5 h-5 text-primary" />
-                    <span className="font-medium">Day Ruler:</span>
-                    <span className="text-lg">{(hoursSectionData || hoursData).dayRuler}</span>
-                    <span className="font-arabic text-muted-foreground">{PLANET_ARABIC[(hoursSectionData || hoursData).dayRuler]?.arabic}</span>
-                  </div>
-                  <div className="flex items-center gap-2 px-3 py-1.5 bg-secondary rounded-full">
-                    <Sparkles className="w-4 h-4 text-primary" />
-                    <span className="text-sm">{PLANET_PROPHETS[(hoursSectionData || hoursData).dayRuler]?.name}</span>
-                    <span className="font-arabic text-sm text-primary">{PLANET_PROPHETS[(hoursSectionData || hoursData).dayRuler]?.arabic}</span>
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-medium text-muted-foreground">
-                      {selectedPlanet ? `${selectedPlanet} Protocol` : "Hour Protocol"}
-                      <span className="font-arabic text-sm ml-2">البروتوكول</span>
-                    </h4>
-                    {selectedPlanet && (
-                      <button onClick={() => setSelectedPlanet(null)} className="text-xs px-2 py-1 rounded bg-secondary hover:bg-secondary/80" data-testid="reset-protocol-planet">
-                        Reset
-                      </button>
-                    )}
-                  </div>
-                  <PlanetaryProtocol activePlanet={selectedPlanet || (hoursSectionData || hoursData).currentHour?.planet || (hoursSectionData || hoursData).dayRuler} />
-                </div>
-              </div>
-            )}
-          </section>
-        </div>
-
-        {/* Row 2: Dignities + Elements */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Last Updated */}
+            <div className="text-[10px] sm:text-xs text-muted-foreground/50 mt-2 text-right">
+              Last Updated: {format(new Date(), "h:mm a")}
+            </div>
+          </div>
           
-          {/* Celestial Dignities */}
-          <section className="premium-card hover-lift">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <p className="section-label">Celestial Dignities</p>
-                <p className="font-arabic text-muted-foreground/70 text-sm text-right">الكرامات السماوية</p>
-              </div>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
-                    <Info className="w-4 h-4 text-muted-foreground hover:text-primary" data-testid="info-dignities" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-80" align="end">
-                  <div className="space-y-3">
-                    <h4 className="font-semibold text-foreground">{SECTION_INFO.dignities.title}</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{SECTION_INFO.dignities.description}</p>
-                    <Link href="/instructions#celestial-dignities" className="text-sm text-primary hover:underline block pt-1 font-medium">
-                      Learn more →
-                    </Link>
-                  </div>
-                </PopoverContent>
-              </Popover>
-            </div>
-            <div className="overflow-x-auto">
-              <PlanetaryTable planets={planets} useSidereal={useSidereal} onToggleSystem={setUseSidereal} />
-            </div>
-          </section>
-
-          {/* Elemental Balance */}
-          <section className="premium-card hover-lift">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <p className="section-label">Elemental Balance</p>
-                <p className="font-arabic text-muted-foreground/70 text-sm text-right">توازن العناصر</p>
-              </div>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
-                    <Info className="w-4 h-4 text-muted-foreground hover:text-primary" data-testid="info-elements" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-80" align="end">
-                  <div className="space-y-3">
-                    <h4 className="font-semibold text-foreground">{SECTION_INFO.elements.title}</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{SECTION_INFO.elements.description}</p>
-                    <Link href="/instructions#elemental-balance" className="text-sm text-primary hover:underline block pt-1 font-medium">
-                      Learn more →
-                    </Link>
-                  </div>
-                </PopoverContent>
-              </Popover>
-            </div>
-            <ElementalBalance planets={planets} />
-          </section>
-        </div>
-
-        {/* Row 3: Sky Map */}
-        <section className="premium-card">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-            <div>
-              <p className="section-label">Current Sky Map</p>
-              <p className="font-arabic text-muted-foreground/70 text-sm">خريطة السماء الحالية</p>
-            </div>
-            
-            <div className="flex flex-wrap items-center gap-4">
-              {/* Zodiac Toggle */}
-              <div className="flex items-center gap-1 p-1 bg-secondary rounded-full">
-                <button 
-                  onClick={() => setUseSidereal(false)}
-                  className={`pill text-xs ${!useSidereal ? 'pill-active' : 'pill-inactive border-0'}`}
-                  data-testid="skymap-zodiac-toggle"
-                >
-                  Tropical
-                </button>
-                <button 
-                  onClick={() => setUseSidereal(true)}
-                  className={`pill text-xs ${useSidereal ? 'pill-active' : 'pill-inactive border-0'}`}
-                >
-                  Sidereal
-                </button>
+          {/* Day Ruler & Planetary Protocol - Merged Section */}
+          {(hoursSectionData || hoursData).currentHour && (
+            <div className="relative z-10 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-border space-y-3 sm:space-y-4">
+              {/* Day Ruler Row */}
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <Crown className="w-3 h-3 sm:w-4 sm:h-4 text-gold" />
+                  <span className="text-xs sm:text-sm font-medium text-foreground/70">Day Ruler</span>
+                  <span className="font-arabic text-[10px] sm:text-xs text-foreground/50">حاكم اليوم</span>
+                </div>
+                <div className="h-4 w-px bg-border hidden sm:block" />
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <span className="text-base sm:text-lg" style={{ color: (hoursSectionData || hoursData).dayRuler === 'Sun' ? '#f59e0b' : (hoursSectionData || hoursData).dayRuler === 'Moon' ? '#94a3b8' : '#888' }}>
+                    {(hoursSectionData || hoursData).dayRuler === 'Sun' ? '☉' : (hoursSectionData || hoursData).dayRuler === 'Moon' ? '☽' : (hoursSectionData || hoursData).dayRuler === 'Mars' ? '♂' : (hoursSectionData || hoursData).dayRuler === 'Mercury' ? '☿' : (hoursSectionData || hoursData).dayRuler === 'Jupiter' ? '♃' : (hoursSectionData || hoursData).dayRuler === 'Venus' ? '♀' : '♄'}
+                  </span>
+                  <span className="font-serif text-sm sm:text-base text-foreground">{(hoursSectionData || hoursData).dayRuler}</span>
+                  <span className="font-arabic text-xs sm:text-sm text-foreground/60">{PLANET_ARABIC[(hoursSectionData || hoursData).dayRuler]?.arabic}</span>
+                </div>
+                <div className="flex items-center gap-1 sm:gap-1.5 bg-foreground/5 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg border border-border">
+                  <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-gold" />
+                  <span className="text-[10px] sm:text-xs text-muted-foreground hidden sm:inline">Prophet:</span>
+                  <span className="text-[10px] sm:text-xs text-gold font-medium">{PLANET_PROPHETS[(hoursSectionData || hoursData).dayRuler]?.name}</span>
+                  <span className="text-xs sm:text-sm font-arabic text-primary/80">{PLANET_PROPHETS[(hoursSectionData || hoursData).dayRuler]?.arabic}</span>
+                </div>
               </div>
               
-              {/* Time Display */}
-              <div className="text-right">
-                <div className="text-lg font-light tabular-nums">{format(now, "h:mm a")}</div>
-                <div className="text-sm text-muted-foreground">{format(now, "MMM d, yyyy")}</div>
+              {/* Protocol Row */}
+              <div className="space-y-1.5 sm:space-y-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xs sm:text-sm font-medium text-foreground/70 flex items-center gap-1.5 sm:gap-2">
+                    {selectedPlanet ? `${selectedPlanet} Protocol` : "Hour Protocol"} 
+                    <span className="font-arabic text-[10px] sm:text-xs text-foreground/50">البروتوكول</span>
+                  </h3>
+                  {selectedPlanet && (
+                    <button 
+                      onClick={() => setSelectedPlanet(null)}
+                      className="text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.5 rounded bg-foreground/10 hover:bg-foreground/20 transition-colors"
+                      data-testid="reset-protocol-planet"
+                    >
+                      Reset
+                    </button>
+                  )}
+                </div>
+                <PlanetaryProtocol activePlanet={selectedPlanet || (hoursSectionData || hoursData).currentHour?.planet || (hoursSectionData || hoursData).dayRuler} />
               </div>
             </div>
-          </div>
-
-          {/* Legend */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 p-4 bg-secondary/50 rounded-xl">
-            <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Elements</p>
-              <div className="flex flex-wrap gap-2 text-sm">
-                <span className="flex items-center gap-1"><Flame className="w-3 h-3" style={{ color: 'rgb(239, 68, 68)' }} />Fire</span>
-                <span className="flex items-center gap-1"><Mountain className="w-3 h-3" style={{ color: 'rgb(34, 197, 94)' }} />Earth</span>
-                <span className="flex items-center gap-1"><Wind className="w-3 h-3" style={{ color: 'rgb(251, 191, 36)' }} />Air</span>
-                <span className="flex items-center gap-1"><Droplets className="w-3 h-3" style={{ color: 'rgb(59, 130, 246)' }} />Water</span>
-              </div>
-            </div>
-            <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Season</p>
-              <div className="flex flex-wrap gap-2 text-sm">
-                <span className="flex items-center gap-1"><Flower2 className="w-3 h-3" style={{ color: '#22c55e' }} />Spring</span>
-                <span className="flex items-center gap-1"><Sun className="w-3 h-3" style={{ color: '#f59e0b' }} />Summer</span>
-                <span className="flex items-center gap-1"><Leaf className="w-3 h-3" style={{ color: '#f97316' }} />Autumn</span>
-                <span className="flex items-center gap-1"><Snowflake className="w-3 h-3" style={{ color: '#60a5fa' }} />Winter</span>
-              </div>
-            </div>
-            <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Modality</p>
-              <div className="flex flex-wrap gap-2 text-sm">
-                <span className="flex items-center gap-1"><Triangle className="w-3 h-3" style={{ color: '#ef4444' }} />Cardinal</span>
-                <span className="flex items-center gap-1"><div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#22c55e' }} />Fixed</span>
-                <span className="flex items-center gap-1"><Wind className="w-3 h-3" style={{ color: '#3b82f6' }} />Mutable</span>
-              </div>
-            </div>
-            <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Polarity</p>
-              <div className="flex flex-wrap gap-2 text-sm">
-                <span className="flex items-center gap-1"><Mars className="w-3 h-3" style={{ color: '#f59e0b' }} />Masculine</span>
-                <span className="flex items-center gap-1"><CircleDot className="w-3 h-3" style={{ color: '#a78bfa' }} />Feminine</span>
-              </div>
-            </div>
-          </div>
-
-          <ZodiacWheel planets={planets} variant="expanded" ingresses={ingresses} />
+          )}
         </section>
-      </main>
+      </div>
+
+      {/* Row 2: Dignities + Elemental Balance (side by side) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+        
+        {/* Celestial Dignities - Glass Effect */}
+        <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
+            <h2 className="text-base sm:text-lg font-serif text-foreground/80">
+              Celestial Dignities <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الكرامات السماوية</span>
+            </h2>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
+                  <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-dignities" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80" align="end">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.dignities.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.dignities.description}</p>
+                  <Link href="/instructions#celestial-dignities" className="text-xs text-primary hover:underline block pt-1">
+                    Learn more →
+                  </Link>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+          <div className="relative z-10 overflow-x-auto">
+            <PlanetaryTable 
+              planets={planets} 
+              useSidereal={useSidereal}
+              onToggleSystem={setUseSidereal}
+            />
+          </div>
+        </section>
+
+        {/* Elemental Balance - Glass Effect */}
+        <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
+            <h2 className="text-base sm:text-lg font-serif text-foreground/80">
+              Elemental Balance <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">توازن العناصر</span>
+            </h2>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
+                  <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-elements" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80" align="end">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.elements.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.elements.description}</p>
+                  <Link href="/instructions#elemental-balance" className="text-xs text-primary hover:underline block pt-1">
+                    Learn more →
+                  </Link>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+          <div className="relative z-10">
+            <ElementalBalance planets={planets} />
+          </div>
+        </section>
+      </div>
+
+      {/* Row 3: Celestial Zodiac Wheel (full width) */}
+      <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        
+        {/* Sky Map Header - Responsive */}
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3 relative z-10">
+          {/* Title - Centered on mobile */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 order-first sm:order-2 flex-1">
+            <h2 className="text-base sm:text-lg font-serif text-center sm:text-left">
+              <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 bg-clip-text text-transparent">
+                Current Sky Map
+              </span>
+              <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">خريطة السماء الحالية</span>
+            </h2>
+            <div className="flex items-center gap-1.5 bg-card/60 rounded-lg px-2 py-1 border border-border mx-auto sm:mx-0">
+              <span className={`text-[10px] ${!useSidereal ? 'text-primary font-medium' : 'text-muted-foreground'}`}>Tropical</span>
+              <Switch checked={useSidereal} onCheckedChange={setUseSidereal} className="scale-75" data-testid="skymap-zodiac-toggle" />
+              <span className={`text-[10px] ${useSidereal ? 'text-primary font-medium' : 'text-muted-foreground'}`}>Sidereal</span>
+            </div>
+          </div>
+
+          {/* Time info - Right on desktop, hidden on mobile (already shown in header) */}
+          <div className="hidden sm:block bg-card/60 backdrop-blur-sm rounded-lg px-3 py-2 border border-border text-right order-3">
+            <div className="text-lg font-mono font-light tabular-nums">{format(now, "h:mm a")}</div>
+            <div className="text-xs text-muted-foreground">{format(now, "EEEE, MMMM d, yyyy")}</div>
+            <div className="text-sm text-gold/80 font-arabic">{hijriDate}</div>
+          </div>
+
+          {/* Legend - Collapsible on mobile */}
+          <div className="hidden md:block bg-card/60 backdrop-blur-sm rounded-lg px-2 sm:px-3 py-2 border border-border order-1">
+            <div className="text-[10px] sm:text-xs text-muted-foreground mb-1.5 sm:mb-2 font-medium">Legend <span className="font-arabic">دليل</span></div>
+            <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[10px] sm:text-xs">
+              {/* Elements - matches ZodiacWheel ELEMENT_COLORS */}
+              <div>
+                <div className="text-[8px] sm:text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-0.5">Element</div>
+                <div className="flex flex-wrap gap-1.5">
+                  <div className="flex items-center gap-0.5"><Flame className="w-2.5 h-2.5" style={{ color: 'rgb(239, 68, 68)' }} /><span className="text-muted-foreground">Fire</span></div>
+                  <div className="flex items-center gap-0.5"><Mountain className="w-2.5 h-2.5" style={{ color: 'rgb(34, 197, 94)' }} /><span className="text-muted-foreground">Earth</span></div>
+                  <div className="flex items-center gap-0.5"><Wind className="w-2.5 h-2.5" style={{ color: 'rgb(251, 191, 36)' }} /><span className="text-muted-foreground">Air</span></div>
+                  <div className="flex items-center gap-0.5"><Droplets className="w-2.5 h-2.5" style={{ color: 'rgb(59, 130, 246)' }} /><span className="text-muted-foreground">Water</span></div>
+                </div>
+              </div>
+              {/* Season - matches ZodiacWheel SeasonIcon */}
+              <div>
+                <div className="text-[8px] sm:text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-0.5">Season</div>
+                <div className="flex flex-wrap gap-1.5">
+                  <div className="flex items-center gap-0.5"><Flower2 className="w-2.5 h-2.5" style={{ color: '#22c55e' }} /><span className="text-muted-foreground">Spr</span></div>
+                  <div className="flex items-center gap-0.5"><Sun className="w-2.5 h-2.5" style={{ color: '#f59e0b' }} /><span className="text-muted-foreground">Sum</span></div>
+                  <div className="flex items-center gap-0.5"><Leaf className="w-2.5 h-2.5" style={{ color: '#f97316' }} /><span className="text-muted-foreground">Aut</span></div>
+                  <div className="flex items-center gap-0.5"><Snowflake className="w-2.5 h-2.5" style={{ color: '#60a5fa' }} /><span className="text-muted-foreground">Win</span></div>
+                </div>
+              </div>
+              {/* Modality - matches ZodiacWheel ModalityIcon */}
+              <div>
+                <div className="text-[8px] sm:text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-0.5">Modality</div>
+                <div className="flex flex-wrap gap-1.5">
+                  <div className="flex items-center gap-0.5"><Triangle className="w-2.5 h-2.5" style={{ color: '#ef4444' }} /><span className="text-muted-foreground">Card</span></div>
+                  <div className="flex items-center gap-0.5"><div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#22c55e' }} /><span className="text-muted-foreground">Fix</span></div>
+                  <div className="flex items-center gap-0.5"><Wind className="w-2.5 h-2.5" style={{ color: '#3b82f6' }} /><span className="text-muted-foreground">Mut</span></div>
+                </div>
+              </div>
+              {/* Polarity - matches ZodiacWheel PolarityIcon */}
+              <div>
+                <div className="text-[8px] sm:text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-0.5">Polarity</div>
+                <div className="flex flex-wrap gap-1.5">
+                  <div className="flex items-center gap-0.5"><Mars className="w-2.5 h-2.5" style={{ color: '#f59e0b' }} /><span className="text-muted-foreground">Masc</span></div>
+                  <div className="flex items-center gap-0.5"><CircleDot className="w-2.5 h-2.5" style={{ color: '#a78bfa' }} /><span className="text-muted-foreground">Fem</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative z-10">
+          <ZodiacWheel 
+            planets={planets} 
+            variant="expanded"
+            ingresses={ingresses}
+          />
+        </div>
+      </section>
     </div>
   );
 }
