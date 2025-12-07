@@ -72,6 +72,7 @@ export default function Home() {
   const [hoursTime, setHoursTime] = useState<Date>(new Date());
   const [hoursTimeAuto, setHoursTimeAuto] = useState(true);
   const [hoursSelectedDate, setHoursSelectedDate] = useState<Date | undefined>(new Date());
+  const [hoursSectionData, setHoursSectionData] = useState<ReturnType<typeof getPlanetaryHours> | null>(null);
 
   // Timer
   useEffect(() => {
@@ -83,6 +84,17 @@ export default function Home() {
     }, 60000);
     return () => clearInterval(timer);
   }, [isAutoTime]);
+
+  // Timer for hours section (independent)
+  useEffect(() => {
+    if (!hoursTimeAuto) return;
+    const timer = setInterval(() => {
+      const d = new Date();
+      setHoursTime(d);
+      setHoursSelectedDate(d);
+    }, 60000);
+    return () => clearInterval(timer);
+  }, [hoursTimeAuto]);
 
   // Handle Date Selection
   const handleDateSelect = (date: Date | undefined) => {
@@ -102,6 +114,34 @@ export default function Home() {
     setIsAutoTime(true);
     setSelectedDate(d);
     setNow(d);
+  };
+
+  // Hours section date selection (independent)
+  const handleHoursDateSelect = (date: Date | undefined) => {
+    if (date) {
+      setHoursTimeAuto(false);
+      setHoursSelectedDate(date);
+      const newDate = new Date(date);
+      newDate.setHours(hoursTime.getHours(), hoursTime.getMinutes());
+      setHoursTime(newDate);
+    }
+  };
+
+  const handleHoursTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const [hours, minutes] = e.target.value.split(':').map(Number);
+    if (!isNaN(hours) && !isNaN(minutes)) {
+      setHoursTimeAuto(false);
+      const newDate = new Date(hoursTime);
+      newDate.setHours(hours, minutes, 0, 0);
+      setHoursTime(newDate);
+    }
+  };
+
+  const resetHoursToNow = () => {
+    const d = new Date();
+    setHoursTimeAuto(true);
+    setHoursSelectedDate(d);
+    setHoursTime(d);
   };
 
   // Initialize Location
@@ -199,6 +239,17 @@ export default function Home() {
       setError("Failed to calculate astronomical data.");
     }
   }, [now, location, useSidereal]);
+
+  // Separate calculation for hours section (uses hoursTime)
+  useEffect(() => {
+    if (!location) return;
+    try {
+      const hours = getPlanetaryHours(hoursTime, location.lat, location.lng);
+      setHoursSectionData(hours);
+    } catch (e) {
+      console.error("Hours calculation error:", e);
+    }
+  }, [hoursTime, location]);
 
   if (loading) {
     return (
@@ -364,7 +415,44 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           
-          {/* Top Row: Moon Sign (left) + Moon Phase (right) - horizontally aligned */}
+          {/* Header with date picker */}
+          <div className="flex items-center justify-between mb-3 relative z-10">
+            <h2 className="text-lg font-serif text-foreground/80">
+              Planetary Hours <span className="font-arabic text-base text-foreground/60 ml-2">الساعات الكوكبية</span>
+            </h2>
+            <div className="flex items-center gap-2">
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="ghost" size="sm" className="h-7 text-xs" data-testid="hours-date-picker">
+                    <CalendarIcon className="mr-1 h-3 w-3" />
+                    {hoursSelectedDate ? format(hoursSelectedDate, "MMM d") : "Pick date"}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="end">
+                  <Calendar
+                    mode="single"
+                    selected={hoursSelectedDate}
+                    onSelect={handleHoursDateSelect}
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
+              <input
+                type="time"
+                value={format(hoursTime, "HH:mm")}
+                onChange={handleHoursTimeChange}
+                className="h-7 text-xs px-2 rounded border border-border bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                data-testid="hours-time-picker"
+              />
+              {!hoursTimeAuto && (
+                <Button size="icon" variant="ghost" className="h-6 w-6" onClick={resetHoursToNow} title="Reset to Now" data-testid="hours-reset-button">
+                  <RotateCcw className="h-3 w-3" />
+                </Button>
+              )}
+            </div>
+          </div>
+
+          {/* Moon Sign + Moon Phase Row */}
           <div className="flex items-start justify-between mb-3 relative z-10">
             {/* Moon Sign - Left */}
             {moonPlanet && (
@@ -399,17 +487,24 @@ export default function Home() {
           </div>
            
           <div className="relative z-10">
-            <PlanetaryHoursDisplay 
-              currentHour={hoursData.currentHour}
-              nextHours={nextHours}
-              dayRuler={hoursData.dayRuler}
-              selectedPlanet={selectedPlanet}
-              onPlanetSelect={setSelectedPlanet}
-            />
+            {(() => {
+              const hoursToUse = hoursSectionData || hoursData;
+              const nextHoursIndexForSection = hoursToUse.hours.findIndex(h => h === hoursToUse.currentHour);
+              const nextHoursForSection = hoursToUse.hours.slice(nextHoursIndexForSection + 1).concat(hoursToUse.hours.slice(0, nextHoursIndexForSection + 1));
+              return (
+                <PlanetaryHoursDisplay 
+                  currentHour={hoursToUse.currentHour}
+                  nextHours={nextHoursForSection}
+                  dayRuler={hoursToUse.dayRuler}
+                  selectedPlanet={selectedPlanet}
+                  onPlanetSelect={setSelectedPlanet}
+                />
+              );
+            })()}
           </div>
           
           {/* Planetary Protocol */}
-          {hoursData.currentHour && (
+          {(hoursSectionData || hoursData).currentHour && (
             <div className="relative z-10 mt-4 pt-4 border-t border-border">
               <h3 className="text-sm font-medium text-foreground/70 mb-3 flex items-center gap-2">
                 {selectedPlanet ? `${selectedPlanet} Protocol` : "Current Hour Protocol"} 
@@ -424,7 +519,7 @@ export default function Home() {
                   </button>
                 )}
               </h3>
-              <PlanetaryProtocol activePlanet={selectedPlanet || hoursData.currentHour.planet} />
+              <PlanetaryProtocol activePlanet={selectedPlanet || (hoursSectionData || hoursData).currentHour.planet} />
             </div>
           )}
         </section>
