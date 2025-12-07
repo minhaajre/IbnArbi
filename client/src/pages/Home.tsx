@@ -7,11 +7,13 @@ import {
   getMoonPhase,
   getLunarMansionProgress,
   getWhiteDaysInfo,
+  getPlanetIngresses,
   PlanetaryHour,
   PlanetStatus,
   MoonPhaseInfo,
   MansionProgress,
-  WhiteDaysInfo
+  WhiteDaysInfo,
+  PlanetIngress
 } from "@/lib/astronomy";
 import { AYANAMSHA_J2000, PLANET_PROPHETS, PLANET_ARABIC } from "@/lib/constants";
 import { PlanetaryHoursDisplay } from "@/components/PlanetaryHoursDisplay";
@@ -64,6 +66,7 @@ export default function Home() {
   const [moonPhase, setMoonPhase] = useState<MoonPhaseInfo | null>(null);
   const [mansionProgress, setMansionProgress] = useState<MansionProgress | null>(null);
   const [whiteDaysInfo, setWhiteDaysInfo] = useState<WhiteDaysInfo | null>(null);
+  const [ingresses, setIngresses] = useState<PlanetIngress[]>([]);
   
   // Selected planet for protocol display
   const [selectedPlanet, setSelectedPlanet] = useState<string | null>(null);
@@ -225,6 +228,7 @@ export default function Home() {
 
       const progress = getLunarMansionProgress(now, useSidereal);
       const whiteInfo = getWhiteDaysInfo(now);
+      const planetIngresses = getPlanetIngresses(now, useSidereal);
 
       setHoursData(hours);
       setPlanets(planetPos);
@@ -233,6 +237,7 @@ export default function Home() {
       setMoonPhase(phase);
       setMansionProgress(progress);
       setWhiteDaysInfo(whiteInfo);
+      setIngresses(planetIngresses);
       setLoading(false);
     } catch (e) {
       console.error("Calculation error:", e);
@@ -660,6 +665,7 @@ export default function Home() {
           <ZodiacWheel 
             planets={planets} 
             variant="expanded"
+            ingresses={ingresses}
           />
         </div>
       </section>

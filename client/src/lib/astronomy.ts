@@ -202,6 +202,71 @@ export function getPlanetaryPositions(date: Date, useSidereal: boolean = true): 
   });
 }
 
+export interface PlanetIngress {
+  name: string;
+  currentSign: string;
+  nextSign: string;
+  ingressDate: Date;
+  daysUntil: number;
+  isRetrograde: boolean;
+  isApproximate: boolean;
+}
+
+export function getPlanetIngresses(date: Date, useSidereal: boolean = true): PlanetIngress[] {
+  const planets = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn"];
+  
+  // Get planetary positions to check retrograde status
+  const positions = getPlanetaryPositions(date, useSidereal);
+  
+  return planets.map(name => {
+    const planetData = positions.find(p => p.name === name);
+    const lon = planetData?.longitude || 0;
+    const isRetrograde = planetData?.isRetrograde || false;
+    const actualSpeed = Math.abs(planetData?.speed || 0) * 24; // Convert to degrees per day
+    
+    const currentSignIndex = Math.floor(lon / 30);
+    const currentSign = SIGNS[currentSignIndex];
+    const degreeInSign = lon % 30;
+    
+    // Average speeds (degrees per day) as fallback
+    const avgSpeeds: Record<string, number> = {
+      Sun: 1.0, Moon: 13.2, Mercury: 1.2, Venus: 1.0,
+      Mars: 0.52, Jupiter: 0.083, Saturn: 0.034
+    };
+    
+    // Use actual speed if available, otherwise fallback to average
+    const speed = actualSpeed > 0.001 ? actualSpeed : (avgSpeeds[name] || 1.0);
+    
+    let targetSign: string;
+    let degreesToCross: number;
+    
+    if (isRetrograde) {
+      // Retrograde: planet moves backward, will enter previous sign
+      const prevSignIndex = (currentSignIndex - 1 + 12) % 12;
+      targetSign = SIGNS[prevSignIndex];
+      degreesToCross = degreeInSign; // Distance to 0° of current sign
+    } else {
+      // Direct motion: planet moves forward to next sign
+      const nextSignIndex = (currentSignIndex + 1) % 12;
+      targetSign = SIGNS[nextSignIndex];
+      degreesToCross = 30 - degreeInSign; // Distance to 30° (0° of next sign)
+    }
+    
+    const daysUntil = Math.max(1, Math.round(degreesToCross / speed));
+    const ingressDate = new Date(date.getTime() + daysUntil * 24 * 60 * 60 * 1000);
+    
+    return {
+      name,
+      currentSign,
+      nextSign: targetSign,
+      ingressDate,
+      daysUntil,
+      isRetrograde,
+      isApproximate: true
+    };
+  });
+}
+
 export function getLunarMansion(date: Date, useSidereal: boolean = true) {
   const body = Astronomy.Body.Moon;
   const coords = Astronomy.GeoVector(body, date, false);

@@ -1,8 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { PlanetStatus } from "@/lib/astronomy";
+import { PlanetStatus, PlanetIngress } from "@/lib/astronomy";
 import { SIGNS, SIGN_DATA, getCriticalDegree, PLANET_ARABIC, DIGNITY_ARABIC, UI_LABELS_ARABIC } from "@/lib/constants";
 import { useState, useMemo, useEffect } from "react";
 import { Flame, Mountain, Wind, Droplets, Sun as SunIcon, Moon as MoonIcon, Leaf, Snowflake, Flower2, CircleDot, Triangle, Mars } from "lucide-react";
+import { format } from "date-fns";
 
 interface ZodiacWheelProps {
   planets: PlanetStatus[];
@@ -12,6 +13,7 @@ interface ZodiacWheelProps {
   currentTime?: string;
   moonPhaseLabel?: string;
   isWaxing?: boolean;
+  ingresses?: PlanetIngress[];
 }
 
 const ELEMENT_COLORS = {
@@ -91,7 +93,8 @@ export function ZodiacWheel({
   hijriDate,
   currentTime,
   moonPhaseLabel,
-  isWaxing
+  isWaxing,
+  ingresses = []
 }: ZodiacWheelProps) {
   const [hoveredSign, setHoveredSign] = useState<string | null>(null);
   const [hoveredPlanet, setHoveredPlanet] = useState<string | null>(null);
@@ -510,6 +513,22 @@ export function ZodiacWheel({
                 {hoveredPlanetCritical.label}
               </div>
             )}
+            {(() => {
+              const ingress = ingresses.find(i => i.name === hoveredPlanetData.name);
+              if (!ingress) return null;
+              return (
+                <div className="text-xs mt-2 pt-2 border-t border-border text-muted-foreground">
+                  <span className="text-primary/70">{ingress.isRetrograde ? '←' : '→'}</span> {ingress.nextSign} 
+                  <span className="ml-1 text-primary/60">
+                    ~{ingress.daysUntil === 1 ? '1d' : `${ingress.daysUntil}d`}
+                  </span>
+                  <div className="text-[10px] text-muted-foreground/60">
+                    ~{format(ingress.ingressDate, "MMM d")}
+                    {ingress.isRetrograde && <span className="ml-1 text-amber-500/70">(℞)</span>}
+                  </div>
+                </div>
+              );
+            })()}
           </motion.div>
         )}
       </AnimatePresence>
