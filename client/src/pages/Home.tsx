@@ -8,12 +8,14 @@ import {
   getLunarMansionProgress,
   getWhiteDaysInfo,
   getPlanetIngresses,
+  getMoonTimes,
   PlanetaryHour,
   PlanetStatus,
   MoonPhaseInfo,
   MansionProgress,
   WhiteDaysInfo,
-  PlanetIngress
+  PlanetIngress,
+  MoonTimes
 } from "@/lib/astronomy";
 import { AYANAMSHA_J2000, PLANET_PROPHETS, PLANET_ARABIC } from "@/lib/constants";
 import { PlanetaryHoursDisplay } from "@/components/PlanetaryHoursDisplay";
@@ -67,6 +69,7 @@ export default function Home() {
   const [mansionProgress, setMansionProgress] = useState<MansionProgress | null>(null);
   const [whiteDaysInfo, setWhiteDaysInfo] = useState<WhiteDaysInfo | null>(null);
   const [ingresses, setIngresses] = useState<PlanetIngress[]>([]);
+  const [moonTimes, setMoonTimes] = useState<MoonTimes | null>(null);
   
   // Selected planet for protocol display
   const [selectedPlanet, setSelectedPlanet] = useState<string | null>(null);
@@ -229,6 +232,7 @@ export default function Home() {
       const progress = getLunarMansionProgress(now, useSidereal);
       const whiteInfo = getWhiteDaysInfo(now);
       const planetIngresses = getPlanetIngresses(now, useSidereal);
+      const moonRiseSet = getMoonTimes(now, location.lat, location.lng);
 
       setHoursData(hours);
       setPlanets(planetPos);
@@ -238,6 +242,7 @@ export default function Home() {
       setMansionProgress(progress);
       setWhiteDaysInfo(whiteInfo);
       setIngresses(planetIngresses);
+      setMoonTimes(moonRiseSet);
       setLoading(false);
     } catch (e) {
       console.error("Calculation error:", e);
@@ -382,6 +387,16 @@ export default function Home() {
             <div className="text-gold/80 font-arabic text-base sm:text-xl">
               {hijriDate}
             </div>
+            {moonTimes && (
+              <div className="text-[10px] sm:text-xs text-muted-foreground flex items-center gap-2">
+                {moonTimes.moonrise && (
+                  <span>☽↑ {format(moonTimes.moonrise, "h:mm a")}</span>
+                )}
+                {moonTimes.moonset && (
+                  <span>☽↓ {format(moonTimes.moonset, "h:mm a")}</span>
+                )}
+              </div>
+            )}
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-[10px] sm:text-xs text-muted-foreground opacity-50">Updated: {format(new Date(), "h:mm a")}</span>

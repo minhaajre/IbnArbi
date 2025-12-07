@@ -32,6 +32,36 @@ export interface MoonPhaseInfo {
   isVoidOfCourse: boolean;
 }
 
+export interface MoonTimes {
+  moonrise: Date | null;
+  moonset: Date | null;
+}
+
+export function getMoonTimes(date: Date, lat: number, lng: number): MoonTimes {
+  const observer = new Astronomy.Observer(lat, lng, 0);
+  const midnight = new Date(date);
+  midnight.setHours(0, 0, 0, 0);
+  
+  let moonrise: Date | null = null;
+  let moonset: Date | null = null;
+  
+  try {
+    const riseEvent = Astronomy.SearchRiseSet(Astronomy.Body.Moon, observer, +1, midnight, 1);
+    if (riseEvent) moonrise = riseEvent.date;
+  } catch (e) {
+    console.warn("Could not calculate moonrise", e);
+  }
+  
+  try {
+    const setEvent = Astronomy.SearchRiseSet(Astronomy.Body.Moon, observer, -1, midnight, 1);
+    if (setEvent) moonset = setEvent.date;
+  } catch (e) {
+    console.warn("Could not calculate moonset", e);
+  }
+  
+  return { moonrise, moonset };
+}
+
 function getSiderealLongitude(tropicalLon: number, date: Date): number {
   // Calculate years since J2000
   const j2000 = new Date("2000-01-01T12:00:00Z");
