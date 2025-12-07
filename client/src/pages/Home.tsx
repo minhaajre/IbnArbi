@@ -149,7 +149,7 @@ export default function Home() {
         moonPhase,
         planets: planets.slice(0, 7),
         hijriDate,
-        dominant_element: planets.length > 0 ? planets[0].zodiacSign : null,
+        dominant_element: planets.length > 0 ? planets[0].sign : null,
       };
 
       const response = await fetch("/api/send-moment-capture", {

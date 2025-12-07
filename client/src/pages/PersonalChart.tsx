@@ -93,8 +93,7 @@ export default function PersonalChart() {
 
     // Get current celestial data
     const now = new Date();
-    const location = { lat: 40, lng: -74, name: "Current Location" };
-    const currentHour = getPlanetaryHours(now, location, true);
+    const currentHour = getPlanetaryHours(now, 40, -74);
     const currentPlanets = getPlanetaryPositions(now, true);
     const mansion = getLunarMansion(now, true);
     const moonPhase = getMoonPhase(now);
