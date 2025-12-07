@@ -222,20 +222,25 @@ export function getPlanetIngresses(date: Date, useSidereal: boolean = true): Pla
     const planetData = positions.find(p => p.name === name);
     const lon = planetData?.longitude || 0;
     const isRetrograde = planetData?.isRetrograde || false;
-    const actualSpeed = Math.abs(planetData?.speed || 0) * 24; // Convert to degrees per day
     
     const currentSignIndex = Math.floor(lon / 30);
     const currentSign = SIGNS[currentSignIndex];
     const degreeInSign = lon % 30;
     
-    // Average speeds (degrees per day) as fallback
+    // Average speeds (degrees per day) - use these for reliable estimates
+    // Saturn ~12°/year, Jupiter ~30°/year, Mars ~0.5°/day, etc.
     const avgSpeeds: Record<string, number> = {
-      Sun: 1.0, Moon: 13.2, Mercury: 1.2, Venus: 1.0,
-      Mars: 0.52, Jupiter: 0.083, Saturn: 0.034
+      Sun: 0.986,      // ~1° per day
+      Moon: 13.2,      // ~13° per day  
+      Mercury: 1.2,    // ~1.2° per day (varies a lot)
+      Venus: 1.0,      // ~1° per day
+      Mars: 0.52,      // ~0.5° per day
+      Jupiter: 0.083,  // ~30° per year = 0.083°/day
+      Saturn: 0.033    // ~12° per year = 0.033°/day
     };
     
-    // Use actual speed if available, otherwise fallback to average
-    const speed = actualSpeed > 0.001 ? actualSpeed : (avgSpeeds[name] || 1.0);
+    // Always use average speeds for consistent estimates
+    const speed = avgSpeeds[name] || 1.0;
     
     let targetSign: string;
     let degreesToCross: number;
