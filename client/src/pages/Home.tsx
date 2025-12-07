@@ -416,8 +416,8 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Row 1: Station + Planetary Hour (side by side) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6 items-start">
+      {/* Row 1: Lunar Mansion + Celestial Dignities (similar heights) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
         
         {/* Current Station Card - Glass Effect */}
         <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
@@ -449,8 +449,45 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Planetary Hour Card - Glass Effect */}
+        {/* Celestial Dignities - Glass Effect */}
         <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
+            <h2 className="text-base sm:text-lg font-serif text-foreground/80">
+              Celestial Dignities <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الكرامات السماوية</span>
+            </h2>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
+                  <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-dignities" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80" align="end">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.dignities.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.dignities.description}</p>
+                  <Link href="/instructions#celestial-dignities" className="text-xs text-primary hover:underline block pt-1">
+                    Learn more →
+                  </Link>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+          <div className="relative z-10 overflow-x-auto">
+            <PlanetaryTable 
+              planets={planets} 
+              useSidereal={useSidereal}
+              onToggleSystem={setUseSidereal}
+            />
+          </div>
+        </section>
+      </div>
+
+      {/* Row 2: Planetary Hours + Elemental Balance (side by side) */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-4 sm:mb-6">
+        {/* Planetary Hour Card - Glass Effect (takes 2 columns) */}
+        <section className="lg:col-span-2 glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           
@@ -622,46 +659,8 @@ export default function Home() {
             </div>
           )}
         </section>
-      </div>
 
-      {/* Row 2: Dignities + Elemental Balance (side by side) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6 items-start">
-        
-        {/* Celestial Dignities - Glass Effect */}
-        <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
-            <h2 className="text-base sm:text-lg font-serif text-foreground/80">
-              Celestial Dignities <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الكرامات السماوية</span>
-            </h2>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
-                  <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-dignities" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-80" align="end">
-                <div className="space-y-2">
-                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.dignities.title}</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.dignities.description}</p>
-                  <Link href="/instructions#celestial-dignities" className="text-xs text-primary hover:underline block pt-1">
-                    Learn more →
-                  </Link>
-                </div>
-              </PopoverContent>
-            </Popover>
-          </div>
-          <div className="relative z-10 overflow-x-auto">
-            <PlanetaryTable 
-              planets={planets} 
-              useSidereal={useSidereal}
-              onToggleSystem={setUseSidereal}
-            />
-          </div>
-        </section>
-
-        {/* Elemental Balance - Glass Effect */}
+        {/* Elemental Balance - Glass Effect (takes 1 column) */}
         <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
