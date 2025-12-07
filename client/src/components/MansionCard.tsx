@@ -1,8 +1,9 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC } from "@/lib/constants";
 import { MANSION_GUIDANCE, CYCLE_ROLE_COLORS } from "@/lib/spiritualGuidance";
 import { MansionProgress, MoonPhaseInfo } from "@/lib/astronomy";
-import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, CheckCircle, XCircle, Compass, ChevronDown } from "lucide-react";
+import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, CheckCircle, XCircle, Compass, ChevronDown, ChevronUp } from "lucide-react";
 import { format } from "date-fns";
 import {
   Accordion,
@@ -18,6 +19,7 @@ interface MansionCardProps {
 }
 
 export function MansionCard({ mansion, progress }: MansionCardProps) {
+  const [isExpanded, setIsExpanded] = useState(true);
   const isBlessed = mansion.nature === "blessed";
   const guidance = MANSION_GUIDANCE[mansion.number];
   const cycleColors = guidance ? CYCLE_ROLE_COLORS[guidance.cycleRole] : null;
@@ -99,191 +101,217 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
           </div>
         )}
 
-        {/* NEW: Mansion Theme Card */}
+        {/* NEW: Mansion Theme Card with Collapse/Expand */}
         {guidance && (
-          <div className="mb-3 p-3 rounded-lg bg-card/50 border border-border" data-testid="mansion-theme-card">
-            <div className="flex items-center gap-2 mb-2">
-              <BookOpen className="w-4 h-4 text-primary" />
-              <span className="text-xs font-medium text-foreground uppercase tracking-wide">Mansion Theme</span>
-              <span className="text-xs font-arabic text-muted-foreground">{guidance.themeArabic}</span>
-            </div>
-            <p className="text-sm text-foreground/90 leading-relaxed">
-              {guidance.theme}
-            </p>
-            <p className="text-xs text-muted-foreground mt-1.5 italic">
-              Energy: {guidance.energy === 'beginning' ? 'Beginning / Initiating' : guidance.energy === 'stabilizing' ? 'Stabilizing / Building' : 'Ending / Releasing'}
-            </p>
-          </div>
-        )}
-
-        {/* NEW: Good For / Not Ideal For Card */}
-        {guidance && (
-          <div className="mb-3 p-3 rounded-lg bg-foreground/5 border border-border" data-testid="mansion-guidance-card">
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <div className="flex items-center gap-1.5 mb-2">
-                  <CheckCircle className="w-3.5 h-3.5 text-green-500" />
-                  <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Good For</span>
-                </div>
-                <ul className="space-y-1">
-                  {guidance.goodFor.slice(0, 4).map((item, i) => (
-                    <li key={i} className="text-xs text-foreground/80 flex items-start gap-1.5">
-                      <span className="text-green-500 mt-0.5">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <div className="flex items-center gap-1.5 mb-2">
-                  <XCircle className="w-3.5 h-3.5 text-red-400" />
-                  <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Not Ideal For</span>
-                </div>
-                <ul className="space-y-1">
-                  {guidance.notIdealFor.slice(0, 4).map((item, i) => (
-                    <li key={i} className="text-xs text-foreground/60 flex items-start gap-1.5">
-                      <span className="text-red-400 mt-0.5">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* NEW: Suggested Dhikr & Practice Card */}
-        {guidance && (
-          <div className="mb-3 p-3 rounded-lg bg-primary/5 border border-primary/20" data-testid="mansion-dhikr-card">
-            <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-xs font-medium text-foreground uppercase tracking-wide">Suggested Dhikr & Practice</span>
-            </div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-sm font-semibold text-foreground">{guidance.dhikr.name}</span>
-              <span className="font-arabic text-primary">{guidance.dhikr.nameArabic}</span>
-              <span className="text-xs text-muted-foreground">({guidance.dhikr.meaning})</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <Compass className="w-3.5 h-3.5 text-primary/70 mt-0.5 shrink-0" />
-              <p className="text-xs text-foreground/80 leading-relaxed">{guidance.practice}</p>
-            </div>
-            <p className="text-xs font-arabic text-muted-foreground/70 mt-1.5 text-right" dir="rtl">
-              {guidance.practiceArabic}
-            </p>
-          </div>
-        )}
-
-        <div className="space-y-3 text-sm text-muted-foreground/90 font-light leading-relaxed flex-1">
-          {/* Recommended Actions - Prominent */}
-          {'activities' in mansion && mansion.activities && (
-            <div className={`flex gap-3 p-2.5 rounded-lg border ${
-              isBlessed 
-                ? 'bg-green-500/5 border-green-500/20' 
-                : 'bg-amber-500/5 border-amber-500/20'
-            }`}>
-              <Lightbulb className={`w-4 h-4 mt-0.5 shrink-0 ${isBlessed ? 'text-green-500' : 'text-amber-500'}`} />
-              <div>
-                <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">
-                  Recommended Actions <span className="font-arabic">الأعمال المستحبة</span>
-                </strong>
-                <span className="text-foreground/80 text-sm">{mansion.activities}</span>
-              </div>
-            </div>
-          )}
-
-          <Accordion type="single" collapsible className="space-y-2">
-            {/* Sphere/Realm - Collapsible */}
-            {('sphere' in mansion && mansion.sphere) && (
-              <AccordionItem value="sphere" className="border border-primary/10 rounded-lg bg-primary/5">
-                <AccordionTrigger className="px-3 py-2 hover:no-underline text-xs font-medium text-foreground uppercase tracking-wide opacity-70">
-                  <div className="flex items-center gap-2">
-                    <Orbit className="w-3.5 h-3.5 text-gold" />
-                    <span>Celestial Sphere <span className="font-arabic text-xs">الفلك السماوي</span></span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-3 pb-2 pt-0 text-sm">
-                  <span className="text-gold/90">{mansion.sphere}</span>
-                  {'sphereArabic' in mansion && mansion.sphereArabic && (
-                    <span className="block font-arabic text-xs text-muted-foreground mt-1.5">{mansion.sphereArabic}</span>
-                  )}
-                </AccordionContent>
-              </AccordionItem>
-            )}
-
-            {/* Meaning / Divine Attribute / Arabic Letter - Collapsible */}
-            <AccordionItem value="details" className="border border-border rounded-lg bg-foreground/5">
-              <AccordionTrigger className="px-3 py-2 hover:no-underline text-xs font-medium text-foreground uppercase tracking-wide opacity-70">
+          <div>
+            <div className="mb-3 p-3 rounded-lg bg-card/50 border border-border" data-testid="mansion-theme-card">
+              <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <Sparkles className="w-3.5 h-3.5 text-primary/70" />
-                  <span>Meaning & Divine Attributes</span>
+                  <BookOpen className="w-4 h-4 text-primary" />
+                  <span className="text-xs font-medium text-foreground uppercase tracking-wide">Mansion Theme</span>
+                  <span className="text-xs font-arabic text-muted-foreground">{guidance.themeArabic}</span>
                 </div>
-              </AccordionTrigger>
-              <AccordionContent className="px-3 pb-3 pt-1 space-y-2">
-                <div className="space-y-2 text-sm">
-                  <div>
-                    <strong className="text-foreground text-xs uppercase tracking-wide opacity-70 block mb-0.5">
-                      Meaning <span className="font-arabic text-xs">{UI_LABELS_ARABIC["Station Meaning"]}</span>
-                    </strong>
-                    <span className="text-foreground/90">{mansion.meaning}</span>
-                  </div>
-                  
-                  <div>
-                    <strong className="text-foreground text-xs uppercase tracking-wide opacity-70 block mb-0.5">
-                      Divine Attribute <span className="font-arabic text-xs">الصفة الإلهية</span>
-                    </strong>
-                    <span className="text-foreground/90">{mansion.attribute}</span>
-                    {'attributeArabic' in mansion && mansion.attributeArabic && (
-                      <span className="font-arabic text-xs text-muted-foreground ml-2">{mansion.attributeArabic}</span>
-                    )}
-                  </div>
+                <button
+                  type="button"
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors px-2 py-1 rounded-lg hover:bg-foreground/5"
+                  data-testid="toggle-mansion-details"
+                >
+                  {isExpanded ? "Collapse" : "Expand"}
+                  {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                </button>
+              </div>
+              <p className="text-sm text-foreground/90 leading-relaxed">
+                {guidance.theme}
+              </p>
+              <p className="text-xs text-muted-foreground mt-1.5 italic">
+                Energy: {guidance.energy === 'beginning' ? 'Beginning / Initiating' : guidance.energy === 'stabilizing' ? 'Stabilizing / Building' : 'Ending / Releasing'}
+              </p>
+            </div>
+          </div>
+        )}
 
-                  <div>
-                    <strong className="text-foreground text-xs uppercase tracking-wide opacity-70 block mb-0.5">
-                      Arabic Letter <span className="font-arabic text-xs">الحرف العربي</span>
-                    </strong>
-                    <div className="flex items-center gap-2">
-                      <span>{mansion.letter} • {mansion.degrees}</span>
-                      {'letterArabic' in mansion && mansion.letterArabic && (
-                        <span className="font-arabic text-lg text-primary">{mansion.letterArabic}</span>
-                      )}
+        {/* Collapsible Content */}
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="overflow-hidden space-y-3"
+            >
+              {/* NEW: Good For / Not Ideal For Card */}
+              {guidance && (
+                <div className="mb-3 p-3 rounded-lg bg-foreground/5 border border-border" data-testid="mansion-guidance-card">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <div className="flex items-center gap-1.5 mb-2">
+                        <CheckCircle className="w-3.5 h-3.5 text-green-500" />
+                        <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Good For</span>
+                      </div>
+                      <ul className="space-y-1">
+                        {guidance.goodFor.slice(0, 4).map((item, i) => (
+                          <li key={i} className="text-xs text-foreground/80 flex items-start gap-1.5">
+                            <span className="text-green-500 mt-0.5">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1.5 mb-2">
+                        <XCircle className="w-3.5 h-3.5 text-red-400" />
+                        <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Not Ideal For</span>
+                      </div>
+                      <ul className="space-y-1">
+                        {guidance.notIdealFor.slice(0, 4).map((item, i) => (
+                          <li key={i} className="text-xs text-foreground/60 flex items-start gap-1.5">
+                            <span className="text-red-400 mt-0.5">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 </div>
-              </AccordionContent>
-            </AccordionItem>
+              )}
 
-            {/* Ibn Arabi Quote - Collapsible */}
-            <AccordionItem value="quote" className="border border-border rounded-lg bg-foreground/5">
-              <AccordionTrigger className="px-3 py-2 hover:no-underline text-xs font-medium text-foreground uppercase tracking-wide opacity-70">
-                <div className="flex items-center gap-2">
-                  <BookOpen className="w-3.5 h-3.5 text-primary/70" />
-                  <span>Ibn Arabi's Wisdom</span>
+              {/* NEW: Suggested Dhikr & Practice Card */}
+              {guidance && (
+                <div className="mb-3 p-3 rounded-lg bg-primary/5 border border-primary/20" data-testid="mansion-dhikr-card">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles className="w-4 h-4 text-primary" />
+                    <span className="text-xs font-medium text-foreground uppercase tracking-wide">Suggested Dhikr & Practice</span>
+                  </div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-sm font-semibold text-foreground">{guidance.dhikr.name}</span>
+                    <span className="font-arabic text-primary">{guidance.dhikr.nameArabic}</span>
+                    <span className="text-xs text-muted-foreground">({guidance.dhikr.meaning})</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Compass className="w-3.5 h-3.5 text-primary/70 mt-0.5 shrink-0" />
+                    <p className="text-xs text-foreground/80 leading-relaxed">{guidance.practice}</p>
+                  </div>
+                  <p className="text-xs font-arabic text-muted-foreground/70 mt-1.5 text-right" dir="rtl">
+                    {guidance.practiceArabic}
+                  </p>
                 </div>
-              </AccordionTrigger>
-              <AccordionContent className="px-3 pb-2 pt-1">
-                <p className="italic opacity-70 text-xs leading-relaxed">"{mansion.description}"</p>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
+              )}
 
-        {/* Mansion Wheel Image - Collapsible */}
-        <Accordion type="single" collapsible className="mt-4 pt-3 border-t border-border/50">
-          <AccordionItem value="wheel" className="border-0">
-            <AccordionTrigger className="px-0 py-1 hover:no-underline text-[10px] text-muted-foreground">
-              <span>🔍 Ibn Arabi's 28 Lunar Mansions Wheel <span className="font-arabic">عجلة المنازل</span> (tap to expand)</span>
-            </AccordionTrigger>
-            <AccordionContent className="pt-2">
-              <img 
-                src="/mansionwheel.jpg" 
-                alt="Ibn Arabi's 28 Lunar Mansions Wheel" 
-                className="w-full rounded-lg border border-border opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
-                data-testid="mansion-wheel-image"
-              />
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+              <div className="space-y-3 text-sm text-muted-foreground/90 font-light leading-relaxed flex-1">
+                {/* Recommended Actions - Prominent */}
+                {'activities' in mansion && mansion.activities && (
+                  <div className={`flex gap-3 p-2.5 rounded-lg border ${
+                    isBlessed 
+                      ? 'bg-green-500/5 border-green-500/20' 
+                      : 'bg-amber-500/5 border-amber-500/20'
+                  }`}>
+                    <Lightbulb className={`w-4 h-4 mt-0.5 shrink-0 ${isBlessed ? 'text-green-500' : 'text-amber-500'}`} />
+                    <div>
+                      <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">
+                        Recommended Actions <span className="font-arabic">الأعمال المستحبة</span>
+                      </strong>
+                      <span className="text-foreground/80 text-sm">{mansion.activities}</span>
+                    </div>
+                  </div>
+                )}
+
+                <Accordion type="single" collapsible className="space-y-2">
+                  {/* Sphere/Realm - Collapsible */}
+                  {('sphere' in mansion && mansion.sphere) && (
+                    <AccordionItem value="sphere" className="border border-primary/10 rounded-lg bg-primary/5">
+                      <AccordionTrigger className="px-3 py-2 hover:no-underline text-xs font-medium text-foreground uppercase tracking-wide opacity-70">
+                        <div className="flex items-center gap-2">
+                          <Orbit className="w-3.5 h-3.5 text-gold" />
+                          <span>Celestial Sphere <span className="font-arabic text-xs">الفلك السماوي</span></span>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="px-3 pb-2 pt-0 text-sm">
+                        <span className="text-gold/90">{mansion.sphere}</span>
+                        {'sphereArabic' in mansion && mansion.sphereArabic && (
+                          <span className="block font-arabic text-xs text-muted-foreground mt-1.5">{mansion.sphereArabic}</span>
+                        )}
+                      </AccordionContent>
+                    </AccordionItem>
+                  )}
+
+                  {/* Meaning / Divine Attribute / Arabic Letter - Collapsible */}
+                  <AccordionItem value="details" className="border border-border rounded-lg bg-foreground/5">
+                    <AccordionTrigger className="px-3 py-2 hover:no-underline text-xs font-medium text-foreground uppercase tracking-wide opacity-70">
+                      <div className="flex items-center gap-2">
+                        <Sparkles className="w-3.5 h-3.5 text-primary/70" />
+                        <span>Meaning & Divine Attributes</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-3 pb-3 pt-1 space-y-2">
+                      <div className="space-y-2 text-sm">
+                        <div>
+                          <strong className="text-foreground text-xs uppercase tracking-wide opacity-70 block mb-0.5">
+                            Meaning <span className="font-arabic text-xs">{UI_LABELS_ARABIC["Station Meaning"]}</span>
+                          </strong>
+                          <span className="text-foreground/90">{mansion.meaning}</span>
+                        </div>
+                        
+                        <div>
+                          <strong className="text-foreground text-xs uppercase tracking-wide opacity-70 block mb-0.5">
+                            Divine Attribute <span className="font-arabic text-xs">الصفة الإلهية</span>
+                          </strong>
+                          <span className="text-foreground/90">{mansion.attribute}</span>
+                          {'attributeArabic' in mansion && mansion.attributeArabic && (
+                            <span className="font-arabic text-xs text-muted-foreground ml-2">{mansion.attributeArabic}</span>
+                          )}
+                        </div>
+
+                        <div>
+                          <strong className="text-foreground text-xs uppercase tracking-wide opacity-70 block mb-0.5">
+                            Arabic Letter <span className="font-arabic text-xs">الحرف العربي</span>
+                          </strong>
+                          <div className="flex items-center gap-2">
+                            <span>{mansion.letter} • {mansion.degrees}</span>
+                            {'letterArabic' in mansion && mansion.letterArabic && (
+                              <span className="font-arabic text-lg text-primary">{mansion.letterArabic}</span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Ibn Arabi Quote - Collapsible */}
+                  <AccordionItem value="quote" className="border border-border rounded-lg bg-foreground/5">
+                    <AccordionTrigger className="px-3 py-2 hover:no-underline text-xs font-medium text-foreground uppercase tracking-wide opacity-70">
+                      <div className="flex items-center gap-2">
+                        <BookOpen className="w-3.5 h-3.5 text-primary/70" />
+                        <span>Ibn Arabi's Wisdom</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-3 pb-2 pt-1">
+                      <p className="italic opacity-70 text-xs leading-relaxed">"{mansion.description}"</p>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Mansion Wheel Image - Collapsible */}
+                  <Accordion type="single" collapsible className="border-0">
+                    <AccordionItem value="wheel" className="border-0">
+                      <AccordionTrigger className="px-0 py-1 hover:no-underline text-[10px] text-muted-foreground">
+                        <span>🔍 Ibn Arabi's 28 Lunar Mansions Wheel <span className="font-arabic">عجلة المنازل</span> (tap to expand)</span>
+                      </AccordionTrigger>
+                      <AccordionContent className="pt-2">
+                        <img 
+                          src="/mansionwheel.jpg" 
+                          alt="Ibn Arabi's 28 Lunar Mansions Wheel" 
+                          className="w-full rounded-lg border border-border opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
+                          data-testid="mansion-wheel-image"
+                        />
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </Accordion>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );
