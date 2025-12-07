@@ -60,7 +60,7 @@ export function ElementalBalance({ planets }: ElementalBalanceProps) {
   const DominantConfig = ELEMENT_CONFIG[dominant as keyof typeof ELEMENT_CONFIG];
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       <div className="grid grid-cols-4 gap-3">
         {(Object.entries(counts) as [keyof typeof ELEMENT_CONFIG, number][]).map(([element, count]) => {
           const config = ELEMENT_CONFIG[element];

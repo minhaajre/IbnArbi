@@ -36,9 +36,9 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, select
   const progress = (elapsed / total) * 100;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Main Display */}
-      <div className="relative flex flex-col items-center justify-center py-4">
+      <div className="relative flex flex-col items-center justify-center py-2">
         <motion.div 
           className="absolute inset-0 bg-primary/5 blur-[100px] rounded-full"
           animate={{ scale: [1, 1.1, 1] }}
