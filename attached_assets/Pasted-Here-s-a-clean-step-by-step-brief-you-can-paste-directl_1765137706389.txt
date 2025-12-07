@@ -1,0 +1,219 @@
+Here’s a clean, step-by-step brief you can paste directly to Replit’s AI agent.
+It tells it *what* to add and *where*, while keeping your current Instructions page topics intact.
+
+---
+
+## 0. Overall Goal
+
+Integrate Ibn ʿArabi–based content into the existing planetary-hours + lunar-mansions app in a **visually coherent**, card-based way, **without removing or renaming** the current Instructions topics.
+
+The new content should:
+
+* Explain the **meaning** of each hour and mansion (not just show calculations).
+* Offer **simple practices** and **adab** for spiritual work.
+* Give users a brief, clear doorway into **Ibn ʿArabi’s cosmology** and *Mawāqiʿ al-Nujūm*.
+* Fit into the app’s existing **info cards → instructions section** flow.
+
+---
+
+## 1. Keep Existing Instructions Content
+
+1. Do **not** delete or rename any existing headings or text on the Instructions page.
+2. Treat current sections as the **“Core Usage”** part.
+3. All new sections must be **added below** existing ones or as clearly separated **sub-sections** under them.
+
+---
+
+## 2. Enhancements to the Hour Detail View
+
+For the screen/card that shows “Hour of X” (Mars, Venus, etc.):
+
+### 2.1 Add a “Meaning of This Hour” card
+
+Under the main hour title and time range, add a new info card:
+
+* Title: `Meaning of this hour`
+* Content: short paragraph describing:
+
+  * Emotional signal for this planet
+  * What this hour tends to open or test
+  * One sentence of adab (how to behave in it)
+
+Example for Mars:
+
+> This is a Majestic hour (jalāl): energy rises, truth cuts through confusion, and impatience may appear. It is good for courage and cutting distractions, but not for impulsive arguments.
+
+### 2.2 Add “Recommended Practice” card
+
+Next to / below it, add another card:
+
+* Title: `Recommended spiritual practice`
+* Content: 3–5 bullet points:
+
+  * Suggested dhikr (one Divine Name)
+  * Suggested action (journaling, breathwork, brief walk, etc.)
+  * One “do” and one “avoid”
+
+Example structure:
+
+* Dhikr: **al-Ḥafīẓ** (The Preserver)
+* Do: cut one distraction, focus on what truly matters.
+* Avoid: sending messages in anger or haste.
+
+### 2.3 Add a small “Inner State Check” strip
+
+Below the two cards, add a narrow strip:
+
+* Title: `Inner state check`
+* Text: one sentence:
+
+> If you feel expansion, this hour supports action. If you feel contraction, stay quiet and let the hour purify you.
+
+This reflects Ch. 390 (Spirit of Time) without going into heavy theory.
+
+---
+
+## 3. Enhancements to the Mansion Detail View
+
+For the screen/card that shows the current lunar mansion:
+
+### 3.1 Add “Mansion Theme” card
+
+* Title: `Mansion theme`
+* Content: 2–3 sentence description:
+
+  * Core theme (e.g. “seed intention”, “stability”, “relationship testing”, “closure”)
+  * Whether it tends toward **beginning**, **stabilising**, or **ending** energy.
+
+### 3.2 Add “Good Today For / Not Ideal For” card
+
+Two columns or a bullet list:
+
+* `Good for:` 3–5 items
+* `Not ideal for:` 3–5 items
+
+Keep language simple: starting conversations, signing contracts, releasing habits, etc.
+
+### 3.3 Add “Suggested Divine Name & Practice” card
+
+* Title: `Suggested dhikr & practice`
+* Body:
+
+  * One Name (e.g. *al-Nūr*, *al-Qawī*, *al-Laṭīf*).
+  * One simple practice (dua, journaling, cleaning, charity, extra rakaʿāt, sleep ritual, etc.).
+
+### 3.4 Optional: “Cycle Role” tag
+
+Near the mansion name, show a small label:
+
+* `Seed`, `Build`, `Relate`, or `Release`
+
+This helps users see where they are in the 28-day cycle.
+
+---
+
+## 4. New Sections on the Instructions Page
+
+Below current instructions, append the following **major headings** and text blocks.
+Use simple H2/H3 hierarchy and keep each section short and scannable.
+
+### 4.1 Section: “How to Read Planetary Hours Spiritually”
+
+Content outline:
+
+1. **Time starts at sunset**
+
+   * One paragraph explaining Islamic day start at Maghrib.
+2. **Each hour has a spiritual “face”**
+
+   * Explain that every hour carries a specific quality (mercy, strength, beauty, etc.).
+3. **How to use the Hour card**
+
+   * Briefly explain:
+
+     * Check the planet
+     * Read “Meaning of this hour”
+     * Use “Recommended practice” and “Inner state check” to decide whether to act or observe.
+
+### 4.2 Section: “How to Read the Lunar Mansion”
+
+Content outline:
+
+1. **What is a lunar mansion?**
+
+   * Short explanation: 28 stations of the Moon, each carrying a distinct divine quality.
+2. **Four mansion phases**
+
+   * Seed (1–4), Build (5–8), Relate (9–20), Release (21–28).
+3. **How to use the Mansion card**
+
+   * Look at `Mansion theme`, `Good for / Not ideal for`, and `Suggested dhikr & practice`.
+   * Combine with waxing/waning information already shown.
+
+### 4.3 Section: “Combining Hour and Mansion”
+
+Explain, in 3–4 short bullet examples, how to read both together:
+
+* Example: Moon day + Mars hour + Release-type mansion = good for cutting unhealthy patterns.
+* Example: Venus hour + Build-type mansion = good for stabilizing relationships in a gentle way.
+
+---
+
+## 5. “Background: Ibn ʿArabi’s Cosmology” Section
+
+At the bottom of the Instructions page, add an expandable section:
+
+### 5.1 Title: “Background: Ibn ʿArabi’s View of Time”
+
+Text should be 2–4 short paragraphs:
+
+* Time is a living reality, each instant renewed by God.
+* Every hour has an angelic spirit and a ruling Divine Name.
+* The Moon mirrors descending decrees; mansions mark stages of that reflection.
+* The app uses this logic to help you act with adab (right conduct) in each moment.
+
+### 5.2 Subheading: “Key Sources (for further reading)”
+
+List (plain text, no links needed if you don’t want):
+
+* Ibn ʿArabi – *Mawāqiʿ al-Nujūm*
+* Ibn ʿArabi – *al-Futūḥāt al-Makkiyya* (esp. chapters on time, imagination, hours, and planets)
+* Titus Burckhardt – *Mystical Astrology of Ibn Arabi*
+* William Chittick – *The Sufi Path of Knowledge*
+
+---
+
+## 6. UI/Structure Guidelines for Replit AI
+
+1. **Do not move or rename existing instruction topics.**
+
+   * Only append new sections in order:
+
+     * “How to Read Planetary Hours Spiritually”
+     * “How to Read the Lunar Mansion”
+     * “Combining Hour and Mansion”
+     * “Background: Ibn ʿArabi’s View of Time”
+
+2. **Use consistent visual style:**
+
+   * Same card style as existing hour and mansion cards.
+   * Clear titles, short paragraphs, bullet lists where possible.
+   * Avoid long dense blocks of text.
+
+3. **Maintain info-card flow:**
+
+   * The existing info cards that link to Instructions should still point to the same anchor section.
+   * Within that section, the new subsections appear **after** current text so nothing breaks.
+
+4. **Keep language user-facing, not technical:**
+
+   * No code, no “API”, no “data model” phrasing in the page.
+   * Talk in terms of “this hour”, “this mansion”, “you can use this time for…”.
+
+---
+
+If you give this entire brief to the Replit AI agent, it will know:
+
+* what new cards to add to the hour and mansion views,
+* what new sections to add on the Instructions page,
+* and how to keep the page visually coherent and structurally intact.
