@@ -4,9 +4,10 @@ import { IBN_ARABI_MANSIONS, SIGN_DATA } from "@/lib/constants";
 
 interface MansionCycleRingProps {
   mansionNumber: number;
+  onSelectMansion?: (number: number | null) => void;
 }
 
-export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
+export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycleRingProps) {
   const [hoveredNumber, setHoveredNumber] = useState<number | null>(null);
   const positions = Array.from({ length: 28 }, (_, i) => i + 1);
   const radius = 70; // Larger radius for bigger circle
@@ -44,7 +45,7 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
   const getNumberPosition = (position: number) => {
     const angle = ((position - 1) / 28) * 360 - 90;
     const radian = (angle * Math.PI) / 180;
-    const numberRadius = 65; // Inner radius for numbers
+    const numberRadius = 90; // Inner radius for numbers - increased to prevent overlap
     const x = Math.cos(radian) * numberRadius;
     const y = Math.sin(radian) * numberRadius;
     return { x, y };
@@ -169,14 +170,21 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
 
           return (
             <g key={`number-${position}`}>
-              {/* Invisible larger hitbox for hover */}
+              {/* Invisible larger hitbox for hover and click */}
               <circle
                 cx={140 + x}
                 cy={140 + y}
                 r="14"
                 fill="transparent"
-                onMouseEnter={() => setHoveredNumber(position)}
+                onMouseEnter={() => {
+                  setHoveredNumber(position);
+                  onSelectMansion?.(position);
+                }}
                 onMouseLeave={() => setHoveredNumber(null)}
+                onClick={() => {
+                  setHoveredNumber(position);
+                  onSelectMansion?.(position);
+                }}
                 style={{ cursor: "pointer" }}
               />
 

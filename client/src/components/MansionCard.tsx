@@ -21,8 +21,11 @@ interface MansionCardProps {
 
 export function MansionCard({ mansion, progress }: MansionCardProps) {
   const [isExpanded, setIsExpanded] = useState(true);
-  const isBlessed = mansion.nature === "blessed";
-  const guidance = MANSION_GUIDANCE[mansion.number];
+  const [selectedMansionNumber, setSelectedMansionNumber] = useState<number | null>(null);
+  
+  const displayedMansion = selectedMansionNumber ? IBN_ARABI_MANSIONS[selectedMansionNumber - 1] : mansion;
+  const isBlessed = displayedMansion.nature === "blessed";
+  const guidance = MANSION_GUIDANCE[displayedMansion.number];
   const cycleColors = guidance ? CYCLE_ROLE_COLORS[guidance.cycleRole] : null;
   
   return (
@@ -45,10 +48,10 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
         </div>
 
         <h2 className="text-2xl font-serif text-gold mb-1 leading-tight">
-          {mansion.name}
+          {displayedMansion.name}
         </h2>
         <h3 className="text-lg font-arabic mb-2 text-muted-foreground">
-          {mansion.arabic}
+          {displayedMansion.arabic}
         </h3>
         
         {/* Blessed/Challenging + Cycle Role Indicators */}
@@ -122,8 +125,11 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
         </div>
 
         {/* Mansion Cycle Ring */}
-        <div className="mb-3 flex justify-center">
-          <MansionCycleRing mansionNumber={mansion.number} />
+        <div className="mb-3 flex justify-center" onMouseLeave={() => setSelectedMansionNumber(null)}>
+          <MansionCycleRing 
+            mansionNumber={mansion.number} 
+            onSelectMansion={setSelectedMansionNumber}
+          />
         </div>
 
         {/* NEW: Mansion Theme Card with Collapse/Expand */}
