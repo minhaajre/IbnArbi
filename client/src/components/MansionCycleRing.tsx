@@ -45,7 +45,7 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
   const getNumberPosition = (position: number) => {
     const angle = ((position - 1) / 28) * 360 - 90;
     const radian = (angle * Math.PI) / 180;
-    const numberRadius = 90; // Inner radius for numbers - increased to prevent overlap
+    const numberRadius = 120; // Expanded radius for numbers
     const x = Math.cos(radian) * numberRadius;
     const y = Math.sin(radian) * numberRadius;
     return { x, y };
@@ -54,7 +54,7 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
   const getSymbolPosition = (position: number) => {
     const angle = ((position - 1) / 28) * 360 - 90;
     const radian = (angle * Math.PI) / 180;
-    const symbolRadius = 115; // Outer radius for zodiac symbols
+    const symbolRadius = 155; // Outer radius for zodiac symbols
     const x = Math.cos(radian) * symbolRadius;
     const y = Math.sin(radian) * symbolRadius;
     return { x, y };
@@ -74,12 +74,12 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
       </div>
 
       {/* Large SVG Circle */}
-      <svg width="280" height="280" viewBox="0 0 280 280" className="drop-shadow-lg">
+      <svg width="380" height="380" viewBox="0 0 380 380" className="drop-shadow-lg">
         {/* Outer decorative ring */}
         <circle
-          cx="140"
-          cy="140"
-          r="130"
+          cx="190"
+          cy="190"
+          r="170"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -88,9 +88,9 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
 
         {/* Middle guide ring */}
         <circle
-          cx="140"
-          cy="140"
-          r="95"
+          cx="190"
+          cy="190"
+          r="130"
           fill="none"
           stroke="currentColor"
           strokeWidth="1.5"
@@ -99,9 +99,9 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
 
         {/* Inner circle */}
         <circle
-          cx="140"
-          cy="140"
-          r="50"
+          cx="190"
+          cy="190"
+          r="60"
           fill="currentColor"
           className="text-primary opacity-8"
         />
@@ -113,14 +113,14 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
           const startRad = (startAngle * Math.PI) / 180;
           const endRad = (endAngle * Math.PI) / 180;
 
-          const x1 = 140 + 128 * Math.cos(startRad);
-          const y1 = 140 + 128 * Math.sin(startRad);
-          const x2 = 140 + 128 * Math.cos(endRad);
-          const y2 = 140 + 128 * Math.sin(endRad);
+          const x1 = 190 + 168 * Math.cos(startRad);
+          const y1 = 190 + 168 * Math.sin(startRad);
+          const x2 = 190 + 168 * Math.cos(endRad);
+          const y2 = 190 + 168 * Math.sin(endRad);
 
           return (
             <path
-              d={`M ${x1} ${y1} A 128 128 0 0 1 ${x2} ${y2}`}
+              d={`M ${x1} ${y1} A 168 168 0 0 1 ${x2} ${y2}`}
               fill="none"
               stroke="currentColor"
               strokeWidth="3.5"
@@ -133,10 +133,10 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
         {positions.map((position) => {
           const angle = ((position - 1) / 28) * 360 - 90;
           const radian = (angle * Math.PI) / 180;
-          const x1 = 140 + 50 * Math.cos(radian);
-          const y1 = 140 + 50 * Math.sin(radian);
-          const x2 = 140 + 128 * Math.cos(radian);
-          const y2 = 140 + 128 * Math.sin(radian);
+          const x1 = 190 + 60 * Math.cos(radian);
+          const y1 = 190 + 60 * Math.sin(radian);
+          const x2 = 190 + 168 * Math.cos(radian);
+          const y2 = 190 + 168 * Math.sin(radian);
           const isActive = isCurrentMansion(position);
           const isHovered = hoveredNumber === position;
 
@@ -172,9 +172,9 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
             <g key={`number-${position}`}>
               {/* Invisible larger hitbox for hover and click */}
               <circle
-                cx={140 + x}
-                cy={140 + y}
-                r="14"
+                cx={190 + x}
+                cy={190 + y}
+                r="18"
                 fill="transparent"
                 onMouseEnter={() => {
                   setHoveredNumber(position);
@@ -197,23 +197,23 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
                 transition={{ duration: 0.2 }}
               >
                 <circle
-                  cx={140 + x}
-                  cy={140 + y}
-                  r="12"
+                  cx={190 + x}
+                  cy={190 + y}
+                  r="16"
                   fill="currentColor"
                   className={`${colors.bg} ${colors.border}`}
                   stroke="currentColor"
-                  strokeWidth="1.5"
+                  strokeWidth="2"
                 />
 
                 {/* Number */}
                 <text
-                  x={140 + x}
-                  y={140 + y}
+                  x={190 + x}
+                  y={190 + y}
                   textAnchor="middle"
                   dominantBaseline="middle"
                   className={`font-bold select-none pointer-events-none ${colors.text}`}
-                  fontSize={isActive ? "11" : isHovered ? "10" : "9"}
+                  fontSize={isActive ? "13" : isHovered ? "12" : "11"}
                   fill="currentColor"
                 >
                   {position}
@@ -243,12 +243,12 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
               style={{ cursor: "pointer" }}
             >
               <text
-                x={140 + x}
-                y={140 + y}
+                x={190 + x}
+                y={190 + y}
                 textAnchor="middle"
                 dominantBaseline="middle"
                 className="select-none pointer-events-none text-muted-foreground"
-                fontSize="14"
+                fontSize="16"
                 fontWeight="600"
                 fill="currentColor"
               >
@@ -259,16 +259,16 @@ export function MansionCycleRing({ mansionNumber, onSelectMansion }: MansionCycl
         })}
 
         {/* Center dot */}
-        <circle cx="140" cy="140" r="5" fill="currentColor" className="text-primary" />
+        <circle cx="190" cy="190" r="6" fill="currentColor" className="text-primary" />
       </svg>
 
       {/* Center Display Card */}
-      <div className={`text-center p-3 rounded-lg border-2 ${currentColor.border} ${currentColor.bg}`}>
-        <div className="text-3xl font-bold mb-1">{currentSymbol}</div>
-        <div className={`text-lg font-bold ${currentColor.highlight}`}>{mansionNumber}</div>
-        <div className={`text-xs ${currentColor.highlight} opacity-70`}>of 28 Mansions</div>
-        <div className={`text-[10px] ${currentColor.text} mt-1`}>
-          {currentMansion.nature === "blessed" ? "✓ Blessed" : "⚠ Challenging"}
+      <div className={`text-center p-2.5 rounded-lg border-2 ${currentColor.border} ${currentColor.bg}`}>
+        <div className="text-2xl font-bold mb-0.5">{currentSymbol}</div>
+        <div className={`text-base font-bold ${currentColor.highlight}`}>{mansionNumber}</div>
+        <div className={`text-[10px] ${currentColor.highlight} opacity-70`}>of 28</div>
+        <div className={`text-[9px] ${currentColor.text} mt-0.5`}>
+          {currentMansion.nature === "blessed" ? "✓ Blessed" : "⚠ Challenge"}
         </div>
       </div>
     </div>

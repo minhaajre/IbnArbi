@@ -106,20 +106,20 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
         )}
 
         {/* Quick Start Guide */}
-        <div className="mb-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
-          <div className="text-[10px] font-medium text-primary uppercase tracking-wide mb-2">How to Use This App</div>
-          <div className="space-y-1.5 text-xs text-foreground/80">
-            <div className="flex gap-2">
+        <div className="mb-2 p-2 rounded-lg bg-primary/5 border border-primary/20">
+          <div className="text-[9px] font-medium text-primary uppercase tracking-wide mb-1">How to Use</div>
+          <div className="space-y-0.5 text-[11px] text-foreground/80">
+            <div className="flex gap-1.5">
               <span className="text-primary font-semibold shrink-0">①</span>
-              <span><strong>Check the Hour</strong> – What energy is active?</span>
+              <span><strong>Hour</strong> – What energy is active?</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-1.5">
               <span className="text-primary font-semibold shrink-0">②</span>
-              <span><strong>Check the Mansion</strong> – What stage of the lunar cycle are we in?</span>
+              <span><strong>Mansion</strong> – What lunar stage?</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-1.5">
               <span className="text-primary font-semibold shrink-0">③</span>
-              <span><strong>Align your action</strong> – Act, maintain, or release based on both.</span>
+              <span><strong>Act</strong> – Based on both.</span>
             </div>
           </div>
         </div>
