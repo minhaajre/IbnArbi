@@ -1,0 +1,187 @@
+Here’s a clean, generic spec you can plug straight into a **lunar mansion / planetary energy app**. No personalization, just a consistent system.
+
+---
+
+## 1. App Logic: How to Use Planetary Energy with Lunar Mansions
+
+**Step 1 – Determine active planet**
+
+For any given time block (e.g. current lunar mansion, planetary hour, or selected focus):
+
+1. Identify the **ruling planet**:
+
+   * via lunar mansion ruler, or
+   * via planetary hour, or
+   * via user selection (manual override).
+
+2. Load the **planet profile** from a static data table:
+
+   * `name`
+   * `keywords`
+   * `colors`
+   * `scents`
+   * `supportive_foods`
+   * `avoid_foods`
+   * `fasting_instruction`
+   * `service_instruction`
+   * `behavior_focus`
+
+**Step 2 – Show a simple protocol**
+
+For the active planet, present a **daily protocol**:
+
+1. **Color cue** – what to wear/use.
+2. **Scent cue** – oil/incense suggestion.
+3. **Food cue** – what to emphasize + what to avoid.
+4. **Fasting cue** – what to consciously refrain from that day.
+5. **Service cue** – 1 concrete action “in service” to that planet.
+6. **Behavior focus** – one sentence of how to behave/align.
+
+**Step 3 – Optional integration with lunar mansions**
+
+For each lunar mansion:
+
+1. Map mansion → ruling planet.
+2. Auto-apply that planet’s protocol as the **default** for that mansion period.
+3. Allow user to manually switch to another planet if desired.
+
+---
+
+## 2. Planet Profiles (General – for everyone)
+
+Use these as static definitions in the app.
+
+### SATURN
+
+* **Keywords:** discipline, limits, patience, responsibility
+* **Colors:** black, dark blue, dark brown
+* **Scents:** myrrh, cypress, vetiver, patchouli, sage
+* **Supportive foods:** warm root vegetables, whole grains (barley, oats, rye), sesame, dark leafy greens
+* **Avoid foods:** heavy junk food, extreme restriction, skipped meals
+* **Fasting instruction:**
+
+  * “Fast from distraction and excess: keep food simple, no sugar/junk, reduce entertainment.”
+* **Service instruction:**
+
+  * “Finish a pending task, honor a commitment, or support someone older/long-term in your life.”
+* **Behavior focus:**
+
+  * “Be consistent, sober, and reliable.”
+
+---
+
+### JUPITER
+
+* **Keywords:** expansion, faith, generosity, wisdom
+* **Colors:** royal blue, purple, rich green
+* **Scents:** frankincense, clove, nutmeg, sage, cedar
+* **Supportive foods:** moderate complex carbs (rice, oats, sweet potato), dates, figs, lightly sweet spiced dishes
+* **Avoid foods:** overeating, constant snacking, heavy feasting
+* **Fasting instruction:**
+
+  * “Fast from complaining and cynicism; practice gratitude and generosity instead.”
+* **Service instruction:**
+
+  * “Teach, encourage, or materially support someone; share knowledge or resources.”
+* **Behavior focus:**
+
+  * “Think big, act generous, stay ethical.”
+
+---
+
+### MARS
+
+* **Keywords:** action, courage, assertion, cutting through
+* **Colors:** red, scarlet, strong orange
+* **Scents:** ginger, black pepper, garlic, eucalyptus, rosemary
+* **Supportive foods:** simple lean proteins, warm soups, mild spices, plenty of water
+* **Avoid foods:** excessive chili, fried foods, stimulants when angry or inflamed
+* **Fasting instruction:**
+
+  * “Fast from reactive anger: no impulsive messages, arguments, or revenge behaviors.”
+* **Service instruction:**
+
+  * “Protect or defend someone; take a difficult but necessary action.”
+* **Behavior focus:**
+
+  * “Be direct, brave, and controlled.”
+
+---
+
+### SUN
+
+* **Keywords:** core identity, vitality, integrity, leadership
+* **Colors:** gold, bright yellow, warm orange
+* **Scents:** frankincense, cinnamon, saffron, bay leaf, citrus
+* **Supportive foods:** warm regular meals, small amounts of quality fats, lightly spiced dishes, bright fruits in moderation
+* **Avoid foods:** sugar spikes, “fake energy” drinks
+* **Fasting instruction:**
+
+  * “Fast from self-promotion; do at least one good deed anonymously.”
+* **Service instruction:**
+
+  * “Take responsibility, bring clarity, or lead a situation constructively.”
+* **Behavior focus:**
+
+  * “Act with dignity, honesty, and steady confidence.”
+
+---
+
+### VENUS
+
+* **Keywords:** love, pleasure, harmony, aesthetics
+* **Colors:** green, soft pink, pastel tones
+* **Scents:** rose, jasmine, ylang-ylang, sandalwood, vanilla
+* **Supportive foods:** simple pleasurable meals, natural sweetness (fruit, a little honey), calming teas (rose, chamomile)
+* **Avoid foods:** emotional bingeing, mindless snacking
+* **Fasting instruction:**
+
+  * “Fast from low-quality pleasure: doom scrolling, drama, cheap gratification.”
+* **Service instruction:**
+
+  * “Create beauty or comfort for someone; mediate or soften a conflict.”
+* **Behavior focus:**
+
+  * “Be kind, receptive, and appreciative.”
+
+---
+
+### MERCURY
+
+* **Keywords:** mind, communication, learning, trade
+* **Colors:** yellow, light grey, multicolored/patterned
+* **Scents:** lavender, peppermint, lemongrass, eucalyptus
+* **Supportive foods:** complex carbs for stable focus (oats, quinoa), nuts and seeds, light herbal teas (chamomile, lemon balm)
+* **Avoid foods:** excessive caffeine, sugar highs
+* **Fasting instruction:**
+
+  * “Fast from gossip and info overload; limit media and unnecessary talk.”
+* **Service instruction:**
+
+  * “Explain something clearly, help someone understand or organize information.”
+* **Behavior focus:**
+
+  * “Be clear, curious, and honest.”
+
+---
+
+### MOON
+
+* **Keywords:** emotions, body, habits, memory
+* **Colors:** white, silver, pearl, soft grey
+* **Scents:** sandalwood, neroli, chamomile, mild floral or aquatic notes
+* **Supportive foods:** warm soups and stews, cooked vegetables, gentle grains, herbal teas (fennel, chamomile)
+* **Avoid foods:** late heavy meals, very cold drinks, chaotic eating times
+* **Fasting instruction:**
+
+  * “Fast from emotional reactivity; pause before responding to emotional triggers.”
+* **Service instruction:**
+
+  * “Offer care, listening, or nourishment to someone; tend to your home or environment.”
+* **Behavior focus:**
+
+  * “Be gentle, rhythmic, and nurturing.”
+
+---
+
+If you want, next step I can condense this into a **JSON schema** or a **ready-to-drop static data file** for your app.

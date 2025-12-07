@@ -15,6 +15,7 @@ import { PlanetaryTable } from "@/components/PlanetaryTable";
 import { MansionCard } from "@/components/MansionCard";
 import { ZodiacWheel } from "@/components/ZodiacWheel";
 import { ElementalBalance } from "@/components/ElementalBalance";
+import { PlanetaryProtocol } from "@/components/PlanetaryProtocol";
 import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
@@ -205,9 +206,9 @@ export default function Home() {
           <div className="flex-1">
             <h1 className="text-4xl md:text-5xl font-serif text-gold mb-2">Ibn Arabi's Cosmology</h1>
             <p className="text-muted-foreground font-light tracking-wide flex items-center gap-2">
-              {useSidereal ? "Sidereal" : "Tropical"} Planetary Calendar
+              Guide to the Celestial Spheres
               <span className="px-2 py-0.5 rounded-full bg-foreground/5 text-xs border border-border">
-                v2.1
+                {useSidereal ? "Sidereal" : "Tropical"}
               </span>
             </p>
           </div>
@@ -374,6 +375,16 @@ export default function Home() {
               dayRuler={hoursData.dayRuler}
             />
           </div>
+          
+          {/* Planetary Protocol */}
+          {hoursData.currentHour && (
+            <div className="relative z-10 mt-4 pt-4 border-t border-border">
+              <h3 className="text-sm font-medium text-foreground/70 mb-3 flex items-center gap-2">
+                Daily Protocol <span className="font-arabic text-xs text-foreground/50">البروتوكول اليومي</span>
+              </h3>
+              <PlanetaryProtocol activePlanet={hoursData.currentHour.planet} />
+            </div>
+          )}
         </section>
       </div>
 

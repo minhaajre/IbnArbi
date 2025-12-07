@@ -511,3 +511,112 @@ export function getCriticalDegree(degree: number, sign: string): CriticalDegreeI
   
   return null;
 }
+
+// Planet Profiles for Protocols
+export interface PlanetProfile {
+  name: string;
+  arabic: string;
+  keywords: string[];
+  colors: string[];
+  colorHex: string[];
+  scents: string[];
+  supportiveFoods: string[];
+  avoidFoods: string[];
+  fastingInstruction: string;
+  serviceInstruction: string;
+  behaviorFocus: string;
+}
+
+export const PLANET_PROFILES: Record<string, PlanetProfile> = {
+  Saturn: {
+    name: "Saturn",
+    arabic: "زحل",
+    keywords: ["discipline", "limits", "patience", "responsibility"],
+    colors: ["black", "dark blue", "dark brown"],
+    colorHex: ["#1a1a2e", "#1e3a5f", "#3d2914"],
+    scents: ["myrrh", "cypress", "vetiver", "patchouli", "sage"],
+    supportiveFoods: ["warm root vegetables", "whole grains", "sesame", "dark leafy greens"],
+    avoidFoods: ["heavy junk food", "extreme restriction", "skipped meals"],
+    fastingInstruction: "Fast from distraction and excess: keep food simple, no sugar/junk, reduce entertainment.",
+    serviceInstruction: "Finish a pending task, honor a commitment, or support someone older in your life.",
+    behaviorFocus: "Be consistent, sober, and reliable."
+  },
+  Jupiter: {
+    name: "Jupiter",
+    arabic: "المشتري",
+    keywords: ["expansion", "faith", "generosity", "wisdom"],
+    colors: ["royal blue", "purple", "rich green"],
+    colorHex: ["#4169e1", "#7b2d8e", "#228b22"],
+    scents: ["frankincense", "clove", "nutmeg", "sage", "cedar"],
+    supportiveFoods: ["complex carbs", "dates", "figs", "lightly sweet spiced dishes"],
+    avoidFoods: ["overeating", "constant snacking", "heavy feasting"],
+    fastingInstruction: "Fast from complaining and cynicism; practice gratitude and generosity instead.",
+    serviceInstruction: "Teach, encourage, or materially support someone; share knowledge or resources.",
+    behaviorFocus: "Think big, act generous, stay ethical."
+  },
+  Mars: {
+    name: "Mars",
+    arabic: "المريخ",
+    keywords: ["action", "courage", "assertion", "cutting through"],
+    colors: ["red", "scarlet", "strong orange"],
+    colorHex: ["#dc143c", "#ff2400", "#ff4500"],
+    scents: ["ginger", "black pepper", "garlic", "eucalyptus", "rosemary"],
+    supportiveFoods: ["lean proteins", "warm soups", "mild spices", "plenty of water"],
+    avoidFoods: ["excessive chili", "fried foods", "stimulants when angry"],
+    fastingInstruction: "Fast from reactive anger: no impulsive messages, arguments, or revenge behaviors.",
+    serviceInstruction: "Protect or defend someone; take a difficult but necessary action.",
+    behaviorFocus: "Be direct, brave, and controlled."
+  },
+  Sun: {
+    name: "Sun",
+    arabic: "الشمس",
+    keywords: ["core identity", "vitality", "integrity", "leadership"],
+    colors: ["gold", "bright yellow", "warm orange"],
+    colorHex: ["#ffd700", "#ffea00", "#ff8c00"],
+    scents: ["frankincense", "cinnamon", "saffron", "bay leaf", "citrus"],
+    supportiveFoods: ["warm regular meals", "quality fats", "lightly spiced dishes", "bright fruits"],
+    avoidFoods: ["sugar spikes", "fake energy drinks"],
+    fastingInstruction: "Fast from self-promotion; do at least one good deed anonymously.",
+    serviceInstruction: "Take responsibility, bring clarity, or lead a situation constructively.",
+    behaviorFocus: "Act with dignity, honesty, and steady confidence."
+  },
+  Venus: {
+    name: "Venus",
+    arabic: "الزهرة",
+    keywords: ["love", "pleasure", "harmony", "aesthetics"],
+    colors: ["green", "soft pink", "pastel tones"],
+    colorHex: ["#3cb371", "#ffb6c1", "#e6e6fa"],
+    scents: ["rose", "jasmine", "ylang-ylang", "sandalwood", "vanilla"],
+    supportiveFoods: ["simple pleasurable meals", "natural sweetness", "calming teas"],
+    avoidFoods: ["emotional bingeing", "mindless snacking"],
+    fastingInstruction: "Fast from low-quality pleasure: doom scrolling, drama, cheap gratification.",
+    serviceInstruction: "Create beauty or comfort for someone; mediate or soften a conflict.",
+    behaviorFocus: "Be kind, receptive, and appreciative."
+  },
+  Mercury: {
+    name: "Mercury",
+    arabic: "عطارد",
+    keywords: ["mind", "communication", "learning", "trade"],
+    colors: ["yellow", "light grey", "multicolored"],
+    colorHex: ["#f0e68c", "#c0c0c0", "#9370db"],
+    scents: ["lavender", "peppermint", "lemongrass", "eucalyptus"],
+    supportiveFoods: ["complex carbs for focus", "nuts and seeds", "light herbal teas"],
+    avoidFoods: ["excessive caffeine", "sugar highs"],
+    fastingInstruction: "Fast from gossip and info overload; limit media and unnecessary talk.",
+    serviceInstruction: "Explain something clearly, help someone understand or organize information.",
+    behaviorFocus: "Be clear, curious, and honest."
+  },
+  Moon: {
+    name: "Moon",
+    arabic: "القمر",
+    keywords: ["emotions", "body", "habits", "memory"],
+    colors: ["white", "silver", "pearl", "soft grey"],
+    colorHex: ["#f5f5f5", "#c0c0c0", "#e8e8e8"],
+    scents: ["sandalwood", "neroli", "chamomile", "mild floral"],
+    supportiveFoods: ["warm soups and stews", "cooked vegetables", "gentle grains", "herbal teas"],
+    avoidFoods: ["late heavy meals", "very cold drinks", "chaotic eating times"],
+    fastingInstruction: "Fast from emotional reactivity; pause before responding to emotional triggers.",
+    serviceInstruction: "Offer care, listening, or nourishment to someone; tend to your home or environment.",
+    behaviorFocus: "Be gentle, rhythmic, and nurturing."
+  }
+};
