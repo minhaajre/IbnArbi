@@ -67,6 +67,11 @@ export default function Home() {
   
   // Selected planet for protocol display
   const [selectedPlanet, setSelectedPlanet] = useState<string | null>(null);
+  
+  // Separate time for planetary hours section
+  const [hoursTime, setHoursTime] = useState<Date>(new Date());
+  const [hoursTimeAuto, setHoursTimeAuto] = useState(true);
+  const [hoursSelectedDate, setHoursSelectedDate] = useState<Date | undefined>(new Date());
 
   // Timer
   useEffect(() => {

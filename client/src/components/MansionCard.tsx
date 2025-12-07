@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { IBN_ARABI_MANSIONS } from "@/lib/constants";
+import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC } from "@/lib/constants";
 import { MansionProgress } from "@/lib/astronomy";
 import { Moon, Sparkles, Scroll, Clock, ArrowRight } from "lucide-react";
 import { format } from "date-fns";
@@ -40,7 +40,7 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
         {progress && (
           <div className="mb-4 p-3 rounded-lg bg-foreground/5 border border-border">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs text-muted-foreground">Station Progress</span>
+              <span className="text-xs text-muted-foreground">{UI_LABELS_ARABIC["Progress"]} <span className="font-arabic">تقدم</span></span>
               <span className="text-xs font-mono text-primary">{Math.round(progress.progressPercent)}%</span>
             </div>
             <div className="w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden mb-2">
@@ -54,7 +54,7 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
             <div className="flex items-center justify-between text-xs">
               <div className="flex items-center gap-1.5 text-muted-foreground">
                 <Clock className="w-3 h-3" />
-                <span>Next station in <span className="text-foreground font-medium">{progress.timeUntilNext}</span></span>
+                <span>{UI_LABELS_ARABIC["Next"]} <span className="text-foreground font-medium">{progress.timeUntilNext}</span></span>
               </div>
               <div className="flex items-center gap-1 text-muted-foreground">
                 <ArrowRight className="w-3 h-3" />
@@ -71,7 +71,7 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
           <div className="flex gap-3">
             <Sparkles className="w-4 h-4 mt-0.5 text-primary/50 shrink-0" />
             <div>
-              <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">Meaning</strong>
+              <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">Meaning <span className="font-arabic">{UI_LABELS_ARABIC["Station Meaning"]}</span></strong>
               {mansion.meaning}
             </div>
           </div>

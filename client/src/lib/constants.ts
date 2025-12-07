@@ -440,6 +440,65 @@ export const SEASON_ARABIC: Record<string, { arabic: string; arabicName: string 
   Winter: { arabic: "الشتاء", arabicName: "Al-Shita" }
 };
 
+export const DIGNITY_ARABIC: Record<string, { arabic: string; arabicName: string }> = {
+  Exalted: { arabic: "الشرف", arabicName: "Al-Sharaf" },
+  Fall: { arabic: "الهبوط", arabicName: "Al-Hubut" },
+  Rulership: { arabic: "السيادة", arabicName: "Al-Siyadah" },
+  Detriment: { arabic: "الوبال", arabicName: "Al-Wabal" },
+  Neutral: { arabic: "محايد", arabicName: "Muhayid" }
+};
+
+export const MODALITY_ARABIC: Record<string, { arabic: string; arabicName: string }> = {
+  Cardinal: { arabic: "أساسي", arabicName: "Asasi" },
+  Fixed: { arabic: "ثابت", arabicName: "Thabit" },
+  Mutable: { arabic: "متغير", arabicName: "Mutaghayyir" }
+};
+
+export const POLARITY_ARABIC: Record<string, { arabic: string; arabicName: string }> = {
+  Masculine: { arabic: "مذكر", arabicName: "Mudhakkar" },
+  Feminine: { arabic: "مؤنث", arabicName: "Mu'annath" }
+};
+
+export const UI_LABELS_ARABIC: Record<string, string> = {
+  "Legend": "دليل",
+  "Fire": "نار",
+  "Earth": "أرض",
+  "Air": "هواء",
+  "Water": "ماء",
+  "Spring": "الربيع",
+  "Summer": "الصيف",
+  "Autumn": "الخريف",
+  "Winter": "الشتاء",
+  "Cardinal": "أساسي",
+  "Fixed": "ثابت",
+  "Mutable": "متغير",
+  "Masculine": "مذكر",
+  "Feminine": "مؤنث",
+  "Retrograde": "راجع",
+  "Ruled by": "يحكمه",
+  "Current Station": "المنزلة الحالية",
+  "Current Hour": "الساعة الحالية",
+  "Celestial Dignities": "الكرامات السماوية",
+  "Elemental Balance": "توازن العناصر",
+  "Current Sky Map": "خريطة السماء الحالية",
+  "Sidereal": "فلكي",
+  "Tropical": "مداري",
+  "Day": "يوم",
+  "Night": "ليل",
+  "Planet": "كوكب",
+  "Sign": "برج",
+  "Degree": "درجة",
+  "Status": "حالة",
+  "Next": "التالي",
+  "Progress": "تقدم",
+  "Time until next": "الوقت حتى التالي",
+  "Station Meaning": "معنى المنزلة",
+  "Activities": "الأنشطة",
+  "Avoid": "تجنب",
+  "White Day": "يوم أبيض",
+  "Blessed Fast": "صوم مبارك"
+};
+
 export const API_KEY = "e511b43a614249ea9efbcda01488f374";
 
 export type CriticalDegreeType = 

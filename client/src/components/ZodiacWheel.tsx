@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { PlanetStatus } from "@/lib/astronomy";
-import { SIGNS, SIGN_DATA, getCriticalDegree, PLANET_ARABIC } from "@/lib/constants";
+import { SIGNS, SIGN_DATA, getCriticalDegree, PLANET_ARABIC, DIGNITY_ARABIC, UI_LABELS_ARABIC } from "@/lib/constants";
 import { useState, useMemo } from "react";
 import { Flame, Mountain, Wind, Droplets, Sun as SunIcon, Moon as MoonIcon, Leaf, Snowflake, Flower2, CircleDot, Triangle, Mars } from "lucide-react";
 
@@ -432,10 +432,14 @@ export function ZodiacWheel({
               <span className="font-arabic ml-1 text-muted-foreground/70">({SIGN_DATA[hoveredPlanetData.sign]?.arabic})</span>
             </div>
             {hoveredPlanetData.isRetrograde && (
-              <div className="text-xs text-red-500 font-medium mt-0.5">Retrograde</div>
+              <div className="text-xs text-red-500 font-medium mt-0.5">
+                Retrograde <span className="font-arabic">{UI_LABELS_ARABIC["Retrograde"]}</span>
+              </div>
             )}
             {hoveredPlanetData.status !== 'Neutral' && (
-              <div className="text-xs text-primary font-medium mt-0.5">{hoveredPlanetData.status}</div>
+              <div className={`text-xs font-medium mt-0.5 ${hoveredPlanetData.status === 'Exalted' || hoveredPlanetData.status === 'Rulership' ? 'text-green-500' : 'text-amber-500'}`}>
+                {hoveredPlanetData.status} <span className="font-arabic">{DIGNITY_ARABIC[hoveredPlanetData.status]?.arabic}</span>
+              </div>
             )}
             {hoveredPlanetCritical && (
               <div 

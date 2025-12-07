@@ -14,6 +14,7 @@ import {
   Star
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PLANET_ARABIC, DIGNITY_ARABIC, SIGN_DATA, UI_LABELS_ARABIC } from "@/lib/constants";
 
 interface PlanetaryTableProps {
   planets: PlanetStatus[];
@@ -49,9 +50,9 @@ export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: Planeta
         <Table>
           <TableHeader className="bg-foreground/5">
             <TableRow className="hover:bg-transparent border-border">
-              <TableHead className="w-[100px] text-gold font-serif">Planet</TableHead>
-              <TableHead className="text-gold font-serif">Position</TableHead>
-              <TableHead className="text-gold font-serif text-right">Dignity</TableHead>
+              <TableHead className="w-[100px] text-gold font-serif">Planet <span className="font-arabic text-sm">{UI_LABELS_ARABIC["Planet"]}</span></TableHead>
+              <TableHead className="text-gold font-serif">Position <span className="font-arabic text-sm">{UI_LABELS_ARABIC["Sign"]}</span></TableHead>
+              <TableHead className="text-gold font-serif text-right">Dignity <span className="font-arabic text-sm">{UI_LABELS_ARABIC["Status"]}</span></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -60,7 +61,10 @@ export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: Planeta
                 <TableCell className="font-medium">
                   <div className="flex items-center gap-2">
                     <span className="text-lg text-muted-foreground font-serif">{PLANET_SYMBOLS[planet.name]}</span>
-                    {planet.name}
+                    <div className="flex flex-col">
+                      <span>{planet.name}</span>
+                      <span className="font-arabic text-xs text-muted-foreground">{PLANET_ARABIC[planet.name]?.arabic}</span>
+                    </div>
                   </div>
                 </TableCell>
                 <TableCell>
@@ -68,13 +72,13 @@ export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: Planeta
                     <span className="text-foreground flex items-center gap-1.5">
                       {planet.sign} {Math.floor(planet.degree)}°{Math.round((planet.degree % 1) * 60)}'
                     </span>
+                    <span className="font-arabic text-xs text-muted-foreground">{SIGN_DATA[planet.sign]?.arabic}</span>
                     <div className="flex items-center gap-2 mt-0.5">
                        {planet.isRetrograde && (
                         <span className="text-[10px] text-red-600 dark:text-red-400 font-bold px-1 py-0.5 bg-red-600/10 dark:bg-red-400/10 rounded flex items-center gap-1">
-                          <Repeat className="w-2.5 h-2.5" /> Rx
+                          <Repeat className="w-2.5 h-2.5" /> {UI_LABELS_ARABIC["Retrograde"]}
                         </span>
                       )}
-                      {planet.speed < 0 && <span className="text-[10px] text-muted-foreground opacity-50">Retrograde Motion</span>}
                     </div>
                   </div>
                 </TableCell>
@@ -95,7 +99,10 @@ export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: Planeta
                     {planet.status === "Fall" && <ArrowDownCircle className="w-3 h-3" />}
                     {planet.status === "Rulership" && <Crown className="w-3 h-3" />}
                     {planet.status === "Detriment" && <Shield className="w-3 h-3" />}
-                    {planet.status}
+                    <span className="flex flex-col items-end">
+                      <span>{planet.status}</span>
+                      <span className="font-arabic text-[10px] opacity-80">{DIGNITY_ARABIC[planet.status]?.arabic}</span>
+                    </span>
                     {planet.exact && <span className="ml-1 opacity-70">*</span>}
                   </span>
                 </TableCell>
