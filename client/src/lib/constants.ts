@@ -11,9 +11,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الشراطان",
     meaning: "The Two Signs",
     sphere: "The First Intellect, The Pen",
+    sphereArabic: "العقل الأول، القلم",
     attribute: "Divine Essence",
+    attributeArabic: "الذات الإلهية",
     letter: "Hamza & Alef",
+    letterArabic: "ء ا",
     degrees: "0° Aries",
+    nature: "blessed",
+    activities: "Excellent for new beginnings, initiating projects, and seeking divine inspiration.",
     description: "The beginning of the cosmic cycle. Represents the primordial consciousness from which all creation emanates."
   },
   {
@@ -22,9 +27,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "البطين",
     meaning: "The Belly of Aries",
     sphere: "The Universal Soul, The Preserved Tablet",
+    sphereArabic: "النفس الكلية، اللوح المحفوظ",
     attribute: "The One Who Calls Forth",
+    attributeArabic: "الباعث",
     letter: "Hā'",
+    letterArabic: "ه",
     degrees: "12°51' Aries",
+    nature: "challenging",
+    activities: "Suitable for introspection and recording intentions. Avoid major new ventures.",
     description: "The Guarded Tablet upon which all destinies are inscribed. The repository of divine decrees."
   },
   {
@@ -33,9 +43,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الثريا",
     meaning: "The Pleiades",
     sphere: "Universal Nature",
+    sphereArabic: "الطبيعة الكلية",
     attribute: "The Interior",
+    attributeArabic: "الباطن",
     letter: "'Ayn",
+    letterArabic: "ع",
     degrees: "25°42' Aries",
+    nature: "blessed",
+    activities: "Excellent for seeking hidden knowledge, inner reflection, and spiritual retreats.",
     description: "The Many Little Ones. Represents the multiplicity of forms emerging from unity."
   },
   {
@@ -44,9 +59,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الدبران",
     meaning: "The Follower",
     sphere: "Universal Substance (Prima Materia)",
+    sphereArabic: "الجوهر الهيولي (المادة الأولى)",
     attribute: "The Last",
+    attributeArabic: "الآخر",
     letter: "Hā (stressed)",
+    letterArabic: "ح",
     degrees: "8°34' Taurus",
+    nature: "blessed",
+    activities: "Favorable for completing tasks, following through on commitments, and patient work.",
     description: "Al-jawhar al-hayūlī. The primordial matter from which all material forms arise."
   },
   {
@@ -55,9 +75,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الهقعة",
     meaning: "The White Spot",
     sphere: "The Universal Body",
+    sphereArabic: "الجسم الكلي",
     attribute: "The Manifest",
+    attributeArabic: "الظاهر",
     letter: "Ghayn",
+    letterArabic: "غ",
     degrees: "21°25' Taurus",
+    nature: "challenging",
+    activities: "A time for caution. Best for quiet contemplation rather than outward action.",
     description: "The luminous mark signifying the manifestation of the divine in material form."
   },
   {
@@ -66,9 +91,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الهنعة",
     meaning: "The Mark",
     sphere: "Form",
+    sphereArabic: "الصورة",
     attribute: "The Wise",
+    attributeArabic: "الحكيم",
     letter: "Khā",
+    letterArabic: "خ",
     degrees: "4°17' Gemini",
+    nature: "blessed",
+    activities: "Excellent for seeking wisdom, studying sacred texts, and teaching others.",
     description: "The patterns of creation. Divine wisdom expressed through archetypal forms."
   },
   {
@@ -77,9 +107,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الذراع",
     meaning: "The Forearm",
     sphere: "The Throne",
+    sphereArabic: "العرش",
     attribute: "The All-Encompassing",
+    attributeArabic: "الواسع",
     letter: "Qāf",
+    letterArabic: "ق",
     degrees: "17°08' Gemini",
+    nature: "blessed",
+    activities: "Favorable for expansive thinking, charitable works, and embracing divine vastness.",
     description: "The Divine Throne (Al-'Arsh) that encompasses all of creation."
   },
   {
@@ -88,9 +123,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "النثرة",
     meaning: "The Gap (or Crib)",
     sphere: "The Footstool",
+    sphereArabic: "الكرسي",
     attribute: "The Grateful",
+    attributeArabic: "الشكور",
     letter: "Kāf",
+    letterArabic: "ك",
     degrees: "0° Cancer",
+    nature: "challenging",
+    activities: "Practice gratitude and thankfulness. Avoid demanding or entitled behavior.",
     description: "The Kursi. The pedestal of divine governance over the heavens and earth."
   },
   {
@@ -99,9 +139,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الطرف",
     meaning: "The Glance",
     sphere: "The Self-Existing Ultimate Sphere, The Starless Sky, The Zodiacal Towers",
+    sphereArabic: "الفلك الأطلس، السماء بلا نجوم، البروج",
     attribute: "The Independent, The Rich",
+    attributeArabic: "الغني",
     letter: "Jīm",
+    letterArabic: "ج",
     degrees: "12°51' Cancer",
+    nature: "challenging",
+    activities: "Cultivate self-sufficiency and contentment. Good for solitary spiritual practice.",
     description: "The outermost sphere where no stars reside. The boundary between creation and the divine."
   },
   {
@@ -110,9 +155,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الجبهة",
     meaning: "The Forehead",
     sphere: "The Sky of Fixed Stars, The Sphere of Stations, The Sun of Paradise, The Roof of Hell",
+    sphereArabic: "سماء الكواكب الثابتة، فلك المنازل، شمس الجنة، سقف جهنم",
     attribute: "The Powerful",
+    attributeArabic: "القوي",
     letter: "Shīn",
+    letterArabic: "ش",
     degrees: "25°42' Cancer",
+    nature: "blessed",
+    activities: "Excellent for building strength, leadership, and taking decisive action.",
     description: "The sphere of the constellations. The realm where the zodiac signs dwell."
   },
   {
@@ -121,9 +171,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الزبرة",
     meaning: "The Mane",
     sphere: "The First Heaven, The Sphere of Saturn, The Sky of the Visited House, Lotus of the Extreme Limit, The Abode of Ibrahim (Abraham)",
+    sphereArabic: "السماء الأولى، فلك زحل، سماء البيت المعمور، سدرة المنتهى، مقام إبراهيم",
     attribute: "The Lord",
+    attributeArabic: "الرب",
     letter: "Yā",
+    letterArabic: "ي",
     degrees: "8°34' Leo",
+    nature: "blessed",
+    activities: "Favorable for devotional practices, surrender to the Divine, and honoring traditions.",
     description: "Saturn's celestial domain. The abode where Prophet Ibrahim resides in eternal peace."
   },
   {
@@ -132,9 +187,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الصرفة",
     meaning: "The Changer",
     sphere: "The Second Heaven, The Sphere of Jupiter, The Abode of Musa (Moses)",
+    sphereArabic: "السماء الثانية، فلك المشتري، مقام موسى",
     attribute: "The Knowing",
+    attributeArabic: "العليم",
     letter: "Dād (stressed)",
+    letterArabic: "ض",
     degrees: "21°25' Leo",
+    nature: "challenging",
+    activities: "A time of transition. Seek knowledge and be open to necessary changes.",
     description: "Jupiter's celestial domain. The abode where Prophet Musa received divine wisdom."
   },
   {
@@ -143,9 +203,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "العواء",
     meaning: "The Barker",
     sphere: "The Third Heaven, The Sphere of Mars, The Abode of Harun (Aaron)",
+    sphereArabic: "السماء الثالثة، فلك المريخ، مقام هارون",
     attribute: "The Victorious",
+    attributeArabic: "القاهر",
     letter: "Lām",
+    letterArabic: "ل",
     degrees: "4°17' Virgo",
+    nature: "blessed",
+    activities: "Excellent for overcoming obstacles, spiritual warfare, and standing firm in truth.",
     description: "Mars' celestial domain. The abode where Prophet Harun dwells in radiant light."
   },
   {
@@ -154,9 +219,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "السماك",
     meaning: "The Unarmed",
     sphere: "The Fourth Heaven, The Sphere of the Sun, The Abode of Idris (Enoch, Hermes)",
+    sphereArabic: "السماء الرابعة، فلك الشمس، مقام إدريس",
     attribute: "The Light",
+    attributeArabic: "النور",
     letter: "Nūn",
+    letterArabic: "ن",
     degrees: "17°08' Virgo",
+    nature: "challenging",
+    activities: "Seek illumination through humility. Good for study but avoid confrontation.",
     description: "The Sun's celestial domain. The abode of Prophet Idris, master of sacred sciences."
   },
   {
@@ -165,9 +235,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الغفر",
     meaning: "The Cover",
     sphere: "The Fifth Heaven, The Sphere of Venus, The Abode of Yusuf (Joseph)",
+    sphereArabic: "السماء الخامسة، فلك الزهرة، مقام يوسف",
     attribute: "The Form-Giver",
+    attributeArabic: "المصور",
     letter: "Rā",
+    letterArabic: "ر",
     degrees: "0° Libra",
+    nature: "blessed",
+    activities: "Favorable for creative work, beauty, and seeking forgiveness. Cover the faults of others.",
     description: "Venus' celestial domain. The abode of Prophet Yusuf, embodiment of divine beauty."
   },
   {
@@ -176,9 +251,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الزبانى",
     meaning: "The Claws",
     sphere: "The Sixth Heaven, The Sphere of Mercury, The Abode of 'Isa (Jesus)",
+    sphereArabic: "السماء السادسة، فلك عطارد، مقام عيسى",
     attribute: "The Numberer",
+    attributeArabic: "المحصي",
     letter: "Tā (stressed)",
+    letterArabic: "ط",
     degrees: "12°51' Libra",
+    nature: "blessed",
+    activities: "Excellent for accounting, organizing, communication, and healing work.",
     description: "Mercury's celestial domain. The abode of Prophet 'Isa, the living word."
   },
   {
@@ -187,9 +267,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الإكليل",
     meaning: "The Crown of the Forehead",
     sphere: "The Seventh Heaven, The Sphere of the Moon, The Abode of Adam",
+    sphereArabic: "السماء السابعة، فلك القمر، مقام آدم",
     attribute: "The Evident",
+    attributeArabic: "المبين",
     letter: "Dāl",
+    letterArabic: "د",
     degrees: "25°42' Libra",
+    nature: "blessed",
+    activities: "Favorable for clarity, making things manifest, and honoring one's humanity.",
     description: "The Moon's celestial domain. The abode of Prophet Adam, father of humanity."
   },
   {
@@ -198,9 +283,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "القلب",
     meaning: "The Heart",
     sphere: "The Sphere of Ether, Meteors and Fire",
+    sphereArabic: "فلك الأثير، الشهب والنار",
     attribute: "The Seizer",
+    attributeArabic: "القابض",
     letter: "Tā (unstressed)",
+    letterArabic: "ت",
     degrees: "8°34' Scorpio",
+    nature: "challenging",
+    activities: "A powerful but intense time. Best for heart purification and releasing attachments.",
     description: "The heart of the scorpion. The ethereal realm where fire and light interweave."
   },
   {
@@ -209,9 +299,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الشولة",
     meaning: "The Sting",
     sphere: "Air",
+    sphereArabic: "الهواء",
     attribute: "The Living One",
+    attributeArabic: "الحي",
     letter: "Zāy",
+    letterArabic: "ز",
     degrees: "21°25' Scorpio",
+    nature: "challenging",
+    activities: "Exercise caution. Good for breathwork and cultivating vital life force.",
     description: "The realm of the aerial element. Life-breath permeating all existence."
   },
   {
@@ -220,9 +315,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "النعائم",
     meaning: "The Ostriches",
     sphere: "Water",
+    sphereArabic: "الماء",
     attribute: "The Life-Giver",
+    attributeArabic: "المحيي",
     letter: "Sīn",
+    letterArabic: "س",
     degrees: "4°17' Sagittarius",
+    nature: "challenging",
+    activities: "Nurture and sustain what is valuable. Good for healing and purification rituals.",
     description: "The realm of the water element. Source of all life and sustenance."
   },
   {
@@ -231,9 +331,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "البلدة",
     meaning: "The City",
     sphere: "Earth",
+    sphereArabic: "الأرض",
     attribute: "The Death-Giver",
+    attributeArabic: "المميت",
     letter: "Sād (stressed)",
+    letterArabic: "ص",
     degrees: "17°08' Sagittarius",
+    nature: "blessed",
+    activities: "Excellent for endings, letting go, transformation, and preparing for rebirth.",
     description: "The realm of the earth element. The domain of endings and transformation."
   },
   {
@@ -242,9 +347,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "سعد الذابح",
     meaning: "Fortune of the Slayers",
     sphere: "Minerals and Metals",
+    sphereArabic: "المعادن والفلزات",
     attribute: "The Precious",
+    attributeArabic: "الكريم",
     letter: "Zā (stressed)",
+    letterArabic: "ظ",
     degrees: "0° Capricorn",
+    nature: "challenging",
+    activities: "Practice sacrifice and generosity. Release what no longer serves your growth.",
     description: "The mineral kingdom. Hidden treasures and precious substances of the earth."
   },
   {
@@ -253,9 +363,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "سعد بلع",
     meaning: "Fortune of the Swallower",
     sphere: "Plants",
+    sphereArabic: "النباتات",
     attribute: "The Nourisher",
+    attributeArabic: "المقيت",
     letter: "Thā",
+    letterArabic: "ث",
     degrees: "12°51' Capricorn",
+    nature: "blessed",
+    activities: "Favorable for planting seeds (literal and metaphorical), nourishment, and growth.",
     description: "The plant kingdom. The realm of growth, nourishment, and verdant life."
   },
   {
@@ -264,9 +379,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "سعد السعود",
     meaning: "Fortune of the Fortunate",
     sphere: "Animals",
+    sphereArabic: "الحيوانات",
     attribute: "The Humbler",
+    attributeArabic: "المذل",
     letter: "Dhāl",
+    letterArabic: "ذ",
     degrees: "25°42' Capricorn",
+    nature: "challenging",
+    activities: "Practice humility and care for creatures. Avoid pride and arrogance.",
     description: "The animal kingdom. Creatures of instinct and embodied souls."
   },
   {
@@ -275,9 +395,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "سعد الأخبية",
     meaning: "Fortune of the Hidden",
     sphere: "The Angels",
+    sphereArabic: "الملائكة",
     attribute: "The Strong",
+    attributeArabic: "القوي",
     letter: "Fā",
+    letterArabic: "ف",
     degrees: "8°34' Aquarius",
+    nature: "blessed",
+    activities: "Excellent for angelic invocations, seeking protection, and hidden spiritual work.",
     description: "The angelic realm. Celestial beings of light who carry out divine commands."
   },
   {
@@ -286,9 +411,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الفرغ المقدم",
     meaning: "The First Spout",
     sphere: "The Jinn",
+    sphereArabic: "الجن",
     attribute: "The Subtle",
+    attributeArabic: "اللطيف",
     letter: "Bā",
+    letterArabic: "ب",
     degrees: "21°25' Aquarius",
+    nature: "challenging",
+    activities: "Exercise spiritual vigilance. Good for subtle awareness and protection practices.",
     description: "The realm of the jinn. Beings of smokeless fire dwelling between worlds."
   },
   {
@@ -297,9 +427,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "الفرغ المؤخر",
     meaning: "The Second Spout",
     sphere: "Humanity",
+    sphereArabic: "الإنسان",
     attribute: "The Uniter",
+    attributeArabic: "الجامع",
     letter: "Mīm",
+    letterArabic: "م",
     degrees: "4°17' Pisces",
+    nature: "blessed",
+    activities: "Excellent for community, bringing people together, and honoring human dignity.",
     description: "The human realm. The vicegerent of God uniting heavenly and earthly natures."
   },
   {
@@ -308,9 +443,14 @@ export const IBN_ARABI_MANSIONS = [
     arabic: "بطن الحوت",
     meaning: "Belly of the Fish",
     sphere: "The Hierarchy of the Degrees of Existence, not their Manifestation",
+    sphereArabic: "مراتب الوجود، لا تجليها",
     attribute: "The One Who Elevates by Degrees",
+    attributeArabic: "الرافع",
     letter: "Wāw",
+    letterArabic: "و",
     degrees: "17°08' Pisces",
+    nature: "challenging",
+    activities: "Time for deep reflection on spiritual rank. Prepare for the cycle's completion.",
     description: "The completion of the cycle. The hidden order underlying all manifest existence."
   }
 ];

@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC } from "@/lib/constants";
-import { MansionProgress } from "@/lib/astronomy";
-import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star } from "lucide-react";
+import { MansionProgress, MoonPhaseInfo } from "@/lib/astronomy";
+import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Sun, Check, AlertTriangle, Lightbulb } from "lucide-react";
 import { format } from "date-fns";
 
 interface MansionCardProps {
   mansion: typeof IBN_ARABI_MANSIONS[0];
   progress?: MansionProgress;
+  moonPhase?: MoonPhaseInfo;
 }
 
 export function MansionCard({ mansion, progress }: MansionCardProps) {
