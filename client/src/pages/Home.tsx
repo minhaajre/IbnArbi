@@ -42,11 +42,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useTheme } from "next-themes";
@@ -432,11 +427,13 @@ export default function Home() {
             <h2 className="text-base sm:text-lg font-serif text-foreground/80">
               Current Lunar Mansion <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">المنزلة القمرية الحالية</span>
             </h2>
-            <HoverCard>
-              <HoverCardTrigger asChild>
-                <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-lunar-mansion" />
-              </HoverCardTrigger>
-              <HoverCardContent className="w-80" align="end">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
+                  <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-lunar-mansion" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80" align="end">
                 <div className="space-y-2">
                   <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.lunarMansion.title}</h4>
                   <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.lunarMansion.description}</p>
@@ -444,8 +441,8 @@ export default function Home() {
                     Learn more →
                   </Link>
                 </div>
-              </HoverCardContent>
-            </HoverCard>
+              </PopoverContent>
+            </Popover>
           </div>
           <div className="relative z-10">
             <MansionCard mansion={mansion} progress={mansionProgress ?? undefined} />
@@ -463,11 +460,13 @@ export default function Home() {
               <h2 className="text-base sm:text-lg font-serif text-foreground/80">
                 Planetary Hours <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الساعات الكوكبية</span>
               </h2>
-              <HoverCard>
-                <HoverCardTrigger asChild>
-                  <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-planetary-hours" />
-                </HoverCardTrigger>
-                <HoverCardContent className="w-80" align="start">
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
+                    <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-planetary-hours" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-80" align="start">
                   <div className="space-y-2">
                     <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.planetaryHours.title}</h4>
                     <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.planetaryHours.description}</p>
@@ -475,8 +474,8 @@ export default function Home() {
                       Learn more →
                     </Link>
                   </div>
-                </HoverCardContent>
-              </HoverCard>
+                </PopoverContent>
+              </Popover>
             </div>
             <div className="flex items-center gap-1 sm:gap-2">
               <Popover>
@@ -636,11 +635,13 @@ export default function Home() {
             <h2 className="text-base sm:text-lg font-serif text-foreground/80">
               Celestial Dignities <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الكرامات السماوية</span>
             </h2>
-            <HoverCard>
-              <HoverCardTrigger asChild>
-                <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-dignities" />
-              </HoverCardTrigger>
-              <HoverCardContent className="w-80" align="end">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
+                  <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-dignities" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80" align="end">
                 <div className="space-y-2">
                   <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.dignities.title}</h4>
                   <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.dignities.description}</p>
@@ -648,8 +649,8 @@ export default function Home() {
                     Learn more →
                   </Link>
                 </div>
-              </HoverCardContent>
-            </HoverCard>
+              </PopoverContent>
+            </Popover>
           </div>
           <div className="relative z-10 overflow-x-auto">
             <PlanetaryTable 
@@ -668,11 +669,13 @@ export default function Home() {
             <h2 className="text-base sm:text-lg font-serif text-foreground/80">
               Elemental Balance <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">توازن العناصر</span>
             </h2>
-            <HoverCard>
-              <HoverCardTrigger asChild>
-                <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-elements" />
-              </HoverCardTrigger>
-              <HoverCardContent className="w-80" align="end">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
+                  <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-elements" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80" align="end">
                 <div className="space-y-2">
                   <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.elements.title}</h4>
                   <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.elements.description}</p>
@@ -680,8 +683,8 @@ export default function Home() {
                     Learn more →
                   </Link>
                 </div>
-              </HoverCardContent>
-            </HoverCard>
+              </PopoverContent>
+            </Popover>
           </div>
           <div className="relative z-10">
             <ElementalBalance planets={planets} />
