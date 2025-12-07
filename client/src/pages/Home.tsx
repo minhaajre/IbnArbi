@@ -20,7 +20,7 @@ import { MansionCard } from "@/components/MansionCard";
 import { ZodiacWheel } from "@/components/ZodiacWheel";
 import { ElementalBalance } from "@/components/ElementalBalance";
 import { PlanetaryProtocol } from "@/components/PlanetaryProtocol";
-import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, ArrowRight, Circle, Repeat, Mars, Venus, Sparkles, Crown } from "lucide-react";
+import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -615,41 +615,41 @@ export default function Home() {
           <div className="hidden md:block bg-card/60 backdrop-blur-sm rounded-lg px-2 sm:px-3 py-2 border border-border order-1">
             <div className="text-[10px] sm:text-xs text-muted-foreground mb-1.5 sm:mb-2 font-medium">Legend <span className="font-arabic">دليل</span></div>
             <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[10px] sm:text-xs">
-              {/* Elements */}
+              {/* Elements - matches ZodiacWheel ELEMENT_COLORS */}
               <div>
                 <div className="text-[8px] sm:text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-0.5">Element</div>
                 <div className="flex flex-wrap gap-1.5">
-                  <div className="flex items-center gap-0.5"><Flame className="w-2.5 h-2.5 text-orange-400" /><span className="text-muted-foreground">Fire</span></div>
-                  <div className="flex items-center gap-0.5"><Mountain className="w-2.5 h-2.5 text-emerald-400" /><span className="text-muted-foreground">Earth</span></div>
-                  <div className="flex items-center gap-0.5"><Wind className="w-2.5 h-2.5 text-sky-400" /><span className="text-muted-foreground">Air</span></div>
-                  <div className="flex items-center gap-0.5"><Droplets className="w-2.5 h-2.5 text-blue-400" /><span className="text-muted-foreground">Water</span></div>
+                  <div className="flex items-center gap-0.5"><Flame className="w-2.5 h-2.5" style={{ color: 'rgb(239, 68, 68)' }} /><span className="text-muted-foreground">Fire</span></div>
+                  <div className="flex items-center gap-0.5"><Mountain className="w-2.5 h-2.5" style={{ color: 'rgb(34, 197, 94)' }} /><span className="text-muted-foreground">Earth</span></div>
+                  <div className="flex items-center gap-0.5"><Wind className="w-2.5 h-2.5" style={{ color: 'rgb(251, 191, 36)' }} /><span className="text-muted-foreground">Air</span></div>
+                  <div className="flex items-center gap-0.5"><Droplets className="w-2.5 h-2.5" style={{ color: 'rgb(59, 130, 246)' }} /><span className="text-muted-foreground">Water</span></div>
                 </div>
               </div>
-              {/* Season */}
+              {/* Season - matches ZodiacWheel SeasonIcon */}
               <div>
                 <div className="text-[8px] sm:text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-0.5">Season</div>
                 <div className="flex flex-wrap gap-1.5">
-                  <div className="flex items-center gap-0.5"><Flower2 className="w-2.5 h-2.5 text-green-500" /><span className="text-muted-foreground">Spr</span></div>
-                  <div className="flex items-center gap-0.5"><Sun className="w-2.5 h-2.5 text-amber-500" /><span className="text-muted-foreground">Sum</span></div>
-                  <div className="flex items-center gap-0.5"><Leaf className="w-2.5 h-2.5 text-orange-500" /><span className="text-muted-foreground">Aut</span></div>
-                  <div className="flex items-center gap-0.5"><Snowflake className="w-2.5 h-2.5 text-blue-300" /><span className="text-muted-foreground">Win</span></div>
+                  <div className="flex items-center gap-0.5"><Flower2 className="w-2.5 h-2.5" style={{ color: '#22c55e' }} /><span className="text-muted-foreground">Spr</span></div>
+                  <div className="flex items-center gap-0.5"><Sun className="w-2.5 h-2.5" style={{ color: '#f59e0b' }} /><span className="text-muted-foreground">Sum</span></div>
+                  <div className="flex items-center gap-0.5"><Leaf className="w-2.5 h-2.5" style={{ color: '#f97316' }} /><span className="text-muted-foreground">Aut</span></div>
+                  <div className="flex items-center gap-0.5"><Snowflake className="w-2.5 h-2.5" style={{ color: '#60a5fa' }} /><span className="text-muted-foreground">Win</span></div>
                 </div>
               </div>
-              {/* Modality */}
+              {/* Modality - matches ZodiacWheel ModalityIcon */}
               <div>
                 <div className="text-[8px] sm:text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-0.5">Modality</div>
                 <div className="flex flex-wrap gap-1.5">
-                  <div className="flex items-center gap-0.5"><ArrowRight className="w-2.5 h-2.5 text-red-400" /><span className="text-muted-foreground">Card</span></div>
-                  <div className="flex items-center gap-0.5"><Circle className="w-2.5 h-2.5 text-purple-400" /><span className="text-muted-foreground">Fix</span></div>
-                  <div className="flex items-center gap-0.5"><Repeat className="w-2.5 h-2.5 text-teal-400" /><span className="text-muted-foreground">Mut</span></div>
+                  <div className="flex items-center gap-0.5"><Triangle className="w-2.5 h-2.5" style={{ color: '#ef4444' }} /><span className="text-muted-foreground">Card</span></div>
+                  <div className="flex items-center gap-0.5"><div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#22c55e' }} /><span className="text-muted-foreground">Fix</span></div>
+                  <div className="flex items-center gap-0.5"><Wind className="w-2.5 h-2.5" style={{ color: '#3b82f6' }} /><span className="text-muted-foreground">Mut</span></div>
                 </div>
               </div>
-              {/* Gender */}
+              {/* Polarity - matches ZodiacWheel PolarityIcon */}
               <div>
-                <div className="text-[8px] sm:text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-0.5">Gender</div>
+                <div className="text-[8px] sm:text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-0.5">Polarity</div>
                 <div className="flex flex-wrap gap-1.5">
-                  <div className="flex items-center gap-0.5"><Mars className="w-2.5 h-2.5 text-red-500" /><span className="text-muted-foreground">Masc</span></div>
-                  <div className="flex items-center gap-0.5"><Venus className="w-2.5 h-2.5 text-pink-400" /><span className="text-muted-foreground">Fem</span></div>
+                  <div className="flex items-center gap-0.5"><Mars className="w-2.5 h-2.5" style={{ color: '#f59e0b' }} /><span className="text-muted-foreground">Masc</span></div>
+                  <div className="flex items-center gap-0.5"><CircleDot className="w-2.5 h-2.5" style={{ color: '#a78bfa' }} /><span className="text-muted-foreground">Fem</span></div>
                 </div>
               </div>
             </div>
