@@ -416,8 +416,8 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Row 1: Station + Planetary Hour (side by side, equal height) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+      {/* Row 1: Station + Planetary Hour (side by side) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6 items-start">
         
         {/* Current Station Card - Glass Effect */}
         <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
@@ -625,7 +625,7 @@ export default function Home() {
       </div>
 
       {/* Row 2: Dignities + Elemental Balance (side by side) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6 items-start">
         
         {/* Celestial Dignities - Glass Effect */}
         <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
