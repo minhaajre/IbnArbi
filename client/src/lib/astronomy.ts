@@ -259,7 +259,7 @@ export function getMoonPhase(date: Date, useSidereal: boolean = true): MoonPhase
 }
 
 export function getHijriDate(date: Date) {
-  return new Intl.DateTimeFormat('en-TN-u-ca-islamic', {
+  return new Intl.DateTimeFormat('ar-SA-u-ca-islamic', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',

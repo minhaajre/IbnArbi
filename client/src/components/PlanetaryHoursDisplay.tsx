@@ -110,32 +110,6 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, select
           );
         })}
       </div>
-      
-      {/* Info Footer */}
-      <div className="pt-4 border-t border-border mt-4">
-        <div className="text-center">
-          <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 opacity-50">Day Ruler</p>
-          <div className="flex items-center justify-center gap-3">
-            <span className={`text-2xl ${PLANET_COLORS[dayRuler]}`}>{PLANET_SYMBOLS[dayRuler]}</span>
-            <div className="text-left">
-              <div className="text-foreground font-serif text-lg leading-none">{dayRuler}</div>
-              <div className="text-sm font-arabic text-foreground/60">{PLANET_ARABIC[dayRuler]?.arabic}</div>
-              <div className="text-xs text-muted-foreground">{format(now, "EEEE")}</div>
-            </div>
-          </div>
-          
-          <div className="mt-3 inline-flex items-center justify-center gap-2 bg-foreground/5 px-4 py-2 rounded-lg border border-border">
-            <Sparkles className="w-3 h-3 text-gold" />
-            <div className="text-sm">
-              <span className="text-muted-foreground mr-1">Prophet:</span>
-              <span className="text-gold font-medium">{PLANET_PROPHETS[dayRuler]?.name}</span>
-            </div>
-            <div className="text-lg font-arabic text-primary/80 ml-1">
-              {PLANET_PROPHETS[dayRuler]?.arabic}
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

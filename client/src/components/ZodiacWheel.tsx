@@ -191,6 +191,19 @@ export function ZodiacWheel({
       y: (pos.y / size) * 100
     };
   }, [hoveredPlanet, planetPositions, size]);
+  
+  // Calculate tooltip position for hovered sign (at the middle of the sign arc)
+  const hoveredSignPos = useMemo(() => {
+    if (!hoveredSign) return null;
+    const signIndex = SIGNS.indexOf(hoveredSign);
+    if (signIndex === -1) return null;
+    const midAngle = signIndex * 30 + 15;
+    const pos = getCoords(midAngle, outerRadius - signRingWidth / 2);
+    return {
+      x: (pos.x / size) * 100,
+      y: (pos.y / size) * 100
+    };
+  }, [hoveredSign, size, outerRadius, signRingWidth]);
 
   return (
     <div className="relative w-full max-w-2xl mx-auto" data-testid="zodiac-wheel">
@@ -370,12 +383,17 @@ export function ZodiacWheel({
 
 
       <AnimatePresence>
-        {hoveredSignData && hoveredSign && !hoveredPlanet && (
+        {hoveredSignData && hoveredSign && !hoveredPlanet && hoveredSignPos && (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-card/95 backdrop-blur-md border border-border px-4 py-3 rounded-lg shadow-lg text-center min-w-[180px] z-20"
+            className="absolute -translate-x-1/2 -translate-y-full bg-card/95 backdrop-blur-md border border-border px-4 py-3 rounded-lg shadow-lg text-center min-w-[180px] z-20 pointer-events-none"
+            style={{
+              left: `${hoveredSignPos.x}%`,
+              top: `${hoveredSignPos.y}%`,
+              marginTop: '-20px'
+            }}
           >
             <div className="font-serif text-lg text-primary mb-0.5">
               {SIGN_DATA[hoveredSign].symbol} {hoveredSign}

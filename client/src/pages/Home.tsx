@@ -13,14 +13,14 @@ import {
   MansionProgress,
   WhiteDaysInfo
 } from "@/lib/astronomy";
-import { AYANAMSHA_J2000 } from "@/lib/constants";
+import { AYANAMSHA_J2000, PLANET_PROPHETS, PLANET_ARABIC } from "@/lib/constants";
 import { PlanetaryHoursDisplay } from "@/components/PlanetaryHoursDisplay";
 import { PlanetaryTable } from "@/components/PlanetaryTable";
 import { MansionCard } from "@/components/MansionCard";
 import { ZodiacWheel } from "@/components/ZodiacWheel";
 import { ElementalBalance } from "@/components/ElementalBalance";
 import { PlanetaryProtocol } from "@/components/PlanetaryProtocol";
-import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, ArrowRight, Circle, Repeat, Mars, Venus } from "lucide-react";
+import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, ArrowRight, Circle, Repeat, Mars, Venus, Sparkles, Crown } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -403,10 +403,10 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           <h2 className="text-lg font-serif mb-3 text-foreground/80 relative z-10">
-            Current Station <span className="font-arabic text-base text-foreground/60 ml-2">المنزلة الحالية</span>
+            Current Lunar Mansion <span className="font-arabic text-base text-foreground/60 ml-2">المنزلة القمرية الحالية</span>
           </h2>
           <div className="relative z-10">
-            <MansionCard mansion={mansion} progress={mansionProgress} />
+            <MansionCard mansion={mansion} progress={mansionProgress ?? undefined} />
           </div>
         </section>
 
@@ -503,23 +503,50 @@ export default function Home() {
             })()}
           </div>
           
-          {/* Planetary Protocol */}
+          {/* Day Ruler & Planetary Protocol - Merged Section */}
           {(hoursSectionData || hoursData).currentHour && (
             <div className="relative z-10 mt-4 pt-4 border-t border-border">
-              <h3 className="text-sm font-medium text-foreground/70 mb-3 flex items-center gap-2">
-                {selectedPlanet ? `${selectedPlanet} Protocol` : "Current Hour Protocol"} 
-                <span className="font-arabic text-xs text-foreground/50">البروتوكول</span>
-                {selectedPlanet && (
-                  <button 
-                    onClick={() => setSelectedPlanet(null)}
-                    className="text-[10px] px-1.5 py-0.5 rounded bg-foreground/10 hover:bg-foreground/20 transition-colors"
-                    data-testid="reset-protocol-planet"
-                  >
-                    Reset
-                  </button>
-                )}
-              </h3>
-              <PlanetaryProtocol activePlanet={selectedPlanet || (hoursSectionData || hoursData).currentHour.planet} />
+              {/* Day Ruler + Protocol Header */}
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
+                    <Crown className="w-4 h-4 text-gold" />
+                    <span className="text-sm font-medium text-foreground/70">Day Ruler</span>
+                    <span className="font-arabic text-xs text-foreground/50">حاكم اليوم</span>
+                  </div>
+                  <div className="h-4 w-px bg-border" />
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg" style={{ color: (hoursSectionData || hoursData).dayRuler === 'Sun' ? '#f59e0b' : (hoursSectionData || hoursData).dayRuler === 'Moon' ? '#94a3b8' : '#888' }}>
+                      {(hoursSectionData || hoursData).dayRuler === 'Sun' ? '☉' : (hoursSectionData || hoursData).dayRuler === 'Moon' ? '☽' : (hoursSectionData || hoursData).dayRuler === 'Mars' ? '♂' : (hoursSectionData || hoursData).dayRuler === 'Mercury' ? '☿' : (hoursSectionData || hoursData).dayRuler === 'Jupiter' ? '♃' : (hoursSectionData || hoursData).dayRuler === 'Venus' ? '♀' : '♄'}
+                    </span>
+                    <span className="font-serif text-foreground">{(hoursSectionData || hoursData).dayRuler}</span>
+                    <span className="font-arabic text-sm text-foreground/60">{PLANET_ARABIC[(hoursSectionData || hoursData).dayRuler]?.arabic}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 bg-foreground/5 px-2 py-1 rounded-lg border border-border">
+                    <Sparkles className="w-3 h-3 text-gold" />
+                    <span className="text-xs text-muted-foreground">Prophet:</span>
+                    <span className="text-xs text-gold font-medium">{PLANET_PROPHETS[(hoursSectionData || hoursData).dayRuler]?.name}</span>
+                    <span className="text-sm font-arabic text-primary/80">{PLANET_PROPHETS[(hoursSectionData || hoursData).dayRuler]?.arabic}</span>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <h3 className="text-sm font-medium text-foreground/70 flex items-center gap-2">
+                    {selectedPlanet ? `${selectedPlanet} Protocol` : "Hour Protocol"} 
+                    <span className="font-arabic text-xs text-foreground/50">البروتوكول</span>
+                  </h3>
+                  {selectedPlanet && (
+                    <button 
+                      onClick={() => setSelectedPlanet(null)}
+                      className="text-[10px] px-1.5 py-0.5 rounded bg-foreground/10 hover:bg-foreground/20 transition-colors"
+                      data-testid="reset-protocol-planet"
+                    >
+                      Reset
+                    </button>
+                  )}
+                </div>
+              </div>
+              <PlanetaryProtocol activePlanet={selectedPlanet || (hoursSectionData || hoursData).currentHour?.planet || (hoursSectionData || hoursData).dayRuler} />
             </div>
           )}
         </section>
@@ -564,65 +591,84 @@ export default function Home() {
         
         <div className="flex items-start justify-between mb-3 relative z-10">
           <div className="bg-card/60 backdrop-blur-sm rounded-lg px-3 py-2 border border-border">
-            <div className="text-xs text-muted-foreground mb-1.5 font-medium">Legend <span className="font-arabic">دليل</span></div>
-            <div className="grid grid-cols-3 gap-x-3 gap-y-1 text-xs">
+            <div className="text-xs text-muted-foreground mb-2 font-medium">Legend <span className="font-arabic">دليل</span></div>
+            <div className="space-y-2 text-xs">
               {/* Elements */}
-              <div className="flex items-center gap-1.5">
-                <Flame className="w-3 h-3 text-orange-400" />
-                <span className="text-muted-foreground">Fire</span>
+              <div>
+                <div className="text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-1">Element <span className="font-arabic">عنصر</span></div>
+                <div className="flex gap-2">
+                  <div className="flex items-center gap-1">
+                    <Flame className="w-3 h-3 text-orange-400" />
+                    <span className="text-muted-foreground">Fire</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Mountain className="w-3 h-3 text-emerald-400" />
+                    <span className="text-muted-foreground">Earth</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Wind className="w-3 h-3 text-sky-400" />
+                    <span className="text-muted-foreground">Air</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Droplets className="w-3 h-3 text-blue-400" />
+                    <span className="text-muted-foreground">Water</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-1.5">
-                <Mountain className="w-3 h-3 text-emerald-400" />
-                <span className="text-muted-foreground">Earth</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Wind className="w-3 h-3 text-sky-400" />
-                <span className="text-muted-foreground">Air</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Droplets className="w-3 h-3 text-blue-400" />
-                <span className="text-muted-foreground">Water</span>
-              </div>
-              {/* Seasons */}
-              <div className="flex items-center gap-1.5">
-                <Flower2 className="w-3 h-3 text-green-500" />
-                <span className="text-muted-foreground">Spring</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Sun className="w-3 h-3 text-amber-500" />
-                <span className="text-muted-foreground">Summer</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Leaf className="w-3 h-3 text-orange-500" />
-                <span className="text-muted-foreground">Autumn</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Snowflake className="w-3 h-3 text-blue-300" />
-                <span className="text-muted-foreground">Winter</span>
+              {/* Season */}
+              <div>
+                <div className="text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-1">Season <span className="font-arabic">موسم</span></div>
+                <div className="flex gap-2">
+                  <div className="flex items-center gap-1">
+                    <Flower2 className="w-3 h-3 text-green-500" />
+                    <span className="text-muted-foreground">Spring</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Sun className="w-3 h-3 text-amber-500" />
+                    <span className="text-muted-foreground">Summer</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Leaf className="w-3 h-3 text-orange-500" />
+                    <span className="text-muted-foreground">Autumn</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Snowflake className="w-3 h-3 text-blue-300" />
+                    <span className="text-muted-foreground">Winter</span>
+                  </div>
+                </div>
               </div>
               {/* Modality */}
-              <div className="flex items-center gap-1.5">
-                <ArrowRight className="w-3 h-3 text-red-400" />
-                <span className="text-muted-foreground">Cardinal</span>
+              <div>
+                <div className="text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-1">Modality <span className="font-arabic">نمط</span></div>
+                <div className="flex gap-2">
+                  <div className="flex items-center gap-1">
+                    <ArrowRight className="w-3 h-3 text-red-400" />
+                    <span className="text-muted-foreground">Cardinal</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Circle className="w-3 h-3 text-purple-400" />
+                    <span className="text-muted-foreground">Fixed</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Repeat className="w-3 h-3 text-teal-400" />
+                    <span className="text-muted-foreground">Mutable</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-1.5">
-                <Circle className="w-3 h-3 text-purple-400" />
-                <span className="text-muted-foreground">Fixed</span>
+              {/* Gender */}
+              <div>
+                <div className="text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-1">Gender <span className="font-arabic">جنس</span></div>
+                <div className="flex gap-2">
+                  <div className="flex items-center gap-1">
+                    <Mars className="w-3 h-3 text-red-500" />
+                    <span className="text-muted-foreground">Masculine</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Venus className="w-3 h-3 text-pink-400" />
+                    <span className="text-muted-foreground">Feminine</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-1.5">
-                <Repeat className="w-3 h-3 text-teal-400" />
-                <span className="text-muted-foreground">Mutable</span>
-              </div>
-              {/* Gender/Polarity */}
-              <div className="flex items-center gap-1.5">
-                <Mars className="w-3 h-3 text-red-500" />
-                <span className="text-muted-foreground">Masculine</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Venus className="w-3 h-3 text-pink-400" />
-                <span className="text-muted-foreground">Feminine</span>
-              </div>
-              <div></div>
             </div>
           </div>
 
