@@ -7,12 +7,14 @@ import { ThemeProvider } from "next-themes";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Instructions from "@/pages/Instructions";
+import PersonalChart from "@/pages/PersonalChart";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home}/>
       <Route path="/instructions" component={Instructions}/>
+      <Route path="/chart" component={PersonalChart}/>
       <Route component={NotFound} />
     </Switch>
   );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { 
   getPlanetaryHours, 
   getPlanetaryPositions, 
@@ -25,7 +25,7 @@ import { MansionCard } from "@/components/MansionCard";
 import { ZodiacWheel } from "@/components/ZodiacWheel";
 import { ElementalBalance } from "@/components/ElementalBalance";
 import { PlanetaryProtocol } from "@/components/PlanetaryProtocol";
-import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen, Info, Mail, Loader2 } from "lucide-react";
+import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen, Info, Mail, Loader2, User } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -66,6 +66,7 @@ const SECTION_INFO = {
 };
 
 export default function Home() {
+  const [, navigate] = useLocation();
   // State
   const [now, setNow] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
@@ -360,7 +361,19 @@ export default function Home() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-             {/* Theme Toggle */}
+             {/* Personal Chart Button */}
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => navigate("/chart")}
+              className="bg-card/50 border-border h-8 sm:h-9 text-xs sm:text-sm"
+              data-testid="chart-button"
+            >
+              <User className="w-3 h-3 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Chart</span>
+            </Button>
+
+            {/* Theme Toggle */}
             <Button 
               variant="ghost" 
               size="icon" 
