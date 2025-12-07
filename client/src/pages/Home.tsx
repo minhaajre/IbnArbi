@@ -361,18 +361,6 @@ export default function Home() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-             {/* Personal Chart Button */}
-            <Button 
-              variant="outline" 
-              size="icon" 
-              onClick={() => navigate("/chart")}
-              className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9"
-              data-testid="chart-button"
-              title="Personal Chart"
-            >
-              <User className="w-4 h-4" />
-            </Button>
-
             {/* Theme Toggle */}
             <Button 
               variant="ghost" 
@@ -487,6 +475,18 @@ export default function Home() {
                 </div>
               </DialogContent>
             </Dialog>
+
+            {/* Personal Chart Button */}
+            <Button 
+              variant="outline" 
+              size="icon" 
+              onClick={() => navigate("/chart")}
+              className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9"
+              data-testid="chart-button"
+              title="Personal Chart"
+            >
+              <User className="w-4 h-4" />
+            </Button>
 
           </div>
         </div>
