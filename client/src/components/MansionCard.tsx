@@ -30,24 +30,25 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
             Mansion {mansion.number} <span className="font-arabic">المنزلة {mansion.number}</span>
           </span>
           <div className="h-px bg-border flex-1" />
-          {/* Blessed/Challenging Indicator */}
-          <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-medium ${
-            isBlessed 
-              ? 'bg-green-500/10 text-green-500 border border-green-500/30' 
-              : 'bg-amber-500/10 text-amber-500 border border-amber-500/30'
-          }`} data-testid="mansion-nature-indicator">
-            {isBlessed ? <Check className="w-3 h-3" /> : <X className="w-3 h-3" />}
-            <span>{isBlessed ? 'Blessed' : 'Challenging'}</span>
-            <span className="font-arabic">{isBlessed ? 'مبارك' : 'صعب'}</span>
-          </div>
         </div>
 
         <h2 className="text-2xl font-serif text-gold mb-1 leading-tight">
           {mansion.name}
         </h2>
-        <h3 className="text-lg font-arabic mb-4 text-muted-foreground">
+        <h3 className="text-lg font-arabic mb-2 text-muted-foreground">
           {mansion.arabic}
         </h3>
+        
+        {/* Blessed/Challenging Indicator - Below names */}
+        <div className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-medium mb-4 ${
+          isBlessed 
+            ? 'bg-green-500/10 text-green-500 border border-green-500/30' 
+            : 'bg-amber-500/10 text-amber-500 border border-amber-500/30'
+        }`} data-testid="mansion-nature-indicator">
+          {isBlessed ? <Check className="w-3 h-3" /> : <X className="w-3 h-3" />}
+          <span>{isBlessed ? 'Blessed' : 'Challenging'}</span>
+          <span className="font-arabic">{isBlessed ? 'مبارك' : 'صعب'}</span>
+        </div>
 
         {/* Progress Bar */}
         {progress && (

@@ -1,6 +1,414 @@
 import { Link } from "wouter";
-import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Check, X, Heart, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+const MANSION_DETAILS = [
+  {
+    number: 1,
+    name: "Al-Sharṭayn",
+    arabic: "الشراطان",
+    theme: "Pure intention, vision, clarity",
+    category: "Initiating",
+    bestFor: "Starting ideas, planning, setting intentions",
+    avoid: "Major commitments",
+    waxing: "Excellent for setting intentions",
+    waning: "Good for reviewing purpose",
+    divineName: "al-Nūr (The Light)",
+    ritual: "Write intentions, journaling",
+    nature: "blessed"
+  },
+  {
+    number: 2,
+    name: "Al-Butayn",
+    arabic: "البطين",
+    theme: "Emotional imprint, inner truth",
+    category: "Initiating",
+    bestFor: "Healing, emotional clarity, introspection",
+    avoid: "Confrontation, major new ventures",
+    waxing: "Plant seeds of emotional healing",
+    waning: "Release old emotional patterns",
+    divineName: "al-Baṣīr (The All-Seeing)",
+    ritual: "Journaling, dua for guidance",
+    nature: "challenging"
+  },
+  {
+    number: 3,
+    name: "Al-Thurayyā",
+    arabic: "الثريا",
+    theme: "Creativity, insight, inspiration",
+    category: "Initiating",
+    bestFor: "Communication, study, art, seeking hidden knowledge",
+    avoid: "Mundane tasks that waste creative energy",
+    waxing: "Start creative projects",
+    waning: "Complete artistic works",
+    divineName: "al-Fattāḥ (The Opener)",
+    ritual: "Creative expression, spiritual retreats",
+    nature: "blessed"
+  },
+  {
+    number: 4,
+    name: "Al-Dabarān",
+    arabic: "الدبران",
+    theme: "Foundation, raw material, patience",
+    category: "Initiating",
+    bestFor: "Setting long-term plans, following through on commitments",
+    avoid: "Sudden decisions, impatience",
+    waxing: "Build foundations",
+    waning: "Consolidate what you have",
+    divineName: "al-Qadīr (The Powerful)",
+    ritual: "Organizing, structuring, patient work",
+    nature: "blessed"
+  },
+  {
+    number: 5,
+    name: "Al-Ḥaqʿa",
+    arabic: "الهقعة",
+    theme: "Embodiment, grounding, manifestation",
+    category: "Stabilizing",
+    bestFor: "Health routines, stability, quiet contemplation",
+    avoid: "Overexertion, outward action",
+    waxing: "Establish healthy habits",
+    waning: "Release unhealthy patterns",
+    divineName: "al-Muqīt (The Sustainer)",
+    ritual: "Body-focused practices, grounding",
+    nature: "challenging"
+  },
+  {
+    number: 6,
+    name: "Al-Hanʿa",
+    arabic: "الهنعة",
+    theme: "Form-taking, wisdom, divine patterns",
+    category: "Stabilizing",
+    bestFor: "Contracts, marriage talks, seeking wisdom, teaching",
+    avoid: "Hasty agreements",
+    waxing: "Formalize agreements",
+    waning: "Review existing commitments",
+    divineName: "al-Muṣawwir (The Fashioner)",
+    ritual: "Study sacred texts, teaching others",
+    nature: "blessed"
+  },
+  {
+    number: 7,
+    name: "Al-Dhiraʿ",
+    arabic: "الذراع",
+    theme: "Authority, sovereignty, expansiveness",
+    category: "Stabilizing",
+    bestFor: "Leadership decisions, charitable works, embracing divine vastness",
+    avoid: "Ego-driven actions",
+    waxing: "Expand influence positively",
+    waning: "Reflect on responsibilities",
+    divineName: "al-Malik (The King)",
+    ritual: "Expansive thinking, charity",
+    nature: "blessed"
+  },
+  {
+    number: 8,
+    name: "Al-Nathra",
+    arabic: "النثرة",
+    theme: "Boundaries, gratitude, divine governance",
+    category: "Stabilizing",
+    bestFor: "Closing deals, setting limits, expressing gratitude",
+    avoid: "Demanding or entitled behavior",
+    waxing: "Establish healthy boundaries",
+    waning: "Release resentments with gratitude",
+    divineName: "al-Ḥafīẓ (The Preserver)",
+    ritual: "Practice gratitude, boundary-setting",
+    nature: "challenging"
+  },
+  {
+    number: 9,
+    name: "Al-Ṭarf",
+    arabic: "الطرف",
+    theme: "Independence, self-sufficiency, the boundary of creation",
+    category: "Relational",
+    bestFor: "Solitary spiritual practice, cultivating contentment",
+    avoid: "Dependency on others",
+    waxing: "Build inner resources",
+    waning: "Release attachments to outcomes",
+    divineName: "al-Ghanī (The Self-Sufficient)",
+    ritual: "Solitary practice, contentment meditation",
+    nature: "challenging"
+  },
+  {
+    number: 10,
+    name: "Al-Jabhah",
+    arabic: "الجبهة",
+    theme: "Discipline, truth, power (Saturn's realm)",
+    category: "Relational",
+    bestFor: "Difficult conversations, building strength, leadership",
+    avoid: "Emotional impulsivity",
+    waxing: "Take decisive action",
+    waning: "Release power struggles",
+    divineName: "al-Ḥakīm (The Wise)",
+    ritual: "Truth-telling, difficult but necessary conversations",
+    nature: "blessed"
+  },
+  {
+    number: 11,
+    name: "Al-Zubrah",
+    arabic: "الزبرة",
+    theme: "Devotion, surrender, tradition (Saturn's heaven)",
+    category: "Relational",
+    bestFor: "Devotional practices, honoring traditions, surrender to the Divine",
+    avoid: "Rebellion against sacred order",
+    waxing: "Deepen spiritual commitments",
+    waning: "Release outdated traditions",
+    divineName: "al-Rabb (The Lord)",
+    ritual: "Devotional practices, honoring ancestors",
+    nature: "blessed"
+  },
+  {
+    number: 12,
+    name: "Al-Ṣarfah",
+    arabic: "الصرفة",
+    theme: "Transition, change, seeking knowledge (Jupiter's realm)",
+    category: "Relational",
+    bestFor: "Being open to necessary changes, seeking knowledge",
+    avoid: "Resisting inevitable transitions",
+    waxing: "Embrace positive change",
+    waning: "Let go of what must change",
+    divineName: "al-ʿAlīm (The All-Knowing)",
+    ritual: "Study, openness to change",
+    nature: "challenging"
+  },
+  {
+    number: 13,
+    name: "Al-ʿAwwā",
+    arabic: "العواء",
+    theme: "Victory, overcoming obstacles (Mars' realm)",
+    category: "Relational",
+    bestFor: "Overcoming obstacles, spiritual warfare, standing firm",
+    avoid: "Unnecessary conflict",
+    waxing: "Advance toward goals",
+    waning: "Release battles not worth fighting",
+    divineName: "al-Qāhir (The Victorious)",
+    ritual: "Courage practices, standing in truth",
+    nature: "blessed"
+  },
+  {
+    number: 14,
+    name: "Al-Simāk",
+    arabic: "السماك",
+    theme: "Illumination, humility (Sun's realm - Idris' abode)",
+    category: "Relational",
+    bestFor: "Study, seeking illumination through humility",
+    avoid: "Confrontation, arrogance",
+    waxing: "Seek light through learning",
+    waning: "Release pride and ego",
+    divineName: "al-Nūr (The Light)",
+    ritual: "Humble study, sacred sciences",
+    nature: "challenging"
+  },
+  {
+    number: 15,
+    name: "Al-Ghafr",
+    arabic: "الغفر",
+    theme: "Beauty, forgiveness, covering faults (Venus' realm)",
+    category: "Relational",
+    bestFor: "Creative work, beauty, seeking forgiveness, covering others' faults",
+    avoid: "Exposing others' weaknesses",
+    waxing: "Create beauty, strengthen bonds",
+    waning: "Forgive and release grudges",
+    divineName: "al-Ghafūr (The Forgiving)",
+    ritual: "Creative work, forgiveness practices",
+    nature: "blessed"
+  },
+  {
+    number: 16,
+    name: "Al-Zubānā",
+    arabic: "الزبانى",
+    theme: "Accounting, communication, healing (Mercury's realm)",
+    category: "Relational",
+    bestFor: "Accounting, organizing, communication, healing work",
+    avoid: "Deception, miscommunication",
+    waxing: "Organize and communicate clearly",
+    waning: "Clear miscommunications",
+    divineName: "al-Muḥṣī (The Reckoner)",
+    ritual: "Accounting, clear communication",
+    nature: "blessed"
+  },
+  {
+    number: 17,
+    name: "Al-Iklīl",
+    arabic: "الإكليل",
+    theme: "Memory, dreams, emotional clarity (Moon's realm)",
+    category: "Relational",
+    bestFor: "Clarity, making things manifest, honoring humanity",
+    avoid: "Confusion, unclear intentions",
+    waxing: "Manifest intentions clearly",
+    waning: "Clear emotional confusion",
+    divineName: "al-Mubīn (The Evident)",
+    ritual: "Dreamwork, emotional healing",
+    nature: "blessed"
+  },
+  {
+    number: 18,
+    name: "Al-Qalb",
+    arabic: "القلب",
+    theme: "Heart purification, release (Ethereal realm)",
+    category: "Relational",
+    bestFor: "Heart purification, releasing attachments",
+    avoid: "Clinging to what must go",
+    waxing: "Strengthen heart's resolve",
+    waning: "Release heart attachments",
+    divineName: "al-Qābiḍ (The Restrainer)",
+    ritual: "Heart purification, letting go",
+    nature: "challenging"
+  },
+  {
+    number: 19,
+    name: "Al-Shawlah",
+    arabic: "الشولة",
+    theme: "Vital life force, breath (Air realm)",
+    category: "Relational",
+    bestFor: "Breathwork, cultivating vital life force",
+    avoid: "Reckless actions",
+    waxing: "Build vital energy",
+    waning: "Release stagnant energy",
+    divineName: "al-Ḥayy (The Ever-Living)",
+    ritual: "Breathwork, vitality practices",
+    nature: "challenging"
+  },
+  {
+    number: 20,
+    name: "Al-Naʿāʾim",
+    arabic: "النعائم",
+    theme: "Nurturing, life-giving (Water realm)",
+    category: "Relational",
+    bestFor: "Nurturing what is valuable, healing, purification",
+    avoid: "Neglecting what needs care",
+    waxing: "Nurture growth",
+    waning: "Purify and cleanse",
+    divineName: "al-Muḥyī (The Life-Giver)",
+    ritual: "Healing rituals, water purification",
+    nature: "challenging"
+  },
+  {
+    number: 21,
+    name: "Al-Baldah",
+    arabic: "البلدة",
+    theme: "Endings, letting go, transformation (Earth realm)",
+    category: "Threshold",
+    bestFor: "Endings, letting go, transformation, preparing for rebirth",
+    avoid: "Clinging to the old",
+    waxing: "Transform consciously",
+    waning: "Complete endings gracefully",
+    divineName: "al-Mumīt (The Bringer of Death)",
+    ritual: "Closure rituals, letting go",
+    nature: "blessed"
+  },
+  {
+    number: 22,
+    name: "Saʿd al-Dhābiḥ",
+    arabic: "سعد الذابح",
+    theme: "Sacrifice, cutting away the old (Mineral realm)",
+    category: "Threshold",
+    bestFor: "Ending habits, releasing debts, practicing generosity",
+    avoid: "Holding onto what no longer serves",
+    waxing: "Sacrifice for growth",
+    waning: "Cut away the unnecessary",
+    divineName: "al-Qahhār (The Subduer)",
+    ritual: "Sacrifice, generosity, release",
+    nature: "challenging"
+  },
+  {
+    number: 23,
+    name: "Saʿd Bulaʿ",
+    arabic: "سعد بلع",
+    theme: "Purification, nourishment (Plant realm)",
+    category: "Threshold",
+    bestFor: "Fasting, detox, forgiveness, planting seeds",
+    avoid: "Overindulgence",
+    waxing: "Plant new seeds of intention",
+    waning: "Fast and purify",
+    divineName: "al-Tawwāb (The Acceptor of Repentance)",
+    ritual: "Fasting, purification, planting",
+    nature: "blessed"
+  },
+  {
+    number: 24,
+    name: "Saʿd al-Suʿūd",
+    arabic: "سعد السعود",
+    theme: "Renewal, humility (Animal realm)",
+    category: "Threshold",
+    bestFor: "Rebirth after endings, practicing humility, caring for creatures",
+    avoid: "Pride and arrogance",
+    waxing: "Embrace new beginnings humbly",
+    waning: "Release pride completely",
+    divineName: "al-Mudhill (The Humbler)",
+    ritual: "Humility practices, animal care",
+    nature: "challenging"
+  },
+  {
+    number: 25,
+    name: "Saʿd al-Akhbiyah",
+    arabic: "سعد الأخبية",
+    theme: "Hidden forces, angelic realm",
+    category: "Threshold",
+    bestFor: "Seclusion, prayer, angelic invocations, spiritual protection",
+    avoid: "Worldly distractions",
+    waxing: "Seek angelic assistance",
+    waning: "Release to angelic care",
+    divineName: "al-Jabbār (The Compeller)",
+    ritual: "Seclusion, deep prayer, angelic work",
+    nature: "blessed"
+  },
+  {
+    number: 26,
+    name: "Al-Fargh al-Muqaddam",
+    arabic: "الفرغ المقدم",
+    theme: "Subtle awareness, jinn realm",
+    category: "Threshold",
+    bestFor: "Spiritual vigilance, subtle awareness, protection practices",
+    avoid: "Naivety about unseen influences",
+    waxing: "Strengthen spiritual protection",
+    waning: "Clear subtle disturbances",
+    divineName: "al-Laṭīf (The Subtle)",
+    ritual: "Protection practices, subtle awareness",
+    nature: "challenging"
+  },
+  {
+    number: 27,
+    name: "Al-Fargh al-Muʾakhkhar",
+    arabic: "الفرغ المؤخر",
+    theme: "Unity, human dignity, collective destiny",
+    category: "Threshold",
+    bestFor: "Community, bringing people together, honoring human dignity",
+    avoid: "Division, isolation",
+    waxing: "Build community bonds",
+    waning: "Release divisive patterns",
+    divineName: "al-Jāmiʿ (The Gatherer)",
+    ritual: "Community work, unity practices",
+    nature: "blessed"
+  },
+  {
+    number: 28,
+    name: "Baṭn al-Ḥūt",
+    arabic: "بطن الحوت",
+    theme: "Completion, elevation, surrender",
+    category: "Threshold",
+    bestFor: "Ending cycles, surrender, deep reflection on spiritual rank",
+    avoid: "Starting new worldly ventures",
+    waxing: "Prepare for completion",
+    waning: "Complete surrender, close the cycle",
+    divineName: "Rafīʿ al-Darajāt (The Elevator of Degrees)",
+    ritual: "Deep reflection, surrender, cycle completion",
+    nature: "challenging"
+  }
+];
+
+const CATEGORY_COLORS: Record<string, string> = {
+  "Initiating": "bg-blue-500/10 text-blue-500 border-blue-500/30",
+  "Stabilizing": "bg-emerald-500/10 text-emerald-500 border-emerald-500/30",
+  "Relational": "bg-purple-500/10 text-purple-500 border-purple-500/30",
+  "Threshold": "bg-amber-500/10 text-amber-500 border-amber-500/30"
+};
 
 export default function Instructions() {
   return (
@@ -44,10 +452,11 @@ export default function Instructions() {
             <Moon className="w-5 h-5" />
             Lunar Mansions <span className="font-arabic text-base">المنازل القمرية</span>
           </h2>
-          <div className="space-y-3 text-muted-foreground">
+          <div className="space-y-3 text-muted-foreground mb-6">
             <p className="leading-relaxed">
-              The Moon travels through each of the 28 mansions approximately every day, spending 
-              roughly 24 hours in each station. Use this section to:
+              The Moon travels through each of the 28 mansions approximately every day. Each mansion is not just a region 
+              of space but a <strong className="text-foreground">place where a specific divine quality enters time</strong>, 
+              shaping events, moods, and spiritual openings.
             </p>
             <ul className="list-disc list-inside space-y-2 ml-2">
               <li><strong className="text-foreground">Check the Current Mansion:</strong> See which lunar mansion the Moon currently occupies and its spiritual significance.</li>
@@ -56,6 +465,148 @@ export default function Instructions() {
               <li><strong className="text-foreground">Divine Attributes:</strong> Meditate on the Divine Name associated with the current mansion.</li>
               <li><strong className="text-foreground">Arabic Letters:</strong> The letters connect to practices of dhikr (remembrance) and spiritual recitation.</li>
             </ul>
+          </div>
+
+          {/* Four Categories */}
+          <div className="mb-6 p-4 rounded-lg bg-foreground/5 border border-border">
+            <h3 className="text-sm font-medium text-foreground mb-3">The Four Categories of Mansions</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div className="flex items-start gap-2">
+                <span className="px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/30 font-medium">1-4</span>
+                <div>
+                  <strong className="text-foreground">Initiating:</strong>
+                  <span className="text-muted-foreground ml-1">Seed energy, vision, raw potential. Good for beginnings.</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/30 font-medium">5-8</span>
+                <div>
+                  <strong className="text-foreground">Stabilizing:</strong>
+                  <span className="text-muted-foreground ml-1">Form, structure, commitment. Good for building.</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-500 border border-purple-500/30 font-medium">9-20</span>
+                <div>
+                  <strong className="text-foreground">Relational:</strong>
+                  <span className="text-muted-foreground ml-1">Communication, travel, learning, emotion, creativity.</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/30 font-medium">21-28</span>
+                <div>
+                  <strong className="text-foreground">Threshold:</strong>
+                  <span className="text-muted-foreground ml-1">Endings, karma, transitions. Good for closure.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Waxing vs Waning */}
+          <div className="mb-6 p-4 rounded-lg bg-foreground/5 border border-border">
+            <h3 className="text-sm font-medium text-foreground mb-3">Waxing vs Waning Moon</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+              <div className="flex items-start gap-2">
+                <Sun className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-foreground">Waxing (New → Full):</strong>
+                  <span className="text-muted-foreground block mt-1">Best for starting things. Supports growth, attraction, gathering. Opens doors outwardly.</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <Moon className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-foreground">Waning (Full → New):</strong>
+                  <span className="text-muted-foreground block mt-1">Best for ending things. Supports release, healing, forgiveness. Closes unnecessary loops.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Collapsible Mansion Guide */}
+          <div className="border border-border rounded-lg overflow-hidden">
+            <div className="bg-foreground/5 px-4 py-3 border-b border-border">
+              <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
+                <BookOpen className="w-4 h-4 text-gold" />
+                Complete Guide to All 28 Mansions
+                <span className="font-arabic text-xs text-muted-foreground">دليل المنازل الثمانية والعشرين</span>
+              </h3>
+            </div>
+            <Accordion type="single" collapsible className="w-full">
+              {MANSION_DETAILS.map((mansion) => (
+                <AccordionItem key={mansion.number} value={`mansion-${mansion.number}`} className="border-b border-border last:border-0">
+                  <AccordionTrigger className="px-4 py-3 hover:bg-foreground/5 text-left" data-testid={`mansion-accordion-${mansion.number}`}>
+                    <div className="flex items-center gap-3 flex-1">
+                      <span className="text-xs font-mono text-primary/80 w-6">{mansion.number}</span>
+                      <div className="flex-1 min-w-0">
+                        <span className="font-medium text-foreground">{mansion.name}</span>
+                        <span className="font-arabic text-muted-foreground ml-2">{mansion.arabic}</span>
+                      </div>
+                      <span className={`px-2 py-0.5 rounded-full text-[10px] border ${CATEGORY_COLORS[mansion.category]}`}>
+                        {mansion.category}
+                      </span>
+                      {mansion.nature === "blessed" ? (
+                        <Check className="w-4 h-4 text-green-500" />
+                      ) : (
+                        <X className="w-4 h-4 text-amber-500" />
+                      )}
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 pb-4">
+                    <div className="space-y-3 text-sm">
+                      <div className="flex items-start gap-2">
+                        <Sparkles className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                        <div>
+                          <strong className="text-foreground text-xs uppercase tracking-wide">Theme:</strong>
+                          <p className="text-muted-foreground">{mansion.theme}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div className="p-2.5 rounded-lg bg-green-500/5 border border-green-500/20">
+                          <strong className="text-green-500 text-xs uppercase tracking-wide block mb-1">Best For:</strong>
+                          <p className="text-muted-foreground text-xs">{mansion.bestFor}</p>
+                        </div>
+                        <div className="p-2.5 rounded-lg bg-red-500/5 border border-red-500/20">
+                          <strong className="text-red-500 text-xs uppercase tracking-wide block mb-1">Avoid:</strong>
+                          <p className="text-muted-foreground text-xs">{mansion.avoid}</p>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div className="flex items-start gap-2 p-2.5 rounded-lg bg-amber-500/5 border border-amber-500/20">
+                          <Sun className="w-3 h-3 text-amber-400 shrink-0 mt-0.5" />
+                          <div>
+                            <strong className="text-amber-500 text-xs uppercase tracking-wide">Waxing:</strong>
+                            <p className="text-muted-foreground text-xs">{mansion.waxing}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2 p-2.5 rounded-lg bg-slate-500/5 border border-slate-500/20">
+                          <Moon className="w-3 h-3 text-slate-400 shrink-0 mt-0.5" />
+                          <div>
+                            <strong className="text-slate-400 text-xs uppercase tracking-wide">Waning:</strong>
+                            <p className="text-muted-foreground text-xs">{mansion.waning}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-3 pt-2 border-t border-border">
+                        <div className="flex items-center gap-1.5">
+                          <Star className="w-3 h-3 text-gold" />
+                          <span className="text-xs text-muted-foreground">Divine Name:</span>
+                          <span className="text-xs text-gold font-medium">{mansion.divineName}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <Heart className="w-3 h-3 text-primary" />
+                          <span className="text-xs text-muted-foreground">Ritual:</span>
+                          <span className="text-xs text-foreground">{mansion.ritual}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </section>
 
@@ -113,21 +664,6 @@ export default function Instructions() {
               <li><strong className="text-foreground text-amber-600">Earth (التراب):</strong> Stability, manifestation, practical matters.</li>
               <li><strong className="text-foreground text-sky-400">Air (الهواء):</strong> Intellect, communication, social connection.</li>
               <li><strong className="text-foreground text-blue-400">Water (الماء):</strong> Emotion, intuition, purification, receptivity.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section className="glass-card rounded-xl p-5 border border-border">
-          <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-            <MapPin className="w-5 h-5" />
-            Location & Time Settings
-          </h2>
-          <div className="space-y-3 text-muted-foreground">
-            <ul className="list-disc list-inside space-y-2 ml-2">
-              <li><strong className="text-foreground">Location:</strong> Click the location button to set your city. Calculations are based on your position for accurate sunrise/sunset times.</li>
-              <li><strong className="text-foreground">Hijri Date:</strong> The Islamic lunar calendar date is displayed. Note that the Islamic day begins at sunset, not midnight.</li>
-              <li><strong className="text-foreground">White Days:</strong> The 13th, 14th, and 15th of each Islamic month are blessed days for fasting.</li>
-              <li><strong className="text-foreground">Theme:</strong> Toggle between light and dark mode using the sun/moon icon.</li>
             </ul>
           </div>
         </section>

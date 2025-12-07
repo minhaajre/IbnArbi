@@ -381,7 +381,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[10px] sm:text-xs text-muted-foreground opacity-50">Updated: {format(new Date(), "h:mm a")}</span>
+            <span className="text-[10px] sm:text-xs text-muted-foreground opacity-50">Last Updated: {format(new Date(), "h:mm a")}</span>
             {whiteDaysInfo && whiteDaysInfo.isWhiteDay && (
               <div className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-500 border border-amber-500/30 inline-flex items-center gap-1" data-testid="white-days-indicator">
                 <Moon className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
