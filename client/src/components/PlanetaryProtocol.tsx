@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { PLANET_PROFILES, PLANET_ARABIC, ADVANCED_AZKAAR } from "@/lib/constants";
 import { PLANETARY_HOUR_GUIDANCE, QUALITY_COLORS } from "@/lib/spiritualGuidance";
-import { Palette, Sparkles, Apple, Ban, Zap, Heart, Compass, ChevronDown, ChevronUp, BookOpen, CheckCircle, XCircle, Activity, Scroll } from "lucide-react";
+import { Palette, Sparkles, Apple, Ban, Zap, Heart, Compass, ChevronDown, ChevronUp, BookOpen, CheckCircle, XCircle, Activity, Scroll, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface PlanetaryProtocolProps {
@@ -203,11 +204,17 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
               {ADVANCED_AZKAAR[activePlanet] && (
                 <div className="flex items-start gap-2 pt-2 border-t border-border/50">
                   <Scroll className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
-                  <div>
-                    <div className="font-medium text-foreground/80 mb-0.5 text-xs">Optional Advanced Devotional Suggestions</div>
-                    <p className="text-muted-foreground leading-relaxed text-xs italic">
+                  <div className="flex-1">
+                    <div className="font-medium text-foreground/80 mb-1 text-xs">Optional Advanced Devotional Suggestions</div>
+                    <p className="text-muted-foreground leading-relaxed text-xs italic mb-2">
                       {ADVANCED_AZKAAR[activePlanet].phrasing}
                     </p>
+                    <Link href="/azkaar">
+                      <button className="text-xs text-purple-400 hover:text-purple-300 flex items-center gap-1 font-medium">
+                        Learn more about these litanies
+                        <ExternalLink className="w-3 h-3" />
+                      </button>
+                    </Link>
                   </div>
                 </div>
               )}

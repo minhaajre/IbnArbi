@@ -11,6 +11,7 @@ import PersonalChart from "@/pages/PersonalChart";
 import Legal from "@/pages/Legal";
 import Terms from "@/pages/Terms";
 import Privacy from "@/pages/Privacy";
+import AdvancedAzkaar from "@/pages/AdvancedAzkaar";
 
 function Router() {
   return (
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/legal" component={Legal}/>
       <Route path="/terms" component={Terms}/>
       <Route path="/privacy" component={Privacy}/>
+      <Route path="/azkaar" component={AdvancedAzkaar}/>
       <Route component={NotFound} />
     </Switch>
   );

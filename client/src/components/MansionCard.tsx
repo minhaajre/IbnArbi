@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC, MANSION_AZKAAR_SUGGESTIONS } from "@/lib/constants";
 import { MANSION_GUIDANCE, CYCLE_ROLE_COLORS } from "@/lib/spiritualGuidance";
 import { MansionProgress, MoonPhaseInfo } from "@/lib/astronomy";
-import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, CheckCircle, XCircle, Compass, ChevronDown, ChevronUp } from "lucide-react";
+import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, CheckCircle, XCircle, Compass, ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
 import { format } from "date-fns";
 import { MansionCycleRing } from "@/components/MansionCycleRing";
 import {
@@ -232,9 +233,15 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
                     <Scroll className="w-4 h-4 text-purple-400" />
                     <span className="text-xs font-medium text-foreground uppercase tracking-wide">Optional Advanced Aẓkār</span>
                   </div>
-                  <p className="text-xs text-foreground/80 leading-relaxed italic">
+                  <p className="text-xs text-foreground/80 leading-relaxed italic mb-2">
                     {MANSION_AZKAAR_SUGGESTIONS[mansion.number]}
                   </p>
+                  <Link href="/azkaar">
+                    <button className="text-xs text-purple-400 hover:text-purple-300 flex items-center gap-1 font-medium">
+                      Learn more about these litanies
+                      <ExternalLink className="w-3 h-3" />
+                    </button>
+                  </Link>
                 </div>
               )}
 
