@@ -18,7 +18,6 @@ export function Footer() {
       <div className="max-w-4xl mx-auto space-y-6 text-center">
         {/* Tech Info */}
         <div className="space-y-1 text-xs text-foreground/60">
-          <p>Built with modern web technologies and powered by precise astronomical calculations.</p>
           <p>All lunar data is computed in real-time using the astronomy-engine library.</p>
         </div>
 
