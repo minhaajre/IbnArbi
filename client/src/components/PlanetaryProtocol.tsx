@@ -187,69 +187,14 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="grid grid-cols-2 gap-4 pt-3 text-xs">
-              {/* Scents */}
-              <div className="flex items-start gap-2">
-                <Sparkles className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-medium text-foreground/80 mb-0.5">Scents</div>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {profile.scents.slice(0, 3).join(", ")}
-                  </p>
-                </div>
-              </div>
-
-              {/* Colors */}
+            <div className="pt-3">
+              {/* Wear - Only colors section */}
               <div className="flex items-start gap-2">
                 <Palette className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
                 <div>
-                  <div className="font-medium text-foreground/80 mb-0.5">Wear</div>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <div className="font-medium text-foreground/80 mb-0.5 text-xs">Wear</div>
+                  <p className="text-muted-foreground leading-relaxed text-xs">
                     {profile.colors.join(", ")}
-                  </p>
-                </div>
-              </div>
-
-              {/* Supportive Foods */}
-              <div className="flex items-start gap-2">
-                <Apple className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-medium text-foreground/80 mb-0.5">Eat</div>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {profile.supportiveFoods.slice(0, 2).join(", ")}
-                  </p>
-                </div>
-              </div>
-
-              {/* Avoid */}
-              <div className="flex items-start gap-2">
-                <Ban className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-medium text-foreground/80 mb-0.5">Avoid</div>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {profile.avoidFoods.slice(0, 2).join(", ")}
-                  </p>
-                </div>
-              </div>
-
-              {/* Fasting Instruction - Full width */}
-              <div className="col-span-2 flex items-start gap-2">
-                <Zap className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-medium text-foreground/80 mb-0.5">Fast From</div>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {profile.fastingInstruction}
-                  </p>
-                </div>
-              </div>
-
-              {/* Service Instruction - Full width */}
-              <div className="col-span-2 flex items-start gap-2">
-                <Heart className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-medium text-foreground/80 mb-0.5">Serve</div>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {profile.serviceInstruction}
                   </p>
                 </div>
               </div>
