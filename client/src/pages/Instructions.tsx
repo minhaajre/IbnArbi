@@ -895,9 +895,51 @@ export default function Instructions() {
           </section>
         </div>
 
-        <footer className="mt-12 pt-6 border-t border-border text-center text-sm text-muted-foreground">
-          <p className="font-semibold">Based on the teachings of Muhyiddin Ibn Arabi (1165-1240 CE)</p>
-          <p className="font-arabic mt-1 text-base">مبني على تعاليم محيي الدين ابن عربي</p>
+        <footer className="mt-12 pt-8 border-t border-border text-center space-y-6">
+          <p className="font-semibold text-base">Based on the teachings of Muhyiddin Ibn Arabi (1165-1240 CE)</p>
+          <p className="font-arabic text-lg text-gold">مبني على تعاليم محيي الدين ابن عربي</p>
+          
+          {/* Disclaimer Section */}
+          <div className="pt-6 space-y-3 max-w-3xl mx-auto">
+            <p className="text-sm leading-relaxed text-foreground/80">
+              <span className="font-semibold text-foreground">Disclaimer:</span> This application is an art and educational project designed to explore ancient astronomical traditions. All content, including astrological interpretations and timing guidance, is provided for entertainment and informational purposes only.
+            </p>
+            <p className="text-sm leading-relaxed text-foreground/70">
+              This tool should not be used as a substitute for professional advice in matters of health, finance, legal issues, or major life decisions. The astronomical calculations are precise, but the mystical interpretations reflect historical traditions and modern creative expression.
+            </p>
+          </div>
+
+          {/* Tech Info */}
+          <div className="space-y-1 text-xs text-foreground/60 max-w-3xl mx-auto">
+            <p>Built with modern web technologies and powered by precise astronomical calculations.</p>
+            <p>All lunar data is computed in real-time using the astronomy-engine library.</p>
+          </div>
+
+          {/* Divider & Links */}
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs pt-4">
+            <Link href="/privacy">
+              <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto text-xs">
+                Privacy Policy
+              </Button>
+            </Link>
+            <span className="text-border">|</span>
+            <Link href="/terms">
+              <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto text-xs">
+                Terms of Use
+              </Button>
+            </Link>
+            <span className="text-border">|</span>
+            <a href="mailto:contact@psyda.org">
+              <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto text-xs">
+                Contact & Support
+              </Button>
+            </a>
+          </div>
+
+          {/* Copyright */}
+          <div className="text-[10px] text-foreground/40 pt-2">
+            © 2025 Minhaaj Rehman. All rights reserved.
+          </div>
         </footer>
       </div>
     </div>

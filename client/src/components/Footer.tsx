@@ -18,7 +18,7 @@ export function Footer() {
           </div>
 
           {/* Tech Info */}
-          <div className="space-y-1 text-sm text-foreground/70">
+          <div className="space-y-1 text-xs text-foreground/60">
             <p>Built with modern web technologies and powered by precise astronomical calculations.</p>
             <p>All lunar data is computed in real-time using the astronomy-engine library.</p>
           </div>
@@ -27,28 +27,28 @@ export function Footer() {
           <div className="h-px bg-border/50" />
 
           {/* Links */}
-          <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs">
             <Link href="/privacy">
-              <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto">
+              <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto text-xs">
                 Privacy Policy
               </Button>
             </Link>
             <span className="text-border">|</span>
             <Link href="/terms">
-              <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto">
+              <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto text-xs">
                 Terms of Use
               </Button>
             </Link>
             <span className="text-border">|</span>
             <a href="mailto:contact@psyda.org">
-              <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto">
+              <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto text-xs">
                 Contact & Support
               </Button>
             </a>
           </div>
 
           {/* Copyright */}
-          <div className="text-xs text-foreground/50 pt-2">
+          <div className="text-[10px] text-foreground/40 pt-2">
             © 2025 Minhaaj Rehman. All rights reserved.
           </div>
         </div>
