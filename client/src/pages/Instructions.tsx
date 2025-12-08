@@ -900,27 +900,29 @@ export default function Instructions() {
           <p className="font-semibold text-base">Based on the teachings of Muhyiddin Ibn Arabi (1165-1240 CE)</p>
           <p className="font-arabic text-lg text-gold">مبني على تعاليم محيي الدين ابن عربي</p>
           
-          {/* Disclaimer Section */}
-          <div className="pt-6 space-y-4 max-w-3xl mx-auto text-left">
-            <p className="text-sm leading-relaxed text-foreground/80">
-              This application offers a way to reflect on time through traditional cosmology.
-              It does not entertain, predict, or promise outcomes.
-              Its purpose is simply to help you <strong className="text-foreground">witness the qualities of the moment</strong> and respond with presence and good adab.
-            </p>
-            <p className="text-sm leading-relaxed text-foreground/80">
-              The movements of the Moon, the stations of the mansions, and the hours of the planets are <strong className="text-foreground">symbolic languages</strong> used for contemplation in many spiritual traditions.
-              They invite the seeker to notice shifts in their own inner state — expansion, contraction, stillness, readiness — and to align their actions with greater awareness.
-            </p>
-            <p className="text-sm leading-relaxed text-foreground/80">
-              Nothing here is meant to direct your choices or define your destiny.
-              It is only a companion for reflection, encouraging you to slow down, observe the unfolding of time, and recognize the subtle signs that each moment carries.
-            </p>
-            <p className="text-sm leading-relaxed text-foreground/70 pt-2 border-t border-border/50">
-              This tool is offered purely for educational and contemplative purposes.
-              It is <strong className="text-foreground/80">not</strong> a substitute for professional advice, nor is it designed for divination, entertainment, or prediction.
-              All interpretations remain your own responsibility, and the creator is not liable for how the information is used or understood.
-            </p>
-          </div>
+          {/* Disclaimer Section - Card Format */}
+          <section className="glass-card rounded-xl p-6 border border-border bg-foreground/5 max-w-3xl mx-auto text-left">
+            <div className="space-y-4">
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                This application offers a way to reflect on time through traditional cosmology.
+                It does not entertain, predict, or promise outcomes.
+                Its purpose is simply to help you <strong className="text-foreground">witness the qualities of the moment</strong> and respond with presence and good adab.
+              </p>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                The movements of the Moon, the stations of the mansions, and the hours of the planets are <strong className="text-foreground">symbolic languages</strong> used for contemplation in many spiritual traditions.
+                They invite the seeker to notice shifts in their own inner state — expansion, contraction, stillness, readiness — and to align their actions with greater awareness.
+              </p>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Nothing here is meant to direct your choices or define your destiny.
+                It is only a companion for reflection, encouraging you to slow down, observe the unfolding of time, and recognize the subtle signs that each moment carries.
+              </p>
+              <p className="text-xs leading-relaxed text-muted-foreground/70 pt-3 border-t border-border/50 italic">
+                This tool is offered purely for educational and contemplative purposes.
+                It is <strong className="text-foreground/70">not</strong> a substitute for professional advice, nor is it designed for divination, entertainment, or prediction.
+                All interpretations remain your own responsibility, and the creator is not liable for how the information is used or understood.
+              </p>
+            </div>
+          </section>
 
           {/* Divider & Links */}
           <div className="flex flex-wrap items-center justify-center gap-4 text-xs pt-4">
