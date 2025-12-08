@@ -13,11 +13,6 @@ export function Footer() {
       </div>
       {/* Rest of content - Centered */}
       <div className="max-w-4xl mx-auto space-y-6 text-center">
-        {/* Tech Info */}
-        <div className="space-y-1 text-xs text-foreground/60">
-          <p>All lunar data is computed in real-time using the astronomy-engine library.</p>
-        </div>
-
         {/* Divider */}
         <div className="h-px bg-border/50" />
 
