@@ -34,7 +34,6 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
       <div className="absolute top-0 right-0 opacity-[0.03] text-8xl font-arabic select-none pointer-events-none leading-none">
         {mansion.arabic}
       </div>
-      
       <div className="relative z-10 flex-1 flex flex-col">
         <div className="flex items-center gap-3 mb-3">
           <span className="text-xs font-mono text-primary/80 uppercase tracking-widest flex items-center gap-2">
@@ -104,7 +103,7 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
 
         {/* Quick Start Guide */}
         <div className="mb-2 p-2 rounded-lg bg-primary/5 border border-primary/20">
-          <div className="text-[9px] font-medium text-primary uppercase tracking-wide mb-1">How to Use</div>
+          <div className="text-[9px] font-medium text-primary uppercase tracking-wide mb-1">How to Use planetary energy effectively</div>
           <div className="space-y-0.5 text-[11px] text-foreground/80">
             <div className="flex gap-1.5">
               <span className="text-primary font-semibold shrink-0">①</span>
