@@ -187,71 +187,71 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="grid grid-cols-2 gap-2 pt-1">
+            <div className="grid grid-cols-2 gap-4 pt-3 text-xs">
               {/* Scents */}
-              <div className="p-2.5 rounded-lg bg-card/50 border border-border">
-                <div className="flex items-center gap-1.5 mb-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-                  <span className="text-xs font-medium text-foreground/80">Scents</span>
+              <div className="flex items-start gap-2">
+                <Sparkles className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-medium text-foreground/80 mb-0.5">Scents</div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {profile.scents.slice(0, 3).join(", ")}
+                  </p>
                 </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  {profile.scents.slice(0, 3).join(", ")}
-                </p>
               </div>
 
               {/* Colors */}
-              <div className="p-2.5 rounded-lg bg-card/50 border border-border">
-                <div className="flex items-center gap-1.5 mb-1.5">
-                  <Palette className="w-3.5 h-3.5 text-rose-400" />
-                  <span className="text-xs font-medium text-foreground/80">Wear</span>
+              <div className="flex items-start gap-2">
+                <Palette className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-medium text-foreground/80 mb-0.5">Wear</div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {profile.colors.join(", ")}
+                  </p>
                 </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  {profile.colors.join(", ")}
-                </p>
               </div>
 
               {/* Supportive Foods */}
-              <div className="p-2.5 rounded-lg bg-card/50 border border-border">
-                <div className="flex items-center gap-1.5 mb-1.5">
-                  <Apple className="w-3.5 h-3.5 text-green-400" />
-                  <span className="text-xs font-medium text-foreground/80">Eat</span>
+              <div className="flex items-start gap-2">
+                <Apple className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-medium text-foreground/80 mb-0.5">Eat</div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {profile.supportiveFoods.slice(0, 2).join(", ")}
+                  </p>
                 </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  {profile.supportiveFoods.slice(0, 2).join(", ")}
-                </p>
               </div>
 
               {/* Avoid */}
-              <div className="p-2.5 rounded-lg bg-card/50 border border-border">
-                <div className="flex items-center gap-1.5 mb-1.5">
-                  <Ban className="w-3.5 h-3.5 text-red-400" />
-                  <span className="text-xs font-medium text-foreground/80">Avoid</span>
+              <div className="flex items-start gap-2">
+                <Ban className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-medium text-foreground/80 mb-0.5">Avoid</div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {profile.avoidFoods.slice(0, 2).join(", ")}
+                  </p>
                 </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  {profile.avoidFoods.slice(0, 2).join(", ")}
-                </p>
               </div>
 
               {/* Fasting Instruction - Full width */}
-              <div className="col-span-2 p-2.5 rounded-lg bg-amber-500/5 border border-amber-500/20">
-                <div className="flex items-center gap-1.5 mb-1.5">
-                  <Zap className="w-3.5 h-3.5 text-amber-500" />
-                  <span className="text-xs font-medium text-foreground/80">Fast From</span>
+              <div className="col-span-2 flex items-start gap-2">
+                <Zap className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-medium text-foreground/80 mb-0.5">Fast From</div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {profile.fastingInstruction}
+                  </p>
                 </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  {profile.fastingInstruction}
-                </p>
               </div>
 
               {/* Service Instruction - Full width */}
-              <div className="col-span-2 p-2.5 rounded-lg bg-blue-500/5 border border-blue-500/20">
-                <div className="flex items-center gap-1.5 mb-1.5">
-                  <Heart className="w-3.5 h-3.5 text-blue-400" />
-                  <span className="text-xs font-medium text-foreground/80">Serve</span>
+              <div className="col-span-2 flex items-start gap-2">
+                <Heart className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-medium text-foreground/80 mb-0.5">Serve</div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {profile.serviceInstruction}
+                  </p>
                 </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  {profile.serviceInstruction}
-                </p>
               </div>
             </div>
           </motion.div>
