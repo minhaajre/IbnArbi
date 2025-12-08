@@ -47,6 +47,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useTheme } from "next-themes";
 
+const DIVINE_NAMES_WATERMARK = "الله الرحمن الرحيم الملك القدوس السلام المؤمن المهيمن العزيز الجبار المتكبر الخالق البارئ المصور الغفار القهار الوهاب الرزاق الفتاح العليم";
+
 const SECTION_INFO = {
   lunarMansion: {
     title: "Lunar Mansions",
@@ -318,7 +320,14 @@ export default function Home() {
   const moonPlanet = planets.find(p => p.name === "Moon");
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-3 sm:p-6 md:p-12 max-w-7xl mx-auto transition-colors duration-500">
+    <div className="min-h-screen bg-background text-foreground p-3 sm:p-6 md:p-12 max-w-7xl mx-auto transition-colors duration-500 relative overflow-hidden">
+      {/* Andalusian Divine Names Watermark Background */}
+      <div className="fixed inset-0 pointer-events-none select-none overflow-hidden opacity-[0.03] z-0">
+        <div className="absolute inset-0 font-arabic text-6xl sm:text-8xl leading-loose text-foreground whitespace-pre-wrap break-words p-8 transform rotate-[-5deg] scale-110">
+          {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK}
+        </div>
+      </div>
+      <div className="relative z-10">
       {/* Header */}
       <header className="flex flex-col gap-4 sm:gap-6 border-b border-border pb-4 sm:pb-8 mb-6 sm:mb-12">
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 w-full">
@@ -809,6 +818,7 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
+      </div>
     </div>
   );
 }
