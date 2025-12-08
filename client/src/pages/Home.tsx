@@ -80,6 +80,8 @@ export default function Home() {
   // Manual Location State
   const [manualCity, setManualCity] = useState("");
   const [isLocating, setIsLocating] = useState(false);
+  const [suggestions, setSuggestions] = useState<Array<{ name: string; country: string; latitude: number; longitude: number }>>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Astronomical Data
   const [hoursData, setHoursData] = useState<ReturnType<typeof getPlanetaryHours> | null>(null);
@@ -215,29 +217,44 @@ export default function Home() {
     }
   };
 
-  const handleManualLocationSearch = async () => {
-    if (!manualCity) return;
-    setIsLocating(true);
+  const handleCityInput = async (value: string) => {
+    setManualCity(value);
+    if (value.length < 2) {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      return;
+    }
+    
     try {
-      const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(manualCity)}&count=1&language=en&format=json`);
+      const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(value)}&count=10&language=en&format=json`);
       const data = await res.json();
       
       if (data.results && data.results.length > 0) {
-        const place = data.results[0];
-        setLocation({
-          lat: place.latitude,
-          lng: place.longitude,
-          name: `${place.name}, ${place.country}`
-        });
+        setSuggestions(data.results.map((r: any) => ({
+          name: r.name,
+          country: r.country || "",
+          latitude: r.latitude,
+          longitude: r.longitude
+        })));
+        setShowSuggestions(true);
       } else {
-        // Fallback or error
-        console.warn("City not found");
+        setSuggestions([]);
       }
     } catch (e) {
       console.error("Geocoding error", e);
-    } finally {
-      setIsLocating(false);
+      setSuggestions([]);
     }
+  };
+
+  const selectLocation = (place: typeof suggestions[0]) => {
+    setLocation({
+      lat: place.latitude,
+      lng: place.longitude,
+      name: `${place.name}, ${place.country}`
+    });
+    setManualCity("");
+    setSuggestions([]);
+    setShowSuggestions(false);
   };
 
   // Calculations
@@ -356,17 +373,33 @@ export default function Home() {
                   <DialogTitle>Location Settings</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-4 py-4">
-                  <div className="flex gap-2">
-                     <Input 
+                  <div className="relative">
+                    <Input 
                       placeholder="Enter city name..." 
                       value={manualCity} 
-                      onChange={(e) => setManualCity(e.target.value)} 
-                      onKeyDown={(e) => e.key === 'Enter' && handleManualLocationSearch()}
+                      onChange={(e) => handleCityInput(e.target.value)}
+                      onFocus={() => manualCity.length >= 2 && setShowSuggestions(true)}
                     />
-                    <Button onClick={handleManualLocationSearch} disabled={isLocating}>
-                      {isLocating ? <span className="animate-spin">⟳</span> : <Search className="w-4 h-4" />}
-                    </Button>
+                    
+                    {/* Suggestions Dropdown */}
+                    {showSuggestions && suggestions.length > 0 && (
+                      <div className="absolute top-full left-0 right-0 mt-1 bg-card border border-border rounded-lg shadow-lg z-50 max-h-64 overflow-y-auto">
+                        {suggestions.map((place, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => selectLocation(place)}
+                            className="w-full text-left px-3 py-2.5 hover:bg-foreground/10 border-b border-border last:border-b-0 transition-colors text-sm"
+                          >
+                            <div className="font-medium text-foreground">{place.name}</div>
+                            <div className="text-xs text-muted-foreground mt-0.5">
+                              {place.country} • {place.latitude.toFixed(4)}°, {place.longitude.toFixed(4)}°
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
+                  
                   <div className="text-xs text-muted-foreground text-center">- OR -</div>
                   <Button variant="secondary" onClick={detectLocation} className="w-full" disabled={isLocating}>
                     {isLocating ? "Detecting..." : "Auto-Detect Location"}
