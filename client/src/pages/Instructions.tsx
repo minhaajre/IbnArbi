@@ -901,7 +901,7 @@ export default function Instructions() {
           <p className="font-arabic text-lg text-gold">مبني على تعاليم محيي الدين ابن عربي</p>
           
           {/* Disclaimer Section - Card Format */}
-          <section className="glass-card rounded-xl p-6 border border-border bg-foreground/5 max-w-3xl mx-auto text-left">
+          <section className="glass-card rounded-xl p-6 border border-border bg-gold/5 max-w-3xl mx-auto text-left">
             <div className="space-y-4">
               <p className="text-sm leading-relaxed text-muted-foreground">
                 This application offers a way to reflect on time through traditional cosmology.

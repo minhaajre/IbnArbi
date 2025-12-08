@@ -742,9 +742,8 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3 relative z-10">
           {/* Title - Centered on mobile */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 order-first sm:order-2 flex-1">
-            <h2 className="text-base sm:text-lg font-serif text-center sm:text-left text-gold">
-              Current Sky Map
-              <span className="font-arabic text-sm sm:text-base text-muted-foreground ml-1 sm:ml-2">خريطة السماء الحالية</span>
+            <h2 className="text-base sm:text-lg font-serif text-center sm:text-left text-foreground/80">
+              Current Sky Map <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">خريطة السماء الحالية</span>
             </h2>
             <div className="flex items-center gap-1.5 bg-card/60 rounded-lg px-2 py-1 border border-border mx-auto sm:mx-0">
               <span className={`text-[10px] ${!useSidereal ? 'text-primary font-medium' : 'text-muted-foreground'}`}>Tropical</span>
