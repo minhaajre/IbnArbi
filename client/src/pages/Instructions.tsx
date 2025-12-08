@@ -896,14 +896,9 @@ export default function Instructions() {
           </section>
 
           {/* Ibn Arabi's Cosmology Card */}
-          <section className="glass-card rounded-xl p-6 border border-border bg-purple-500/5 space-y-6">
-            <div className="flex items-start gap-3 mb-4">
-              <Scroll className="w-6 h-6 text-purple-400 shrink-0" />
-              <div>
-                <h2 className="text-2xl font-serif text-gold">Ibn ʿArabī's Cosmology Made Simple</h2>
-                <p className="text-sm text-muted-foreground mt-1">From the Breath of the Real to the Human Heart — and Back Again</p>
-              </div>
-            </div>
+          <section className="glass-card rounded-xl p-6 border border-border">
+            <h2 className="text-2xl font-serif text-gold mb-2">Ibn ʿArabī's Cosmology Made Simple</h2>
+            <p className="text-sm text-muted-foreground mb-6">From the Breath of the Real to the Human Heart — and Back Again</p>
 
             <div className="space-y-5 text-sm text-foreground/80 leading-relaxed">
               {/* 1 */}
