@@ -6,9 +6,6 @@ export function Footer() {
     <footer className="border-t border-border mt-16 pt-12 pb-8 px-4">
       {/* Disclaimer - Full Width */}
       <div className="glass-card rounded-xl p-6 border border-border bg-gold/5 w-full text-left mb-6 space-y-3">
-        <p className="text-sm leading-relaxed text-foreground">
-          <span className="font-semibold">Disclaimer:</span> This application is an art and educational project designed to explore ancient astronomical traditions. All content, including astrological interpretations and timing guidance, is provided for entertainment and informational purposes only.
-        </p>
         <p className="text-sm leading-relaxed text-foreground/80">This application offers a way to reflect on time through traditional cosmology. It does not make guarantees about outcomes, and the creator is not liable for how the information is used or understood.</p>
       </div>
       {/* Rest of content - Centered */}
