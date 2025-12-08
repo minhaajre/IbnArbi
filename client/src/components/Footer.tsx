@@ -3,52 +3,54 @@ import { Button } from "@/components/ui/button";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border mt-12 pt-8 pb-4">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6">
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 text-xs">
-          <div className="space-y-2">
-            <h3 className="font-serif text-gold text-sm">Application</h3>
-            <Link href="/">
-              <Button variant="link" className="p-0 h-auto text-foreground/70 hover:text-primary text-xs">
-                Home
-              </Button>
-            </Link>
-            <br />
-            <Link href="/instructions">
-              <Button variant="link" className="p-0 h-auto text-foreground/70 hover:text-primary text-xs">
-                Guidance
-              </Button>
-            </Link>
+    <footer className="bg-foreground/5 border-t border-border mt-16 pt-12 pb-8 px-4">
+      <div className="max-w-4xl mx-auto">
+        {/* Main Content */}
+        <div className="space-y-6 text-center">
+          {/* Disclaimer */}
+          <div className="space-y-3">
+            <p className="text-sm leading-relaxed text-foreground">
+              <span className="font-semibold">Disclaimer:</span> This application is an art and educational project designed to explore ancient astronomical traditions. All content, including astrological interpretations and timing guidance, is provided for entertainment and informational purposes only.
+            </p>
+            <p className="text-sm leading-relaxed text-foreground/80">
+              This tool should not be used as a substitute for professional advice in matters of health, finance, legal issues, or major life decisions. The astronomical calculations are precise, but the mystical interpretations reflect historical traditions and modern creative expression.
+            </p>
           </div>
 
-          <div className="space-y-2">
-            <h3 className="font-serif text-gold text-sm">Legal</h3>
-            <Link href="/legal">
-              <Button variant="link" className="p-0 h-auto text-foreground/70 hover:text-primary text-xs">
-                Disclaimer
-              </Button>
-            </Link>
-            <br />
-            <Link href="/terms">
-              <Button variant="link" className="p-0 h-auto text-foreground/70 hover:text-primary text-xs">
-                Terms of Use
-              </Button>
-            </Link>
+          {/* Tech Info */}
+          <div className="space-y-1 text-sm text-foreground/70">
+            <p>Built with modern web technologies and powered by precise astronomical calculations.</p>
+            <p>All lunar data is computed in real-time using the astronomy-engine library.</p>
           </div>
 
-          <div className="space-y-2">
-            <h3 className="font-serif text-gold text-sm">Privacy</h3>
+          {/* Divider */}
+          <div className="h-px bg-border/50" />
+
+          {/* Links */}
+          <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
             <Link href="/privacy">
-              <Button variant="link" className="p-0 h-auto text-foreground/70 hover:text-primary text-xs">
+              <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto">
                 Privacy Policy
               </Button>
             </Link>
+            <span className="text-border">|</span>
+            <Link href="/terms">
+              <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto">
+                Terms of Use
+              </Button>
+            </Link>
+            <span className="text-border">|</span>
+            <a href="mailto:contact@psyda.org">
+              <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto">
+                Contact & Support
+              </Button>
+            </a>
           </div>
-        </div>
 
-        <div className="border-t border-border/50 pt-4 text-center text-[10px] text-foreground/50">
-          <p>Ibn Arabi's Cosmology • Educational & Spiritual Study Tool</p>
-          <p className="mt-1">All astronomical calculations provided for educational purposes only.</p>
+          {/* Copyright */}
+          <div className="text-xs text-foreground/50 pt-2">
+            © 2025 Minhaaj Rehman. All rights reserved.
+          </div>
         </div>
       </div>
     </footer>
