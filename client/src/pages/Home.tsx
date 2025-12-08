@@ -348,7 +348,7 @@ export default function Home() {
               <DialogTrigger asChild>
                 <Button variant="outline" className="bg-card/50 border-border h-8 sm:h-9 px-2 sm:px-3 gap-1.5" title={location?.name}>
                   <MapPin className="w-4 h-4 shrink-0" />
-                  <span className="text-xs hidden sm:inline max-w-[100px] truncate">{location?.name || "Location"}</span>
+                  <span className="text-xs hidden sm:inline max-w-[100px] truncate">{location?.name?.split(',')[0] || "Location"}</span>
                 </Button>
               </DialogTrigger>
               <DialogContent>
