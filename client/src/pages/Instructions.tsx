@@ -1,6 +1,7 @@
 import { Link } from "wouter";
-import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Check, X, Heart, BookOpen } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Check, X, Heart, BookOpen, ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -411,6 +412,36 @@ const CATEGORY_COLORS: Record<string, string> = {
 };
 
 const DIVINE_NAMES_WATERMARK = "الله الرحمن الرحيم الملك القدوس السلام المؤمن المهيمن العزيز الجبار المتكبر الخالق البارئ المصور الغفار القهار الوهاب الرزاق الفتاح العليم";
+
+function ScrollToTopButton() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  if (!isVisible) return null;
+
+  return (
+    <button
+      onClick={scrollToTop}
+      className="fixed bottom-6 right-6 p-3 rounded-full bg-gold/20 border border-gold/50 text-gold hover:bg-gold/30 transition-colors"
+      aria-label="Scroll to top"
+      data-testid="button-scroll-to-top"
+    >
+      <ArrowUp className="w-5 h-5" />
+    </button>
+  );
+}
 
 export default function Instructions() {
   return (
@@ -885,16 +916,6 @@ export default function Instructions() {
             </div>
           </section>
 
-          <section className="glass-card rounded-xl p-6 border border-border bg-gold/5">
-            <p className="text-center text-muted-foreground italic text-lg">
-              "The cosmos is a book and every creature is a letter in it."
-            </p>
-            <p className="text-center font-arabic text-2xl mt-3 text-gold">
-              الكون كتاب وكل مخلوق حرف فيه
-            </p>
-            <p className="text-center text-sm text-muted-foreground mt-3">— Ibn Arabi</p>
-          </section>
-
           {/* Ibn Arabi's Cosmology Card */}
           <section className="glass-card rounded-xl p-6 border border-border">
             <h2 className="text-2xl font-serif text-gold mb-2">Ibn ʿArabī's Cosmology Made Simple</h2>
@@ -981,7 +1002,20 @@ export default function Instructions() {
               </p>
             </div>
           </section>
+
+          <section className="glass-card rounded-xl p-6 border border-border bg-gold/5">
+            <p className="text-center text-muted-foreground italic text-lg">
+              "The cosmos is a book and every creature is a letter in it."
+            </p>
+            <p className="text-center font-arabic text-2xl mt-3 text-gold">
+              الكون كتاب وكل مخلوق حرف فيه
+            </p>
+            <p className="text-center text-sm text-muted-foreground mt-3">— Ibn Arabi</p>
+          </section>
         </div>
+
+        {/* Scroll to Top Button */}
+        <ScrollToTopButton />
 
         <footer className="mt-12 pt-8 border-t border-border text-center space-y-6">
           <p className="font-semibold text-base">Based on the teachings of Muhyiddin Ibn Arabi (1165-1240 CE)</p>
