@@ -25,6 +25,7 @@ import { MansionCard } from "@/components/MansionCard";
 import { ZodiacWheel } from "@/components/ZodiacWheel";
 import { ElementalBalance } from "@/components/ElementalBalance";
 import { PlanetaryProtocol } from "@/components/PlanetaryProtocol";
+import { Footer } from "@/components/Footer";
 import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen, Info, Loader2 } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
@@ -805,6 +806,9 @@ export default function Home() {
           />
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
