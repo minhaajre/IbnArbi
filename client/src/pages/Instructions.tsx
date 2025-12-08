@@ -922,12 +922,6 @@ export default function Instructions() {
             </p>
           </div>
 
-          {/* Tech Info */}
-          <div className="space-y-1 text-xs text-foreground/60 max-w-3xl mx-auto">
-            <p>Built with modern web technologies and powered by precise astronomical calculations.</p>
-            <p>All lunar data is computed in real-time using the astronomy-engine library.</p>
-          </div>
-
           {/* Divider & Links */}
           <div className="flex flex-wrap items-center justify-center gap-4 text-xs pt-4">
             <Link href="/privacy">
