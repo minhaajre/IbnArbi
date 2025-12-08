@@ -8,6 +8,7 @@ import { Lock, ChevronLeft, Sparkles } from "lucide-react";
 import { format } from "date-fns";
 import { getPlanetaryHours, getPlanetaryPositions, getLunarMansion, getMoonPhase } from "@/lib/astronomy";
 import { PLANET_ARABIC } from "@/lib/constants";
+import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 
 const CORRECT_PASSWORD = "SiderealPath42";
 
@@ -322,6 +323,7 @@ May this guidance help you align with the celestial spheres! ✨
           </Card>
         )}
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { Link } from "wouter";
-import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Check, X, Heart, BookOpen, ArrowUp } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Check, X, Heart, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import {
   Accordion,
   AccordionContent,
@@ -412,36 +412,6 @@ const CATEGORY_COLORS: Record<string, string> = {
 };
 
 const DIVINE_NAMES_WATERMARK = "الله الرحمن الرحيم الملك القدوس السلام المؤمن المهيمن العزيز الجبار المتكبر الخالق البارئ المصور الغفار القهار الوهاب الرزاق الفتاح العليم";
-
-function ScrollToTopButton() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsVisible(window.scrollY > 300);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  if (!isVisible) return null;
-
-  return (
-    <button
-      onClick={scrollToTop}
-      className="fixed bottom-6 right-6 p-3 rounded-full bg-gold/20 border border-gold/50 text-gold hover:bg-gold/30 transition-colors"
-      aria-label="Scroll to top"
-      data-testid="button-scroll-to-top"
-    >
-      <ArrowUp className="w-5 h-5" />
-    </button>
-  );
-}
 
 export default function Instructions() {
   return (

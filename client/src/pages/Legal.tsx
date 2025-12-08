@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 
 export default function Legal() {
   return (
@@ -72,6 +73,7 @@ export default function Legal() {
           </a>
         </div>
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }

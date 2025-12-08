@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Scroll, BookOpen, Heart } from "lucide-react";
+import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 
 export default function AdvancedAzkaar() {
   return (
@@ -287,6 +288,7 @@ export default function AdvancedAzkaar() {
           </Link>
         </div>
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }
