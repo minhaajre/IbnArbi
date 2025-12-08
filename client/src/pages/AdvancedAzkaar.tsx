@@ -285,7 +285,6 @@ export default function AdvancedAzkaar() {
               Return to Home
             </Button>
           </Link>
-          <p className="text-xs text-muted-foreground">All aẓkār and litanies are from established Sufi traditions.</p>
         </div>
       </div>
     </div>
