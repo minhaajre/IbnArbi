@@ -667,8 +667,6 @@ export const UI_LABELS_ARABIC: Record<string, string> = {
   "Blessed Fast": "صوم مبارك"
 };
 
-export const API_KEY = "e511b43a614249ea9efbcda01488f374";
-
 export type CriticalDegreeType = 
   | "first" 
   | "anaretic" 
