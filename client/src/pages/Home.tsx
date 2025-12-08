@@ -393,9 +393,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="text-[9px] text-muted-foreground/50 italic pl-0">
-              * Islamic date begins at sunset, not midnight
-            </div>
+            <div className="text-[9px] text-muted-foreground/50 italic pl-0">* Islamic date begins at sunset, not midnight. Islamic calendar is lunar based. Use Sidereal for best results.</div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             {whiteDaysInfo && whiteDaysInfo.isWhiteDay && (
