@@ -816,6 +816,7 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
+      <ScrollToTopButton />
       </div>
     </div>
   );
