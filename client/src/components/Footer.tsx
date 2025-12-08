@@ -9,11 +9,8 @@ export function Footer() {
         <p className="text-sm leading-relaxed text-foreground">
           <span className="font-semibold">Disclaimer:</span> This application is an art and educational project designed to explore ancient astronomical traditions. All content, including astrological interpretations and timing guidance, is provided for entertainment and informational purposes only.
         </p>
-        <p className="text-sm leading-relaxed text-foreground/80">
-          This tool should not be used as a substitute for professional advice in matters of health, finance, legal issues, or major life decisions. The astronomical calculations are precise, but the mystical interpretations reflect historical traditions and modern creative expression.
-        </p>
+        <p className="text-sm leading-relaxed text-foreground/80">This tool should not be used as a substitute for professional advice in matters of health, finance, legal issues, or major life decisions. The astronomical calculations are precise, but the mystical interpretations reflect historical traditions and modern creative expression. All lunar data is computed in real-time using the astronomy-engine library.</p>
       </div>
-
       {/* Rest of content - Centered */}
       <div className="max-w-4xl mx-auto space-y-6 text-center">
         {/* Tech Info */}
