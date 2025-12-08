@@ -6,7 +6,7 @@ export default function AdvancedAzkaar() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="border-b border-border bg-foreground/5 sticky top-0 z-50">
+      <div className="border-b border-border bg-foreground/5">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <Link href="/">
             <Button variant="ghost" size="sm" className="gap-2 mb-3">
