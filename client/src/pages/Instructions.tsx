@@ -901,12 +901,24 @@ export default function Instructions() {
           <p className="font-arabic text-lg text-gold">مبني على تعاليم محيي الدين ابن عربي</p>
           
           {/* Disclaimer Section */}
-          <div className="pt-6 space-y-3 max-w-3xl mx-auto">
+          <div className="pt-6 space-y-4 max-w-3xl mx-auto text-left">
             <p className="text-sm leading-relaxed text-foreground/80">
-              <span className="font-semibold text-foreground">Disclaimer:</span> This application is an art and educational project designed to explore ancient astronomical traditions. All content, including astrological interpretations and timing guidance, is provided for entertainment and informational purposes only.
+              This application offers a way to reflect on time through traditional cosmology.
+              It does not entertain, predict, or promise outcomes.
+              Its purpose is simply to help you <strong className="text-foreground">witness the qualities of the moment</strong> and respond with presence and good adab.
             </p>
-            <p className="text-sm leading-relaxed text-foreground/70">
-              This tool should not be used as a substitute for professional advice in matters of health, finance, legal issues, or major life decisions. The astronomical calculations are precise, but the mystical interpretations reflect historical traditions and modern creative expression.
+            <p className="text-sm leading-relaxed text-foreground/80">
+              The movements of the Moon, the stations of the mansions, and the hours of the planets are <strong className="text-foreground">symbolic languages</strong> used for contemplation in many spiritual traditions.
+              They invite the seeker to notice shifts in their own inner state — expansion, contraction, stillness, readiness — and to align their actions with greater awareness.
+            </p>
+            <p className="text-sm leading-relaxed text-foreground/80">
+              Nothing here is meant to direct your choices or define your destiny.
+              It is only a companion for reflection, encouraging you to slow down, observe the unfolding of time, and recognize the subtle signs that each moment carries.
+            </p>
+            <p className="text-sm leading-relaxed text-foreground/70 pt-2 border-t border-border/50">
+              This tool is offered purely for educational and contemplative purposes.
+              It is <strong className="text-foreground/80">not</strong> a substitute for professional advice, nor is it designed for divination, entertainment, or prediction.
+              All interpretations remain your own responsibility, and the creator is not liable for how the information is used or understood.
             </p>
           </div>
 
