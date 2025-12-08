@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { PLANET_PROFILES, PLANET_ARABIC } from "@/lib/constants";
+import { PLANET_PROFILES, PLANET_ARABIC, ADVANCED_AZKAAR } from "@/lib/constants";
 import { PLANETARY_HOUR_GUIDANCE, QUALITY_COLORS } from "@/lib/spiritualGuidance";
-import { Palette, Sparkles, Apple, Ban, Zap, Heart, Compass, ChevronDown, ChevronUp, BookOpen, CheckCircle, XCircle, Activity } from "lucide-react";
+import { Palette, Sparkles, Apple, Ban, Zap, Heart, Compass, ChevronDown, ChevronUp, BookOpen, CheckCircle, XCircle, Activity, Scroll } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface PlanetaryProtocolProps {
@@ -187,7 +187,7 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="pt-3">
+            <div className="pt-3 space-y-3">
               {/* Wear - Only colors section */}
               <div className="flex items-start gap-2">
                 <Palette className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
@@ -198,6 +198,19 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
                   </p>
                 </div>
               </div>
+
+              {/* Optional Advanced Devotional Suggestions */}
+              {ADVANCED_AZKAAR[activePlanet] && (
+                <div className="flex items-start gap-2 pt-2 border-t border-border/50">
+                  <Scroll className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                  <div>
+                    <div className="font-medium text-foreground/80 mb-0.5 text-xs">Optional Advanced Devotional Suggestions</div>
+                    <p className="text-muted-foreground leading-relaxed text-xs italic">
+                      {ADVANCED_AZKAAR[activePlanet].phrasing}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
         )}

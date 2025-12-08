@@ -782,6 +782,68 @@ export const SUFI_ELEMENT_PRACTICES: Record<string, { english: string; arabic: s
   }
 };
 
+export const ADVANCED_AZKAAR: Record<string, { suggestions: string[]; phrasing: string }> = {
+  Sun: {
+    suggestions: ["Dalā'il al-Khairāt", "al-Dawr al-Aʿlā"],
+    phrasing: "This hour, associated with illumination, may resonate with litanies such as Dalā'il al-Khairāt."
+  },
+  Moon: {
+    suggestions: ["Hizb al-Baḥr", "Qasīdat al-Burda", "Surah Yā-Sīn"],
+    phrasing: "This hour may harmonize with recitations emphasizing trust and surrender, such as Hizb al-Baḥr."
+  },
+  Mercury: {
+    suggestions: ["Wird al-Laṭīf", "Yā Laṭīf (dhikr)"],
+    phrasing: "This hour may support subtle shifts in understanding; some find resonance with Wird al-Laṭīf."
+  },
+  Venus: {
+    suggestions: ["Qasīdat al-Burda", "Dalā'il al-Khairāt"],
+    phrasing: "A time associated with beauty and gentleness; some may find resonance in reciting Qasīdat al-Burda."
+  },
+  Mars: {
+    suggestions: ["Ḥizb al-Naṣr"],
+    phrasing: "This hour may harmonize with litanies emphasizing inner clarity and strength, such as Ḥizb al-Naṣr."
+  },
+  Jupiter: {
+    suggestions: ["Hizb al-Baḥr", "al-Dawr al-Aʿlā", "Surah al-Wāqiʿah"],
+    phrasing: "This hour carries expansive openings; some seekers resonate with litanies such as al-Dawr al-Aʿlā."
+  },
+  Saturn: {
+    suggestions: ["Wird al-Laṭīf", "Istighfār"],
+    phrasing: "This hour may support introspection and clearing; some find support in Wird al-Laṭīf or Istighfār."
+  }
+};
+
+export const MANSION_AZKAAR_SUGGESTIONS: Record<number, string> = {
+  1: "This mansion may harmonize with litanies of new beginnings, such as invocations of the Divine Names of initiation.",
+  2: "This mansion may support devotional recitations emphasizing patience and trust.",
+  3: "This mansion may resonate with litanies associated with hidden knowledge and inner reflection.",
+  4: "This mansion may harmonize with recitations emphasizing stability and grounding.",
+  5: "This mansion may support litanies of clarity and illumination.",
+  6: "This mansion may resonate with devotional practices emphasizing wisdom and understanding.",
+  7: "This mansion may harmonize with recitations of the Divine Name 'The Guide' (al-Hādī).",
+  8: "This mansion may support litanies associated with communication and connection.",
+  9: "This mansion may harmonize with devotional practices emphasizing resilience.",
+  10: "This mansion may resonate with recitations of the Divine Name 'The Mighty' (al-ʿAzīz).",
+  11: "This mansion may support litanies associated with refinement and purification.",
+  12: "This mansion may harmonize with devotional practices emphasizing gathering and cohesion.",
+  13: "This mansion may resonate with litanies of transformation and transmutation.",
+  14: "This mansion may support recitations emphasizing release and letting go.",
+  15: "This mansion may harmonize with devotional practices of profound witnessing.",
+  16: "This mansion may resonate with litanies associated with clarity and discernment.",
+  17: "This mansion may support practices emphasizing compassion and softening.",
+  18: "This mansion may harmonize with recitations of gratitude and abundance.",
+  19: "This mansion may resonate with devotional practices emphasizing restoration.",
+  20: "This mansion may support litanies associated with deepening and concentration.",
+  21: "This mansion may harmonize with practices emphasizing courage and breakthrough.",
+  22: "This mansion may resonate with recitations of the Divine Names of protection.",
+  23: "This mansion may support devotional practices emphasizing community and gathering.",
+  24: "This mansion may harmonize with litanies associated with completion and fulfillment.",
+  25: "This mansion may resonate with practices emphasizing joy and celebration.",
+  26: "This mansion may support recitations of the Divine Name 'The Pardoner' (al-ʿAfw).",
+  27: "This mansion may harmonize with devotional practices emphasizing ascension and elevation.",
+  28: "This mansion may resonate with litanies associated with return and homecoming."
+};
+
 export const PLANET_PROFILES: Record<string, PlanetProfile> = {
   Saturn: {
     name: "Saturn",

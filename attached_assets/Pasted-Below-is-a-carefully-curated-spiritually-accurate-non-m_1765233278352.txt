@@ -1,0 +1,239 @@
+Below is a **carefully curated, spiritually accurate, non-magical, non-deterministic** list of advanced Sufi aẓkār, litanies, and devotional recitations that may be offered *as voluntary recommendations* during certain windows (planetary hours, lunar mansions, days of week) **without violating Ibn ʿArabī’s metaphysics** or slipping into talismanic practice.
+
+Everything listed here is:
+
+* **Accepted in mainstream Sufi tradition**
+* **Non-magical** (not talismanic, not manipulative)
+* **Grounded in adab, presence, and remembrance**
+* **Compatible with Akbarian cosmology**
+* **Focused on inward witnessing, not external outcomes**
+
+You may integrate this list into your app as:
+**“Optional Advanced Devotional Suggestions”**
+shown ONLY when a user chooses to activate an “Advanced Mode” toggle.
+
+---
+
+# **ADVANCED SUFI AẒKĀR & LITANIES (CURATED LIST)**
+
+### *Structured by spiritual nature, not by talismanic claims*
+
+Below is a list of the most widely-recognized and spiritually safe a̧wrād within classical Sufism.
+
+---
+
+# **1. Hizb al-Baḥr (The Litany of the Sea)**
+
+**By:** Abū’l-Ḥasan al-Shādhilī
+**Nature:** Protection, surrender, reliance, expansion of heart
+**Best aligned with:**
+
+* Moon hours (reflection, surrender)
+* Jupiter hours (openness, trust, generosity)
+* Mansions associated with journeying, transitions, travel
+* Days of important thresholds or new beginnings
+
+**Akbarian rationale:**
+Trust in divine unfolding; dissolving anxiety about outcomes; strengthening tawakkul.
+
+App phrasing should be:
+
+> “This hour may harmonize with recitations emphasizing trust, such as Hizb al-Baḥr.”
+
+---
+
+# **2. Qasīdat al-Burda (The Mantle Poem)**
+
+**By:** Imam al-Būṣīrī
+**Nature:** Praise of the Prophet ﷺ, healing of the heart, softening
+**Best aligned with:**
+
+* Venus hours (gentleness, beauty)
+* Moon hours (compassion, reflection)
+* Mansions of reconciliation, healing, relationship harmony
+* Fridays
+
+**Akbarian rationale:**
+It opens the heart to beauty (jamāl) and mercy (raḥma), essential for maintaining adab of the moment.
+
+App phrasing:
+
+> “A time associated with beauty and gentleness; some may find resonance in reciting Qasīdat al-Burda.”
+
+---
+
+# **3. Hizb al-Waﬁ (Hizb al-Wiqāya / Hizb al-Nawawi)**
+
+**By:** Imam al-Nawawī
+**Nature:** Spiritual grounding, clarity, protection
+**Best aligned with:**
+
+* Saturn hours (boundaries, seriousness)
+* Mars hours (courage with restraint)
+* Mansions related to stabilizing or closing cycles
+
+Akbarian rationale: Strengthens inner composure (sukūn al-qalb).
+
+---
+
+# **4. Ḥizb al-Naṣr (Litany of Victory)**
+
+**By:** Various Shadhili and Jazuli lineages
+**Nature:** Inner fortitude, endurance, establishing clarity
+**Best aligned with:**
+
+* Mars hours (decisive clarity, not aggression)
+* Jupiter hours (expansive openings)
+* Mansions of establishment, firmness
+
+Important:
+NOT for “victory over enemies” but for **victory over confusion and inner fragmentation**.
+
+App phrasing:
+
+> “This time may harmonize with litanies emphasizing strength and clarity, such as Ḥizb al-Naṣr.”
+
+---
+
+# **5. Wird al-Laṭīf**
+
+**By:** Imam al-Ḥaddād
+**Nature:** Gentle protection, ease, removal of constriction
+**Best aligned with:**
+
+* Mercury hours (subtle shifts)
+* Venus hours (grace)
+* Mansions of communication, relationship, reconciliation
+
+Akbarian rationale:
+Supports the seeker in periods of contraction (qabḍ).
+
+---
+
+# **6. Dalā'il al-Khairāt**
+
+**By:** Imam al-Jazūlī
+**Nature:** Praise upon the Prophet ﷺ, opening of inner lights
+**Best aligned with:**
+
+* Sun hours (illumination)
+* Fridays
+* Mansions associated with inspiration or openings
+
+Akbarian rationale:
+Tajalliyāt al-nubuwwa (prophetic illuminations) harmonize with hours that carry meanings of light.
+
+---
+
+# **7. Hizb al-Kabīr (Sheikh al-Akbar’s Prayer Cycle)**
+
+**By:** Ibn ʿArabī himself
+**Nature:** Deep remembrance, clearing of inner veils
+**Best aligned with:**
+
+* Any hour of expansion
+* Mansions of release or unveiling
+
+This is one of the few authenticated litanies from Ibn ʿArabī.
+
+App phrasing:
+
+> “This moment may support deeper remembrance; some seekers recite litanies attributed to Ibn ʿArabī such as Hizb al-Kabīr.”
+
+---
+
+# **8. Hizb al-Dawr al-Aʿlā (The Supreme Cycle)**
+
+**Attributed to:** Ibn ʿArabī
+**Nature:** Invocation of divine Names in cosmological sequence
+**Best aligned with:**
+
+* Sun hours (centrality)
+* Jupiter hours (expansion)
+* High-energy mansions (openings, alignments)
+
+This is the closest thing in Sufi tradition to a “cosmic alignment prayer,” but should be framed **only as dhikr**, never as manipulation of forces.
+
+App phrasing:
+
+> “This hour, associated with expansive qualities, may resonate with litanies such as al-Dawr al-Aʿlā.”
+
+---
+
+# **9. Surah al-Wāqiʿah, Yā-Sīn, al-Mulk**
+
+**Nature:**
+
+* Wāqiʿah → provision
+* Mulk → protection
+* Yasin → inner ease
+
+**Best aligned with:**
+
+* Moon or Venus hours (softening)
+* Jupiter hours (expansion)
+* Mansions of sustenance, stability, or guidance
+
+Use only as *recommended remembrance*, not “timed results.”
+
+---
+
+# **10. Istighfār (Astaghfirullāh) in Mercury or Saturn hours**
+
+**Nature:** Clearing, resetting, lightening the load
+**Best aligned with:**
+
+* Mansions of release
+* Waning moon
+* Saturn hours (introspection)
+
+Akbarian rationale:
+Removes subtle veils that prevent witnessing the hour’s meaning.
+
+---
+
+# **HOW TO INTEGRATE INTO THE APP (INSTRUCTIONS FOR REPLIT AI)**
+
+*(Succinct for implementation)*
+
+### For every Planetary Hour card:
+
+Add a subtle section titled:
+**“Optional Advanced Devotional Suggestions”**
+
+Inside it, include 1–2 items chosen from the list above using these rules:
+
+* **Moon hour:** Hizb al-Baḥr, Burda, Yā-Sīn
+* **Mercury hour:** Wird al-Laṭīf, short dhikr (Yā Laṭīf)
+* **Venus hour:** Burda, Dalā’il al-Khairāt
+* **Sun hour:** Dalā’il al-Khairāt, Dawr al-Aʿlā
+* **Mars hour:** Hizb al-Naṣr (inner strength sense)
+* **Jupiter hour:** Hizb al-Baḥr, Dawr al-Aʿlā, Wāqiʿah
+* **Saturn hour:** Wird al-Laṭīf, Istighfār
+
+### For each Lunar Mansion card:
+
+Add a gentle line:
+
+> “This mansion’s tone may harmonize with devotional recitations such as: [list 1–2 options].”
+
+Use non-deterministic, invitational phrasing.
+
+### DO NOT:
+
+* Claim magical timing
+* Promise outcomes
+* Use words like “power”, “manifest”, “activate”, “results”
+* Link prayers to material guarantees
+
+---
+
+# **If you want, I can produce a FULL TABLE:**
+
+* 28 mansions × recommended litanies
+* 7 planets × recommended aẓkār
+* tones × dhikr sequences
+* waning/waxing × spiritual adab sets
+
+Tell me:
+**Do you want the full integration table next?**

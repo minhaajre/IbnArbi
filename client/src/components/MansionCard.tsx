@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC } from "@/lib/constants";
+import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC, MANSION_AZKAAR_SUGGESTIONS } from "@/lib/constants";
 import { MANSION_GUIDANCE, CYCLE_ROLE_COLORS } from "@/lib/spiritualGuidance";
 import { MansionProgress, MoonPhaseInfo } from "@/lib/astronomy";
 import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, CheckCircle, XCircle, Compass, ChevronDown, ChevronUp } from "lucide-react";
@@ -221,6 +221,19 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
                   </div>
                   <p className="text-xs font-arabic text-muted-foreground/70 mt-1.5 text-right" dir="rtl">
                     {guidance.practiceArabic}
+                  </p>
+                </div>
+              )}
+
+              {/* Optional Advanced Devotional Suggestions */}
+              {MANSION_AZKAAR_SUGGESTIONS[mansion.number] && (
+                <div className="mb-3 p-3 rounded-lg bg-purple-500/5 border border-purple-500/20">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Scroll className="w-4 h-4 text-purple-400" />
+                    <span className="text-xs font-medium text-foreground uppercase tracking-wide">Optional Advanced Aẓkār</span>
+                  </div>
+                  <p className="text-xs text-foreground/80 leading-relaxed italic">
+                    {MANSION_AZKAAR_SUGGESTIONS[mansion.number]}
                   </p>
                 </div>
               )}
