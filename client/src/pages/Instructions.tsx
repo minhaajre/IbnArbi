@@ -896,118 +896,38 @@ export default function Instructions() {
           </section>
 
           {/* Ibn Arabi's Cosmology Card */}
-          <section className="glass-card rounded-xl p-6 border border-border bg-purple-500/5 space-y-6">
-            <div className="flex items-start gap-3 mb-4">
-              <Scroll className="w-6 h-6 text-purple-400 shrink-0" />
-              <div>
-                <h2 className="text-2xl font-serif text-gold">Ibn ʿArabī's Cosmology Made Simple</h2>
-                <p className="text-sm text-muted-foreground mt-1">From the Breath of the Real to the Human Heart — and Back Again</p>
-              </div>
-            </div>
-
-            <div className="space-y-5 text-sm text-foreground/80 leading-relaxed">
-              {/* 1 */}
-              <div>
-                <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <span className="text-purple-400">✦</span> Everything Begins With the Divine Breath
-                </h3>
-                <p>Before anything existed, there was only the Real (al-Ḥaqq). Creation begins not with violence, but with <strong>a breath</strong>, exhaled in mercy. This Breath brings the universe into existence, contains every possibility, sets the rhythm of time, and holds every creature in continuous renewal. <em>Everything you experience is taking place within this Breath.</em></p>
-              </div>
-
-              {/* 2 */}
-              <div>
-                <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <span className="text-purple-400">✦</span> The Cloud: The Womb of Creation
-                </h3>
-                <p>The Breath condenses into the "Cloud" (al-ʿAmāʾ), a subtle, luminous field where all realities exist in potential, not yet manifest. This is the womb from which all forms emerge.</p>
-              </div>
-
-              {/* 3 */}
-              <div>
-                <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <span className="text-purple-400">✦</span> The Throne and the Pedestal
-                </h3>
-                <p><strong>The Throne (al-ʿArsh):</strong> The widest created form that encompasses all existence. <strong>The Pedestal (al-Kursī):</strong> Below the Throne lies the Pedestal, where destinies are arranged and measured. If the Throne is the cosmic heart, the Pedestal is the cosmic mind.</p>
-              </div>
-
-              {/* 4 */}
-              <div>
-                <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <span className="text-purple-400">✦</span> The Seven Heavens
-                </h3>
-                <p>Below the Pedestal lie seven immense spheres (Moon, Mercury, Venus, Sun, Mars, Jupiter, Saturn). These are not merely astronomical layers—they are <strong>angelic administrations</strong> that shape thought, emotion, action, temperament, cosmic cycles, and the chemistry of events.</p>
-              </div>
-
-              {/* 5 */}
-              <div>
-                <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <span className="text-purple-400">✦</span> The Sphere of Fixed Stars
-                </h3>
-                <p>Below the seven heavens lies the starry sphere. Ibn ʿArabī calls the stars <strong>"points of wisdom"</strong> because here, divine meanings take fixed form, like letters placed onto a page. The stars are not causes—they are <strong>symbols of divine inscription</strong>.</p>
-              </div>
-
-              {/* 6 */}
-              <div>
-                <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <span className="text-purple-400">✦</span> The Lunar Mansions
-                </h3>
-                <p>Between the stars and the Moon lie <strong>28 stations</strong>, each a sector on the Moon's path. When divine meanings descend, the mansions give them <strong>timing</strong>, shaping the "flavor" of time like tones in a cosmic scale.</p>
-              </div>
-
-              {/* 7 */}
-              <div>
-                <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <span className="text-purple-400">✦</span> The Moon: The Final Mirror
-                </h3>
-                <p>The Moon is the <strong>last reflector</strong> of the descending decree. Whatever reaches the Moon will soon appear on Earth, as the Moon governs time, emotion, tides, the unfolding of events, and the rhythms of life.</p>
-              </div>
-
-              {/* 8 */}
-              <div>
-                <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <span className="text-purple-400">✦</span> The World of Time
-                </h3>
-                <p>Time is not a line—it is the <strong>surface where meanings appear moment by moment</strong>. Every instant is renewed by the divine command: <strong>"Be — and it is."</strong> You are never living in yesterday's world; the universe is reborn every moment.</p>
-              </div>
-
-              {/* 9 */}
-              <div>
-                <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <span className="text-purple-400">✦</span> The Human Heart: Final Receiver
-                </h3>
-                <p>The descent ends in one place: <strong>the human heart</strong>. According to Ibn ʿArabī, the heart is a mirror of all the cosmos, can reflect every divine name, and receives knowledge before the mind. This is why two people can live the same moment but experience entirely different worlds.</p>
-              </div>
-
-              {/* 10 */}
-              <div>
-                <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <span className="text-purple-400">✦</span> The Return Journey
-                </h3>
-                <p>Just as meanings descend through Throne → Pedestal → Heavens → Stars → Mansions → Moon → Time → Heart, the seeker ascends by reversing the same ladder through <strong>sincerity, remembrance (dhikr), polishing the heart, tuning into the qualities of time, self-knowledge, presence, and contemplation</strong>. This is the journey from creation back to the Real.</p>
-              </div>
-
-              {/* 11 */}
-              <div>
-                <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <span className="text-purple-400">✦</span> The Purpose of the Universe
-                </h3>
-                <p>The universe exists for one reason: <strong>so that the Hidden Treasure can be known.</strong> You exist so that knowledge, love, and meaning can become conscious. Your role is not to control the cosmos—your role is to <strong>witness it, reflect it, and participate in the unfolding of the divine mysteries.</strong></p>
-              </div>
-
-              {/* 12 */}
-              <div>
-                <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <span className="text-purple-400">✦</span> Your Role in All of This
-                </h3>
-                <p>You are the meeting point of the highest divine command and the lowest level of manifestation. This makes you the <strong>mirror of God's names, the interpreter of time, the heart of the cosmos, and the witness of existence.</strong> Your awareness, your response, your intention complete the cycle of creation.</p>
-              </div>
-            </div>
-
-            {/* Summary */}
-            <div className="mt-6 pt-6 border-t border-border/50">
-              <p className="text-sm text-foreground/80 italic leading-relaxed">
-                <strong>In one sentence:</strong> The Real breathes the cosmos into being, it descends through the spheres until it reaches your heart, and your heart rises back through these same layers through awareness, sincerity, and remembrance—completing the circle of existence.
+          <section className="glass-card rounded-xl p-6 border border-border bg-gold/5">
+            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
+              <BookOpen className="w-5 h-5" />
+              Background: Ibn ʿArabi's Cosmology Made Simple
+              <span className="font-arabic text-lg">علم الكون بسيط</span>
+            </h2>
+            <div className="space-y-4 text-muted-foreground">
+              <p className="leading-relaxed text-base">
+                Ibn ʿArabi describes creation as a descent of divine meanings through many levels. The Real (al-Ḥaqq) breathes the cosmos into existence in mercy. This Breath contains every possibility and sustains all creatures in continuous renewal. The universe exists not as a static mechanism, but as a living conversation between the Divine and creation.
               </p>
+
+              <p className="leading-relaxed text-base">
+                This descent flows from the Divine Throne through the Pedestal, down through seven heavens (the angelic administrations), past the stars (points of wisdom), through the lunar mansions (where divine qualities take on timing), and into the Moon (the final mirror of divine decree). What the Moon reflects, Earth experiences. What reaches Earth arrives in the human heart—the final receiver and mirror of all the cosmos.
+              </p>
+
+              <p className="leading-relaxed text-base">
+                The return journey is the seeker's path upward: through sincerity, remembrance (dhikr), self-knowledge, presence, and contemplation—climbing back through the same layers toward the Real. This is why observing the hour and mansion can guide awareness. Each moment carries a unique signature of divine qualities, timed by the mansion, expressed through the hour, received by the heart.
+              </p>
+
+              <p className="leading-relaxed text-base">
+                You are the meeting point of the highest divine command and the lowest level of manifestation. This makes you the mirror of God's names, the interpreter of time, the heart of the cosmos, and the witness of existence. Your awareness, your response, and your intention complete the cycle of creation. By aligning with the qualities of each moment, you participate in the unfolding of divine mysteries.
+              </p>
+
+              <div className="pt-4 border-t border-border mt-4">
+                <h3 className="text-base font-medium text-foreground mb-3">Key Sources for Further Reading</h3>
+                <ul className="list-disc list-inside space-y-2 ml-2 text-sm text-foreground/80">
+                  <li>Ibn ʿArabi – <em>Mawāqiʿ al-Nujūm</em> (The Setting of the Stars)</li>
+                  <li>Ibn ʿArabi – <em>al-Futūḥāt al-Makkiyya</em> (The Meccan Openings), especially chapters on time, imagination, hours, and planets</li>
+                  <li>Titus Burckhardt – <em>Mystical Astrology According to Ibn ʿArabi</em></li>
+                  <li>William Chittick – <em>The Sufi Path of Knowledge</em></li>
+                </ul>
+              </div>
             </div>
           </section>
         </div>
