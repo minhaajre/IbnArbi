@@ -326,12 +326,12 @@ export default function Home() {
             <Link href="/instructions">
               <Button 
                 variant="outline" 
-                size="icon" 
-                className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9"
+                className="bg-card/50 border-border h-8 sm:h-9 px-2 sm:px-3 gap-1.5"
                 data-testid="link-instructions"
                 title="Guidance"
               >
                 <BookOpen className="w-4 h-4" />
+                <span className="text-xs hidden sm:inline">Guidance</span>
               </Button>
             </Link>
 
@@ -346,8 +346,9 @@ export default function Home() {
             {/* Location Dialog */}
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline" size="icon" className="bg-card/50 border-border h-8 w-8 sm:h-9 sm:w-9" title={location?.name}>
+                <Button variant="outline" className="bg-card/50 border-border h-8 sm:h-9 px-2 sm:px-3 gap-1.5" title={location?.name}>
                   <MapPin className="w-4 h-4 shrink-0" />
+                  <span className="text-xs hidden sm:inline max-w-[100px] truncate">{location?.name || "Location"}</span>
                 </Button>
               </DialogTrigger>
               <DialogContent>
