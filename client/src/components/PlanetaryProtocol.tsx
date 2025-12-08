@@ -91,12 +91,12 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
             transition={{ duration: 0.2 }}
             className="overflow-hidden space-y-3"
           >
-            {/* Meaning of This Hour Card */}
+            {/* Quality of This Hour Card */}
             <div className="p-3 rounded-lg bg-card/50 border border-border" data-testid="hour-meaning-card">
               <div className="flex items-center gap-2 mb-2">
                 <BookOpen className="w-4 h-4 text-primary" />
-                <span className="text-xs font-medium text-foreground uppercase tracking-wide">Meaning of This Hour</span>
-                <span className="text-xs font-arabic text-muted-foreground">معنى هذه الساعة</span>
+                <span className="text-xs font-medium text-foreground uppercase tracking-wide">Quality of This Hour</span>
+                <span className="text-xs font-arabic text-muted-foreground">طبيعة هذه الساعة</span>
               </div>
               <p className="text-sm text-foreground/90 leading-relaxed mb-2">
                 {guidance.meaning}
@@ -109,12 +109,12 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
               </p>
             </div>
 
-            {/* Recommended Practice Card */}
+            {/* Suggested Practice Card */}
             <div className="p-3 rounded-lg bg-primary/5 border border-primary/20" data-testid="hour-practice-card">
               <div className="flex items-center gap-2 mb-2">
                 <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-xs font-medium text-foreground uppercase tracking-wide">Recommended Practice</span>
-                <span className="text-xs font-arabic text-muted-foreground">الممارسة الموصى بها</span>
+                <span className="text-xs font-medium text-foreground uppercase tracking-wide">Suggested Practice</span>
+                <span className="text-xs font-arabic text-muted-foreground">ممارسة مقترحة</span>
               </div>
               
               <div className="space-y-2 text-sm">
@@ -128,15 +128,15 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
                   </span>
                 </div>
                 
-                {/* Do */}
+                {/* May support */}
                 <div className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
                   <span className="text-foreground/90">{guidance.doAction}</span>
                 </div>
                 
-                {/* Avoid */}
+                {/* Use caution */}
                 <div className="flex items-start gap-2">
-                  <XCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                  <XCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                   <span className="text-foreground/70">{guidance.avoidAction}</span>
                 </div>
                 

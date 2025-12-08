@@ -103,19 +103,19 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
 
         {/* Quick Start Guide */}
         <div className="mb-2 p-2 rounded-lg bg-primary/5 border border-primary/20">
-          <div className="text-[9px] font-medium text-primary uppercase tracking-wide mb-1">How to Use planetary energy effectively</div>
+          <div className="text-[9px] font-medium text-primary uppercase tracking-wide mb-1">Working with celestial rhythms</div>
           <div className="space-y-0.5 text-[11px] text-foreground/80">
             <div className="flex gap-1.5">
               <span className="text-primary font-semibold shrink-0">①</span>
-              <span><strong>Hour</strong> – What energy is active?</span>
+              <span><strong>Hour</strong> – What quality is present?</span>
             </div>
             <div className="flex gap-1.5">
               <span className="text-primary font-semibold shrink-0">②</span>
-              <span><strong>Mansion</strong> – What lunar stage?</span>
+              <span><strong>Mansion</strong> – What lunar phase?</span>
             </div>
             <div className="flex gap-1.5">
               <span className="text-primary font-semibold shrink-0">③</span>
-              <span><strong>Act</strong> – Based on both.</span>
+              <span><strong>Reflect</strong> – Consider both.</span>
             </div>
           </div>
         </div>
@@ -167,14 +167,14 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
               transition={{ duration: 0.2 }}
               className="overflow-hidden space-y-3"
             >
-              {/* NEW: Good For / Not Ideal For Card */}
+              {/* NEW: May Support / Use Caution With Card */}
               {guidance && (
                 <div className="mb-3 p-3 rounded-lg bg-foreground/5 border border-border" data-testid="mansion-guidance-card">
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <div className="flex items-center gap-1.5 mb-2">
                         <CheckCircle className="w-3.5 h-3.5 text-green-500" />
-                        <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Good For</span>
+                        <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">May Support</span>
                       </div>
                       <ul className="space-y-1">
                         {guidance.goodFor.slice(0, 4).map((item, i) => (
@@ -187,13 +187,13 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
                     </div>
                     <div>
                       <div className="flex items-center gap-1.5 mb-2">
-                        <XCircle className="w-3.5 h-3.5 text-red-400" />
-                        <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Not Ideal For</span>
+                        <XCircle className="w-3.5 h-3.5 text-amber-400" />
+                        <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Use Caution With</span>
                       </div>
                       <ul className="space-y-1">
                         {guidance.notIdealFor.slice(0, 4).map((item, i) => (
                           <li key={i} className="text-xs text-foreground/60 flex items-start gap-1.5">
-                            <span className="text-red-400 mt-0.5">•</span>
+                            <span className="text-amber-400 mt-0.5">•</span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -226,7 +226,7 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
               )}
 
               <div className="space-y-3 text-sm text-muted-foreground/90 font-light leading-relaxed flex-1">
-                {/* Recommended Actions - Prominent */}
+                {/* Suggested Activities - Prominent */}
                 {'activities' in mansion && mansion.activities && (
                   <div className={`flex gap-3 p-2.5 rounded-lg border ${
                     isBlessed 
@@ -236,7 +236,7 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
                     <Lightbulb className={`w-4 h-4 mt-0.5 shrink-0 ${isBlessed ? 'text-green-500' : 'text-amber-500'}`} />
                     <div>
                       <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">
-                        Recommended Actions <span className="font-arabic">الأعمال المستحبة</span>
+                        Suggested Activities <span className="font-arabic">الأنشطة المقترحة</span>
                       </strong>
                       <span className="text-foreground/80 text-sm">{mansion.activities}</span>
                     </div>

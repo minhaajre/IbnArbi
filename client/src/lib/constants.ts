@@ -18,7 +18,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ء ا",
     degrees: "0° Aries",
     nature: "blessed",
-    activities: "Excellent for new beginnings, initiating projects, and seeking divine inspiration.",
+    activities: "This mansion is traditionally associated with new beginnings. Intentions set here may carry particular potency.",
     description: "The beginning of the cosmic cycle. Represents the primordial consciousness from which all creation emanates."
   },
   {
@@ -34,7 +34,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ه",
     degrees: "12°51' Aries",
     nature: "challenging",
-    activities: "Suitable for introspection and recording intentions. Avoid major new ventures.",
+    activities: "This mansion may support introspection and recording intentions. Major ventures may benefit from waiting.",
     description: "The Guarded Tablet upon which all destinies are inscribed. The repository of divine decrees."
   },
   {
@@ -50,7 +50,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ع",
     degrees: "25°42' Aries",
     nature: "blessed",
-    activities: "Excellent for seeking hidden knowledge, inner reflection, and spiritual retreats.",
+    activities: "This mansion is traditionally associated with seeking hidden knowledge. Inner reflection may settle well here.",
     description: "The Many Little Ones. Represents the multiplicity of forms emerging from unity."
   },
   {
@@ -66,7 +66,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ح",
     degrees: "8°34' Taurus",
     nature: "blessed",
-    activities: "Favorable for completing tasks, following through on commitments, and patient work.",
+    activities: "This mansion may support completing tasks and following through with patience. Steady effort tends to settle well here.",
     description: "Al-jawhar al-hayūlī. The primordial matter from which all material forms arise."
   },
   {
@@ -82,7 +82,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "غ",
     degrees: "21°25' Taurus",
     nature: "challenging",
-    activities: "A time for caution. Best for quiet contemplation rather than outward action.",
+    activities: "This mansion invites caution. Quiet contemplation may serve better than outward striving.",
     description: "The luminous mark signifying the manifestation of the divine in material form."
   },
   {
@@ -98,7 +98,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "خ",
     degrees: "4°17' Gemini",
     nature: "blessed",
-    activities: "Excellent for seeking wisdom, studying sacred texts, and teaching others.",
+    activities: "This mansion is traditionally associated with wisdom. Studying sacred texts and sharing knowledge may settle well here.",
     description: "The patterns of creation. Divine wisdom expressed through archetypal forms."
   },
   {
@@ -114,7 +114,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ق",
     degrees: "17°08' Gemini",
     nature: "blessed",
-    activities: "Favorable for expansive thinking, charitable works, and embracing divine vastness.",
+    activities: "This mansion may support expansive thinking and charitable works. Embracing divine vastness tends to harmonize here.",
     description: "The Divine Throne (Al-'Arsh) that encompasses all of creation."
   },
   {
@@ -130,7 +130,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ك",
     degrees: "0° Cancer",
     nature: "challenging",
-    activities: "Practice gratitude and thankfulness. Avoid demanding or entitled behavior.",
+    activities: "This mansion invites gratitude and thankfulness. Expectations may not harmonize well with this time.",
     description: "The Kursi. The pedestal of divine governance over the heavens and earth."
   },
   {
@@ -146,7 +146,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ج",
     degrees: "12°51' Cancer",
     nature: "challenging",
-    activities: "Cultivate self-sufficiency and contentment. Good for solitary spiritual practice.",
+    activities: "This mansion invites self-sufficiency and contentment. Solitary spiritual practice may settle well here.",
     description: "The outermost sphere where no stars reside. The boundary between creation and the divine."
   },
   {
@@ -162,7 +162,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ش",
     degrees: "25°42' Cancer",
     nature: "blessed",
-    activities: "Excellent for building strength, leadership, and taking decisive action.",
+    activities: "This mansion is traditionally associated with inner strength. Decisive clarity approached with composure may settle well here.",
     description: "The sphere of the constellations. The realm where the zodiac signs dwell."
   },
   {
@@ -178,7 +178,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ي",
     degrees: "8°34' Leo",
     nature: "blessed",
-    activities: "Favorable for devotional practices, surrender to the Divine, and honoring traditions.",
+    activities: "This mansion may support devotional practices and surrender. Honoring traditions tends to harmonize here.",
     description: "Saturn's celestial domain. The abode where Prophet Ibrahim resides in eternal peace."
   },
   {
@@ -194,7 +194,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ض",
     degrees: "21°25' Leo",
     nature: "challenging",
-    activities: "A time of transition. Seek knowledge and be open to necessary changes.",
+    activities: "This mansion carries a quality of transition. Seeking knowledge and remaining open to change may serve well here.",
     description: "Jupiter's celestial domain. The abode where Prophet Musa received divine wisdom."
   },
   {
@@ -210,7 +210,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ل",
     degrees: "4°17' Virgo",
     nature: "blessed",
-    activities: "Excellent for overcoming obstacles, spiritual warfare, and standing firm in truth.",
+    activities: "This mansion is traditionally associated with meeting challenges. Standing firm in truth with composure may settle well here.",
     description: "Mars' celestial domain. The abode where Prophet Harun dwells in radiant light."
   },
   {
@@ -226,7 +226,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ن",
     degrees: "17°08' Virgo",
     nature: "challenging",
-    activities: "Seek illumination through humility. Good for study but avoid confrontation.",
+    activities: "This mansion invites seeking illumination through humility. Study may settle well; confrontation may not harmonize.",
     description: "The Sun's celestial domain. The abode of Prophet Idris, master of sacred sciences."
   },
   {
@@ -242,7 +242,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ر",
     degrees: "0° Libra",
     nature: "blessed",
-    activities: "Favorable for creative work, beauty, and seeking forgiveness. Cover the faults of others.",
+    activities: "This mansion may support creative expression and beauty. Covering the faults of others tends to harmonize here.",
     description: "Venus' celestial domain. The abode of Prophet Yusuf, embodiment of divine beauty."
   },
   {
@@ -258,7 +258,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ط",
     degrees: "12°51' Libra",
     nature: "blessed",
-    activities: "Excellent for accounting, organizing, communication, and healing work.",
+    activities: "This mansion is traditionally associated with organization and communication. Healing work may settle well here.",
     description: "Mercury's celestial domain. The abode of Prophet 'Isa, the living word."
   },
   {
@@ -274,7 +274,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "د",
     degrees: "25°42' Libra",
     nature: "blessed",
-    activities: "Favorable for clarity, making things manifest, and honoring one's humanity.",
+    activities: "This mansion may support clarity and making things manifest. Honoring one's humanity tends to harmonize here.",
     description: "The Moon's celestial domain. The abode of Prophet Adam, father of humanity."
   },
   {
@@ -290,7 +290,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ت",
     degrees: "8°34' Scorpio",
     nature: "challenging",
-    activities: "A powerful but intense time. Best for heart purification and releasing attachments.",
+    activities: "This mansion carries an intense quality. Heart purification and releasing attachments may settle well here.",
     description: "The heart of the scorpion. The ethereal realm where fire and light interweave."
   },
   {
@@ -306,7 +306,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ز",
     degrees: "21°25' Scorpio",
     nature: "challenging",
-    activities: "Exercise caution. Good for breathwork and cultivating vital life force.",
+    activities: "This mansion invites caution. Breathwork and cultivating vital presence may harmonize here.",
     description: "The realm of the aerial element. Life-breath permeating all existence."
   },
   {
@@ -322,7 +322,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "س",
     degrees: "4°17' Sagittarius",
     nature: "challenging",
-    activities: "Nurture and sustain what is valuable. Good for healing and purification rituals.",
+    activities: "This mansion may support nurturing what is valuable. Healing and purification practices tend to harmonize here.",
     description: "The realm of the water element. Source of all life and sustenance."
   },
   {
@@ -338,7 +338,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ص",
     degrees: "17°08' Sagittarius",
     nature: "blessed",
-    activities: "Excellent for endings, letting go, transformation, and preparing for rebirth.",
+    activities: "This mansion is traditionally associated with endings and transformation. Letting go may settle well here.",
     description: "The realm of the earth element. The domain of endings and transformation."
   },
   {
@@ -354,7 +354,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ظ",
     degrees: "0° Capricorn",
     nature: "challenging",
-    activities: "Practice sacrifice and generosity. Release what no longer serves your growth.",
+    activities: "This mansion invites sacrifice and generosity. Releasing what no longer serves may harmonize here.",
     description: "The mineral kingdom. Hidden treasures and precious substances of the earth."
   },
   {
@@ -370,7 +370,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ث",
     degrees: "12°51' Capricorn",
     nature: "blessed",
-    activities: "Favorable for planting seeds (literal and metaphorical), nourishment, and growth.",
+    activities: "This mansion may support planting seeds and nourishment. Growth tends to harmonize here.",
     description: "The plant kingdom. The realm of growth, nourishment, and verdant life."
   },
   {
@@ -386,7 +386,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ذ",
     degrees: "25°42' Capricorn",
     nature: "challenging",
-    activities: "Practice humility and care for creatures. Avoid pride and arrogance.",
+    activities: "This mansion invites humility and care for creatures. Pride may not harmonize well with this time.",
     description: "The animal kingdom. Creatures of instinct and embodied souls."
   },
   {
@@ -402,7 +402,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ف",
     degrees: "8°34' Aquarius",
     nature: "blessed",
-    activities: "Excellent for angelic invocations, seeking protection, and hidden spiritual work.",
+    activities: "This mansion is traditionally associated with hidden spiritual work. Seeking protection in quietness may settle well here.",
     description: "The angelic realm. Celestial beings of light who carry out divine commands."
   },
   {
@@ -418,7 +418,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "ب",
     degrees: "21°25' Aquarius",
     nature: "challenging",
-    activities: "Exercise spiritual vigilance. Good for subtle awareness and protection practices.",
+    activities: "This mansion invites spiritual vigilance. Subtle awareness and protection practices may harmonize here.",
     description: "The realm of the jinn. Beings of smokeless fire dwelling between worlds."
   },
   {
@@ -434,7 +434,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "م",
     degrees: "4°17' Pisces",
     nature: "blessed",
-    activities: "Excellent for community, bringing people together, and honoring human dignity.",
+    activities: "This mansion is traditionally associated with community. Bringing people together tends to harmonize here.",
     description: "The human realm. The vicegerent of God uniting heavenly and earthly natures."
   },
   {
@@ -450,7 +450,7 @@ export const IBN_ARABI_MANSIONS = [
     letterArabic: "و",
     degrees: "17°08' Pisces",
     nature: "challenging",
-    activities: "Time for deep reflection on spiritual rank. Prepare for the cycle's completion.",
+    activities: "This mansion invites deep reflection on spiritual station. Surrender and cycle completion may harmonize here.",
     description: "The completion of the cycle. The hidden order underlying all manifest existence."
   }
 ];

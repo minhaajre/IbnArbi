@@ -1,0 +1,329 @@
+Below is a **clean, precise, implementation-ready instruction set for the Replit AI agent** that tells it *exactly* how to rewrite and replace the entire app copy* WITHOUT breaking layout, UX flow, or component structure.*
+
+This is NOT a rewrite of the copy itself —
+**it is the master instruction file** you give to Replit AI so it rewrites your app’s text into a spiritually grounded, Ibn ʿArabi–consistent voice, while preserving all UI, component names, logic, and data bindings.
+
+You can paste this whole block directly into Replit’s AI panel.
+
+---
+
+# ---------------------------------------------
+
+# **MASTER COPY-REWRITE INSTRUCTIONS FOR REPLIT AI**
+
+# ---------------------------------------------
+
+## **HIGH-LEVEL GOAL**
+
+Rewrite *all textual content* in the app to reflect:
+
+* A **grounded, gentle, non-judgmental spiritual tone**, modeled on Ibn ʿArabī’s voice.
+* Language that is **descriptive, not prescriptive**.
+* A tone that **invites awareness**, not forceful action.
+* Removal of modern motivational/self-improvement phrasing.
+* Removal of judgmental moral terms.
+* Replacement of binary “good/bad” energy framing with **harmonious / not harmonizing** framing.
+* Clear alignment with **Islamic metaphysics**, **Akbarian adab**, and **cosmic humility**.
+
+**Do not modify:**
+
+* page structure
+* component names
+* layout
+* logic
+* bindings
+* data flows
+* UI elements
+* interactive behavior
+
+Only rewrite the **static copy, labels, tooltips, descriptions, explanations, and card text**.
+
+---
+
+# ---------------------------------------------
+
+# **GLOBAL TONE RULES (apply everywhere)**
+
+# ---------------------------------------------
+
+Replit AI must rewrite all textual content using these universal tone constraints:
+
+### **1. Use invitational, not directive language**
+
+Replace:
+
+* “Do this”
+* “Take bold action”
+* “Avoid this”
+* “Be brave”
+
+With:
+
+* “This hour supports…”
+* “You may find benefit in…”
+* “It may be wise to soften…”
+* “The moment invites…”
+
+### **2. Remove judgmental or psychological terms**
+
+Replace:
+
+* “Demanding behavior”
+* “Entitled behavior”
+* “Negative energy”
+* “Overcome obstacles”
+
+With:
+
+* “Expectations may not harmonize with this hour”
+* “This time favors humility and inner balance”
+* “Matters may settle gently”
+* “A small sincere step may align with the moment”
+
+### **3. Never make deterministic predictions**
+
+Replace:
+
+* “This mansion guarantees success”
+* “This hour will bring clarity”
+
+With:
+
+* “This mansion is traditionally associated with steadiness”
+* “This hour is known to support reflective clarity”
+
+### **4. Replace modern vocabulary with Akbarian vocabulary**
+
+Use:
+
+* **Expansion / contraction**
+* **Stillness**
+* **Opening / unveiling / settling**
+* **Adab (spiritual etiquette)**
+* **Presence**
+* **Readiness**
+* **Sincerity**
+* **Inner composure**
+
+Avoid:
+
+* “Trigger”
+* “Motivation”
+* “Productivity”
+* “Mental blocks”
+* “Win / Triumph”
+
+### **5. Maintain humility in tone**
+
+Sentences must reflect:
+
+> “Time reveals its quality; the seeker responds with presence.”
+
+---
+
+# ---------------------------------------------
+
+# **SPECIFIC COMPONENT REWRITE INSTRUCTIONS**
+
+# ---------------------------------------------
+
+## **A. PLANETARY HOUR CARDS**
+
+Rewrite the following fields for *each* planet:
+
+* “Meaning of this Hour”
+* “Suggested Dhikr & Practice”
+* “Recommended Actions”
+* “Hour Protocol” text
+
+New tone rules:
+
+1. **Short and reflective** (2–3 sentences max per section)
+2. Describe the hour’s quality instead of commanding action
+3. Invite the user toward an inner posture, e.g.:
+
+   * “This hour carries a tone of decisive clarity balanced with inner restraint.”
+4. Dhikr section: gentle recommendation, e.g.:
+
+   * “The Name *al-Ḥakīm* may support contemplation during this hour.”
+5. Actions:
+
+   * Use “You may find benefit in…”
+   * Avoid verbs like “push”, “overcome”, “strike”, “force”.
+
+---
+
+## **B. LUNAR MANSION CARDS**
+
+Rewrite:
+
+* Mansion theme
+* Good for / Not ideal for
+* Dhikr & practice
+* Recommended actions
+* Meaning / Divine attribute
+* Arabic letter description
+* Mansion quote or description
+
+New tone rules:
+
+1. “Good for / Not ideal for” becomes
+
+   * “This mansion traditionally supports…”
+   * “This mansion may not harmonize with…”
+
+2. Mansion theme must be:
+
+   * non-deterministic
+   * reflective
+   * 1–2 sentences
+   * no modern coaching language
+
+3. Replace “overcoming obstacles” with:
+
+   * “meeting what arises with steadiness”
+
+4. Replace “success” with:
+
+   * “establishment”
+   * “clarity in effort”
+   * “settling of matters”
+
+5. Dhikr wording must be invitational:
+
+   * “The Name *al-Fattāḥ* is associated with gentle openings and clarity.”
+
+6. Recommended actions language must be softened:
+
+   * “A small sincere step may be supported.”
+   * “This may be a moment for quiet gratitude.”
+
+---
+
+## **C. INSTRUCTIONS PAGE**
+
+Rewrite all instructional text using the following tone rules:
+
+### 1. Use gentle, clear explanatory language
+
+Avoid technical jargon unless necessary.
+
+### 2. Present spiritual cosmology in a grounded and accessible way
+
+Use simple, clear sentences.
+
+### 3. Remove any language implying:
+
+* control
+* prediction
+* fate manipulation
+
+### 4. Replace with language emphasizing:
+
+* witnessing
+* presence
+* alignment
+* adab
+* humility before divine unfolding
+
+### 5. Example rewrite pattern
+
+Replace:
+
+> “Use this hour to take strong decisive action.”
+
+With:
+
+> “This hour traditionally carries a tone that may support clarity in decision-making when approached with composure.”
+
+---
+
+# ---------------------------------------------
+
+# **REWRITE THE LEGAL FOOTER / DISCLAIMER**
+
+# ---------------------------------------------
+
+Insert the following into the footer:
+
+---
+
+## **Legal Disclaimer**
+
+This application is for **educational and cultural purposes only**.
+It provides traditional symbolic frameworks for reflection and does not offer medical, psychological, financial, or legal advice.
+By using this application, you acknowledge that all choices and interpretations are your own responsibility.
+The creator is **not liable** for any actions taken based on this content.
+
+---
+
+## **Terms of Use**
+
+* This application offers symbolic and historical material for personal study.
+* No guarantee of accuracy, outcome, or suitability is provided.
+* Users agree to use the content responsibly and at their own risk.
+* No content may be redistributed or repackaged without permission.
+* The creator may update or discontinue the service at any time.
+
+---
+
+## **Privacy Policy**
+
+* No personal identifying data is collected.
+* Local storage may be used to save non-sensitive preferences.
+* No analytics, advertising trackers, or third-party data sharing is performed.
+* Basic server logs may be generated automatically for security and performance.
+* Contact information, if provided, is never sold or shared.
+
+---
+
+# ---------------------------------------------
+
+# **IMPORTANT TECHNICAL CONSTRAINTS FOR REPLIT AI**
+
+# ---------------------------------------------
+
+### **DO NOT CHANGE:**
+
+* variable names
+* component names
+* props
+* JSON keys
+* data structures
+* conditional logic
+* toggles (tropical/sidereal)
+* labels used by the code (IDs)
+
+### **ONLY MODIFY:**
+
+* visible text inside JSX
+* paragraph content
+* card descriptions
+* instruction copy
+* section headings (text-only)
+* tooltips
+* expand/collapse explanatory text
+
+### **DO NOT modify any Arabic or transliteration unless rewriting for tone only.**
+
+### **Preserve ALL existing layout spacing, card structure, and UI flow.**
+
+---
+
+# ---------------------------------------------
+
+# **END OF MASTER INSTRUCTION FILE**
+
+# ---------------------------------------------
+
+If you want, I can now:
+
+### ✓ Generate the fully rewritten Ibn Arabi–tone copy for all 28 mansions
+
+### ✓ Generate the rewritten copy for all 7 planetary hours
+
+### ✓ Rewrite the entire Instructions page in final polished form
+
+### ✓ Rewrite the footer legal/terms text into a cohesive site-style block
+
+Just tell me **which section to rewrite first**, and I’ll produce the final text.

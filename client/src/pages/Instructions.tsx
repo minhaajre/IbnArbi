@@ -15,12 +15,12 @@ const MANSION_DETAILS = [
     arabic: "الشراطان",
     theme: "Pure intention, vision, clarity",
     category: "Initiating",
-    bestFor: "Starting ideas, planning, setting intentions",
-    avoid: "Major commitments",
-    waxing: "Excellent for setting intentions",
-    waning: "Good for reviewing purpose",
+    maySupport: "Starting ideas, planning, setting intentions",
+    useCautionWith: "Major commitments before clarity settles",
+    waxing: "May support setting intentions",
+    waning: "May support reviewing purpose",
     divineName: "al-Nūr (The Light)",
-    ritual: "Write intentions, journaling",
+    ritual: "Writing intentions, journaling",
     nature: "blessed"
   },
   {
@@ -29,10 +29,10 @@ const MANSION_DETAILS = [
     arabic: "البطين",
     theme: "Emotional imprint, inner truth",
     category: "Initiating",
-    bestFor: "Healing, emotional clarity, introspection",
-    avoid: "Confrontation, major new ventures",
-    waxing: "Plant seeds of emotional healing",
-    waning: "Release old emotional patterns",
+    maySupport: "Healing, emotional clarity, introspection",
+    useCautionWith: "Confrontation, major new ventures",
+    waxing: "May support planting seeds of emotional healing",
+    waning: "May support releasing old emotional patterns",
     divineName: "al-Baṣīr (The All-Seeing)",
     ritual: "Journaling, dua for guidance",
     nature: "challenging"
@@ -43,10 +43,10 @@ const MANSION_DETAILS = [
     arabic: "الثريا",
     theme: "Creativity, insight, inspiration",
     category: "Initiating",
-    bestFor: "Communication, study, art, seeking hidden knowledge",
-    avoid: "Mundane tasks that waste creative energy",
-    waxing: "Start creative projects",
-    waning: "Complete artistic works",
+    maySupport: "Communication, study, art, seeking hidden knowledge",
+    useCautionWith: "Mundane tasks that may dissipate creative energy",
+    waxing: "May support beginning creative projects",
+    waning: "May support completing artistic works",
     divineName: "al-Fattāḥ (The Opener)",
     ritual: "Creative expression, spiritual retreats",
     nature: "blessed"
@@ -57,10 +57,10 @@ const MANSION_DETAILS = [
     arabic: "الدبران",
     theme: "Foundation, raw material, patience",
     category: "Initiating",
-    bestFor: "Setting long-term plans, following through on commitments",
-    avoid: "Sudden decisions, impatience",
-    waxing: "Build foundations",
-    waning: "Consolidate what you have",
+    maySupport: "Setting long-term plans, following through on commitments",
+    useCautionWith: "Sudden decisions, impatience",
+    waxing: "May support building foundations",
+    waning: "May support consolidating what you have",
     divineName: "al-Qadīr (The Powerful)",
     ritual: "Organizing, structuring, patient work",
     nature: "blessed"
@@ -71,10 +71,10 @@ const MANSION_DETAILS = [
     arabic: "الهقعة",
     theme: "Embodiment, grounding, manifestation",
     category: "Stabilizing",
-    bestFor: "Health routines, stability, quiet contemplation",
-    avoid: "Overexertion, outward action",
-    waxing: "Establish healthy habits",
-    waning: "Release unhealthy patterns",
+    maySupport: "Health routines, stability, quiet contemplation",
+    useCautionWith: "Overexertion, excessive outward action",
+    waxing: "May support establishing healthy habits",
+    waning: "May support releasing unhealthy patterns",
     divineName: "al-Muqīt (The Sustainer)",
     ritual: "Body-focused practices, grounding",
     nature: "challenging"
@@ -85,10 +85,10 @@ const MANSION_DETAILS = [
     arabic: "الهنعة",
     theme: "Form-taking, wisdom, divine patterns",
     category: "Stabilizing",
-    bestFor: "Contracts, marriage talks, seeking wisdom, teaching",
-    avoid: "Hasty agreements",
-    waxing: "Formalize agreements",
-    waning: "Review existing commitments",
+    maySupport: "Contracts, marriage talks, seeking wisdom, teaching",
+    useCautionWith: "Hasty agreements without reflection",
+    waxing: "May support formalizing agreements",
+    waning: "May support reviewing existing commitments",
     divineName: "al-Muṣawwir (The Fashioner)",
     ritual: "Study sacred texts, teaching others",
     nature: "blessed"
@@ -99,10 +99,10 @@ const MANSION_DETAILS = [
     arabic: "الذراع",
     theme: "Authority, sovereignty, expansiveness",
     category: "Stabilizing",
-    bestFor: "Leadership decisions, charitable works, embracing divine vastness",
-    avoid: "Ego-driven actions",
-    waxing: "Expand influence positively",
-    waning: "Reflect on responsibilities",
+    maySupport: "Leadership decisions, charitable works, embracing divine vastness",
+    useCautionWith: "Ego-driven actions",
+    waxing: "May support expanding influence positively",
+    waning: "May support reflecting on responsibilities",
     divineName: "al-Malik (The King)",
     ritual: "Expansive thinking, charity",
     nature: "blessed"
@@ -113,12 +113,12 @@ const MANSION_DETAILS = [
     arabic: "النثرة",
     theme: "Boundaries, gratitude, divine governance",
     category: "Stabilizing",
-    bestFor: "Closing deals, setting limits, expressing gratitude",
-    avoid: "Demanding or entitled behavior",
-    waxing: "Establish healthy boundaries",
-    waning: "Release resentments with gratitude",
+    maySupport: "Closing deals, setting limits, expressing gratitude",
+    useCautionWith: "Demanding or entitled behavior",
+    waxing: "May support establishing healthy boundaries",
+    waning: "May support releasing resentments with gratitude",
     divineName: "al-Ḥafīẓ (The Preserver)",
-    ritual: "Practice gratitude, boundary-setting",
+    ritual: "Gratitude practice, boundary-setting",
     nature: "challenging"
   },
   {
@@ -127,10 +127,10 @@ const MANSION_DETAILS = [
     arabic: "الطرف",
     theme: "Independence, self-sufficiency, the boundary of creation",
     category: "Relational",
-    bestFor: "Solitary spiritual practice, cultivating contentment",
-    avoid: "Dependency on others",
-    waxing: "Build inner resources",
-    waning: "Release attachments to outcomes",
+    maySupport: "Solitary spiritual practice, cultivating contentment",
+    useCautionWith: "Excessive dependency on others",
+    waxing: "May support building inner resources",
+    waning: "May support releasing attachments to outcomes",
     divineName: "al-Ghanī (The Self-Sufficient)",
     ritual: "Solitary practice, contentment meditation",
     nature: "challenging"
@@ -141,10 +141,10 @@ const MANSION_DETAILS = [
     arabic: "الجبهة",
     theme: "Discipline, truth, power (Saturn's realm)",
     category: "Relational",
-    bestFor: "Difficult conversations, building strength, leadership",
-    avoid: "Emotional impulsivity",
-    waxing: "Take decisive action",
-    waning: "Release power struggles",
+    maySupport: "Difficult conversations, building strength, leadership",
+    useCautionWith: "Emotional impulsivity",
+    waxing: "May support taking considered action",
+    waning: "May support releasing power struggles",
     divineName: "al-Ḥakīm (The Wise)",
     ritual: "Truth-telling, difficult but necessary conversations",
     nature: "blessed"
@@ -155,10 +155,10 @@ const MANSION_DETAILS = [
     arabic: "الزبرة",
     theme: "Devotion, surrender, tradition (Saturn's heaven)",
     category: "Relational",
-    bestFor: "Devotional practices, honoring traditions, surrender to the Divine",
-    avoid: "Rebellion against sacred order",
-    waxing: "Deepen spiritual commitments",
-    waning: "Release outdated traditions",
+    maySupport: "Devotional practices, honoring traditions, surrender to the Divine",
+    useCautionWith: "Rebellion against sacred order",
+    waxing: "May support deepening spiritual commitments",
+    waning: "May support releasing outdated traditions",
     divineName: "al-Rabb (The Lord)",
     ritual: "Devotional practices, honoring ancestors",
     nature: "blessed"
@@ -169,10 +169,10 @@ const MANSION_DETAILS = [
     arabic: "الصرفة",
     theme: "Transition, change, seeking knowledge (Jupiter's realm)",
     category: "Relational",
-    bestFor: "Being open to necessary changes, seeking knowledge",
-    avoid: "Resisting inevitable transitions",
-    waxing: "Embrace positive change",
-    waning: "Let go of what must change",
+    maySupport: "Being open to necessary changes, seeking knowledge",
+    useCautionWith: "Resisting inevitable transitions",
+    waxing: "May support embracing positive change",
+    waning: "May support letting go of what must change",
     divineName: "al-ʿAlīm (The All-Knowing)",
     ritual: "Study, openness to change",
     nature: "challenging"
@@ -183,10 +183,10 @@ const MANSION_DETAILS = [
     arabic: "العواء",
     theme: "Victory, overcoming obstacles (Mars' realm)",
     category: "Relational",
-    bestFor: "Overcoming obstacles, spiritual warfare, standing firm",
-    avoid: "Unnecessary conflict",
-    waxing: "Advance toward goals",
-    waning: "Release battles not worth fighting",
+    maySupport: "Overcoming obstacles, spiritual resolve, standing firm",
+    useCautionWith: "Unnecessary conflict",
+    waxing: "May support advancing toward goals",
+    waning: "May support releasing battles not worth fighting",
     divineName: "al-Qāhir (The Victorious)",
     ritual: "Courage practices, standing in truth",
     nature: "blessed"
@@ -197,10 +197,10 @@ const MANSION_DETAILS = [
     arabic: "السماك",
     theme: "Illumination, humility (Sun's realm - Idris' abode)",
     category: "Relational",
-    bestFor: "Study, seeking illumination through humility",
-    avoid: "Confrontation, arrogance",
-    waxing: "Seek light through learning",
-    waning: "Release pride and ego",
+    maySupport: "Study, seeking illumination through humility",
+    useCautionWith: "Confrontation, arrogance",
+    waxing: "May support seeking light through learning",
+    waning: "May support releasing pride and ego",
     divineName: "al-Nūr (The Light)",
     ritual: "Humble study, sacred sciences",
     nature: "challenging"
@@ -211,10 +211,10 @@ const MANSION_DETAILS = [
     arabic: "الغفر",
     theme: "Beauty, forgiveness, covering faults (Venus' realm)",
     category: "Relational",
-    bestFor: "Creative work, beauty, seeking forgiveness, covering others' faults",
-    avoid: "Exposing others' weaknesses",
-    waxing: "Create beauty, strengthen bonds",
-    waning: "Forgive and release grudges",
+    maySupport: "Creative work, beauty, seeking forgiveness, covering others' faults",
+    useCautionWith: "Exposing others' weaknesses",
+    waxing: "May support creating beauty, strengthening bonds",
+    waning: "May support forgiveness and releasing grudges",
     divineName: "al-Ghafūr (The Forgiving)",
     ritual: "Creative work, forgiveness practices",
     nature: "blessed"
@@ -225,10 +225,10 @@ const MANSION_DETAILS = [
     arabic: "الزبانى",
     theme: "Accounting, communication, healing (Mercury's realm)",
     category: "Relational",
-    bestFor: "Accounting, organizing, communication, healing work",
-    avoid: "Deception, miscommunication",
-    waxing: "Organize and communicate clearly",
-    waning: "Clear miscommunications",
+    maySupport: "Accounting, organizing, communication, healing work",
+    useCautionWith: "Deception, miscommunication",
+    waxing: "May support organizing and communicating clearly",
+    waning: "May support clearing miscommunications",
     divineName: "al-Muḥṣī (The Reckoner)",
     ritual: "Accounting, clear communication",
     nature: "blessed"
@@ -239,10 +239,10 @@ const MANSION_DETAILS = [
     arabic: "الإكليل",
     theme: "Memory, dreams, emotional clarity (Moon's realm)",
     category: "Relational",
-    bestFor: "Clarity, making things manifest, honoring humanity",
-    avoid: "Confusion, unclear intentions",
-    waxing: "Manifest intentions clearly",
-    waning: "Clear emotional confusion",
+    maySupport: "Clarity, making things manifest, honoring humanity",
+    useCautionWith: "Confusion, unclear intentions",
+    waxing: "May support manifesting intentions clearly",
+    waning: "May support clearing emotional confusion",
     divineName: "al-Mubīn (The Evident)",
     ritual: "Dreamwork, emotional healing",
     nature: "blessed"
@@ -253,10 +253,10 @@ const MANSION_DETAILS = [
     arabic: "القلب",
     theme: "Heart purification, release (Ethereal realm)",
     category: "Relational",
-    bestFor: "Heart purification, releasing attachments",
-    avoid: "Clinging to what must go",
-    waxing: "Strengthen heart's resolve",
-    waning: "Release heart attachments",
+    maySupport: "Heart purification, releasing attachments",
+    useCautionWith: "Clinging to what must go",
+    waxing: "May support strengthening heart's resolve",
+    waning: "May support releasing heart attachments",
     divineName: "al-Qābiḍ (The Restrainer)",
     ritual: "Heart purification, letting go",
     nature: "challenging"
@@ -267,10 +267,10 @@ const MANSION_DETAILS = [
     arabic: "الشولة",
     theme: "Vital life force, breath (Air realm)",
     category: "Relational",
-    bestFor: "Breathwork, cultivating vital life force",
-    avoid: "Reckless actions",
-    waxing: "Build vital energy",
-    waning: "Release stagnant energy",
+    maySupport: "Breathwork, cultivating vital life force",
+    useCautionWith: "Reckless actions",
+    waxing: "May support building vital energy",
+    waning: "May support releasing stagnant energy",
     divineName: "al-Ḥayy (The Ever-Living)",
     ritual: "Breathwork, vitality practices",
     nature: "challenging"
@@ -281,10 +281,10 @@ const MANSION_DETAILS = [
     arabic: "النعائم",
     theme: "Nurturing, life-giving (Water realm)",
     category: "Relational",
-    bestFor: "Nurturing what is valuable, healing, purification",
-    avoid: "Neglecting what needs care",
-    waxing: "Nurture growth",
-    waning: "Purify and cleanse",
+    maySupport: "Nurturing what is valuable, healing, purification",
+    useCautionWith: "Neglecting what needs care",
+    waxing: "May support nurturing growth",
+    waning: "May support purification and cleansing",
     divineName: "al-Muḥyī (The Life-Giver)",
     ritual: "Healing rituals, water purification",
     nature: "challenging"
@@ -295,10 +295,10 @@ const MANSION_DETAILS = [
     arabic: "البلدة",
     theme: "Endings, letting go, transformation (Earth realm)",
     category: "Threshold",
-    bestFor: "Endings, letting go, transformation, preparing for rebirth",
-    avoid: "Clinging to the old",
-    waxing: "Transform consciously",
-    waning: "Complete endings gracefully",
+    maySupport: "Endings, letting go, transformation, preparing for rebirth",
+    useCautionWith: "Clinging to the old",
+    waxing: "May support conscious transformation",
+    waning: "May support completing endings gracefully",
     divineName: "al-Mumīt (The Bringer of Death)",
     ritual: "Closure rituals, letting go",
     nature: "blessed"
@@ -309,10 +309,10 @@ const MANSION_DETAILS = [
     arabic: "سعد الذابح",
     theme: "Sacrifice, cutting away the old (Mineral realm)",
     category: "Threshold",
-    bestFor: "Ending habits, releasing debts, practicing generosity",
-    avoid: "Holding onto what no longer serves",
-    waxing: "Sacrifice for growth",
-    waning: "Cut away the unnecessary",
+    maySupport: "Ending habits, releasing debts, practicing generosity",
+    useCautionWith: "Holding onto what no longer serves",
+    waxing: "May support sacrificing for growth",
+    waning: "May support cutting away the unnecessary",
     divineName: "al-Qahhār (The Subduer)",
     ritual: "Sacrifice, generosity, release",
     nature: "challenging"
@@ -323,10 +323,10 @@ const MANSION_DETAILS = [
     arabic: "سعد بلع",
     theme: "Purification, nourishment (Plant realm)",
     category: "Threshold",
-    bestFor: "Fasting, detox, forgiveness, planting seeds",
-    avoid: "Overindulgence",
-    waxing: "Plant new seeds of intention",
-    waning: "Fast and purify",
+    maySupport: "Fasting, detox, forgiveness, planting seeds",
+    useCautionWith: "Overindulgence",
+    waxing: "May support planting new seeds of intention",
+    waning: "May support fasting and purification",
     divineName: "al-Tawwāb (The Acceptor of Repentance)",
     ritual: "Fasting, purification, planting",
     nature: "blessed"
@@ -337,10 +337,10 @@ const MANSION_DETAILS = [
     arabic: "سعد السعود",
     theme: "Renewal, humility (Animal realm)",
     category: "Threshold",
-    bestFor: "Rebirth after endings, practicing humility, caring for creatures",
-    avoid: "Pride and arrogance",
-    waxing: "Embrace new beginnings humbly",
-    waning: "Release pride completely",
+    maySupport: "Rebirth after endings, practicing humility, caring for creatures",
+    useCautionWith: "Pride and arrogance",
+    waxing: "May support embracing new beginnings humbly",
+    waning: "May support releasing pride",
     divineName: "al-Mudhill (The Humbler)",
     ritual: "Humility practices, animal care",
     nature: "challenging"
@@ -351,10 +351,10 @@ const MANSION_DETAILS = [
     arabic: "سعد الأخبية",
     theme: "Hidden forces, angelic realm",
     category: "Threshold",
-    bestFor: "Seclusion, prayer, angelic invocations, spiritual protection",
-    avoid: "Worldly distractions",
-    waxing: "Seek angelic assistance",
-    waning: "Release to angelic care",
+    maySupport: "Seclusion, prayer, angelic invocations, spiritual protection",
+    useCautionWith: "Worldly distractions",
+    waxing: "May support seeking angelic assistance",
+    waning: "May support releasing to angelic care",
     divineName: "al-Jabbār (The Compeller)",
     ritual: "Seclusion, deep prayer, angelic work",
     nature: "blessed"
@@ -365,10 +365,10 @@ const MANSION_DETAILS = [
     arabic: "الفرغ المقدم",
     theme: "Subtle awareness, jinn realm",
     category: "Threshold",
-    bestFor: "Spiritual vigilance, subtle awareness, protection practices",
-    avoid: "Naivety about unseen influences",
-    waxing: "Strengthen spiritual protection",
-    waning: "Clear subtle disturbances",
+    maySupport: "Spiritual vigilance, subtle awareness, protection practices",
+    useCautionWith: "Naivety about unseen influences",
+    waxing: "May support strengthening spiritual protection",
+    waning: "May support clearing subtle disturbances",
     divineName: "al-Laṭīf (The Subtle)",
     ritual: "Protection practices, subtle awareness",
     nature: "challenging"
@@ -379,10 +379,10 @@ const MANSION_DETAILS = [
     arabic: "الفرغ المؤخر",
     theme: "Unity, human dignity, collective destiny",
     category: "Threshold",
-    bestFor: "Community, bringing people together, honoring human dignity",
-    avoid: "Division, isolation",
-    waxing: "Build community bonds",
-    waning: "Release divisive patterns",
+    maySupport: "Community, bringing people together, honoring human dignity",
+    useCautionWith: "Division, isolation",
+    waxing: "May support building community bonds",
+    waning: "May support releasing divisive patterns",
     divineName: "al-Jāmiʿ (The Gatherer)",
     ritual: "Community work, unity practices",
     nature: "blessed"
@@ -393,10 +393,10 @@ const MANSION_DETAILS = [
     arabic: "بطن الحوت",
     theme: "Completion, elevation, surrender",
     category: "Threshold",
-    bestFor: "Ending cycles, surrender, deep reflection on spiritual rank",
-    avoid: "Starting new worldly ventures",
-    waxing: "Prepare for completion",
-    waning: "Complete surrender, close the cycle",
+    maySupport: "Ending cycles, surrender, deep reflection on spiritual station",
+    useCautionWith: "Starting new worldly ventures prematurely",
+    waxing: "May support preparing for completion",
+    waning: "May support complete surrender, closing the cycle",
     divineName: "Rafīʿ al-Darajāt (The Elevator of Degrees)",
     ritual: "Deep reflection, surrender, cycle completion",
     nature: "challenging"
@@ -444,15 +444,16 @@ export default function Instructions() {
               About This App
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4 text-base">
-              This application is based on the cosmological teachings of Muhyiddin Ibn Arabi (1165-1240 CE), 
+              This application draws from the cosmological teachings of Muhyiddin Ibn ʿArabi (1165-1240 CE), 
               the great Sufi master known as "Sheikh al-Akbar" (The Greatest Master). His work describes 
-              the hierarchical structure of existence from the Divine Essence down through the celestial 
-              spheres to the material world.
+              a vision of existence flowing from the Divine Essence through the celestial spheres 
+              into the material world—a cosmos alive with meaning.
             </p>
             <p className="text-muted-foreground leading-relaxed text-base">
-              The 28 Lunar Mansions (Manazil al-Qamar) represent stages of spiritual ascent and are 
-              connected to the Arabic letters, Divine Names, and prophetic stations as outlined in 
-              Ibn Arabi's Fusus al-Hikam and other works.
+              The 28 Lunar Mansions (Manazil al-Qamar) represent stages of spiritual unfolding, 
+              connected to the Arabic letters, Divine Names, and prophetic stations as described in 
+              Ibn ʿArabi's works. This app offers these traditional frameworks as a mirror for reflection, 
+              inviting awareness rather than prescription.
             </p>
           </section>
 
@@ -463,15 +464,15 @@ export default function Instructions() {
             </h2>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p className="leading-relaxed text-base">
-                The Moon travels through each of the 28 mansions approximately every day. Each mansion is not just a region 
-                of space but a <strong className="text-foreground">place where a specific divine quality enters time</strong>, 
-                shaping events, moods, and spiritual openings.
+                The Moon travels through each of the 28 mansions approximately every day. Each mansion is traditionally understood as 
+                a <strong className="text-foreground">place where a specific divine quality becomes accessible</strong>, 
+                carrying its own character, mood, and potential for spiritual openings.
               </p>
               <ul className="list-disc list-inside space-y-2 ml-2 text-base">
-                <li><strong className="text-foreground">Check the Current Mansion:</strong> See which lunar mansion the Moon currently occupies.</li>
-                <li><strong className="text-foreground">Blessed vs Challenging:</strong> Green indicates a blessed time; amber indicates caution.</li>
-                <li><strong className="text-foreground">Recommended Actions:</strong> Activities spiritually aligned with the mansion's nature.</li>
-                <li><strong className="text-foreground">Divine Attributes:</strong> Meditate on the Divine Name associated with the mansion.</li>
+                <li><strong className="text-foreground">Current Mansion:</strong> See which lunar mansion the Moon currently occupies.</li>
+                <li><strong className="text-foreground">Blessed vs Challenging:</strong> Green indicates a traditionally favorable time; amber invites caution and stillness.</li>
+                <li><strong className="text-foreground">Suggested Activities:</strong> Actions that may harmonize with the mansion's quality.</li>
+                <li><strong className="text-foreground">Divine Attributes:</strong> The Divine Name traditionally associated with this mansion, offered for contemplation.</li>
               </ul>
             </div>
 
@@ -483,28 +484,28 @@ export default function Instructions() {
                   <span className="px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/40 font-medium text-sm">1-4</span>
                   <div>
                     <strong className="text-foreground text-base">Initiating</strong>
-                    <p className="text-muted-foreground text-sm mt-1">Seed energy, vision, raw potential. Good for beginnings.</p>
+                    <p className="text-muted-foreground text-sm mt-1">Seed quality, vision, raw potential. May support beginnings.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-medium text-sm">5-8</span>
                   <div>
                     <strong className="text-foreground text-base">Stabilizing</strong>
-                    <p className="text-muted-foreground text-sm mt-1">Form, structure, commitment. Good for building.</p>
+                    <p className="text-muted-foreground text-sm mt-1">Form, structure, commitment. May support building and establishing.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/40 font-medium text-sm">9-20</span>
                   <div>
                     <strong className="text-foreground text-base">Relational</strong>
-                    <p className="text-muted-foreground text-sm mt-1">Communication, travel, learning, emotion, creativity.</p>
+                    <p className="text-muted-foreground text-sm mt-1">Communication, connection, learning, creativity. May support engagement.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 font-medium text-sm">21-28</span>
                   <div>
                     <strong className="text-foreground text-base">Threshold</strong>
-                    <p className="text-muted-foreground text-sm mt-1">Endings, karma, transitions. Good for closure.</p>
+                    <p className="text-muted-foreground text-sm mt-1">Endings, transitions, release. May support closure and letting go.</p>
                   </div>
                 </div>
               </div>
@@ -518,14 +519,14 @@ export default function Instructions() {
                   <Sun className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-foreground text-base">Waxing (New → Full)</strong>
-                    <p className="text-muted-foreground text-sm mt-1">Best for starting things. Supports growth, attraction, gathering. Opens doors outwardly.</p>
+                    <p className="text-muted-foreground text-sm mt-1">Traditionally associated with beginnings. May support growth, gathering, and outward movement.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Moon className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-foreground text-base">Waning (Full → New)</strong>
-                    <p className="text-muted-foreground text-sm mt-1">Best for ending things. Supports release, healing, forgiveness. Closes unnecessary loops.</p>
+                    <p className="text-muted-foreground text-sm mt-1">Traditionally associated with endings. May support release, healing, and inward reflection.</p>
                   </div>
                 </div>
               </div>
@@ -571,15 +572,15 @@ export default function Instructions() {
                           </div>
                         </div>
                         
-                        {/* Best For / Avoid */}
+                        {/* May Support / Use Caution With */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/30">
-                            <strong className="text-green-400 text-sm uppercase tracking-wide block mb-2">Best For</strong>
-                            <p className="text-foreground/80 text-base">{mansion.bestFor}</p>
+                            <strong className="text-green-400 text-sm uppercase tracking-wide block mb-2">May Support</strong>
+                            <p className="text-foreground/80 text-base">{mansion.maySupport}</p>
                           </div>
-                          <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/30">
-                            <strong className="text-red-400 text-sm uppercase tracking-wide block mb-2">Avoid</strong>
-                            <p className="text-foreground/80 text-base">{mansion.avoid}</p>
+                          <div className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                            <strong className="text-amber-400 text-sm uppercase tracking-wide block mb-2">Use Caution With</strong>
+                            <p className="text-foreground/80 text-base">{mansion.useCautionWith}</p>
                           </div>
                         </div>
 
@@ -807,33 +808,33 @@ export default function Instructions() {
                 <div className="p-4 rounded-lg bg-foreground/5 border border-border">
                   <h4 className="text-sm font-medium text-foreground mb-2">Example: Mars Hour + Release Mansion</h4>
                   <p className="text-sm text-foreground/80">
-                    A Mars hour brings cutting energy. Combined with a Release-phase mansion (21-28), this is excellent 
-                    for cutting unhealthy patterns, ending procrastination, or severing attachments that no longer serve you. 
-                    The courage of Mars meets the letting-go energy of the mansion phase.
+                    A Mars hour carries a quality of clarity and decisiveness. Combined with a Release-phase mansion (21-28), 
+                    this may support releasing what no longer serves, clearing distractions, or letting go of old patterns. 
+                    The strength of Mars may harmonize with the releasing quality of the mansion.
                   </p>
                 </div>
                 
                 <div className="p-4 rounded-lg bg-foreground/5 border border-border">
                   <h4 className="text-sm font-medium text-foreground mb-2">Example: Venus Hour + Build Mansion</h4>
                   <p className="text-sm text-foreground/80">
-                    A Venus hour brings beauty and love. Combined with a Build-phase mansion (5-8), this is excellent 
-                    for stabilizing relationships, creating beauty in your environment, or formalizing commitments 
-                    with gentleness. The harmony of Venus meets the structuring energy of the mansion phase.
+                    A Venus hour carries a quality of beauty and harmony. Combined with a Build-phase mansion (5-8), 
+                    this may support deepening relationships, cultivating beauty, or establishing commitments with gentleness. 
+                    The softness of Venus may harmonize with the stabilizing quality of the mansion.
                   </p>
                 </div>
                 
                 <div className="p-4 rounded-lg bg-foreground/5 border border-border">
                   <h4 className="text-sm font-medium text-foreground mb-2">Example: Jupiter Hour + Seed Mansion</h4>
                   <p className="text-sm text-foreground/80">
-                    A Jupiter hour brings expansion and wisdom. Combined with a Seed-phase mansion (1-4), this is excellent 
-                    for setting expansive intentions, beginning studies, or planning charitable endeavors. 
-                    The abundance of Jupiter meets the initiating energy of the mansion phase.
+                    A Jupiter hour carries a quality of expansion and wisdom. Combined with a Seed-phase mansion (1-4), 
+                    this may support setting expansive intentions, beginning studies, or planning charitable endeavors. 
+                    The abundance of Jupiter may harmonize with the initiating quality of the mansion.
                   </p>
                 </div>
               </div>
               
               <p className="text-sm italic text-muted-foreground/80 pt-2">
-                Trust your inner state (expansion or contraction) to know whether to act outwardly or reflect inwardly.
+                Notice your inner state (expansion or contraction) to sense whether to act outwardly or reflect inwardly.
               </p>
             </div>
           </section>
@@ -847,29 +848,29 @@ export default function Instructions() {
             <div className="space-y-4 text-muted-foreground">
               <p className="leading-relaxed text-base">
                 For Ibn ʿArabi, time is not an empty container but a living reality. Each instant (waqt) is 
-                renewed by God—a new creation (khalq jadīd) that carries its own unique divine signature. 
-                The past is gone, the future is not yet, and only the present moment is real. This is why 
-                awareness of the spiritual quality of "now" matters.
+                renewed by the Divine—a new creation (khalq jadīd) that carries its own unique signature. 
+                The past has passed, the future is not yet, and only the present moment is real. This is why 
+                awareness of the spiritual quality of "now" holds meaning.
               </p>
               
               <p className="leading-relaxed text-base">
-                Every hour has an angelic spirit attending it and a ruling Divine Name that governs its quality. 
-                When you align your actions with the hour's nature, you act in harmony with the cosmos—this is 
-                the meaning of acting with <strong className="text-foreground">adab</strong> (right conduct). When you resist the hour's nature, 
-                you may find obstacles and friction.
+                Each hour is traditionally understood to have an angelic spirit attending it and a ruling Divine Name 
+                that colors its quality. When one aligns with the hour's nature, one may find harmony with the cosmos—this is 
+                the meaning of <strong className="text-foreground">adab</strong> (spiritual etiquette). When one resists the hour's nature, 
+                one may encounter friction or difficulty.
               </p>
               
               <p className="leading-relaxed text-base">
-                The Moon serves as the primary mirror for divine decrees descending into the material world. 
+                The Moon is traditionally viewed as the primary mirror for divine decrees descending into the material world. 
                 As it travels through the 28 mansions, it reflects different aspects of the divine qualities 
                 into earthly life. Each mansion marks a stage of that reflection—from the first spark of intention 
                 (Mansion 1) to the final surrender and completion (Mansion 28).
               </p>
               
               <p className="leading-relaxed text-base">
-                This app uses this cosmological logic to help you act with <strong className="text-foreground">adab</strong> (أدب)—right conduct in 
-                each moment. By reading the hour and mansion, you can know what kind of action is supported, 
-                what kind of inner state to cultivate, and which Divine Name to invoke.
+                This app offers this cosmological framework to support awareness of <strong className="text-foreground">adab</strong> (أدب)—right conduct in 
+                each moment. By observing the hour and mansion, you may gain insight into what kind of action tends to harmonize, 
+                what inner state might serve, and which Divine Name to contemplate.
               </p>
 
               <div className="pt-4 border-t border-border mt-4">
