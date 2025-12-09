@@ -2,20 +2,21 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Scroll, BookOpen, Heart } from "lucide-react";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
+import { PrayerBeadsIcon, QuranIcon, DuaHandsIcon, CalligraphyIcon, MihrabIcon } from "@/components/icons/IslamicIcons";
 
 const AZKAAR_SECTIONS: TOCSection[] = [
-  { id: "about-azkaar", title: "About These Aẓkār" },
-  { id: "hizb-al-bahr", title: "Hizb al-Baḥr" },
-  { id: "qasidat-al-burda", title: "Qasīdat al-Burda" },
-  { id: "hizb-al-wafi", title: "Hizb al-Wāfī" },
-  { id: "hizb-al-nasr", title: "Ḥizb al-Naṣr" },
-  { id: "wird-al-latif", title: "Wird al-Laṭīf" },
-  { id: "dalail-al-khairat", title: "Dalā'il al-Khairāt" },
-  { id: "hizb-al-kabir", title: "Hizb al-Kabīr" },
-  { id: "hizb-al-dawr", title: "Hizb al-Dawr al-Aʿlā" },
-  { id: "quranic-surahs", title: "Qur'anic Surahs" },
-  { id: "istighfar", title: "Istighfār" },
-  { id: "how-to-use", title: "How to Use" },
+  { id: "about-azkaar", title: "About These Aẓkār", icon: <DuaHandsIcon className="w-4 h-4" /> },
+  { id: "hizb-al-bahr", title: "Hizb al-Baḥr", icon: <CalligraphyIcon className="w-4 h-4" /> },
+  { id: "qasidat-al-burda", title: "Qasīdat al-Burda", icon: <CalligraphyIcon className="w-4 h-4" /> },
+  { id: "hizb-al-wafi", title: "Hizb al-Wāfī", icon: <CalligraphyIcon className="w-4 h-4" /> },
+  { id: "hizb-al-nasr", title: "Ḥizb al-Naṣr", icon: <CalligraphyIcon className="w-4 h-4" /> },
+  { id: "wird-al-latif", title: "Wird al-Laṭīf", icon: <PrayerBeadsIcon className="w-4 h-4" /> },
+  { id: "dalail-al-khairat", title: "Dalā'il al-Khairāt", icon: <CalligraphyIcon className="w-4 h-4" /> },
+  { id: "hizb-al-kabir", title: "Hizb al-Kabīr", icon: <CalligraphyIcon className="w-4 h-4" /> },
+  { id: "hizb-al-dawr", title: "Hizb al-Dawr al-Aʿlā", icon: <MihrabIcon className="w-4 h-4" /> },
+  { id: "quranic-surahs", title: "Qur'anic Surahs", icon: <QuranIcon className="w-4 h-4" /> },
+  { id: "istighfar", title: "Istighfār", icon: <DuaHandsIcon className="w-4 h-4" /> },
+  { id: "how-to-use", title: "How to Use", icon: <PrayerBeadsIcon className="w-4 h-4" /> },
 ];
 
 export default function AdvancedAzkaar() {

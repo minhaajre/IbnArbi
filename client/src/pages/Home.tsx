@@ -27,6 +27,7 @@ import { ElementalBalance } from "@/components/ElementalBalance";
 import { PlanetaryProtocol } from "@/components/PlanetaryProtocol";
 import { Footer } from "@/components/Footer";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
+import { CrescentStarIcon, LanternIcon, EightPointedStarIcon, IslamicPatternIcon, ZodiacWheelIcon } from "@/components/icons/IslamicIcons";
 import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen, Info, Loader2 } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
@@ -51,11 +52,11 @@ import { useTheme } from "next-themes";
 const DIVINE_NAMES_WATERMARK = "الله الرحمن الرحيم الملك القدوس السلام المؤمن المهيمن العزيز الجبار المتكبر الخالق البارئ المصور الغفار القهار الوهاب الرزاق الفتاح العليم";
 
 const HOME_SECTIONS: TOCSection[] = [
-  { id: "lunar-mansion", title: "Current Lunar Mansion" },
-  { id: "planetary-hours", title: "Planetary Hours" },
-  { id: "celestial-dignities", title: "Celestial Dignities" },
-  { id: "elemental-balance", title: "Elemental Balance" },
-  { id: "sky-map", title: "Current Sky Map" },
+  { id: "lunar-mansion", title: "Current Lunar Mansion", icon: <CrescentStarIcon className="w-4 h-4" /> },
+  { id: "planetary-hours", title: "Planetary Hours", icon: <LanternIcon className="w-4 h-4" /> },
+  { id: "celestial-dignities", title: "Celestial Dignities", icon: <EightPointedStarIcon className="w-4 h-4" /> },
+  { id: "elemental-balance", title: "Elemental Balance", icon: <IslamicPatternIcon className="w-4 h-4" /> },
+  { id: "sky-map", title: "Current Sky Map", icon: <ZodiacWheelIcon className="w-4 h-4" /> },
 ];
 
 const SECTION_INFO = {
