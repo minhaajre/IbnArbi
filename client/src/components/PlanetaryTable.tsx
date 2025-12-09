@@ -75,7 +75,7 @@ export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: Planeta
                     <span className="font-arabic text-xs text-muted-foreground">{SIGN_DATA[planet.sign]?.arabic}</span>
                     <div className="flex items-center gap-2 mt-0.5">
                        {planet.isRetrograde && (
-                        <span className="text-[10px] text-red-600 dark:text-red-400 font-bold px-1 py-0.5 bg-red-600/10 dark:bg-red-400/10 rounded flex items-center gap-1">
+                        <span className="text-[10px] text-foreground font-bold px-1 py-0.5 bg-foreground/10 rounded flex items-center gap-1">
                           <Repeat className="w-2.5 h-2.5" /> {UI_LABELS_ARABIC["Retrograde"]}
                         </span>
                       )}
@@ -83,18 +83,7 @@ export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: Planeta
                   </div>
                 </TableCell>
                 <TableCell className="text-right">
-                  <span className={cn(
-                      "px-2 py-1 rounded text-xs font-medium border inline-flex items-center gap-1",
-                      planet.status === "Exalted"
-                        ? "bg-green-600/10 text-green-700 dark:text-green-400 border-green-600/20"
-                        : planet.status === "Fall"
-                        ? "bg-red-600/10 text-red-700 dark:text-red-400 border-red-600/20"
-                        : planet.status === "Rulership"
-                        ? "bg-primary/10 text-primary border-primary/20"
-                        : planet.status === "Detriment"
-                        ? "bg-orange-600/10 text-orange-700 dark:text-orange-400 border-orange-600/20"
-                        : "bg-foreground/5 text-muted-foreground border-transparent"
-                    )}>
+                  <span className="px-2 py-1 rounded text-xs font-medium border inline-flex items-center gap-1 bg-foreground/5 text-foreground border-foreground/20">
                     {planet.status === "Exalted" && <ArrowUpCircle className="w-3 h-3" />}
                     {planet.status === "Fall" && <ArrowDownCircle className="w-3 h-3" />}
                     {planet.status === "Rulership" && <Crown className="w-3 h-3" />}

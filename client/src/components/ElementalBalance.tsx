@@ -10,31 +10,31 @@ interface ElementalBalanceProps {
 const ELEMENT_CONFIG = {
   Fire: { 
     Icon: Flame, 
-    color: "text-orange-400", 
-    bg: "bg-orange-500/10", 
-    border: "border-orange-500/30",
-    glow: "shadow-orange-500/20"
+    color: "text-foreground/80", 
+    bg: "bg-foreground/5", 
+    border: "border-foreground/20",
+    glow: "shadow-foreground/20"
   },
   Earth: { 
     Icon: Mountain, 
-    color: "text-emerald-400", 
-    bg: "bg-emerald-500/10", 
-    border: "border-emerald-500/30",
-    glow: "shadow-emerald-500/20"
+    color: "text-foreground/80", 
+    bg: "bg-foreground/5", 
+    border: "border-foreground/20",
+    glow: "shadow-foreground/20"
   },
   Air: { 
     Icon: Wind, 
-    color: "text-sky-400", 
-    bg: "bg-sky-500/10", 
-    border: "border-sky-500/30",
-    glow: "shadow-sky-500/20"
+    color: "text-foreground/80", 
+    bg: "bg-foreground/5", 
+    border: "border-foreground/20",
+    glow: "shadow-foreground/20"
   },
   Water: { 
     Icon: Droplets, 
-    color: "text-blue-400", 
-    bg: "bg-blue-500/10", 
-    border: "border-blue-500/30",
-    glow: "shadow-blue-500/20"
+    color: "text-foreground/80", 
+    bg: "bg-foreground/5", 
+    border: "border-foreground/20",
+    glow: "shadow-foreground/20"
   }
 };
 
