@@ -1,7 +1,21 @@
 import { Link } from "wouter";
 import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Check, X, Heart, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ScrollToTopButton } from "@/components/ScrollToTopButton";
+import { TableOfContents, TOCSection } from "@/components/TableOfContents";
+
+const INSTRUCTIONS_SECTIONS: TOCSection[] = [
+  { id: "about-app", title: "About This App" },
+  { id: "lunar-mansions", title: "Lunar Mansions" },
+  { id: "planetary-hours", title: "Planetary Hours" },
+  { id: "celestial-dignities", title: "Celestial Dignities" },
+  { id: "elemental-balance", title: "Elemental Balance" },
+  { id: "how-to-use", title: "How to Use Daily" },
+  { id: "reading-planetary-hours", title: "Reading Planetary Hours" },
+  { id: "reading-lunar-mansion", title: "Reading Lunar Mansion" },
+  { id: "combining-hour-mansion", title: "Combining Hour & Mansion" },
+  { id: "ibn-arabi-background", title: "Ibn ʿArabī Background" },
+  { id: "cosmology-simple", title: "Cosmology Made Simple" },
+];
 import {
   Accordion,
   AccordionContent,
@@ -439,7 +453,7 @@ export default function Instructions() {
         </header>
 
         <div className="space-y-8">
-          <section className="glass-card rounded-xl p-6 border border-border">
+          <section id="about-app" className="glass-card rounded-xl p-6 border border-border">
             <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
               <Scroll className="w-5 h-5" />
               About This App
@@ -681,7 +695,7 @@ export default function Instructions() {
             </div>
           </section>
 
-          <section className="glass-card rounded-xl p-6 border border-border">
+          <section id="how-to-use" className="glass-card rounded-xl p-6 border border-border">
             <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
               <Calendar className="w-5 h-5" />
               How to Use Daily
@@ -887,7 +901,7 @@ export default function Instructions() {
           </section>
 
           {/* Ibn Arabi's Cosmology Card */}
-          <section className="glass-card rounded-xl p-6 border border-border">
+          <section id="cosmology-simple" className="glass-card rounded-xl p-6 border border-border">
             <h2 className="text-2xl font-serif text-gold mb-2">Ibn ʿArabī's Cosmology Made Simple</h2>
             <p className="text-sm text-muted-foreground mb-6">From the Breath of the Real to the Human Heart — and Back Again</p>
 
@@ -984,8 +998,8 @@ export default function Instructions() {
           </section>
         </div>
 
-        {/* Scroll to Top Button */}
-        <ScrollToTopButton />
+        {/* Table of Contents with Progress Indicator */}
+        <TableOfContents sections={INSTRUCTIONS_SECTIONS} title="Guidance Sections" />
 
         <footer className="mt-12 pt-8 border-t border-border text-center space-y-6">
           <p className="font-semibold text-base">Based on the teachings of Muhyiddin Ibn Arabi (1165-1240 CE)</p>
