@@ -493,34 +493,42 @@ export default function Instructions() {
 
             {/* Four Categories */}
             <div className="mb-6 p-5 rounded-lg bg-foreground/5 border border-border">
-              <h3 className="text-base font-medium text-foreground mb-4">The Four Categories of Mansions</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-start gap-3">
-                  <span className="px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/40 font-medium text-sm">1-4</span>
-                  <div>
-                    <strong className="text-foreground text-base">Initiating</strong>
-                    <p className="text-muted-foreground text-sm mt-1">Seed quality, vision, raw potential. May support beginnings.</p>
+              <h3 className="text-base font-medium text-foreground mb-5">The Four Categories of Mansions</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="p-4 rounded-lg bg-card/30 border border-blue-500/20 flex gap-4">
+                  <div className="flex-shrink-0">
+                    <span className="px-3 py-2 rounded-lg bg-blue-500/20 text-blue-400 border border-blue-500/40 font-bold text-lg block text-center min-w-16">1–4</span>
+                  </div>
+                  <div className="flex-1">
+                    <strong className="text-foreground text-base block">Initiating</strong>
+                    <p className="text-muted-foreground text-sm mt-2 leading-relaxed">Seed quality, vision, raw potential. May support beginnings.</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-medium text-sm">5-8</span>
-                  <div>
-                    <strong className="text-foreground text-base">Stabilizing</strong>
-                    <p className="text-muted-foreground text-sm mt-1">Form, structure, commitment. May support building and establishing.</p>
+                <div className="p-4 rounded-lg bg-card/30 border border-emerald-500/20 flex gap-4">
+                  <div className="flex-shrink-0">
+                    <span className="px-3 py-2 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-bold text-lg block text-center min-w-16">5–8</span>
+                  </div>
+                  <div className="flex-1">
+                    <strong className="text-foreground text-base block">Stabilizing</strong>
+                    <p className="text-muted-foreground text-sm mt-2 leading-relaxed">Form, structure, commitment. May support building and establishing.</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <span className="px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/40 font-medium text-sm">9-20</span>
-                  <div>
-                    <strong className="text-foreground text-base">Relational</strong>
-                    <p className="text-muted-foreground text-sm mt-1">Communication, connection, learning, creativity. May support engagement.</p>
+                <div className="p-4 rounded-lg bg-card/30 border border-purple-500/20 flex gap-4">
+                  <div className="flex-shrink-0">
+                    <span className="px-3 py-2 rounded-lg bg-purple-500/20 text-purple-400 border border-purple-500/40 font-bold text-lg block text-center min-w-16">9–20</span>
+                  </div>
+                  <div className="flex-1">
+                    <strong className="text-foreground text-base block">Relational</strong>
+                    <p className="text-muted-foreground text-sm mt-2 leading-relaxed">Communication, connection, learning, creativity. May support engagement.</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <span className="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 font-medium text-sm">21-28</span>
-                  <div>
-                    <strong className="text-foreground text-base">Threshold</strong>
-                    <p className="text-muted-foreground text-sm mt-1">Endings, transitions, release. May support closure and letting go.</p>
+                <div className="p-4 rounded-lg bg-card/30 border border-amber-500/20 flex gap-4">
+                  <div className="flex-shrink-0">
+                    <span className="px-3 py-2 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/40 font-bold text-lg block text-center min-w-16">21–28</span>
+                  </div>
+                  <div className="flex-1">
+                    <strong className="text-foreground text-base block">Threshold</strong>
+                    <p className="text-muted-foreground text-sm mt-2 leading-relaxed">Endings, transitions, release. May support closure and letting go.</p>
                   </div>
                 </div>
               </div>
