@@ -192,6 +192,27 @@ export default function Home() {
     detectLocation();
   }, []);
 
+  // Scroll position preservation
+  useEffect(() => {
+    // Restore scroll position when page loads
+    const savedScrollPos = sessionStorage.getItem('homeScrollPos');
+    if (savedScrollPos) {
+      setTimeout(() => {
+        window.scrollTo(0, parseInt(savedScrollPos));
+        sessionStorage.removeItem('homeScrollPos');
+      }, 100);
+    }
+  }, [loading]);
+
+  // Save scroll position before leaving
+  useEffect(() => {
+    const saveScroll = () => {
+      sessionStorage.setItem('homeScrollPos', window.scrollY.toString());
+    };
+    window.addEventListener('scroll', saveScroll);
+    return () => window.removeEventListener('scroll', saveScroll);
+  }, []);
+
   const detectLocation = () => {
     setIsLocating(true);
     if (navigator.geolocation) {
