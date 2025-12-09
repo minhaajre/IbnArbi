@@ -26,7 +26,7 @@ import { ZodiacWheel } from "@/components/ZodiacWheel";
 import { ElementalBalance } from "@/components/ElementalBalance";
 import { PlanetaryProtocol } from "@/components/PlanetaryProtocol";
 import { Footer } from "@/components/Footer";
-import { ScrollToTopButton } from "@/components/ScrollToTopButton";
+import { TableOfContents, TOCSection } from "@/components/TableOfContents";
 import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen, Info, Loader2 } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
@@ -49,6 +49,14 @@ import { Label } from "@/components/ui/label";
 import { useTheme } from "next-themes";
 
 const DIVINE_NAMES_WATERMARK = "الله الرحمن الرحيم الملك القدوس السلام المؤمن المهيمن العزيز الجبار المتكبر الخالق البارئ المصور الغفار القهار الوهاب الرزاق الفتاح العليم";
+
+const HOME_SECTIONS: TOCSection[] = [
+  { id: "lunar-mansion", title: "Current Lunar Mansion" },
+  { id: "planetary-hours", title: "Planetary Hours" },
+  { id: "celestial-dignities", title: "Celestial Dignities" },
+  { id: "elemental-balance", title: "Elemental Balance" },
+  { id: "sky-map", title: "Current Sky Map" },
+];
 
 const SECTION_INFO = {
   lunarMansion: {
@@ -460,7 +468,7 @@ export default function Home() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
         
         {/* Current Station Card - Glass Effect */}
-        <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
+        <section id="lunar-mansion" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
@@ -490,7 +498,7 @@ export default function Home() {
         </section>
 
         {/* Planetary Hour Card - Glass Effect */}
-        <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
+        <section id="planetary-hours" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           
@@ -671,7 +679,7 @@ export default function Home() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
         
         {/* Celestial Dignities - Glass Effect */}
-        <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
+        <section id="celestial-dignities" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
@@ -705,7 +713,7 @@ export default function Home() {
         </section>
 
         {/* Elemental Balance - Glass Effect */}
-        <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
+        <section id="elemental-balance" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
@@ -735,7 +743,7 @@ export default function Home() {
         </section>
       </div>
       {/* Row 3: Celestial Zodiac Wheel (full width) */}
-      <section className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
+      <section id="sky-map" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         
@@ -816,7 +824,7 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
-      <ScrollToTopButton />
+      <TableOfContents sections={HOME_SECTIONS} title="Page Sections" />
       </div>
     </div>
   );

@@ -1,7 +1,22 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Scroll, BookOpen, Heart } from "lucide-react";
-import { ScrollToTopButton } from "@/components/ScrollToTopButton";
+import { TableOfContents, TOCSection } from "@/components/TableOfContents";
+
+const AZKAAR_SECTIONS: TOCSection[] = [
+  { id: "about-azkaar", title: "About These Aẓkār" },
+  { id: "hizb-al-bahr", title: "Hizb al-Baḥr" },
+  { id: "qasidat-al-burda", title: "Qasīdat al-Burda" },
+  { id: "hizb-al-wafi", title: "Hizb al-Wāfī" },
+  { id: "hizb-al-nasr", title: "Ḥizb al-Naṣr" },
+  { id: "wird-al-latif", title: "Wird al-Laṭīf" },
+  { id: "dalail-al-khairat", title: "Dalā'il al-Khairāt" },
+  { id: "hizb-al-kabir", title: "Hizb al-Kabīr" },
+  { id: "hizb-al-dawr", title: "Hizb al-Dawr al-Aʿlā" },
+  { id: "quranic-surahs", title: "Qur'anic Surahs" },
+  { id: "istighfar", title: "Istighfār" },
+  { id: "how-to-use", title: "How to Use" },
+];
 
 export default function AdvancedAzkaar() {
   return (
@@ -28,7 +43,7 @@ export default function AdvancedAzkaar() {
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 py-8 space-y-8">
         {/* Introduction */}
-        <section className="glass-card rounded-xl p-6 border border-border bg-purple-500/5">
+        <section id="about-azkaar" className="glass-card rounded-xl p-6 border border-border bg-purple-500/5">
           <div className="flex items-start gap-3 mb-4">
             <Heart className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
             <div>
@@ -46,7 +61,7 @@ export default function AdvancedAzkaar() {
         {/* Litanies List */}
         <section className="space-y-6">
           {/* Hizb al-Baḥr */}
-          <div className="glass-card rounded-xl p-6 border border-border">
+          <div id="hizb-al-bahr" className="glass-card rounded-xl p-6 border border-border">
             <div className="flex items-start gap-3 mb-3">
               <BookOpen className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
               <div>
@@ -66,7 +81,7 @@ export default function AdvancedAzkaar() {
           </div>
 
           {/* Qasīdat al-Burda */}
-          <div className="glass-card rounded-xl p-6 border border-border">
+          <div id="qasidat-al-burda" className="glass-card rounded-xl p-6 border border-border">
             <div className="flex items-start gap-3 mb-3">
               <BookOpen className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
               <div>
@@ -86,7 +101,7 @@ export default function AdvancedAzkaar() {
           </div>
 
           {/* Hizb al-Wāfī */}
-          <div className="glass-card rounded-xl p-6 border border-border">
+          <div id="hizb-al-wafi" className="glass-card rounded-xl p-6 border border-border">
             <div className="flex items-start gap-3 mb-3">
               <BookOpen className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
               <div>
@@ -106,7 +121,7 @@ export default function AdvancedAzkaar() {
           </div>
 
           {/* Ḥizb al-Naṣr */}
-          <div className="glass-card rounded-xl p-6 border border-border">
+          <div id="hizb-al-nasr" className="glass-card rounded-xl p-6 border border-border">
             <div className="flex items-start gap-3 mb-3">
               <BookOpen className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
               <div>
@@ -126,7 +141,7 @@ export default function AdvancedAzkaar() {
           </div>
 
           {/* Wird al-Laṭīf */}
-          <div className="glass-card rounded-xl p-6 border border-border">
+          <div id="wird-al-latif" className="glass-card rounded-xl p-6 border border-border">
             <div className="flex items-start gap-3 mb-3">
               <BookOpen className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
               <div>
@@ -146,7 +161,7 @@ export default function AdvancedAzkaar() {
           </div>
 
           {/* Dalā'il al-Khairāt */}
-          <div className="glass-card rounded-xl p-6 border border-border">
+          <div id="dalail-al-khairat" className="glass-card rounded-xl p-6 border border-border">
             <div className="flex items-start gap-3 mb-3">
               <BookOpen className="w-5 h-5 text-gold shrink-0 mt-0.5" />
               <div>
@@ -166,7 +181,7 @@ export default function AdvancedAzkaar() {
           </div>
 
           {/* Hizb al-Kabīr */}
-          <div className="glass-card rounded-xl p-6 border border-border">
+          <div id="hizb-al-kabir" className="glass-card rounded-xl p-6 border border-border">
             <div className="flex items-start gap-3 mb-3">
               <BookOpen className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
               <div>
@@ -186,7 +201,7 @@ export default function AdvancedAzkaar() {
           </div>
 
           {/* Hizb al-Dawr al-Aʿlā */}
-          <div className="glass-card rounded-xl p-6 border border-border">
+          <div id="hizb-al-dawr" className="glass-card rounded-xl p-6 border border-border">
             <div className="flex items-start gap-3 mb-3">
               <BookOpen className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
               <div>
@@ -206,7 +221,7 @@ export default function AdvancedAzkaar() {
           </div>
 
           {/* Qur'anic Surahs */}
-          <div className="glass-card rounded-xl p-6 border border-border">
+          <div id="quranic-surahs" className="glass-card rounded-xl p-6 border border-border">
             <div className="flex items-start gap-3 mb-3">
               <BookOpen className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
               <div>
@@ -231,7 +246,7 @@ export default function AdvancedAzkaar() {
           </div>
 
           {/* Istighfār */}
-          <div className="glass-card rounded-xl p-6 border border-border">
+          <div id="istighfar" className="glass-card rounded-xl p-6 border border-border">
             <div className="flex items-start gap-3 mb-3">
               <BookOpen className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
               <div>
@@ -249,7 +264,7 @@ export default function AdvancedAzkaar() {
         </section>
 
         {/* How to Use */}
-        <section className="glass-card rounded-xl p-6 border border-border bg-amber-500/5 space-y-3">
+        <section id="how-to-use" className="glass-card rounded-xl p-6 border border-border bg-amber-500/5 space-y-3">
           <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
             <Heart className="w-5 h-5 text-amber-500" />
             How to Use These Suggestions
@@ -288,7 +303,7 @@ export default function AdvancedAzkaar() {
           </Link>
         </div>
       </div>
-      <ScrollToTopButton />
+      <TableOfContents sections={AZKAAR_SECTIONS} title="Litanies & Practices" />
     </div>
   );
 }
