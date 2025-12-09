@@ -53,14 +53,18 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
         
         {/* Blessed/Challenging + Cycle Role Indicators */}
         <div className="flex flex-wrap gap-2 mb-4">
-          <div className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-foreground/10 text-foreground border border-foreground/20" data-testid="mansion-nature-indicator">
+          <div className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium ${
+            isBlessed 
+              ? 'bg-green-500/10 text-green-500 border border-green-500/30' 
+              : 'bg-amber-500/10 text-amber-500 border border-amber-500/30'
+          }`} data-testid="mansion-nature-indicator">
             {isBlessed ? <Check className="w-2.5 h-2.5" /> : <X className="w-2.5 h-2.5" />}
             <span>{isBlessed ? 'Blessed' : 'Challenging'}</span>
           </div>
           
           {/* NEW: Cycle Role Tag */}
           {guidance && cycleColors && (
-            <div className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-foreground/10 text-foreground border border-foreground/20" data-testid="mansion-cycle-role">
+            <div className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium ${cycleColors.bg} ${cycleColors.text} border ${cycleColors.border}`} data-testid="mansion-cycle-role">
               <span>{guidance.cycleRole}</span>
               <span className="font-arabic text-[9px]">{guidance.cycleRoleArabic}</span>
             </div>
@@ -170,13 +174,13 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <div className="flex items-center gap-1.5 mb-2">
-                        <CheckCircle className="w-3.5 h-3.5 text-foreground/60" />
+                        <CheckCircle className="w-3.5 h-3.5 text-green-500" />
                         <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">May Support</span>
                       </div>
                       <ul className="space-y-1">
                         {guidance.goodFor.slice(0, 4).map((item, i) => (
                           <li key={i} className="text-xs text-foreground/80 flex items-start gap-1.5">
-                            <span className="text-foreground/60 mt-0.5">•</span>
+                            <span className="text-green-500 mt-0.5">•</span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -184,13 +188,13 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
                     </div>
                     <div>
                       <div className="flex items-center gap-1.5 mb-2">
-                        <XCircle className="w-3.5 h-3.5 text-foreground/60" />
+                        <XCircle className="w-3.5 h-3.5 text-amber-400" />
                         <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Use Caution With</span>
                       </div>
                       <ul className="space-y-1">
                         {guidance.notIdealFor.slice(0, 4).map((item, i) => (
                           <li key={i} className="text-xs text-foreground/60 flex items-start gap-1.5">
-                            <span className="text-foreground/60 mt-0.5">•</span>
+                            <span className="text-amber-400 mt-0.5">•</span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -244,8 +248,12 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
               <div className="space-y-3 text-sm text-muted-foreground/90 font-light leading-relaxed flex-1">
                 {/* Suggested Activities - Prominent */}
                 {'activities' in mansion && mansion.activities && (
-                  <div className="flex gap-3 p-2.5 rounded-lg border bg-foreground/5 border-foreground/20">
-                    <Lightbulb className="w-4 h-4 mt-0.5 shrink-0 text-foreground/60" />
+                  <div className={`flex gap-3 p-2.5 rounded-lg border ${
+                    isBlessed 
+                      ? 'bg-green-500/5 border-green-500/20' 
+                      : 'bg-amber-500/5 border-amber-500/20'
+                  }`}>
+                    <Lightbulb className={`w-4 h-4 mt-0.5 shrink-0 ${isBlessed ? 'text-green-500' : 'text-amber-500'}`} />
                     <div>
                       <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">
                         Suggested Activities <span className="font-arabic">الأنشطة المقترحة</span>

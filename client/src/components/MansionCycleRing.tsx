@@ -19,12 +19,12 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
     const mansion = getMansionData(position);
     const isBlessed = mansion.nature === "blessed";
     return {
-      bg: isBlessed ? "bg-foreground/10" : "bg-foreground/10",
-      border: isBlessed ? "border-foreground/40" : "border-foreground/40",
-      text: isBlessed ? "text-foreground/80" : "text-foreground/80",
-      highlight: isBlessed ? "text-foreground/80" : "text-foreground/80",
+      bg: isBlessed ? "bg-green-500" : "bg-amber-500",
+      border: isBlessed ? "border-green-500" : "border-amber-500",
+      text: isBlessed ? "text-green-500" : "text-amber-500",
+      highlight: isBlessed ? "text-green-500" : "text-amber-500",
       statusText: isBlessed ? "Blessed" : "Challenging",
-      light: isBlessed ? "text-foreground/10 dark:text-foreground/10" : "text-foreground/10 dark:text-foreground/10",
+      light: isBlessed ? "text-green-100 dark:text-green-900" : "text-amber-100 dark:text-amber-900",
     };
   };
 
@@ -100,7 +100,7 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
             >
               {/* Tree icon colored by status */}
               <div>
-                <TreeIcon color="currentColor" size={32} />
+                <TreeIcon color={colors.text === "text-green-500" ? "#22c55e" : "#f59e0b"} size={32} />
               </div>
 
               {/* Mansion number on click */}
@@ -131,9 +131,9 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
           >
             <div className="flex items-start gap-3">
               {/* Icon */}
-              <div className={`flex-shrink-0 text-foreground/80`}>
+              <div className={`flex-shrink-0`}>
                 <TreeIcon
-                  color="currentColor"
+                  color={displayColor.text === "text-green-500" ? "#22c55e" : "#f59e0b"}
                   size={36}
                 />
               </div>
