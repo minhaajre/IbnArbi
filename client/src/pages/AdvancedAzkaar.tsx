@@ -25,12 +25,16 @@ export default function AdvancedAzkaar() {
     window.scrollTo(0, 0);
   }, []);
 
+  const handleBackHome = () => {
+    sessionStorage.setItem('homeScrollPos', '0');
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="border-b border-border bg-foreground/5">
         <div className="max-w-4xl mx-auto px-4 py-4">
-          <Link href="/">
+          <Link href="/" onClick={handleBackHome}>
             <Button variant="ghost" size="sm" className="gap-2 mb-3">
               <ArrowLeft className="w-4 h-4" />
               Back to Home

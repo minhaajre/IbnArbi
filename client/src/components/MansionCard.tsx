@@ -236,7 +236,7 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
                   <p className="text-xs text-foreground/80 leading-relaxed italic mb-2">
                     {MANSION_AZKAAR_SUGGESTIONS[mansion.number]}
                   </p>
-                  <Link href="/azkaar#about-azkaar">
+                  <Link href="/azkaar#about-azkaar" onClick={() => sessionStorage.setItem('homeScrollPos', window.scrollY.toString())}>
                     <button className="text-xs text-purple-400 hover:text-purple-300 flex items-center gap-1 font-medium">
                       Learn more about these litanies
                       <ExternalLink className="w-3 h-3" />

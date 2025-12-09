@@ -198,22 +198,18 @@ export default function Home() {
     if (!loading) {
       const savedScrollPos = sessionStorage.getItem('homeScrollPos');
       if (savedScrollPos) {
+        // Delay to ensure DOM is fully rendered
         setTimeout(() => {
           window.scrollTo(0, parseInt(savedScrollPos));
-          sessionStorage.removeItem('homeScrollPos');
-        }, 50);
+        }, 100);
       }
     }
   }, [loading]);
 
   // Save scroll position before navigating away
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      sessionStorage.setItem('homeScrollPos', window.scrollY.toString());
-    };
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, []);
+  const handleNavigateAway = () => {
+    sessionStorage.setItem('homeScrollPos', window.scrollY.toString());
+  };
 
   const detectLocation = () => {
     setIsLocating(true);
