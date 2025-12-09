@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Scroll, BookOpen, Heart } from "lucide-react";
@@ -20,6 +21,10 @@ const AZKAAR_SECTIONS: TOCSection[] = [
 ];
 
 export default function AdvancedAzkaar() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}

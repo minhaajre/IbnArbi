@@ -194,23 +194,25 @@ export default function Home() {
 
   // Scroll position preservation
   useEffect(() => {
-    // Restore scroll position when page loads
-    const savedScrollPos = sessionStorage.getItem('homeScrollPos');
-    if (savedScrollPos) {
-      setTimeout(() => {
-        window.scrollTo(0, parseInt(savedScrollPos));
-        sessionStorage.removeItem('homeScrollPos');
-      }, 100);
+    // Restore saved scroll position after loading completes
+    if (!loading) {
+      const savedScrollPos = sessionStorage.getItem('homeScrollPos');
+      if (savedScrollPos) {
+        setTimeout(() => {
+          window.scrollTo(0, parseInt(savedScrollPos));
+          sessionStorage.removeItem('homeScrollPos');
+        }, 50);
+      }
     }
   }, [loading]);
 
-  // Save scroll position before leaving
+  // Save scroll position before navigating away
   useEffect(() => {
-    const saveScroll = () => {
+    const handleBeforeUnload = () => {
       sessionStorage.setItem('homeScrollPos', window.scrollY.toString());
     };
-    window.addEventListener('scroll', saveScroll);
-    return () => window.removeEventListener('scroll', saveScroll);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
   }, []);
 
   const detectLocation = () => {
