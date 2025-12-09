@@ -480,7 +480,7 @@ export default function Instructions() {
             {/* Four Categories */}
             <div className="mb-6 p-5 rounded-lg bg-foreground/5 border border-border">
               <h3 className="text-base font-medium text-foreground mb-4">The Four Categories of Mansions</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="flex items-start gap-3">
                   <span className="px-2.5 py-1 rounded-full bg-foreground/5 text-foreground/80 border border-foreground/20 font-medium text-sm">1-4</span>
                   <div>
