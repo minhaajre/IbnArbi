@@ -10,13 +10,13 @@ const PLANET_SYMBOLS: Record<string, string> = {
 };
 
 const PLANET_COLORS: Record<string, string> = {
-  Sun: "text-amber-500 dark:text-yellow-400",
-  Moon: "text-slate-600 dark:text-slate-200",
-  Mars: "text-red-600 dark:text-red-400",
-  Mercury: "text-emerald-600 dark:text-emerald-300",
-  Jupiter: "text-orange-600 dark:text-orange-300",
-  Venus: "text-pink-600 dark:text-pink-300",
-  Saturn: "text-indigo-600 dark:text-indigo-300"
+  Sun: "text-foreground/80",
+  Moon: "text-foreground/80",
+  Mars: "text-foreground/80",
+  Mercury: "text-foreground/80",
+  Jupiter: "text-foreground/80",
+  Venus: "text-foreground/80",
+  Saturn: "text-foreground/80"
 };
 
 interface PlanetaryHoursDisplayProps {

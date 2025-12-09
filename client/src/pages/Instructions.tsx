@@ -405,10 +405,10 @@ const MANSION_DETAILS = [
 ];
 
 const CATEGORY_COLORS: Record<string, string> = {
-  "Initiating": "bg-blue-500/20 text-blue-400 border-blue-500/40",
-  "Stabilizing": "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
-  "Relational": "bg-purple-500/20 text-purple-400 border-purple-500/40",
-  "Threshold": "bg-amber-500/20 text-amber-400 border-amber-500/40"
+  "Initiating": "bg-foreground/5 text-foreground/80 border-foreground/20",
+  "Stabilizing": "bg-foreground/5 text-foreground/80 border-foreground/20",
+  "Relational": "bg-foreground/5 text-foreground/80 border-foreground/20",
+  "Threshold": "bg-foreground/5 text-foreground/80 border-foreground/20"
 };
 
 const DIVINE_NAMES_WATERMARK = "الله الرحمن الرحيم الملك القدوس السلام المؤمن المهيمن العزيز الجبار المتكبر الخالق البارئ المصور الغفار القهار الوهاب الرزاق الفتاح العليم";
@@ -482,28 +482,28 @@ export default function Instructions() {
               <h3 className="text-base font-medium text-foreground mb-4">The Four Categories of Mansions</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex items-start gap-3">
-                  <span className="px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/40 font-medium text-sm">1-4</span>
+                  <span className="px-2.5 py-1 rounded-full bg-foreground/5 text-foreground/80 border border-foreground/20 font-medium text-sm">1-4</span>
                   <div>
                     <strong className="text-foreground text-base">Initiating</strong>
                     <p className="text-muted-foreground text-sm mt-1">Seed quality, vision, raw potential. May support beginnings.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-medium text-sm">5-8</span>
+                  <span className="px-2.5 py-1 rounded-full bg-foreground/5 text-foreground/80 border border-foreground/20 font-medium text-sm">5-8</span>
                   <div>
                     <strong className="text-foreground text-base">Stabilizing</strong>
                     <p className="text-muted-foreground text-sm mt-1">Form, structure, commitment. May support building and establishing.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/40 font-medium text-sm">9-20</span>
+                  <span className="px-2.5 py-1 rounded-full bg-foreground/5 text-foreground/80 border border-foreground/20 font-medium text-sm">9-20</span>
                   <div>
                     <strong className="text-foreground text-base">Relational</strong>
                     <p className="text-muted-foreground text-sm mt-1">Communication, connection, learning, creativity. May support engagement.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 font-medium text-sm">21-28</span>
+                  <span className="px-2.5 py-1 rounded-full bg-foreground/5 text-foreground/80 border border-foreground/20 font-medium text-sm">21-28</span>
                   <div>
                     <strong className="text-foreground text-base">Threshold</strong>
                     <p className="text-muted-foreground text-sm mt-1">Endings, transitions, release. May support closure and letting go.</p>
@@ -517,14 +517,14 @@ export default function Instructions() {
               <h3 className="text-base font-medium text-foreground mb-4">Waxing vs Waning Moon</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="flex items-start gap-3">
-                  <Sun className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                  <Sun className="w-5 h-5 text-foreground/60 shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-foreground text-base">Waxing (New → Full)</strong>
                     <p className="text-muted-foreground text-sm mt-1">Traditionally associated with beginnings. May support growth, gathering, and outward movement.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Moon className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
+                  <Moon className="w-5 h-5 text-foreground/60 shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-foreground text-base">Waning (Full → New)</strong>
                     <p className="text-muted-foreground text-sm mt-1">Traditionally associated with endings. May support release, healing, and inward reflection.</p>

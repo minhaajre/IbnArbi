@@ -131,13 +131,13 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
                 
                 {/* May support */}
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
+                  <CheckCircle className="w-4 h-4 text-foreground/60 shrink-0 mt-0.5" />
                   <span className="text-foreground/90">{guidance.doAction}</span>
                 </div>
                 
                 {/* Use caution */}
                 <div className="flex items-start gap-2">
-                  <XCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                  <XCircle className="w-4 h-4 text-foreground/60 shrink-0 mt-0.5" />
                   <span className="text-foreground/70">{guidance.avoidAction}</span>
                 </div>
                 
@@ -149,7 +149,7 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
             </div>
 
             {/* Inner State Check Strip */}
-            <div className="p-2.5 rounded-lg bg-gradient-to-r from-green-500/10 via-transparent to-amber-500/10 border border-border/50" data-testid="inner-state-check">
+            <div className="p-2.5 rounded-lg bg-foreground/5 border border-border/50" data-testid="inner-state-check">
               <div className="flex items-center gap-2 mb-1.5">
                 <Activity className="w-3.5 h-3.5 text-muted-foreground" />
                 <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Inner State Check</span>
@@ -157,11 +157,11 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
               </div>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <div className="flex items-start gap-1.5">
-                  <span className="text-green-500 shrink-0">↑</span>
+                  <span className="text-foreground/60 shrink-0">↑</span>
                   <span className="text-foreground/80">{guidance.innerStateExpansion}</span>
                 </div>
                 <div className="flex items-start gap-1.5">
-                  <span className="text-amber-500 shrink-0">↓</span>
+                  <span className="text-foreground/60 shrink-0">↓</span>
                   <span className="text-foreground/70">{guidance.innerStateContraction}</span>
                 </div>
               </div>
@@ -191,7 +191,7 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
             <div className="pt-3 space-y-3">
               {/* Wear - Only colors section */}
               <div className="flex items-start gap-2">
-                <Palette className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                <Palette className="w-4 h-4 text-foreground/60 shrink-0 mt-0.5" />
                 <div>
                   <div className="font-medium text-foreground/80 mb-0.5 text-xs">Wear</div>
                   <p className="text-muted-foreground leading-relaxed text-xs">
@@ -203,14 +203,14 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
               {/* Optional Advanced Devotional Suggestions */}
               {ADVANCED_AZKAAR[activePlanet] && (
                 <div className="flex items-start gap-2 pt-2 border-t border-border/50">
-                  <Scroll className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                  <Scroll className="w-4 h-4 text-foreground/60 shrink-0 mt-0.5" />
                   <div className="flex-1">
                     <div className="font-medium text-foreground/80 mb-1 text-xs">Optional Advanced Devotional Suggestions</div>
                     <p className="text-muted-foreground leading-relaxed text-xs italic mb-2">
                       {ADVANCED_AZKAAR[activePlanet].phrasing}
                     </p>
                     <Link href="/azkaar">
-                      <button className="text-xs text-purple-400 hover:text-purple-300 flex items-center gap-1 font-medium">
+                      <button className="text-xs text-foreground/80 hover:text-foreground flex items-center gap-1 font-medium">
                         Learn more about these litanies
                         <ExternalLink className="w-3 h-3" />
                       </button>
