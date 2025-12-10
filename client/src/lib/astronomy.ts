@@ -391,6 +391,7 @@ export interface MansionProgress {
   nextMansionDate: Date;
   timeUntilNext: string;
   nextMansion: typeof IBN_ARABI_MANSIONS[0];
+  lunarDay: number;
 }
 
 export function getLunarMansionProgress(date: Date, useSidereal: boolean = true): MansionProgress {
@@ -426,12 +427,20 @@ export function getLunarMansionProgress(date: Date, useSidereal: boolean = true)
   
   const nextIndex = (safeIndex + 1) % 28;
   
+  // Get lunar day (day of lunar month)
+  const lunarFormatter = new Intl.DateTimeFormat('en-u-ca-islamic', {
+    day: 'numeric'
+  });
+  const lunarDayStr = lunarFormatter.format(date);
+  const lunarDay = parseInt(lunarDayStr, 10);
+  
   return {
     currentMansionIndex: safeIndex,
     progressPercent,
     nextMansionDate,
     timeUntilNext,
-    nextMansion: IBN_ARABI_MANSIONS[nextIndex]
+    nextMansion: IBN_ARABI_MANSIONS[nextIndex],
+    lunarDay
   };
 }
 
