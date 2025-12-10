@@ -633,6 +633,8 @@ export default function Home() {
                   dayRuler={hoursToUse.dayRuler}
                   selectedPlanet={selectedPlanet}
                   onPlanetSelect={setSelectedPlanet}
+                  lunarDay={mansionProgress?.lunarDay}
+                  isWaxing={moonPhase?.isWaxing}
                 />
               );
             })()}

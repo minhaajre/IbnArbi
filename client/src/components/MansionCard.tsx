@@ -76,11 +76,7 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
           <div className="mb-4 p-3 rounded-lg bg-foreground/5 border border-border">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-muted-foreground">Progress <span className="font-arabic">{UI_LABELS_ARABIC["Progress"]}</span></span>
-              <div className="flex items-center gap-2 text-xs font-mono text-primary">
-                <span>{Math.round(progress.progressPercent)}%</span>
-                <span className="text-muted-foreground">•</span>
-                <span className="text-muted-foreground">{progress.lunarDay}{progress.lunarDay === 1 ? 'st' : progress.lunarDay === 2 ? 'nd' : progress.lunarDay === 3 ? 'rd' : 'th'} of lunar month</span>
-              </div>
+              <span className="text-xs font-mono text-primary">{Math.round(progress.progressPercent)}%</span>
             </div>
             <div className="w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden mb-2">
               <motion.div 

@@ -25,9 +25,11 @@ interface PlanetaryHoursDisplayProps {
   dayRuler: string;
   selectedPlanet: string | null;
   onPlanetSelect: (planet: string | null) => void;
+  lunarDay?: number;
+  isWaxing?: boolean;
 }
 
-export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, selectedPlanet, onPlanetSelect }: PlanetaryHoursDisplayProps) {
+export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, selectedPlanet, onPlanetSelect, lunarDay, isWaxing }: PlanetaryHoursDisplayProps) {
   if (!currentHour) return null;
 
   const now = new Date();
@@ -35,8 +37,24 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, select
   const elapsed = Math.max(0, Math.min(total, now.getTime() - currentHour.start.getTime()));
   const progress = (elapsed / total) * 100;
 
+  const getLunarDaySuffix = (day: number) => {
+    if (day === 1) return 'st';
+    if (day === 2) return 'nd';
+    if (day === 3) return 'rd';
+    return 'th';
+  };
+
   return (
     <div className="space-y-3">
+      {/* Lunar Date Display */}
+      {lunarDay && (
+        <div className="flex items-center justify-center gap-3 text-xs sm:text-sm text-muted-foreground bg-foreground/5 px-3 py-1.5 rounded-full w-fit mx-auto border border-border">
+          {isWaxing ? <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-400" /> : <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
+          <span className="font-medium">{lunarDay}{getLunarDaySuffix(lunarDay)} of lunar month</span>
+          {isWaxing ? <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-400" /> : <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
+        </div>
+      )}
+      
       {/* Main Display */}
       <div className="relative flex flex-col items-center justify-center py-2">
         <motion.div 
