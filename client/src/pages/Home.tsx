@@ -18,6 +18,8 @@ import {
   PlanetIngress,
   MoonTimes
 } from "@/lib/astronomy";
+import { useDynamicFavicon } from "@/hooks/useDynamicFavicon";
+import { usePlanetaryNotifications } from "@/hooks/usePlanetaryNotifications";
 import { AYANAMSHA_J2000, PLANET_PROPHETS, PLANET_ARABIC } from "@/lib/constants";
 import { PlanetaryHoursDisplay } from "@/components/PlanetaryHoursDisplay";
 import { PlanetaryTable } from "@/components/PlanetaryTable";
@@ -28,7 +30,7 @@ import { PlanetaryProtocol } from "@/components/PlanetaryProtocol";
 import { Footer } from "@/components/Footer";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
 import { CrescentStarIcon, LanternIcon, EightPointedStarIcon, IslamicPatternIcon, ZodiacWheelIcon } from "@/components/icons/IslamicIcons";
-import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen, Info, Loader2 } from "lucide-react";
+import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen, Info, Loader2, Bell, BellOff } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -116,6 +118,11 @@ export default function Home() {
   const [hoursTimeAuto, setHoursTimeAuto] = useState(true);
   const [hoursSelectedDate, setHoursSelectedDate] = useState<Date | undefined>(new Date());
   const [hoursSectionData, setHoursSectionData] = useState<ReturnType<typeof getPlanetaryHours> | null>(null);
+
+  // Dynamic favicon and notifications
+  const currentPlanet = hoursData?.currentHour?.planet || null;
+  useDynamicFavicon(currentPlanet);
+  const { notificationsEnabled, toggleNotifications } = usePlanetaryNotifications(hoursData?.currentHour || null);
 
   // Timer
   useEffect(() => {
@@ -546,6 +553,16 @@ export default function Home() {
               </Popover>
             </div>
             <div className="flex items-center gap-1 sm:gap-2">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className={`h-6 w-6 sm:h-7 sm:w-7 ${notificationsEnabled ? 'text-gold' : 'text-muted-foreground'}`}
+                onClick={toggleNotifications}
+                title={notificationsEnabled ? "Disable hour notifications" : "Enable hour notifications"}
+                data-testid="notification-toggle"
+              >
+                {notificationsEnabled ? <Bell className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> : <BellOff className="h-3.5 w-3.5 sm:h-4 sm:w-4" />}
+              </Button>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button variant="ghost" size="sm" className="h-6 sm:h-7 text-[10px] sm:text-xs px-2" data-testid="hours-date-picker">
