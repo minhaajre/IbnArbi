@@ -63,7 +63,5 @@ export function useDynamicFavicon(planet: string | null) {
     }
     
     link.href = faviconUrl;
-
-    document.title = `${PLANET_SYMBOLS[planet]} Hour of ${planet} | Al-Falak`;
   }, [planet]);
 }

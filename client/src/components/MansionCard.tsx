@@ -20,11 +20,21 @@ interface MansionCardProps {
   moonPhase?: MoonPhaseInfo;
 }
 
-export function MansionCard({ mansion, progress }: MansionCardProps) {
+export function MansionCard({ mansion: originalMansion, progress }: MansionCardProps) {
   const [isExpanded, setIsExpanded] = useState(true);
+  const [selectedMansionNumber, setSelectedMansionNumber] = useState<number | null>(null);
+  
+  const mansion = selectedMansionNumber 
+    ? IBN_ARABI_MANSIONS[selectedMansionNumber - 1] 
+    : originalMansion;
+  
   const isBlessed = mansion.nature === "blessed";
   const guidance = MANSION_GUIDANCE[mansion.number];
   const cycleColors = guidance ? CYCLE_ROLE_COLORS[guidance.cycleRole] : null;
+  
+  const handleMansionSelect = (mansionNumber: number) => {
+    setSelectedMansionNumber(mansionNumber);
+  };
   
   return (
     <motion.div
@@ -124,9 +134,23 @@ export function MansionCard({ mansion, progress }: MansionCardProps) {
         {/* Mansion Cycle Ring */}
         <div className="mb-3 flex justify-center">
           <MansionCycleRing 
-            mansionNumber={mansion.number}
+            mansionNumber={originalMansion.number}
+            onMansionSelect={handleMansionSelect}
           />
         </div>
+        
+        {/* Show indicator when viewing different mansion */}
+        {selectedMansionNumber && selectedMansionNumber !== originalMansion.number && (
+          <div className="mb-3 flex items-center justify-center gap-2">
+            <span className="text-xs text-muted-foreground">Viewing Mansion {selectedMansionNumber}</span>
+            <button 
+              onClick={() => setSelectedMansionNumber(null)}
+              className="text-xs text-primary hover:underline"
+            >
+              Return to current
+            </button>
+          </div>
+        )}
 
         {/* NEW: Mansion Theme Card with Collapse/Expand */}
         {guidance && (

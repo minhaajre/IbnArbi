@@ -4,9 +4,10 @@ import { IBN_ARABI_MANSIONS } from "@/lib/constants";
 
 interface MansionCycleRingProps {
   mansionNumber: number;
+  onMansionSelect?: (mansionNumber: number) => void;
 }
 
-export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
+export function MansionCycleRing({ mansionNumber, onMansionSelect }: MansionCycleRingProps) {
   const [selectedMansion, setSelectedMansion] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const positions = Array.from({ length: 28 }, (_, i) => i + 1);
@@ -30,6 +31,9 @@ export function MansionCycleRing({ mansionNumber }: MansionCycleRingProps) {
 
   const handleTreeClick = (position: number) => {
     setSelectedMansion(position);
+    if (onMansionSelect) {
+      onMansionSelect(position);
+    }
   };
 
   // Close card when clicking outside
