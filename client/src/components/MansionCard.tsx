@@ -19,6 +19,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface MansionCardProps {
   mansion: typeof IBN_ARABI_MANSIONS[0];
@@ -29,6 +34,7 @@ interface MansionCardProps {
 export function MansionCard({ mansion: originalMansion, progress }: MansionCardProps) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [selectedMansionNumber, setSelectedMansionNumber] = useState<number | null>(null);
+  const [isWheelFullscreen, setIsWheelFullscreen] = useState(false);
   
   const mansion = selectedMansionNumber 
     ? IBN_ARABI_MANSIONS[selectedMansionNumber - 1] 
@@ -376,12 +382,23 @@ export function MansionCard({ mansion: originalMansion, progress }: MansionCardP
                         <span>🔍 Ibn Arabi's 28 Lunar Mansions Wheel <span className="font-arabic">عجلة المنازل</span> (tap to expand)</span>
                       </AccordionTrigger>
                       <AccordionContent className="pt-2">
-                        <img 
-                          src="/mansionwheel.jpg" 
-                          alt="Ibn Arabi's 28 Lunar Mansions Wheel" 
-                          className="w-full rounded-lg border border-border opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
-                          data-testid="mansion-wheel-image"
-                        />
+                        <Dialog open={isWheelFullscreen} onOpenChange={setIsWheelFullscreen}>
+                          <DialogTrigger asChild>
+                            <img 
+                              src="/mansionwheel.jpg" 
+                              alt="Ibn Arabi's 28 Lunar Mansions Wheel" 
+                              className="w-full rounded-lg border border-border opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
+                              data-testid="mansion-wheel-image"
+                            />
+                          </DialogTrigger>
+                          <DialogContent className="max-w-4xl max-h-[90vh] overflow-auto bg-foreground/95 border-border p-4">
+                            <img 
+                              src="/mansionwheel.jpg" 
+                              alt="Ibn Arabi's 28 Lunar Mansions Wheel" 
+                              className="w-full h-auto"
+                            />
+                          </DialogContent>
+                        </Dialog>
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>
