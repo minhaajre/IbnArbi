@@ -520,7 +520,7 @@ export default function Home() {
             </Popover>
           </div>
           <div className="relative z-10">
-            <MansionCard mansion={mansion} progress={mansionProgress ?? undefined} />
+            <MansionCard mansion={mansion} progress={mansionProgress ?? undefined} moonPhase={moonPhase ?? undefined} />
           </div>
         </section>
 

@@ -31,7 +31,7 @@ interface MansionCardProps {
   moonPhase?: MoonPhaseInfo;
 }
 
-export function MansionCard({ mansion: originalMansion, progress }: MansionCardProps) {
+export function MansionCard({ mansion: originalMansion, progress, moonPhase }: MansionCardProps) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [selectedMansionNumber, setSelectedMansionNumber] = useState<number | null>(null);
   const [isWheelFullscreen, setIsWheelFullscreen] = useState(false);
@@ -73,7 +73,7 @@ export function MansionCard({ mansion: originalMansion, progress }: MansionCardP
           {mansion.arabic}
         </h3>
         
-        {/* Cycle Role Tag with Tooltip */}
+        {/* Cycle Role Tag and Moon Phase with Tooltip */}
         <div className="flex flex-wrap gap-2 mb-4">
           {guidance && cycleColors && (
             <TooltipProvider>
@@ -89,6 +89,36 @@ export function MansionCard({ mansion: originalMansion, progress }: MansionCardP
                     <div className="text-sm font-semibold text-foreground">{cycleColors.tooltip}</div>
                     <div className="text-xs leading-relaxed text-muted-foreground">{cycleColors.tooltipBody}</div>
                     <div className="text-[10px] text-muted-foreground/70">Read this as a lens for awareness, not a prediction.</div>
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          )}
+          {moonPhase && (
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium cursor-help ${
+                    moonPhase.isWaxing 
+                      ? 'bg-amber-500/10 text-amber-400 border border-amber-500/30' 
+                      : 'bg-slate-500/10 text-slate-400 border border-slate-500/30'
+                  }`} data-testid="moon-phase-tag">
+                    {moonPhase.isWaxing ? '☽ Waxing' : '☾ Waning'}
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
+                  <div className="space-y-2">
+                    <div className="text-sm font-semibold text-foreground">
+                      {moonPhase.isWaxing ? 'Waxing Moon (New → Full)' : 'Waning Moon (Full → New)'}
+                    </div>
+                    <div className="text-xs leading-relaxed text-muted-foreground">
+                      {moonPhase.isWaxing 
+                        ? 'Traditionally associated with beginnings. May support growth, gathering, and outward movement.' 
+                        : 'Traditionally associated with endings. May support release, healing, and inward reflection.'}
+                    </div>
+                    <div className="text-[10px] text-muted-foreground/70">
+                      {Math.round(moonPhase.illumination * 100)}% illuminated
+                    </div>
                   </div>
                 </TooltipContent>
               </Tooltip>
