@@ -19,16 +19,42 @@ export function MansionCycleRing({ mansionNumber, onMansionSelect, selectedMansi
     return IBN_ARABI_MANSIONS[position - 1];
   };
 
+  const getCategory = (position: number) => {
+    if (position >= 1 && position <= 11) return "Gathering";
+    if (position >= 12 && position <= 16) return "Differentiating";
+    return "Separating";
+  };
+
   const getMansionColor = (position: number) => {
-    const mansion = getMansionData(position);
-    const isBlessed = mansion.nature === "blessed";
+    const category = getCategory(position);
+    const categoryColorMap: Record<string, { bg: string; border: string; text: string; light: string }> = {
+      "Gathering": {
+        bg: "bg-emerald-500",
+        border: "border-emerald-500",
+        text: "text-emerald-400",
+        light: "text-emerald-100 dark:text-emerald-900",
+      },
+      "Differentiating": {
+        bg: "bg-cyan-500",
+        border: "border-cyan-500",
+        text: "text-cyan-400",
+        light: "text-cyan-100 dark:text-cyan-900",
+      },
+      "Separating": {
+        bg: "bg-amber-500",
+        border: "border-amber-500",
+        text: "text-amber-400",
+        light: "text-amber-100 dark:text-amber-900",
+      },
+    };
+    const colors = categoryColorMap[category];
     return {
-      bg: isBlessed ? "bg-green-500" : "bg-amber-500",
-      border: isBlessed ? "border-green-500" : "border-amber-500",
-      text: isBlessed ? "text-green-500" : "text-amber-500",
-      highlight: isBlessed ? "text-green-500" : "text-amber-500",
-      statusText: isBlessed ? "Blessed" : "Challenging",
-      light: isBlessed ? "text-green-100 dark:text-green-900" : "text-amber-100 dark:text-amber-900",
+      bg: colors.bg,
+      border: colors.border,
+      text: colors.text,
+      highlight: colors.text,
+      statusText: category,
+      light: colors.light,
     };
   };
 
@@ -111,7 +137,7 @@ export function MansionCycleRing({ mansionNumber, onMansionSelect, selectedMansi
             >
               {/* Tree icon colored by status */}
               <div>
-                <TreeIcon color={colors.text === "text-green-500" ? "#22c55e" : "#f59e0b"} size={32} />
+                <TreeIcon color={colors.text === "text-emerald-400" ? "#10b981" : colors.text === "text-cyan-400" ? "#06b6d4" : "#f59e0b"} size={32} />
               </div>
 
               {/* Mansion number on click */}
@@ -144,7 +170,7 @@ export function MansionCycleRing({ mansionNumber, onMansionSelect, selectedMansi
               {/* Icon */}
               <div className={`flex-shrink-0`}>
                 <TreeIcon
-                  color={displayColor.text === "text-green-500" ? "#22c55e" : "#f59e0b"}
+                  color={displayColor.text === "text-emerald-400" ? "#10b981" : displayColor.text === "text-cyan-400" ? "#06b6d4" : "#f59e0b"}
                   size={36}
                 />
               </div>
