@@ -484,7 +484,7 @@ export default function Instructions() {
               </p>
               <ul className="list-disc list-inside space-y-2 ml-2 text-base">
                 <li><strong className="text-foreground">Current Mansion:</strong> See which lunar mansion the Moon currently occupies.</li>
-                <li><strong className="text-foreground">Blessed vs Challenging:</strong> Green indicates a traditionally favorable time; amber invites caution and stillness.</li>
+                <li><strong className="text-foreground">Movement Phase:</strong> Each mansion belongs to one of three movements—Gathering (emerald), Differentiating (cyan), or Separating (amber)—indicating the quality of time.</li>
                 <li><strong className="text-foreground">Suggested Activities:</strong> Actions that may harmonize with the mansion's quality.</li>
                 <li><strong className="text-foreground">Divine Attributes:</strong> The Divine Name traditionally associated with this mansion, offered for contemplation.</li>
               </ul>
