@@ -29,7 +29,7 @@ const MANSION_DETAILS = [
     name: "Al-Sharṭayn",
     arabic: "الشراطان",
     theme: "Pure intention, vision, clarity",
-    category: "Initiating",
+    category: "Gathering",
     maySupport: "Starting ideas, planning, setting intentions",
     useCautionWith: "Major commitments before clarity settles",
     waxing: "May support setting intentions",
@@ -43,7 +43,7 @@ const MANSION_DETAILS = [
     name: "Al-Butayn",
     arabic: "البطين",
     theme: "Emotional imprint, inner truth",
-    category: "Initiating",
+    category: "Gathering",
     maySupport: "Healing, emotional clarity, introspection",
     useCautionWith: "Confrontation, major new ventures",
     waxing: "May support planting seeds of emotional healing",
@@ -57,7 +57,7 @@ const MANSION_DETAILS = [
     name: "Al-Thurayyā",
     arabic: "الثريا",
     theme: "Creativity, insight, inspiration",
-    category: "Initiating",
+    category: "Gathering",
     maySupport: "Communication, study, art, seeking hidden knowledge",
     useCautionWith: "Mundane tasks that may dissipate creative energy",
     waxing: "May support beginning creative projects",
@@ -71,7 +71,7 @@ const MANSION_DETAILS = [
     name: "Al-Dabarān",
     arabic: "الدبران",
     theme: "Foundation, raw material, patience",
-    category: "Initiating",
+    category: "Gathering",
     maySupport: "Setting long-term plans, following through on commitments",
     useCautionWith: "Sudden decisions, impatience",
     waxing: "May support building foundations",
@@ -85,7 +85,7 @@ const MANSION_DETAILS = [
     name: "Al-Ḥaqʿa",
     arabic: "الهقعة",
     theme: "Embodiment, grounding, manifestation",
-    category: "Stabilizing",
+    category: "Gathering",
     maySupport: "Health routines, stability, quiet contemplation",
     useCautionWith: "Overexertion, excessive outward action",
     waxing: "May support establishing healthy habits",
@@ -99,7 +99,7 @@ const MANSION_DETAILS = [
     name: "Al-Hanʿa",
     arabic: "الهنعة",
     theme: "Form-taking, wisdom, divine patterns",
-    category: "Stabilizing",
+    category: "Gathering",
     maySupport: "Contracts, marriage talks, seeking wisdom, teaching",
     useCautionWith: "Hasty agreements without reflection",
     waxing: "May support formalizing agreements",
@@ -113,7 +113,7 @@ const MANSION_DETAILS = [
     name: "Al-Dhiraʿ",
     arabic: "الذراع",
     theme: "Authority, sovereignty, expansiveness",
-    category: "Stabilizing",
+    category: "Gathering",
     maySupport: "Leadership decisions, charitable works, embracing divine vastness",
     useCautionWith: "Ego-driven actions",
     waxing: "May support expanding influence positively",
@@ -127,7 +127,7 @@ const MANSION_DETAILS = [
     name: "Al-Nathra",
     arabic: "النثرة",
     theme: "Boundaries, gratitude, divine governance",
-    category: "Stabilizing",
+    category: "Gathering",
     maySupport: "Closing deals, setting limits, expressing gratitude",
     useCautionWith: "Demanding or entitled behavior",
     waxing: "May support establishing healthy boundaries",
@@ -141,7 +141,7 @@ const MANSION_DETAILS = [
     name: "Al-Ṭarf",
     arabic: "الطرف",
     theme: "Independence, self-sufficiency, the boundary of creation",
-    category: "Relational",
+    category: "Gathering",
     maySupport: "Solitary spiritual practice, cultivating contentment",
     useCautionWith: "Excessive dependency on others",
     waxing: "May support building inner resources",
@@ -155,7 +155,7 @@ const MANSION_DETAILS = [
     name: "Al-Jabhah",
     arabic: "الجبهة",
     theme: "Discipline, truth, power (Saturn's realm)",
-    category: "Relational",
+    category: "Gathering",
     maySupport: "Difficult conversations, building strength, leadership",
     useCautionWith: "Emotional impulsivity",
     waxing: "May support taking considered action",
@@ -169,7 +169,7 @@ const MANSION_DETAILS = [
     name: "Al-Zubrah",
     arabic: "الزبرة",
     theme: "Devotion, surrender, tradition (Saturn's heaven)",
-    category: "Relational",
+    category: "Gathering",
     maySupport: "Devotional practices, honoring traditions, surrender to the Divine",
     useCautionWith: "Rebellion against sacred order",
     waxing: "May support deepening spiritual commitments",
@@ -183,7 +183,7 @@ const MANSION_DETAILS = [
     name: "Al-Ṣarfah",
     arabic: "الصرفة",
     theme: "Transition, change, seeking knowledge (Jupiter's realm)",
-    category: "Relational",
+    category: "Differentiating",
     maySupport: "Being open to necessary changes, seeking knowledge",
     useCautionWith: "Resisting inevitable transitions",
     waxing: "May support embracing positive change",
@@ -197,7 +197,7 @@ const MANSION_DETAILS = [
     name: "Al-ʿAwwā",
     arabic: "العواء",
     theme: "Victory, overcoming obstacles (Mars' realm)",
-    category: "Relational",
+    category: "Differentiating",
     maySupport: "Overcoming obstacles, spiritual resolve, standing firm",
     useCautionWith: "Unnecessary conflict",
     waxing: "May support advancing toward goals",
@@ -211,7 +211,7 @@ const MANSION_DETAILS = [
     name: "Al-Simāk",
     arabic: "السماك",
     theme: "Illumination, humility (Sun's realm - Idris' abode)",
-    category: "Relational",
+    category: "Differentiating",
     maySupport: "Study, seeking illumination through humility",
     useCautionWith: "Confrontation, arrogance",
     waxing: "May support seeking light through learning",
@@ -225,7 +225,7 @@ const MANSION_DETAILS = [
     name: "Al-Ghafr",
     arabic: "الغفر",
     theme: "Beauty, forgiveness, covering faults (Venus' realm)",
-    category: "Relational",
+    category: "Differentiating",
     maySupport: "Creative work, beauty, seeking forgiveness, covering others' faults",
     useCautionWith: "Exposing others' weaknesses",
     waxing: "May support creating beauty, strengthening bonds",
@@ -239,7 +239,7 @@ const MANSION_DETAILS = [
     name: "Al-Zubānā",
     arabic: "الزبانى",
     theme: "Accounting, communication, healing (Mercury's realm)",
-    category: "Relational",
+    category: "Differentiating",
     maySupport: "Accounting, organizing, communication, healing work",
     useCautionWith: "Deception, miscommunication",
     waxing: "May support organizing and communicating clearly",
@@ -253,7 +253,7 @@ const MANSION_DETAILS = [
     name: "Al-Iklīl",
     arabic: "الإكليل",
     theme: "Memory, dreams, emotional clarity (Moon's realm)",
-    category: "Relational",
+    category: "Separating",
     maySupport: "Clarity, making things manifest, honoring humanity",
     useCautionWith: "Confusion, unclear intentions",
     waxing: "May support manifesting intentions clearly",
@@ -267,7 +267,7 @@ const MANSION_DETAILS = [
     name: "Al-Qalb",
     arabic: "القلب",
     theme: "Heart purification, release (Ethereal realm)",
-    category: "Relational",
+    category: "Separating",
     maySupport: "Heart purification, releasing attachments",
     useCautionWith: "Clinging to what must go",
     waxing: "May support strengthening heart's resolve",
@@ -281,7 +281,7 @@ const MANSION_DETAILS = [
     name: "Al-Shawlah",
     arabic: "الشولة",
     theme: "Vital life force, breath (Air realm)",
-    category: "Relational",
+    category: "Separating",
     maySupport: "Breathwork, cultivating vital life force",
     useCautionWith: "Reckless actions",
     waxing: "May support building vital energy",
@@ -295,7 +295,7 @@ const MANSION_DETAILS = [
     name: "Al-Naʿāʾim",
     arabic: "النعائم",
     theme: "Nurturing, life-giving (Water realm)",
-    category: "Relational",
+    category: "Separating",
     maySupport: "Nurturing what is valuable, healing, purification",
     useCautionWith: "Neglecting what needs care",
     waxing: "May support nurturing growth",
@@ -309,7 +309,7 @@ const MANSION_DETAILS = [
     name: "Al-Baldah",
     arabic: "البلدة",
     theme: "Endings, letting go, transformation (Earth realm)",
-    category: "Threshold",
+    category: "Separating",
     maySupport: "Endings, letting go, transformation, preparing for rebirth",
     useCautionWith: "Clinging to the old",
     waxing: "May support conscious transformation",
@@ -323,7 +323,7 @@ const MANSION_DETAILS = [
     name: "Saʿd al-Dhābiḥ",
     arabic: "سعد الذابح",
     theme: "Sacrifice, cutting away the old (Mineral realm)",
-    category: "Threshold",
+    category: "Separating",
     maySupport: "Ending habits, releasing debts, practicing generosity",
     useCautionWith: "Holding onto what no longer serves",
     waxing: "May support sacrificing for growth",
@@ -337,7 +337,7 @@ const MANSION_DETAILS = [
     name: "Saʿd Bulaʿ",
     arabic: "سعد بلع",
     theme: "Purification, nourishment (Plant realm)",
-    category: "Threshold",
+    category: "Separating",
     maySupport: "Fasting, detox, forgiveness, planting seeds",
     useCautionWith: "Overindulgence",
     waxing: "May support planting new seeds of intention",
@@ -351,7 +351,7 @@ const MANSION_DETAILS = [
     name: "Saʿd al-Suʿūd",
     arabic: "سعد السعود",
     theme: "Renewal, humility (Animal realm)",
-    category: "Threshold",
+    category: "Separating",
     maySupport: "Rebirth after endings, practicing humility, caring for creatures",
     useCautionWith: "Pride and arrogance",
     waxing: "May support embracing new beginnings humbly",
@@ -365,7 +365,7 @@ const MANSION_DETAILS = [
     name: "Saʿd al-Akhbiyah",
     arabic: "سعد الأخبية",
     theme: "Hidden forces, angelic realm",
-    category: "Threshold",
+    category: "Separating",
     maySupport: "Seclusion, prayer, angelic invocations, spiritual protection",
     useCautionWith: "Worldly distractions",
     waxing: "May support seeking angelic assistance",
@@ -379,7 +379,7 @@ const MANSION_DETAILS = [
     name: "Al-Fargh al-Muqaddam",
     arabic: "الفرغ المقدم",
     theme: "Subtle awareness, jinn realm",
-    category: "Threshold",
+    category: "Separating",
     maySupport: "Spiritual vigilance, subtle awareness, protection practices",
     useCautionWith: "Naivety about unseen influences",
     waxing: "May support strengthening spiritual protection",
@@ -393,7 +393,7 @@ const MANSION_DETAILS = [
     name: "Al-Fargh al-Muʾakhkhar",
     arabic: "الفرغ المؤخر",
     theme: "Unity, human dignity, collective destiny",
-    category: "Threshold",
+    category: "Separating",
     maySupport: "Community, bringing people together, honoring human dignity",
     useCautionWith: "Division, isolation",
     waxing: "May support building community bonds",
@@ -407,7 +407,7 @@ const MANSION_DETAILS = [
     name: "Baṭn al-Ḥūt",
     arabic: "بطن الحوت",
     theme: "Completion, elevation, surrender",
-    category: "Threshold",
+    category: "Separating",
     maySupport: "Ending cycles, surrender, deep reflection on spiritual station",
     useCautionWith: "Starting new worldly ventures prematurely",
     waxing: "May support preparing for completion",
@@ -419,10 +419,9 @@ const MANSION_DETAILS = [
 ];
 
 const CATEGORY_COLORS: Record<string, string> = {
-  "Initiating": "bg-blue-500/20 text-blue-400 border-blue-500/40",
-  "Stabilizing": "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
-  "Relational": "bg-purple-500/20 text-purple-400 border-purple-500/40",
-  "Threshold": "bg-amber-500/20 text-amber-400 border-amber-500/40"
+  "Gathering": "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
+  "Differentiating": "bg-cyan-500/20 text-cyan-400 border-cyan-500/40",
+  "Separating": "bg-amber-500/20 text-amber-400 border-amber-500/40"
 };
 
 const DIVINE_NAMES_WATERMARK = "الله الرحمن الرحيم الملك القدوس السلام المؤمن المهيمن العزيز الجبار المتكبر الخالق البارئ المصور الغفار القهار الوهاب الرزاق الفتاح العليم";
@@ -491,47 +490,47 @@ export default function Instructions() {
               </ul>
             </div>
 
-            {/* Four Categories */}
+            {/* Three Movements of the Mansions */}
             <div className="mb-6 p-5 rounded-lg bg-foreground/5 border border-border">
-              <h3 className="text-base font-medium text-foreground mb-5">The Four Categories of Mansions</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div className="p-4 rounded-lg bg-card/30 border border-blue-500/20 flex gap-4">
-                  <div className="flex-shrink-0">
-                    <span className="px-3 py-2 rounded-lg bg-blue-500/20 text-blue-400 border border-blue-500/40 font-bold text-lg block text-center min-w-16">1–4</span>
+              <h3 className="text-base font-medium text-foreground mb-3">The Three Movements of the Mansions</h3>
+              <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
+                The mansions do not cause events. They describe how meanings move through time: gathering, differentiating, and separating.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div className="p-4 rounded-lg bg-card/30 border border-emerald-500/20 flex flex-col gap-3">
+                  <div className="flex items-center gap-3">
+                    <span className="px-3 py-2 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-bold text-lg block text-center min-w-16">1–11</span>
+                    <div>
+                      <strong className="text-foreground text-base block">Gathering</strong>
+                      <span className="font-arabic text-emerald-400/80 text-sm">جمع</span>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <strong className="text-foreground text-base block">Initiating</strong>
-                    <p className="text-muted-foreground text-sm mt-2 leading-relaxed">Seed quality, vision, raw potential. May support beginnings.</p>
-                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">Time of collecting and consolidating meanings. This phase tends to support cohesion, connection, and steady building.</p>
                 </div>
-                <div className="p-4 rounded-lg bg-card/30 border border-emerald-500/20 flex gap-4">
-                  <div className="flex-shrink-0">
-                    <span className="px-3 py-2 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-bold text-lg block text-center min-w-16">5–8</span>
+                <div className="p-4 rounded-lg bg-card/30 border border-cyan-500/20 flex flex-col gap-3">
+                  <div className="flex items-center gap-3">
+                    <span className="px-3 py-2 rounded-lg bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-bold text-lg block text-center min-w-16">12–16</span>
+                    <div>
+                      <strong className="text-foreground text-base block">Differentiating</strong>
+                      <span className="font-arabic text-cyan-400/80 text-sm">تمييز</span>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <strong className="text-foreground text-base block">Stabilizing</strong>
-                    <p className="text-muted-foreground text-sm mt-2 leading-relaxed">Form, structure, commitment. May support building and establishing.</p>
-                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">Time of discernment and measure. What is mixed becomes clearer. This phase supports clarity and limits without forcing endings.</p>
                 </div>
-                <div className="p-4 rounded-lg bg-card/30 border border-purple-500/20 flex gap-4">
-                  <div className="flex-shrink-0">
-                    <span className="px-3 py-2 rounded-lg bg-purple-500/20 text-purple-400 border border-purple-500/40 font-bold text-lg block text-center min-w-16">9–20</span>
+                <div className="p-4 rounded-lg bg-card/30 border border-amber-500/20 flex flex-col gap-3">
+                  <div className="flex items-center gap-3">
+                    <span className="px-3 py-2 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/40 font-bold text-lg block text-center min-w-16">17–28</span>
+                    <div>
+                      <strong className="text-foreground text-base block">Separating</strong>
+                      <span className="font-arabic text-amber-400/80 text-sm">تفريق</span>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <strong className="text-foreground text-base block">Relational</strong>
-                    <p className="text-muted-foreground text-sm mt-2 leading-relaxed">Communication, connection, learning, creativity. May support engagement.</p>
-                  </div>
-                </div>
-                <div className="p-4 rounded-lg bg-card/30 border border-amber-500/20 flex gap-4">
-                  <div className="flex-shrink-0">
-                    <span className="px-3 py-2 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/40 font-bold text-lg block text-center min-w-16">21–28</span>
-                  </div>
-                  <div className="flex-1">
-                    <strong className="text-foreground text-base block">Threshold</strong>
-                    <p className="text-muted-foreground text-sm mt-2 leading-relaxed">Endings, transitions, release. May support closure and letting go.</p>
-                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">Time of release and completion. Forms loosen and cycles conclude. This phase supports letting go and preparing for renewal.</p>
                 </div>
               </div>
+              <p className="text-muted-foreground/70 text-xs mt-4 italic text-center">
+                Read this as a lens for awareness, not a prediction.
+              </p>
             </div>
 
             {/* Waxing vs Waning */}
@@ -781,23 +780,19 @@ export default function Instructions() {
               </div>
               
               <div>
-                <h3 className="text-base font-medium text-foreground mb-2">The Four Mansion Phases</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/30">
-                    <strong className="text-green-400 text-sm">Seed (1-4)</strong>
-                    <p className="text-foreground/80 text-sm mt-1">Pure potential, vision, intention. Plant new seeds.</p>
+                <h3 className="text-base font-medium text-foreground mb-2">The Three Movements of the Mansions</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30">
+                    <strong className="text-emerald-400 text-sm">Gathering (1-11) <span className="font-arabic">جمع</span></strong>
+                    <p className="text-foreground/80 text-sm mt-1">Cohesion, connection, steady building.</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/30">
+                    <strong className="text-cyan-400 text-sm">Differentiating (12-16) <span className="font-arabic">تمييز</span></strong>
+                    <p className="text-foreground/80 text-sm mt-1">Discernment, clarity, limits.</p>
                   </div>
                   <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30">
-                    <strong className="text-amber-400 text-sm">Build (5-8)</strong>
-                    <p className="text-foreground/80 text-sm mt-1">Structure, commitment, stabilization. Build foundations.</p>
-                  </div>
-                  <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/30">
-                    <strong className="text-blue-400 text-sm">Relate (9-20)</strong>
-                    <p className="text-foreground/80 text-sm mt-1">Connection, communication, relationships. Engage with others.</p>
-                  </div>
-                  <div className="p-3 rounded-lg bg-purple-500/10 border border-purple-500/30">
-                    <strong className="text-purple-400 text-sm">Release (21-28)</strong>
-                    <p className="text-foreground/80 text-sm mt-1">Endings, purification, surrender. Complete and let go.</p>
+                    <strong className="text-amber-400 text-sm">Separating (17-28) <span className="font-arabic">تفريق</span></strong>
+                    <p className="text-foreground/80 text-sm mt-1">Release, completion, renewal.</p>
                   </div>
                 </div>
               </div>
@@ -808,7 +803,7 @@ export default function Instructions() {
                   <li><strong className="text-foreground">Look at "Mansion Theme":</strong> Understand the core energy of this station.</li>
                   <li><strong className="text-foreground">Check "Good For / Not Ideal For":</strong> Align your activities accordingly.</li>
                   <li><strong className="text-foreground">Use "Suggested Dhikr & Practice":</strong> The Divine Name and practice for this mansion.</li>
-                  <li><strong className="text-foreground">Note the Cycle Role tag:</strong> See where you are in the 28-day cycle (Seed/Build/Relate/Release).</li>
+                  <li><strong className="text-foreground">Note the Movement tag:</strong> See where you are in the 28-day cycle (Gathering/Differentiating/Separating).</li>
                   <li><strong className="text-foreground">Combine with Moon phase:</strong> Waxing supports beginning; waning supports ending.</li>
                 </ul>
               </div>
@@ -829,29 +824,29 @@ export default function Instructions() {
               
               <div className="space-y-3">
                 <div className="p-4 rounded-lg bg-foreground/5 border border-border">
-                  <h4 className="text-sm font-medium text-foreground mb-2">Example: Mars Hour + Release Mansion</h4>
+                  <h4 className="text-sm font-medium text-foreground mb-2">Example: Mars Hour + Separating Mansion</h4>
                   <p className="text-sm text-foreground/80">
-                    A Mars hour carries a quality of clarity and decisiveness. Combined with a Release-phase mansion (21-28), 
+                    A Mars hour carries a quality of clarity and decisiveness. Combined with a Separating mansion (17-28), 
                     this may support releasing what no longer serves, clearing distractions, or letting go of old patterns. 
                     The strength of Mars may harmonize with the releasing quality of the mansion.
                   </p>
                 </div>
                 
                 <div className="p-4 rounded-lg bg-foreground/5 border border-border">
-                  <h4 className="text-sm font-medium text-foreground mb-2">Example: Venus Hour + Build Mansion</h4>
+                  <h4 className="text-sm font-medium text-foreground mb-2">Example: Venus Hour + Gathering Mansion</h4>
                   <p className="text-sm text-foreground/80">
-                    A Venus hour carries a quality of beauty and harmony. Combined with a Build-phase mansion (5-8), 
+                    A Venus hour carries a quality of beauty and harmony. Combined with a Gathering mansion (1-11), 
                     this may support deepening relationships, cultivating beauty, or establishing commitments with gentleness. 
-                    The softness of Venus may harmonize with the stabilizing quality of the mansion.
+                    The softness of Venus may harmonize with the cohesive quality of the mansion.
                   </p>
                 </div>
                 
                 <div className="p-4 rounded-lg bg-foreground/5 border border-border">
-                  <h4 className="text-sm font-medium text-foreground mb-2">Example: Jupiter Hour + Seed Mansion</h4>
+                  <h4 className="text-sm font-medium text-foreground mb-2">Example: Jupiter Hour + Differentiating Mansion</h4>
                   <p className="text-sm text-foreground/80">
-                    A Jupiter hour carries a quality of expansion and wisdom. Combined with a Seed-phase mansion (1-4), 
-                    this may support setting expansive intentions, beginning studies, or planning charitable endeavors. 
-                    The abundance of Jupiter may harmonize with the initiating quality of the mansion.
+                    A Jupiter hour carries a quality of expansion and wisdom. Combined with a Differentiating mansion (12-16), 
+                    this may support gaining clarity, making discerning choices, or finding the right measure. 
+                    The abundance of Jupiter may harmonize with the clarifying quality of the mansion.
                   </p>
                 </div>
               </div>
