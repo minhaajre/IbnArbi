@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC, MANSION_AZKAAR_SUGGESTIONS } from "@/lib/constants";
 import { MANSION_GUIDANCE, CYCLE_ROLE_COLORS } from "@/lib/spiritualGuidance";
 import { MansionProgress, MoonPhaseInfo } from "@/lib/astronomy";
-import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, CheckCircle, XCircle, Compass, ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
+import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, Compass, ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
 import { format } from "date-fns";
 import { MansionCycleRing } from "@/components/MansionCycleRing";
 import {
@@ -207,7 +207,6 @@ export function MansionCard({ mansion: originalMansion, progress }: MansionCardP
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <div className="flex items-center gap-1.5 mb-2">
-                        <CheckCircle className="w-3.5 h-3.5 text-green-500" />
                         <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">May Support</span>
                       </div>
                       <ul className="space-y-1">
@@ -221,7 +220,6 @@ export function MansionCard({ mansion: originalMansion, progress }: MansionCardP
                     </div>
                     <div>
                       <div className="flex items-center gap-1.5 mb-2">
-                        <XCircle className="w-3.5 h-3.5 text-amber-400" />
                         <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Use Caution With</span>
                       </div>
                       <ul className="space-y-1">
