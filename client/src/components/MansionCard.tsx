@@ -88,11 +88,11 @@ export function MansionCard({ mansion: originalMansion, progress }: MansionCardP
                     <span className="font-arabic text-[9px]">{cycleColors.labelArabic}</span>
                   </div>
                 </TooltipTrigger>
-                <TooltipContent side="bottom" className="max-w-xs bg-slate-900 text-white border-0 p-3 rounded-lg">
+                <TooltipContent side="bottom" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
                   <div className="space-y-2">
-                    <div className="text-sm font-semibold text-white">{cycleColors.tooltip}</div>
-                    <div className="text-xs leading-relaxed text-slate-100">{cycleColors.tooltipBody}</div>
-                    <div className="text-[10px] text-slate-300">Read this as a lens for awareness, not a prediction.</div>
+                    <div className="text-sm font-semibold text-foreground">{cycleColors.tooltip}</div>
+                    <div className="text-xs leading-relaxed text-muted-foreground">{cycleColors.tooltipBody}</div>
+                    <div className="text-[10px] text-muted-foreground/70">Read this as a lens for awareness, not a prediction.</div>
                   </div>
                 </TooltipContent>
               </Tooltip>
