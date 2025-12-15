@@ -5,10 +5,13 @@ import { IBN_ARABI_MANSIONS } from "@/lib/constants";
 interface MansionCycleRingProps {
   mansionNumber: number;
   onMansionSelect?: (mansionNumber: number) => void;
+  selectedMansion?: number | null;
 }
 
-export function MansionCycleRing({ mansionNumber, onMansionSelect }: MansionCycleRingProps) {
+export function MansionCycleRing({ mansionNumber, onMansionSelect, selectedMansion: controlledSelectedMansion }: MansionCycleRingProps) {
+  const isControlled = controlledSelectedMansion !== undefined;
   const [selectedMansion, setSelectedMansion] = useState<number | null>(null);
+  const selected = isControlled ? controlledSelectedMansion : selectedMansion;
   const containerRef = useRef<HTMLDivElement>(null);
   const positions = Array.from({ length: 28 }, (_, i) => i + 1);
 
@@ -30,7 +33,9 @@ export function MansionCycleRing({ mansionNumber, onMansionSelect }: MansionCycl
   };
 
   const handleTreeClick = (position: number) => {
-    setSelectedMansion(position);
+    if (!isControlled) {
+      setSelectedMansion(position);
+    }
     if (onMansionSelect) {
       onMansionSelect(position);
     }
@@ -40,16 +45,18 @@ export function MansionCycleRing({ mansionNumber, onMansionSelect }: MansionCycl
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setSelectedMansion(null);
+        if (!isControlled) {
+          setSelectedMansion(null);
+        }
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [isControlled]);
 
-  const displayedMansion = selectedMansion ? getMansionData(selectedMansion) : getMansionData(mansionNumber);
-  const displayNumber = selectedMansion || mansionNumber;
+  const displayedMansion = selected ? getMansionData(selected) : getMansionData(mansionNumber);
+  const displayNumber = selected || mansionNumber;
   const displayColor = getMansionColor(displayNumber);
 
   // Inline tree SVG that can be colored
@@ -87,7 +94,7 @@ export function MansionCycleRing({ mansionNumber, onMansionSelect }: MansionCycl
       <div className="grid grid-cols-7 gap-3">
         {positions.map((position) => {
           const colors = getMansionColor(position);
-          const isSelected = selectedMansion === position;
+          const isSelected = selected === position;
 
           return (
             <motion.button
@@ -124,7 +131,7 @@ export function MansionCycleRing({ mansionNumber, onMansionSelect }: MansionCycl
 
       {/* Info card - only shows when clicked */}
       <AnimatePresence>
-        {selectedMansion && (
+        {selected && (
           <motion.div
             key={displayNumber}
             initial={{ opacity: 0, y: -10 }}

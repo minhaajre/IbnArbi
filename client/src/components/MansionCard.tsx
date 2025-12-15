@@ -145,6 +145,7 @@ export function MansionCard({ mansion: originalMansion, progress }: MansionCardP
           <MansionCycleRing 
             mansionNumber={originalMansion.number}
             onMansionSelect={handleMansionSelect}
+            selectedMansion={selectedMansionNumber}
           />
         </div>
         
