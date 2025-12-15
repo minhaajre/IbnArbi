@@ -13,6 +13,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface MansionCardProps {
   mansion: typeof IBN_ARABI_MANSIONS[0];
@@ -72,12 +78,25 @@ export function MansionCard({ mansion: originalMansion, progress }: MansionCardP
             <span>{isBlessed ? 'Blessed' : 'Challenging'}</span>
           </div>
           
-          {/* NEW: Cycle Role Tag */}
+          {/* Cycle Role Tag with Tooltip */}
           {guidance && cycleColors && (
-            <div className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium ${cycleColors.bg} ${cycleColors.text} border ${cycleColors.border}`} data-testid="mansion-cycle-role">
-              <span>{guidance.cycleRole}</span>
-              <span className="font-arabic text-[9px]">{guidance.cycleRoleArabic}</span>
-            </div>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium ${cycleColors.bg} ${cycleColors.text} border ${cycleColors.border} cursor-help`} data-testid="mansion-cycle-role">
+                    <span>{cycleColors.label}</span>
+                    <span className="font-arabic text-[9px]">{cycleColors.labelArabic}</span>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="max-w-xs">
+                  <div className="text-xs space-y-1">
+                    <div className="font-semibold">{cycleColors.tooltip}</div>
+                    <div className="text-[11px] text-muted-foreground">{cycleColors.tooltipBody}</div>
+                    <div className="text-[9px] italic text-muted-foreground/70">Read this as a lens for awareness, not a prediction.</div>
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           )}
         </div>
 

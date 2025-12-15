@@ -1,0 +1,296 @@
+Below is a complete, paste-ready set of instructions for a Replit AI agent to change your mansion category system from Seed/Relate/Release to Gathering/Differentiating/Separating, without breaking your app.
+
+It includes: exact scope, what to rename, what to keep, UI copy, hover text, and the full mapping.
+
+---
+
+Replit AI Agent Instructions: Replace mansion categories with Gathering/Differentiating/Separating
+
+Goal
+Replace the current mansion category labels and logic currently shown as Seed / Build / Relate / Release (or Seed / Relate / Release) with a new three-category system:
+
+* Gathering (Jamʿ | جمع)
+* Differentiating (Tamyīz | تمييز)
+* Separating (Tafrīq | تفريق)
+
+This is a text and labeling change plus a small data-model mapping update. Do not change the mansion sequence, mansion calculation, or UI layout.
+
+Do not break anything
+Do not change:
+
+* moon/mansion calculation logic
+* indices 1–28
+* any date/time logic
+* component layout or routes
+* existing CSS tokens unless needed for new badge widths
+* any IDs used for routing/anchors
+
+Only change:
+
+* category labels, display text, tooltips, and the mapping logic that assigns category to a mansion number
+* any UI elements that display the old categories
+* any legend/filters that reference Seed/Relate/Release
+* any copy in teaching mode/instructions that describes the old categories
+
+---
+
+1. Data model change
+
+1.1 Find where mansion categories are defined
+Search in the project for any of the following strings:
+
+* Seed
+* Build
+* Relate
+* Release
+* phaseLabel
+* mansionGroup
+* mansionCategory
+* cyclePhase
+* categoryBadge
+* “Seed / Build / Relate / Release”
+
+There is likely:
+
+* an array/object mapping mansion number to category label
+* or a function like getMansionPhase(mansionIndex)
+
+Replace the category values with the new system.
+
+1.2 New category enum values
+Standardize the new category keys to avoid inconsistent spellings:
+
+Use exactly:
+
+* gathering
+* differentiating
+* separating
+
+and display labels:
+
+* Gathering
+* Differentiating
+* Separating
+
+Optional Arabic short form to show in UI:
+
+* جمع
+* تمييز
+* تفريق
+
+If you currently store text labels directly, still use these exact values to keep the code consistent.
+
+---
+
+2. New mapping rules (mandatory)
+
+Replace your old mansion phase grouping with this mapping by mansion number.
+
+Gathering
+Mansions 1–11 inclusive:
+1,2,3,4,5,6,7,8,9,10,11
+
+Differentiating
+Mansions 12–16 inclusive:
+12,13,14,15,16
+
+Separating
+Mansions 17–28 inclusive:
+17,18,19,20,21,22,23,24,25,26,27,28
+
+Implement as either:
+
+* a range-based mapping, or
+* a lookup array length 28, whichever matches your codebase best
+
+Preferred implementation to reduce bugs:
+
+* if mansionNumber <= 11 => gathering
+* else if mansionNumber <= 16 => differentiating
+* else => separating
+
+---
+
+3. UI changes
+
+3.1 Anywhere the UI shows Seed/Relate/Release
+Replace it.
+
+Places to update:
+
+* mansion list badges
+* mansion detail panel
+* category legend
+* filters or pills
+* teaching mode / instructions text
+* onboarding copy
+* hover tooltips
+* any “phase ring” labels or group section headers
+
+3.2 New display format for the category badge
+Replace the old badge text (example: “Seed”) with:
+
+Primary badge text:
+
+* Gathering
+* Differentiating
+* Separating
+
+Optional secondary small text in lighter font:
+
+* جمع
+* تمييز
+* تفريق
+
+If space is tight, show only English on the badge, and show Arabic only in hover tooltip.
+
+---
+
+4. Add on-hover info text (tooltips)
+
+4.1 Hover tooltip for category badge
+When user hovers the category badge, show a tooltip with:
+
+Title
+
+* Gathering | جمع
+* Differentiating | تمييز
+* Separating | تفريق
+
+Body text (use exactly this copy)
+
+Gathering tooltip body
+Time of collecting and consolidating meanings. This phase tends to support cohesion, connection, and steady building.
+
+Differentiating tooltip body
+Time of discernment and measure. What is mixed becomes clearer. This phase supports clarity and limits without forcing endings.
+
+Separating tooltip body
+Time of release and completion. Forms loosen and cycles conclude. This phase supports letting go and preparing for renewal.
+
+Footer line for all three tooltips
+Read this as a lens for awareness, not a prediction.
+
+4.2 Hover tooltip for category legend items
+If you have a legend (e.g., a small key under the ring), each label should also show the same tooltip when hovered.
+
+---
+
+5. Replace teaching mode copy (if present)
+
+5.1 Identify the section that explains Seed/Relate/Release
+Replace it with this.
+
+Teaching mode section title
+The three movements of the mansions
+
+Body
+The mansions do not cause events. They describe how meanings move through time: gathering, differentiating, and separating.
+
+How to use it
+If you feel cohesion and building, you are in gathering. If clarity and limits appear, you are in differentiating. If completion and release are present, you are in separating.
+
+Heart principle
+The Moon mirrors what the heart is ready to receive. The true mansion is the inner state.
+
+Optional one-line note
+These are spiritual lenses, not instructions for control.
+
+---
+
+6. Replace “Seed/Relate/Release” references in UI text
+
+Search and replace all user-facing language:
+
+Replace
+Seed -> Gathering
+Relate -> Gathering (only where “Relate” is used as a phase label, not where the text literally means relationship)
+Release -> Separating
+Build -> Gathering (if it’s the “build phase” label)
+
+Important nuance
+If your app uses the words “relate” in general advice text (relationship advice), do not replace that. Only replace the phase label system.
+
+---
+
+7. Update any color coding without breaking the design
+
+If your UI uses different colors for Seed/Relate/Release, update mapping:
+
+* Gathering: keep the current “Seed/Build” color (usually calm/positive)
+* Differentiating: use the current “Relate” color or a neutral middle color
+* Separating: keep the current “Release” color
+
+Do not change your global palette. Only remap which category uses which existing token/class so the UI remains coherent.
+
+---
+
+8. Mansion list data (optional but recommended)
+
+If your mansion data object includes a “phase” field currently storing Seed/Relate/Release, update it to store the new category key.
+
+Example structure per mansion item
+
+* id: 16
+* name_ar: الزبانى
+* name_en: Al-Zubānā
+* category_key: differentiating
+* category_label: Differentiating
+* category_ar: تمييز
+
+If you do not want to edit all objects manually, compute category dynamically from mansionNumber at render time.
+
+---
+
+9. Verification checklist (must pass)
+
+After changes, verify:
+
+* Mansion 1 shows Gathering
+* Mansion 11 shows Gathering
+* Mansion 12 shows Differentiating
+* Mansion 16 shows Differentiating
+* Mansion 17 shows Separating
+* Mansion 28 shows Separating
+
+Verify tooltips show correct copy and do not overlap off-screen on mobile.
+
+Verify no old labels remain in:
+
+* mansion cards
+* lists
+* legends
+* settings
+* teaching mode
+* instructions page
+
+---
+
+10. Final copy strings for the agent to insert
+
+Category labels
+Gathering
+Differentiating
+Separating
+
+Arabic short forms
+جمع
+تمييز
+تفريق
+
+Tooltip bodies
+Gathering
+Time of collecting and consolidating meanings. This phase tends to support cohesion, connection, and steady building.
+
+Differentiating
+Time of discernment and measure. What is mixed becomes clearer. This phase supports clarity and limits without forcing endings.
+
+Separating
+Time of release and completion. Forms loosen and cycles conclude. This phase supports letting go and preparing for renewal.
+
+Common footer
+Read this as a lens for awareness, not a prediction.
+
+---
+
+If you want, tell me whether your code uses mansion indices as 0–27 or 1–28. If it’s 0–27, I’ll give you the exact corrected conditional ranges to avoid an off-by-one bug.
