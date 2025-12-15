@@ -64,7 +64,7 @@ const HOME_SECTIONS: TOCSection[] = [
 const SECTION_INFO = {
   lunarMansion: {
     title: "Lunar Mansions",
-    description: "The Moon travels through each of the 28 mansions approximately every day. Each mansion is a place where a specific divine quality enters time, shaping events and spiritual openings. Check whether the mansion is Blessed or Challenging to know how to align your activities.",
+    description: "The Moon travels through each of the 28 mansions approximately every day. Each mansion represents one of three movements: Gathering (1-11), Differentiating (12-16), or Separating (17-28). Understanding which movement you are in helps align your activities and inner state with the lunar rhythm.",
   },
   planetaryHours: {
     title: "Planetary Hours",
