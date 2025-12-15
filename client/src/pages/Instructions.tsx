@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Check, X, Heart, BookOpen } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Heart, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
 
@@ -576,11 +576,6 @@ export default function Instructions() {
                         <span className={`px-2.5 py-1 rounded-full text-xs border hidden sm:inline-block ${CATEGORY_COLORS[mansion.category]}`}>
                           {mansion.category}
                         </span>
-                        {mansion.nature === "blessed" ? (
-                          <Check className="w-5 h-5 text-green-500 shrink-0" />
-                        ) : (
-                          <X className="w-5 h-5 text-amber-500 shrink-0" />
-                        )}
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="px-5 pb-5 pt-2">
