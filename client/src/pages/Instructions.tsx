@@ -459,63 +459,74 @@ export default function Instructions() {
           </p>
         </header>
 
-        <div className="space-y-8">
-          <section id="about-app" className="glass-card rounded-xl p-6 border border-border">
-            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-              <Scroll className="w-5 h-5" />
-              About This App
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-4 text-base">
-              This application draws from the cosmological teachings of Muhyiddin Ibn ʿArabi (1165-1240 CE), 
-              the great Sufi master known as "Sheikh al-Akbar" (The Greatest Master). His work describes 
-              a vision of existence flowing from the Divine Essence through the celestial spheres 
-              into the material world—a cosmos alive with meaning.
-            </p>
-            <p className="text-muted-foreground leading-relaxed text-base">
-              The 28 Lunar Mansions (Manazil al-Qamar) represent stages of spiritual unfolding, 
-              connected to the Arabic letters, Divine Names, and prophetic stations as described in 
-              Ibn ʿArabi's works. This app offers these traditional frameworks as a mirror for reflection, 
-              inviting awareness rather than prescription.
-            </p>
-          </section>
+        <Accordion type="multiple" defaultValue={["about-app"]} className="space-y-4">
+          <AccordionItem value="about-app" id="about-app" className="glass-card rounded-xl border border-border">
+            <AccordionTrigger className="p-6 hover:no-underline">
+              <h2 className="text-xl font-serif text-gold flex items-center gap-2">
+                <Scroll className="w-5 h-5" />
+                About This App
+              </h2>
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-6">
+              <p className="text-muted-foreground leading-relaxed mb-4 text-base">
+                This application draws from the cosmological teachings of Muhyiddin Ibn ʿArabi (1165-1240 CE), 
+                the great Sufi master known as "Sheikh al-Akbar" (The Greatest Master). His work describes 
+                a vision of existence flowing from the Divine Essence through the celestial spheres 
+                into the material world—a cosmos alive with meaning.
+              </p>
+              <p className="text-muted-foreground leading-relaxed text-base">
+                The 28 Lunar Mansions (Manazil al-Qamar) represent stages of spiritual unfolding, 
+                connected to the Arabic letters, Divine Names, and prophetic stations as described in 
+                Ibn ʿArabi's works. This app offers these traditional frameworks as a mirror for reflection, 
+                inviting awareness rather than prescription.
+              </p>
+            </AccordionContent>
+          </AccordionItem>
 
           {/* A1: How Ibn ʿArabī reads time */}
-          <section id="signs-not-causes" className="glass-card rounded-xl p-6 border border-border">
-            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-              <Compass className="w-5 h-5" />
-              How Ibn ʿArabī Reads Time: Signs, Not Causes
-              <span className="font-arabic text-lg">كيف يقرأ ابن عربي الزمن: علامات لا أسباب</span>
-            </h2>
-            <div className="space-y-4 text-muted-foreground">
-              <p className="leading-relaxed text-base">
-                In Ibn ʿArabī's view, celestial cycles do not compel outcomes. They are a symbolic language 
-                through which meanings become readable in time. The value of this app is not control, but 
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <strong className="text-foreground cursor-help border-b border-dotted border-foreground/50"> adab</strong>
-                    </TooltipTrigger>
-                    <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
-                      <div className="text-sm font-medium mb-1">Adab (أدب)</div>
-                      <div className="text-xs text-muted-foreground">Spiritual etiquette—meeting each moment with presence, humility, and right conduct.</div>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-                : meeting the moment with presence, humility, and clear intention.
-              </p>
-              <div className="p-4 rounded-lg bg-gold/10 border border-gold/30">
-                <p className="text-sm italic text-foreground/80 text-center">
-                  Read the sky as a mirror, not as a machine.
+          <AccordionItem value="signs-not-causes" id="signs-not-causes" className="glass-card rounded-xl border border-border">
+            <AccordionTrigger className="p-6 hover:no-underline">
+              <h2 className="text-xl font-serif text-gold flex items-center gap-2">
+                <Compass className="w-5 h-5" />
+                How Ibn ʿArabī Reads Time: Signs, Not Causes
+                <span className="font-arabic text-lg">كيف يقرأ ابن عربي الزمن: علامات لا أسباب</span>
+              </h2>
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-6">
+              <div className="space-y-4 text-muted-foreground">
+                <p className="leading-relaxed text-base">
+                  In Ibn ʿArabī's view, celestial cycles do not compel outcomes. They are a symbolic language 
+                  through which meanings become readable in time. The value of this app is not control, but 
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <strong className="text-foreground cursor-help border-b border-dotted border-foreground/50"> adab</strong>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
+                        <div className="text-sm font-medium mb-1">Adab (أدب)</div>
+                        <div className="text-xs text-muted-foreground">Spiritual etiquette—meeting each moment with presence, humility, and right conduct.</div>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                  : meeting the moment with presence, humility, and clear intention.
                 </p>
+                <div className="p-4 rounded-lg bg-gold/10 border border-gold/30">
+                  <p className="text-sm italic text-foreground/80 text-center">
+                    Read the sky as a mirror, not as a machine.
+                  </p>
+                </div>
               </div>
-            </div>
-          </section>
+            </AccordionContent>
+          </AccordionItem>
 
-          <section id="lunar-mansions" className="glass-card rounded-xl p-6 border border-border">
-            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-              <Moon className="w-5 h-5" />
-              Lunar Mansions <span className="font-arabic text-lg">المنازل القمرية</span>
-            </h2>
+          <AccordionItem value="lunar-mansions" id="lunar-mansions" className="glass-card rounded-xl border border-border">
+            <AccordionTrigger className="p-6 hover:no-underline">
+              <h2 className="text-xl font-serif text-gold flex items-center gap-2">
+                <Moon className="w-5 h-5" />
+                Lunar Mansions <span className="font-arabic text-lg">المنازل القمرية</span>
+              </h2>
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-6">
             <div className="space-y-4 text-muted-foreground mb-6">
               <p className="leading-relaxed text-base">
                 The Moon travels through each of the 28 mansions approximately every day. Each mansion is traditionally understood as 
@@ -678,13 +689,17 @@ export default function Instructions() {
                 ))}
               </Accordion>
             </div>
-          </section>
+            </AccordionContent>
+          </AccordionItem>
 
-          <section id="planetary-hours" className="glass-card rounded-xl p-6 border border-border">
-            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-              <Clock className="w-5 h-5" />
-              Planetary Hours <span className="font-arabic text-lg">الساعات الكوكبية</span>
-            </h2>
+          <AccordionItem value="planetary-hours" id="planetary-hours" className="glass-card rounded-xl border border-border">
+            <AccordionTrigger className="p-6 hover:no-underline">
+              <h2 className="text-xl font-serif text-gold flex items-center gap-2">
+                <Clock className="w-5 h-5" />
+                Planetary Hours <span className="font-arabic text-lg">الساعات الكوكبية</span>
+              </h2>
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-6">
             <div className="space-y-4 text-muted-foreground">
               <p className="leading-relaxed text-base">
                 Each day is divided into 24 planetary hours, with each hour ruled by one of the seven 
@@ -750,112 +765,132 @@ export default function Instructions() {
                 </p>
               </div>
             </div>
-          </section>
+            </AccordionContent>
+          </AccordionItem>
 
-          <section id="celestial-dignities" className="glass-card rounded-xl p-6 border border-border">
-            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-              <Orbit className="w-5 h-5" />
-              Celestial Dignities <span className="font-arabic text-lg">الكرامات السماوية</span>
-            </h2>
-            <div className="space-y-4 text-muted-foreground">
-              <p className="leading-relaxed text-base">
-                This table shows the current positions of the seven classical planets and their dignities:
-              </p>
-              <ul className="list-disc list-inside space-y-3 ml-2 text-base">
-                <li><strong className="text-foreground">Rulership (R):</strong> Planet in its home sign—strongest expression.</li>
-                <li><strong className="text-foreground">Exaltation (E):</strong> Planet in its sign of honor—elevated influence.</li>
-                <li><strong className="text-foreground">Detriment (d):</strong> Planet in the sign opposite its home—weakened.</li>
-                <li><strong className="text-foreground">Fall (f):</strong> Planet in the sign opposite its exaltation—most challenged.</li>
-                <li><strong className="text-foreground">Tropical vs Sidereal:</strong> Toggle between Western and Vedic zodiac calculations.</li>
-              </ul>
-            </div>
-          </section>
-
-          <section id="elemental-balance" className="glass-card rounded-xl p-6 border border-border">
-            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-              <Star className="w-5 h-5" />
-              Elemental Balance <span className="font-arabic text-lg">توازن العناصر</span>
-            </h2>
-            <div className="space-y-4 text-muted-foreground">
-              <p className="leading-relaxed text-base">
-                The four elements represent fundamental qualities of existence:
-              </p>
-              <ul className="list-disc list-inside space-y-3 ml-2 text-base">
-                <li><strong className="text-red-400">Fire (النار):</strong> Action, will, transformation, spiritual aspiration.</li>
-                <li><strong className="text-amber-600">Earth (التراب):</strong> Stability, manifestation, practical matters.</li>
-                <li><strong className="text-sky-400">Air (الهواء):</strong> Intellect, communication, social connection.</li>
-                <li><strong className="text-blue-400">Water (الماء):</strong> Emotion, intuition, purification, receptivity.</li>
-              </ul>
-            </div>
-          </section>
-
-          <section id="how-to-use" className="glass-card rounded-xl p-6 border border-border">
-            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-              <Calendar className="w-5 h-5" />
-              How to Use Daily
-            </h2>
-            <div className="space-y-4 text-muted-foreground">
-              <ol className="list-decimal list-inside space-y-4 ml-2 text-base">
-                <li><strong className="text-foreground">Morning Check:</strong> Review the day ruler and current lunar mansion.</li>
-                <li><strong className="text-foreground">Plan Activities:</strong> Align tasks with favorable planetary hours.</li>
-                <li><strong className="text-foreground">Spiritual Practice:</strong> Use Divine Attributes for dhikr and meditation.</li>
-                <li><strong className="text-foreground">Evening Reflection:</strong> Note how the day's energies manifested.</li>
-                <li><strong className="text-foreground">White Days:</strong> Fast on the 13th, 14th, and 15th of each Islamic month.</li>
-              </ol>
-            </div>
-          </section>
-
-          {/* NEW EXPERIENTIAL SECTIONS */}
-          <section id="reading-planetary-hours" className="glass-card rounded-xl p-6 border border-border">
-            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-              <Clock className="w-5 h-5" />
-              How to Read Planetary Hours Spiritually
-              <span className="font-arabic text-lg">كيفية قراءة الساعات الكوكبية روحياً</span>
-            </h2>
-            <div className="space-y-5 text-muted-foreground">
-              <div>
-                <h3 className="text-base font-medium text-foreground mb-2">Time Starts at Sunset</h3>
+          <AccordionItem value="celestial-dignities" id="celestial-dignities" className="glass-card rounded-xl border border-border">
+            <AccordionTrigger className="p-6 hover:no-underline">
+              <h2 className="text-xl font-serif text-gold flex items-center gap-2">
+                <Orbit className="w-5 h-5" />
+                Celestial Dignities <span className="font-arabic text-lg">الكرامات السماوية</span>
+              </h2>
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-6">
+              <div className="space-y-4 text-muted-foreground">
                 <p className="leading-relaxed text-base">
-                  In the Islamic tradition, the day begins at Maghrib (sunset), not midnight. This means the planetary day 
-                  and its ruling planet begin their influence as the sun sets. When you check the planetary hour, 
-                  remember that you are reading the current spiritual "breath" of time.
+                  This table shows the current positions of the seven classical planets and their dignities:
                 </p>
-              </div>
-              
-              <div>
-                <h3 className="text-base font-medium text-foreground mb-2">Each Hour Has a Spiritual "Face"</h3>
-                <p className="leading-relaxed text-base">
-                  Every planetary hour carries a specific quality—mercy, strength, beauty, wisdom, or awe. Ibn Arabi teaches 
-                  that these are not mere influences but actual presences: angelic spirits attend each hour, and a Divine Name 
-                  governs it. Your inner state can harmonize with or resist this quality.
-                </p>
-                <div className="mt-3 p-4 rounded-lg bg-foreground/5 border border-border">
-                  <p className="text-sm">
-                    <strong className="text-foreground">Jalāl (جلال)</strong> hours (Mars, Saturn, Sun) carry majesty, strength, and awe.<br />
-                    <strong className="text-foreground">Jamāl (جمال)</strong> hours (Venus, Moon, Jupiter) carry beauty, gentleness, and expansion.<br />
-                    <strong className="text-foreground">Kamāl (كمال)</strong> hours (Mercury, Sun) carry perfection, balance, and integration.
-                  </p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-base font-medium text-foreground mb-2">How to Use the Hour Cards</h3>
-                <ul className="list-disc list-inside space-y-2 ml-2 text-base">
-                  <li><strong className="text-foreground">Check the planet:</strong> See which planet rules the current hour.</li>
-                  <li><strong className="text-foreground">Read "Meaning of this hour":</strong> Understand what this hour opens or tests.</li>
-                  <li><strong className="text-foreground">Use "Recommended practice":</strong> Follow the suggested dhikr, action, and avoidance.</li>
-                  <li><strong className="text-foreground">Check "Inner state":</strong> If you feel expansion, act. If contraction, observe.</li>
+                <ul className="list-disc list-inside space-y-3 ml-2 text-base">
+                  <li><strong className="text-foreground">Rulership (R):</strong> Planet in its home sign—strongest expression.</li>
+                  <li><strong className="text-foreground">Exaltation (E):</strong> Planet in its sign of honor—elevated influence.</li>
+                  <li><strong className="text-foreground">Detriment (d):</strong> Planet in the sign opposite its home—weakened.</li>
+                  <li><strong className="text-foreground">Fall (f):</strong> Planet in the sign opposite its exaltation—most challenged.</li>
+                  <li><strong className="text-foreground">Tropical vs Sidereal:</strong> Toggle between Western and Vedic zodiac calculations.</li>
                 </ul>
               </div>
-            </div>
-          </section>
+            </AccordionContent>
+          </AccordionItem>
 
-          <section id="reading-lunar-mansion" className="glass-card rounded-xl p-6 border border-border">
-            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-              <Moon className="w-5 h-5" />
-              How to Read the Lunar Mansion
-              <span className="font-arabic text-lg">كيفية قراءة المنزلة القمرية</span>
-            </h2>
+          <AccordionItem value="elemental-balance" id="elemental-balance" className="glass-card rounded-xl border border-border">
+            <AccordionTrigger className="p-6 hover:no-underline">
+              <h2 className="text-xl font-serif text-gold flex items-center gap-2">
+                <Star className="w-5 h-5" />
+                Elemental Balance <span className="font-arabic text-lg">توازن العناصر</span>
+              </h2>
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-6">
+              <div className="space-y-4 text-muted-foreground">
+                <p className="leading-relaxed text-base">
+                  The four elements represent fundamental qualities of existence:
+                </p>
+                <ul className="list-disc list-inside space-y-3 ml-2 text-base">
+                  <li><strong className="text-red-400">Fire (النار):</strong> Action, will, transformation, spiritual aspiration.</li>
+                  <li><strong className="text-amber-600">Earth (التراب):</strong> Stability, manifestation, practical matters.</li>
+                  <li><strong className="text-sky-400">Air (الهواء):</strong> Intellect, communication, social connection.</li>
+                  <li><strong className="text-blue-400">Water (الماء):</strong> Emotion, intuition, purification, receptivity.</li>
+                </ul>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="how-to-use" id="how-to-use" className="glass-card rounded-xl border border-border">
+            <AccordionTrigger className="p-6 hover:no-underline">
+              <h2 className="text-xl font-serif text-gold flex items-center gap-2">
+                <Calendar className="w-5 h-5" />
+                How to Use Daily
+              </h2>
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-6">
+              <div className="space-y-4 text-muted-foreground">
+                <ol className="list-decimal list-inside space-y-4 ml-2 text-base">
+                  <li><strong className="text-foreground">Morning Check:</strong> Review the day ruler and current lunar mansion.</li>
+                  <li><strong className="text-foreground">Plan Activities:</strong> Align tasks with favorable planetary hours.</li>
+                  <li><strong className="text-foreground">Spiritual Practice:</strong> Use Divine Attributes for dhikr and meditation.</li>
+                  <li><strong className="text-foreground">Evening Reflection:</strong> Note how the day's energies manifested.</li>
+                  <li><strong className="text-foreground">White Days:</strong> Fast on the 13th, 14th, and 15th of each Islamic month.</li>
+                </ol>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+
+          {/* NEW EXPERIENTIAL SECTIONS */}
+          <AccordionItem value="reading-planetary-hours" id="reading-planetary-hours" className="glass-card rounded-xl border border-border">
+            <AccordionTrigger className="p-6 hover:no-underline">
+              <h2 className="text-xl font-serif text-gold flex items-center gap-2">
+                <Clock className="w-5 h-5" />
+                How to Read Planetary Hours Spiritually
+                <span className="font-arabic text-lg">كيفية قراءة الساعات الكوكبية روحياً</span>
+              </h2>
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-6">
+              <div className="space-y-5 text-muted-foreground">
+                <div>
+                  <h3 className="text-base font-medium text-foreground mb-2">Time Starts at Sunset</h3>
+                  <p className="leading-relaxed text-base">
+                    In the Islamic tradition, the day begins at Maghrib (sunset), not midnight. This means the planetary day 
+                    and its ruling planet begin their influence as the sun sets. When you check the planetary hour, 
+                    remember that you are reading the current spiritual "breath" of time.
+                  </p>
+                </div>
+                
+                <div>
+                  <h3 className="text-base font-medium text-foreground mb-2">Each Hour Has a Spiritual "Face"</h3>
+                  <p className="leading-relaxed text-base">
+                    Every planetary hour carries a specific quality—mercy, strength, beauty, wisdom, or awe. Ibn Arabi teaches 
+                    that these are not mere influences but actual presences: angelic spirits attend each hour, and a Divine Name 
+                    governs it. Your inner state can harmonize with or resist this quality.
+                  </p>
+                  <div className="mt-3 p-4 rounded-lg bg-foreground/5 border border-border">
+                    <p className="text-sm">
+                      <strong className="text-foreground">Jalāl (جلال)</strong> hours (Mars, Saturn, Sun) carry majesty, strength, and awe.<br />
+                      <strong className="text-foreground">Jamāl (جمال)</strong> hours (Venus, Moon, Jupiter) carry beauty, gentleness, and expansion.<br />
+                      <strong className="text-foreground">Kamāl (كمال)</strong> hours (Mercury, Sun) carry perfection, balance, and integration.
+                    </p>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-base font-medium text-foreground mb-2">How to Use the Hour Cards</h3>
+                  <ul className="list-disc list-inside space-y-2 ml-2 text-base">
+                    <li><strong className="text-foreground">Check the planet:</strong> See which planet rules the current hour.</li>
+                    <li><strong className="text-foreground">Read "Meaning of this hour":</strong> Understand what this hour opens or tests.</li>
+                    <li><strong className="text-foreground">Use "Recommended practice":</strong> Follow the suggested dhikr, action, and avoidance.</li>
+                    <li><strong className="text-foreground">Check "Inner state":</strong> If you feel expansion, act. If contraction, observe.</li>
+                  </ul>
+                </div>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="reading-lunar-mansion" id="reading-lunar-mansion" className="glass-card rounded-xl border border-border">
+            <AccordionTrigger className="p-6 hover:no-underline">
+              <h2 className="text-xl font-serif text-gold flex items-center gap-2">
+                <Moon className="w-5 h-5" />
+                How to Read the Lunar Mansion
+                <span className="font-arabic text-lg">كيفية قراءة المنزلة القمرية</span>
+              </h2>
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-6">
             <div className="space-y-5 text-muted-foreground">
               <div>
                 <h3 className="text-base font-medium text-foreground mb-2">What is a Lunar Mansion?</h3>
@@ -959,67 +994,75 @@ export default function Instructions() {
                 </ul>
               </div>
             </div>
-          </section>
+            </AccordionContent>
+          </AccordionItem>
 
-          <section id="combining-hour-mansion" className="glass-card rounded-xl p-6 border border-border">
-            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-              <Sparkles className="w-5 h-5" />
-              Combining Hour and Mansion
-              <span className="font-arabic text-lg">الجمع بين الساعة والمنزلة</span>
-            </h2>
-            <div className="space-y-4 text-muted-foreground">
-              <p className="leading-relaxed text-base">
-                The deepest reading comes from combining the current planetary hour with the current lunar mansion. 
-                Together they create a specific "moment-quality" that can guide your actions and inner state.
-              </p>
-              
-              {/* B2: Added paragraph */}
-              <p className="leading-relaxed text-base">
-                This combination does not predict outcomes. It describes a moment-quality: what kind of attention, 
-                restraint, gratitude, or clarity may be most fitting.
-              </p>
-              
-              <div className="space-y-3">
-                <div className="p-4 rounded-lg bg-foreground/5 border border-border">
-                  <h4 className="text-sm font-medium text-foreground mb-2">Example: Mars Hour + Separating Mansion</h4>
-                  <p className="text-sm text-foreground/80">
-                    A Mars hour carries a quality of clarity and decisiveness. Combined with a Separating mansion (17-28), 
-                    this may support releasing what no longer serves, clearing distractions, or letting go of old patterns. 
-                    The strength of Mars may harmonize with the releasing quality of the mansion.
-                  </p>
+          <AccordionItem value="combining-hour-mansion" id="combining-hour-mansion" className="glass-card rounded-xl border border-border">
+            <AccordionTrigger className="p-6 hover:no-underline">
+              <h2 className="text-xl font-serif text-gold flex items-center gap-2">
+                <Sparkles className="w-5 h-5" />
+                Combining Hour and Mansion
+                <span className="font-arabic text-lg">الجمع بين الساعة والمنزلة</span>
+              </h2>
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-6">
+              <div className="space-y-4 text-muted-foreground">
+                <p className="leading-relaxed text-base">
+                  The deepest reading comes from combining the current planetary hour with the current lunar mansion. 
+                  Together they create a specific "moment-quality" that can guide your actions and inner state.
+                </p>
+                
+                {/* B2: Added paragraph */}
+                <p className="leading-relaxed text-base">
+                  This combination does not predict outcomes. It describes a moment-quality: what kind of attention, 
+                  restraint, gratitude, or clarity may be most fitting.
+                </p>
+                
+                <div className="space-y-3">
+                  <div className="p-4 rounded-lg bg-foreground/5 border border-border">
+                    <h4 className="text-sm font-medium text-foreground mb-2">Example: Mars Hour + Separating Mansion</h4>
+                    <p className="text-sm text-foreground/80">
+                      A Mars hour carries a quality of clarity and decisiveness. Combined with a Separating mansion (17-28), 
+                      this may support releasing what no longer serves, clearing distractions, or letting go of old patterns. 
+                      The strength of Mars may harmonize with the releasing quality of the mansion.
+                    </p>
+                  </div>
+                  
+                  <div className="p-4 rounded-lg bg-foreground/5 border border-border">
+                    <h4 className="text-sm font-medium text-foreground mb-2">Example: Venus Hour + Gathering Mansion</h4>
+                    <p className="text-sm text-foreground/80">
+                      A Venus hour carries a quality of beauty and harmony. Combined with a Gathering mansion (1-11), 
+                      this may support deepening relationships, cultivating beauty, or establishing commitments with gentleness. 
+                      The softness of Venus may harmonize with the cohesive quality of the mansion.
+                    </p>
+                  </div>
+                  
+                  <div className="p-4 rounded-lg bg-foreground/5 border border-border">
+                    <h4 className="text-sm font-medium text-foreground mb-2">Example: Jupiter Hour + Differentiating Mansion</h4>
+                    <p className="text-sm text-foreground/80">
+                      A Jupiter hour carries a quality of expansion and wisdom. Combined with a Differentiating mansion (12-16), 
+                      this may support gaining clarity, making discerning choices, or finding the right measure. 
+                      The abundance of Jupiter may harmonize with the clarifying quality of the mansion.
+                    </p>
+                  </div>
                 </div>
                 
-                <div className="p-4 rounded-lg bg-foreground/5 border border-border">
-                  <h4 className="text-sm font-medium text-foreground mb-2">Example: Venus Hour + Gathering Mansion</h4>
-                  <p className="text-sm text-foreground/80">
-                    A Venus hour carries a quality of beauty and harmony. Combined with a Gathering mansion (1-11), 
-                    this may support deepening relationships, cultivating beauty, or establishing commitments with gentleness. 
-                    The softness of Venus may harmonize with the cohesive quality of the mansion.
-                  </p>
-                </div>
-                
-                <div className="p-4 rounded-lg bg-foreground/5 border border-border">
-                  <h4 className="text-sm font-medium text-foreground mb-2">Example: Jupiter Hour + Differentiating Mansion</h4>
-                  <p className="text-sm text-foreground/80">
-                    A Jupiter hour carries a quality of expansion and wisdom. Combined with a Differentiating mansion (12-16), 
-                    this may support gaining clarity, making discerning choices, or finding the right measure. 
-                    The abundance of Jupiter may harmonize with the clarifying quality of the mansion.
-                  </p>
-                </div>
+                <p className="text-sm italic text-muted-foreground/80 pt-2">
+                  Notice your inner state (expansion or contraction) to sense whether to act outwardly or reflect inwardly.
+                </p>
               </div>
-              
-              <p className="text-sm italic text-muted-foreground/80 pt-2">
-                Notice your inner state (expansion or contraction) to sense whether to act outwardly or reflect inwardly.
-              </p>
-            </div>
-          </section>
+            </AccordionContent>
+          </AccordionItem>
 
-          <section id="ibn-arabi-background" className="glass-card rounded-xl p-6 border border-border">
-            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-              <BookOpen className="w-5 h-5" />
-              Background: Ibn ʿArabi's View of Time
-              <span className="font-arabic text-lg">رؤية ابن عربي للزمن</span>
-            </h2>
+          <AccordionItem value="ibn-arabi-background" id="ibn-arabi-background" className="glass-card rounded-xl border border-border">
+            <AccordionTrigger className="p-6 hover:no-underline">
+              <h2 className="text-xl font-serif text-gold flex items-center gap-2">
+                <BookOpen className="w-5 h-5" />
+                Background: Ibn ʿArabi's View of Time
+                <span className="font-arabic text-lg">رؤية ابن عربي للزمن</span>
+              </h2>
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-6">
             <div className="space-y-4 text-muted-foreground">
               <p className="leading-relaxed text-base">
                 For Ibn ʿArabi, time is not an empty container but a living reality. Each instant (waqt) is 
@@ -1094,13 +1137,18 @@ export default function Instructions() {
               </p>
 
             </div>
-          </section>
+            </AccordionContent>
+          </AccordionItem>
 
           {/* Ibn Arabi's Cosmology Card */}
-          <section id="cosmology-simple" className="glass-card rounded-xl p-6 border border-border">
-            <h2 className="text-2xl font-serif text-gold mb-2">Ibn ʿArabī's Cosmology Made Simple</h2>
-            <p className="text-sm text-muted-foreground mb-6">From the Breath of the Real to the Human Heart — and Back Again</p>
-
+          <AccordionItem value="cosmology-simple" id="cosmology-simple" className="glass-card rounded-xl border border-border">
+            <AccordionTrigger className="p-6 hover:no-underline">
+              <div className="text-left">
+                <h2 className="text-2xl font-serif text-gold">Ibn ʿArabī's Cosmology Made Simple</h2>
+                <p className="text-sm text-muted-foreground mt-1">From the Breath of the Real to the Human Heart — and Back Again</p>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-6">
             <div className="space-y-5 text-muted-foreground">
               {/* 1 */}
               <div>
@@ -1181,19 +1229,23 @@ export default function Instructions() {
                 <strong>In one sentence:</strong> The Real breathes the cosmos into being, it descends through the spheres until it reaches your heart, and your heart rises back through these same layers through awareness, sincerity, and remembrance—completing the circle of existence.
               </p>
             </div>
-          </section>
+            </AccordionContent>
+          </AccordionItem>
 
-          <section id="key-further-readings" className="glass-card rounded-xl p-6 border border-border">
-            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
-              <BookOpen className="w-5 h-5" />
-              Key Sources for Further Reading
-              <span className="font-arabic text-lg">مصادر للقراءة الإضافية</span>
-            </h2>
-            <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-              These works are not manuals for prediction or control. They are aids for <strong>contemplation, self-knowledge, and adab with time</strong>. Approach them slowly, reflectively, with attention to inner states rather than outcomes.
-            </p>
+          <AccordionItem value="key-further-readings" id="key-further-readings" className="glass-card rounded-xl border border-border">
+            <AccordionTrigger className="p-6 hover:no-underline">
+              <h2 className="text-xl font-serif text-gold flex items-center gap-2">
+                <BookOpen className="w-5 h-5" />
+                Key Sources for Further Reading
+                <span className="font-arabic text-lg">مصادر للقراءة الإضافية</span>
+              </h2>
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-6">
+              <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+                These works are not manuals for prediction or control. They are aids for <strong>contemplation, self-knowledge, and adab with time</strong>. Approach them slowly, reflectively, with attention to inner states rather than outcomes.
+              </p>
 
-            <Accordion type="single" collapsible className="space-y-4">
+              <Accordion type="single" collapsible className="space-y-4">
               {/* Primary Works */}
               <AccordionItem value="primary-works" className="border border-border rounded-lg px-4">
                 <AccordionTrigger className="text-base font-medium text-foreground hover:text-gold">
@@ -1280,9 +1332,12 @@ export default function Instructions() {
                   </div>
                 </AccordionContent>
               </AccordionItem>
-            </Accordion>
-          </section>
+              </Accordion>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
+        <div className="mt-8">
           <section className="glass-card rounded-xl p-6 border border-border bg-gold/5">
             <p className="text-center text-muted-foreground italic text-lg">
               "The cosmos is a book and every creature is a letter in it."
