@@ -221,9 +221,24 @@ export default function Home() {
 
   const detectLocation = () => {
     setIsLocating(true);
+    
+    // Timeout fallback - if geolocation takes too long, use default
+    // Only sets location if still null (prevents overriding manual selection)
+    const timeoutId = setTimeout(() => {
+      setLocation(currentLocation => {
+        if (currentLocation === null) {
+          console.warn("Geolocation timeout - using default location");
+          setIsLocating(false);
+          return { lat: 21.3891, lng: 39.8579, name: "Mecca (Default)" };
+        }
+        return currentLocation;
+      });
+    }, 5000); // 5 second timeout
+    
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
+          clearTimeout(timeoutId);
           // Attempt to find city name via reverse geocoding (OpenMeteo/BigDataCloud/etc - using client-side free API for demo)
           // Simple fallback if no API available is just "Detected Location"
           let cityName = "Detected Location";
@@ -245,13 +260,21 @@ export default function Home() {
           setIsLocating(false);
         },
         (err) => {
+          clearTimeout(timeoutId);
           console.error("Geolocation error:", err);
-          setLocation({ lat: 21.3891, lng: 39.8579, name: "Mecca (Default)" });
-          setError("Location access denied. Using default.");
+          setLocation(currentLocation => {
+            if (currentLocation === null) {
+              setError("Location access denied. Using default.");
+              return { lat: 21.3891, lng: 39.8579, name: "Mecca (Default)" };
+            }
+            return currentLocation;
+          });
           setIsLocating(false);
-        }
+        },
+        { timeout: 5000, maximumAge: 300000 } // 5 second timeout, cache for 5 minutes
       );
     } else {
+      clearTimeout(timeoutId);
       setLocation({ lat: 21.3891, lng: 39.8579, name: "Mecca (Default)" });
       setIsLocating(false);
     }

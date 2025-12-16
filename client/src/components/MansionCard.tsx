@@ -203,7 +203,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
         {guidance && (
           <div>
             <div className="mb-3 p-3 rounded-lg bg-card/50 border border-border" data-testid="mansion-theme-card">
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-primary" />
                   <span className="text-xs font-medium text-foreground uppercase tracking-wide">Mansion Theme</span>
@@ -219,12 +219,24 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                   {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
                 </button>
               </div>
-              <p className="text-sm text-foreground/90 leading-relaxed">
-                {guidance.theme}
-              </p>
-              <p className="text-xs text-muted-foreground mt-1.5 italic">
-                Energy: {guidance.energy === 'beginning' ? 'Beginning / Initiating' : guidance.energy === 'stabilizing' ? 'Stabilizing / Building' : 'Ending / Releasing'}
-              </p>
+              <AnimatePresence>
+                {isExpanded && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    <p className="text-sm text-foreground/90 leading-relaxed mt-2">
+                      {guidance.theme}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1.5 italic">
+                      Energy: {guidance.energy === 'beginning' ? 'Beginning / Initiating' : guidance.energy === 'stabilizing' ? 'Stabilizing / Building' : 'Ending / Releasing'}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         )}
