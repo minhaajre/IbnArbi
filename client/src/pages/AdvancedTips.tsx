@@ -36,7 +36,7 @@ export default function AdvancedTips() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="sticky top-0 z-30 bg-background/95 backdrop-blur-sm border-b border-border">
-        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div className="w-full px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/">
               <button
@@ -59,7 +59,7 @@ export default function AdvancedTips() {
         </div>
       </div>
       <TableOfContents sections={ADVANCED_TIPS_SECTIONS} />
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="w-full px-4 py-8">
         {/* Introduction */}
         <section id="intro" className="scroll-mt-20 mb-12">
           <div className="mb-6">
