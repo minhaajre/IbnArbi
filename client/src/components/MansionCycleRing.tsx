@@ -29,22 +29,22 @@ export function MansionCycleRing({ mansionNumber, onMansionSelect, selectedMansi
     const category = getCategory(position);
     const categoryColorMap: Record<string, { bg: string; border: string; text: string; light: string }> = {
       "Gathering": {
-        bg: "bg-stone-600",
-        border: "border-stone-600",
-        text: "text-stone-500",
-        light: "text-stone-100 dark:text-stone-800",
+        bg: "bg-emerald-500",
+        border: "border-emerald-500",
+        text: "text-emerald-400",
+        light: "text-emerald-100 dark:text-emerald-900",
       },
       "Differentiating": {
-        bg: "bg-slate-500",
-        border: "border-slate-500",
-        text: "text-slate-400",
-        light: "text-slate-100 dark:text-slate-800",
+        bg: "bg-cyan-500",
+        border: "border-cyan-500",
+        text: "text-cyan-400",
+        light: "text-cyan-100 dark:text-cyan-900",
       },
       "Separating": {
-        bg: "bg-stone-700",
-        border: "border-stone-700",
-        text: "text-stone-600",
-        light: "text-stone-100 dark:text-stone-900",
+        bg: "bg-amber-500",
+        border: "border-amber-500",
+        text: "text-amber-400",
+        light: "text-amber-100 dark:text-amber-900",
       },
     };
     const colors = categoryColorMap[category];
@@ -137,7 +137,7 @@ export function MansionCycleRing({ mansionNumber, onMansionSelect, selectedMansi
             >
               {/* Tree icon colored by status */}
               <div>
-                <TreeIcon color={colors.text === "text-stone-500" ? "#78716c" : colors.text === "text-slate-400" ? "#94a3b8" : "#57534e"} size={32} />
+                <TreeIcon color={colors.text === "text-emerald-400" ? "#10b981" : colors.text === "text-cyan-400" ? "#06b6d4" : "#f59e0b"} size={32} />
               </div>
 
               {/* Mansion number on click */}
@@ -170,7 +170,7 @@ export function MansionCycleRing({ mansionNumber, onMansionSelect, selectedMansi
               {/* Icon */}
               <div className={`flex-shrink-0`}>
                 <TreeIcon
-                  color={displayColor.text === "text-stone-500" ? "#78716c" : displayColor.text === "text-slate-400" ? "#94a3b8" : "#57534e"}
+                  color={displayColor.text === "text-emerald-400" ? "#10b981" : displayColor.text === "text-cyan-400" ? "#06b6d4" : "#f59e0b"}
                   size={36}
                 />
               </div>

@@ -100,7 +100,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                 <TooltipTrigger asChild>
                   <div className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium cursor-help ${
                     moonPhase.isWaxing 
-                      ? 'bg-gold/10 text-gold border border-gold/30' 
+                      ? 'bg-amber-500/10 text-amber-400 border border-amber-500/30' 
                       : 'bg-slate-500/10 text-slate-400 border border-slate-500/30'
                   }`} data-testid="moon-phase-tag">
                     {moonPhase.isWaxing ? '☽ Waxing' : '☾ Waning'}
@@ -263,7 +263,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                       <ul className="space-y-1">
                         {guidance.notIdealFor.slice(0, 4).map((item, i) => (
                           <li key={i} className="text-xs text-foreground/60 flex items-start gap-1.5">
-                            <span className="text-stone-500 mt-0.5">•</span>
+                            <span className="text-amber-400 mt-0.5">•</span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -319,10 +319,10 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                 {'activities' in mansion && mansion.activities && (
                   <div className={`flex gap-3 p-2.5 rounded-lg border ${
                     isBlessed 
-                      ? 'bg-foreground/5 border-border' 
-                      : 'bg-stone-600/5 border-stone-600/20'
+                      ? 'bg-green-500/5 border-green-500/20' 
+                      : 'bg-amber-500/5 border-amber-500/20'
                   }`}>
-                    <Lightbulb className={`w-4 h-4 mt-0.5 shrink-0 ${isBlessed ? 'text-gold' : 'text-stone-500'}`} />
+                    <Lightbulb className={`w-4 h-4 mt-0.5 shrink-0 ${isBlessed ? 'text-green-500' : 'text-amber-500'}`} />
                     <div>
                       <strong className="text-foreground block mb-0.5 font-medium text-xs uppercase tracking-wide opacity-70">
                         Suggested Activities <span className="font-arabic">الأنشطة المقترحة</span>

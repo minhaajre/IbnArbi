@@ -92,7 +92,7 @@ export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: Planeta
                         : planet.status === "Rulership"
                         ? "bg-primary/10 text-primary border-primary/20"
                         : planet.status === "Detriment"
-                        ? "bg-stone-600/10 text-stone-700 dark:text-stone-400 border-stone-600/20"
+                        ? "bg-orange-600/10 text-orange-700 dark:text-orange-400 border-orange-600/20"
                         : "bg-foreground/5 text-muted-foreground border-transparent"
                     )}>
                     {planet.status === "Exalted" && <ArrowUpCircle className="w-3 h-3" />}

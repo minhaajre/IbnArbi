@@ -29,7 +29,6 @@
   --border: 40 20% 80%;
   --input: 40 20% 80%;
   --ring: 35 85% 35%;
-  --gold: 45 85% 50%;
 }
 
 .dark {
@@ -53,7 +52,6 @@
   --border: 240 20% 15%;
   --input: 240 20% 15%;
   --ring: 45 90% 60%;
-  --gold: 45 90% 60%;
 }
 
 @theme inline {
@@ -80,7 +78,6 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
-  --color-gold: hsl(var(--gold));
   --radius: var(--radius);
 }
 
@@ -162,10 +159,9 @@
   }
   
   .text-gold {
-    color: hsl(var(--gold));
+    @apply text-primary;
   }
   .dark .text-gold {
-    color: hsl(var(--gold));
-    filter: drop-shadow(0 0 8px rgba(250,204,21,0.3));
+    @apply drop-shadow-[0_0_8px_rgba(250,204,21,0.3)];
   }
 }
