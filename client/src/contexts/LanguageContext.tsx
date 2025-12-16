@@ -27,6 +27,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.detecting": "Detecting...",
     "nav.enterCity": "Enter city name...",
     "nav.or": "- OR -",
+    "nav.learnMore": "Learn more →",
     
     // Location Settings
     "location.settings": "Location Settings",
@@ -121,6 +122,16 @@ const translations: Record<Language, Record<string, string>> = {
     // Azkaar
     "azkaar.title": "Advanced Sufi Aẓkār",
     "azkaar.subtitle": "Traditional litanies and devotional practices",
+    
+    // Section Info Descriptions
+    "info.lunarMansion.title": "Lunar Mansions",
+    "info.lunarMansion.description": "The Moon travels through each of the 28 mansions approximately every day. Each mansion represents one of three movements: Gathering (1-11), Differentiating (12-16), or Separating (17-28). Understanding which movement you are in helps align your activities and inner state with the lunar rhythm.",
+    "info.planetaryHours.title": "Planetary Hours",
+    "info.planetaryHours.description": "Each day is divided into 24 planetary hours, with each hour ruled by one of the seven classical planets. The day ruler sets the spiritual tone for the entire day. The VOC (Void of Course) indicator means the Moon makes no major aspects before leaving its sign.",
+    "info.dignities.title": "Celestial Dignities",
+    "info.dignities.description": "Shows current positions of the seven classical planets and their dignities. Rulership (R) means strongest expression, Exaltation (E) means elevated influence, Detriment (d) means weakened, and Fall (f) means most challenged.",
+    "info.elements.title": "Elemental Balance",
+    "info.elements.description": "The four elements (Fire, Earth, Air, Water) represent fundamental qualities of existence. This shows which elements are emphasized based on current planetary positions, helping you understand the day's overall energy.",
   },
   ar: {
     // App Title & Header
@@ -138,6 +149,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.detecting": "جاري التحديد...",
     "nav.enterCity": "أدخل اسم المدينة...",
     "nav.or": "- أو -",
+    "nav.learnMore": "← اعرف المزيد",
     
     // Location Settings
     "location.settings": "إعدادات الموقع",
@@ -232,6 +244,16 @@ const translations: Record<Language, Record<string, string>> = {
     // Azkaar
     "azkaar.title": "الأذكار الصوفية المتقدمة",
     "azkaar.subtitle": "الأوراد والممارسات التعبدية التقليدية",
+    
+    // Section Info Descriptions
+    "info.lunarMansion.title": "منازل القمر",
+    "info.lunarMansion.description": "يمر القمر عبر كل منزلة من المنازل الـ٢٨ تقريباً كل يوم. تمثل كل منزلة إحدى ثلاث حركات: الجمع (١-١١)، التفريق (١٢-١٦)، أو الفصل (١٧-٢٨). فهم أي حركة أنت فيها يساعد على مواءمة أنشطتك وحالتك الداخلية مع الإيقاع القمري.",
+    "info.planetaryHours.title": "الساعات الكوكبية",
+    "info.planetaryHours.description": "ينقسم كل يوم إلى ٢٤ ساعة كوكبية، حيث يحكم كل ساعة أحد الكواكب السبعة الكلاسيكية. يحدد كوكب اليوم النغمة الروحية ليوم كامل. مؤشر القمر خالي المسار يعني أن القمر لا يشكل جوانب رئيسية قبل مغادرة برجه.",
+    "info.dignities.title": "الكرامات السماوية",
+    "info.dignities.description": "يُظهر المواقع الحالية للكواكب السبعة الكلاسيكية وكراماتها. السيادة تعني أقوى تعبير، الشرف يعني تأثير مرتفع، الوبال يعني ضعف، والهبوط يعني الأكثر تحدياً.",
+    "info.elements.title": "توازن العناصر",
+    "info.elements.description": "تمثل العناصر الأربعة (النار، الأرض، الهواء، الماء) الصفات الأساسية للوجود. يُظهر هذا العناصر المؤكدة بناءً على المواقع الكوكبية الحالية، مما يساعدك على فهم طاقة اليوم الإجمالية.",
   }
 };
 
