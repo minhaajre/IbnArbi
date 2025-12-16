@@ -1,0 +1,426 @@
+## Index
+
+1. Goal and testing rules
+2. Pre-flight setup in Replit
+3. Build, run, and environment checks
+4. Functional testing checklist
+5. UI/UX and interaction checklist
+6. Data, state, persistence checklist
+7. Content integrity checklist (Ibn ʿArabi-specific)
+8. Accessibility checklist
+9. Performance checklist
+10. Security checklist
+11. Reliability and error handling checklist
+12. Cross-browser and responsive checklist
+13. Code quality and refactoring checklist
+14. Logging, analytics, and observability checklist
+15. Release readiness checklist
+16. Bug report template + how to fix systematically (for Replit AI)
+
+---
+
+## 1) Goal and testing rules
+
+* Objective: find and fix bugs, broken UI, inconsistent behavior, performance issues, security gaps, and refactor code to be maintainable.
+* Testing mindset:
+
+  * Test happy paths + failure paths + “weird user” behavior.
+  * Never “assume” a component works because it looks fine once.
+  * Every fix must include: reproduction steps + root cause + unit/integration test (when feasible) + regression check.
+
+---
+
+## 2) Pre-flight setup in Replit
+
+Tell Replit AI to do this first:
+
+* Read the entire repo structure and identify:
+
+  * Framework (Next.js/React/Vite/etc.)
+  * Backend (Express/Fastify/serverless/etc.)
+  * DB (SQLite/Postgres/Firebase/etc.)
+  * State management (Context/Zustand/Redux/etc.)
+  * Styling (Tailwind/CSS modules/etc.)
+* Confirm:
+
+  * Node version (and matches project expectation)
+  * Package manager (npm/yarn/pnpm) and lockfile presence
+  * `.env` usage and required variables
+* Add/verify scripts in `package.json`:
+
+  * `lint`, `test`, `typecheck`, `build`, `start`
+* Ensure a clean install:
+
+  * Delete `node_modules` (if needed) and reinstall from lockfile.
+
+---
+
+## 3) Build, run, and environment checks
+
+* Run:
+
+  * `npm run lint` (or equivalent)
+  * `npm run typecheck` (if TS)
+  * `npm test` (if tests exist)
+  * `npm run build` (must succeed)
+  * `npm run start` (production mode) and verify core flows still work
+* Verify no “dev-only” assumptions:
+
+  * No reliance on hot reload behavior
+  * No usage of dev-only environment variables
+  * No build-time secrets exposed to client
+* Check console:
+
+  * Zero React warnings (keys, controlled/uncontrolled inputs, hydration mismatches, etc.)
+  * Zero network 4xx/5xx in baseline usage
+
+---
+
+## 4) Functional testing checklist
+
+For every major feature, test these patterns:
+
+### Navigation + routing
+
+* All routes load without crash
+* Deep links work (open a nested route directly)
+* Back/forward browser buttons behave correctly
+* 404 page exists and is styled + useful
+* Query params and hashes handled correctly (no infinite loops)
+
+### Core flows
+
+For each flow (e.g., search → open entry → save → export):
+
+* Happy path works end-to-end
+* Empty-state behavior is correct
+* Invalid input is handled (no crash)
+* Interruptions:
+
+  * refresh mid-flow
+  * slow network / timeout
+  * double-click or repeated submit
+* Concurrency:
+
+  * multiple rapid changes don’t corrupt state
+  * two tabs open doesn’t break persistence
+
+### Forms
+
+* Required fields enforced
+* Clear error messages, placed near the field
+* Enter key behavior correct
+* Loading state on submit
+* Prevent duplicate submissions (disable button / idempotency)
+* Validation:
+
+  * client + server validation match
+  * trimming whitespace
+  * Unicode/Arabic input accepted properly (no mojibake)
+
+### Search
+
+* Search with:
+
+  * empty query
+  * short query
+  * long query
+  * special chars
+  * Arabic diacritics (if relevant)
+* Sorting and filtering combinations don’t break results
+* No performance lag on large result sets
+
+---
+
+## 5) UI/UX and interaction checklist
+
+### Visual consistency
+
+* Typography consistent across pages
+* Spacing scale consistent (no random margins)
+* Buttons:
+
+  * primary/secondary/destructive styles consistent
+  * hover/focus/disabled states consistent
+* Cards, modals, tooltips consistent
+
+### Interaction quality
+
+* All clickable elements have clear hover + focus
+* No “dead clicks” (clickable-looking elements that do nothing)
+* No overlapping layers blocking clicks (z-index issues)
+* Modals:
+
+  * close via X, overlay click (if desired), and Esc
+  * focus stays inside modal (focus trap)
+  * scrolling behavior correct (no background scroll bleed)
+
+### Broken elements
+
+* Scan every page for:
+
+  * overflow causing content to disappear
+  * clipped Arabic text
+  * icons missing
+  * broken images
+  * layout shifts when data loads
+
+---
+
+## 6) Data, state, persistence checklist
+
+* State resets:
+
+  * refresh page
+  * navigate away and back
+  * close and reopen browser
+* If using localStorage/DB:
+
+  * corrupt data should not crash app (validate + fallback)
+  * migrations handled if schema changes
+* Check for:
+
+  * stale state bugs (UI not updating when data changes)
+  * “derived state” bugs (computed values out of sync)
+  * memory leaks (listeners not cleaned up)
+
+---
+
+## 7) Content integrity checklist (Ibn ʿArabi-specific)
+
+This is where most “silent bugs” happen:
+
+* Arabic text rendering:
+
+  * Right-to-left direction correct (`dir="rtl"` where needed)
+  * Diacritics display correctly
+  * No broken ligatures or line-height clipping
+* Transliteration/translation consistency:
+
+  * Same term not spelled 3 different ways across pages
+* Reference integrity:
+
+  * If you show chapter/section references, verify linking and display
+  * If the app shows planetary hours/mansions/terms: verify definitions map correctly to the right label
+* Copy/paste behavior:
+
+  * Copy Arabic text preserves characters and directionality
+* Search with Arabic:
+
+  * searching without diacritics still returns diacritic text (if intended)
+  * normalization rules defined and consistent
+
+---
+
+## 8) Accessibility checklist
+
+* Keyboard-only navigation works across the entire app
+* Visible focus indicator everywhere
+* Semantics:
+
+  * headings in order (h1 → h2 → h3)
+  * buttons are actual `<button>` not clickable `<div>`
+  * inputs have labels
+* ARIA:
+
+  * only where needed, and correct usage
+* Color contrast meets baseline (especially in dark mode)
+* Screen-reader basics:
+
+  * nav landmarks present
+  * modal announces itself
+  * error messages announced
+
+---
+
+## 9) Performance checklist
+
+* Measure:
+
+  * initial load time
+  * time-to-interactive
+  * large data rendering responsiveness
+* Look for:
+
+  * unnecessary re-renders
+  * huge bundle size (importing entire libraries)
+  * expensive computations on every keystroke
+* Fix patterns:
+
+  * memoize heavy selectors
+  * virtualize long lists
+  * debounce search input
+  * code-split heavy routes/components
+* Network:
+
+  * no duplicate API calls
+  * caching strategy sensible
+
+---
+
+## 10) Security checklist
+
+* Input handling:
+
+  * sanitize user-generated content
+  * prevent XSS in any rich text rendering
+* Auth (if exists):
+
+  * protected routes actually protected server-side
+  * tokens not stored insecurely
+* API:
+
+  * validate inputs server-side
+  * rate limit sensitive endpoints if public
+* Secrets:
+
+  * no secrets in client bundle
+  * `.env` not committed
+* Dependencies:
+
+  * check `npm audit` and fix high severity items (or document why not)
+
+---
+
+## 11) Reliability and error handling checklist
+
+* Global error boundary exists (frontend)
+* API errors show:
+
+  * friendly message
+  * retry option if relevant
+  * error code in console/log for debugging
+* Offline / flaky network:
+
+  * app doesn’t crash
+  * operations fail gracefully
+* Loading states:
+
+  * skeletons or spinners for slow requests
+  * no infinite loading without timeout
+
+---
+
+## 12) Cross-browser and responsive checklist
+
+Test at minimum:
+
+* Chrome, Firefox, Safari (or WebKit equivalent)
+* Mobile widths:
+
+  * 360px, 390px, 414px
+* Tablet:
+
+  * 768px
+* Desktop:
+
+  * 1280px+
+
+Check:
+
+* sticky headers/footers behave correctly
+* modals on mobile don’t trap scroll weirdly
+* touch targets large enough
+* no horizontal scrolling on small screens
+
+---
+
+## 13) Code quality and refactoring checklist
+
+### Structure
+
+* Clear separation:
+
+  * UI components vs domain logic vs data access
+* No duplicated logic across pages (extract helpers/hooks)
+
+### Readability
+
+* Functions short and single-purpose
+* Rename unclear variables and props
+* Remove commented-out code and dead files
+
+### Type safety
+
+* Prefer strict TS types over `any`
+* Validate runtime data from APIs (zod/io-ts or manual guards)
+
+### State and effects
+
+* Fix anti-patterns:
+
+  * useEffect doing too much
+  * missing dependency arrays
+  * derived state stored redundantly
+* Ensure cleanup:
+
+  * event listeners removed
+  * intervals/timeouts cleared
+
+### Styling
+
+* No one-off inline styles unless justified
+* Shared design tokens (spacing, typography, colors)
+
+### Testing
+
+Add at least:
+
+* unit tests for core utilities
+* integration tests for at least 1–2 critical flows
+* snapshot tests only if they’re stable and meaningful
+
+---
+
+## 14) Logging, analytics, and observability checklist
+
+* Add consistent logging (dev vs prod behavior)
+* Errors:
+
+  * logged with stack + context
+  * user-friendly message shown
+* If analytics used:
+
+  * avoid logging sensitive content
+  * confirm events fire once (not duplicates)
+
+---
+
+## 15) Release readiness checklist
+
+* Production build passes and runs
+* No console errors
+* All critical flows tested
+* Known issues documented with severity
+* Versioning/changelog updated (if used)
+* Backups/migrations prepared (if DB)
+* Rollback plan exists (even if simple)
+
+---
+
+## 16) Bug report template + fix method (for Replit AI)
+
+### Bug report template
+
+* Title:
+* Environment: (dev/prod, browser, device width)
+* Steps to reproduce:
+* Expected:
+* Actual:
+* Screenshots/console logs:
+* Suspected module/file:
+* Severity: (Blocker / Major / Minor / Cosmetic)
+
+### Fix method (non-negotiable)
+
+1. Reproduce reliably
+2. Identify root cause (not just symptom)
+3. Write a test (if feasible)
+4. Implement fix
+5. Regression test nearby features
+6. Run lint/typecheck/build again
+7. Document the fix (short note)
+
+---
+
+If you paste this into Replit AI, it can follow it like a QA+refactor playbook. If you want, drop the repo link or your screenshots again and I’ll tailor this checklist into a **feature-by-feature test plan** specifically for your Ibn ʿArabi app (including the riskiest parts: Arabic/RTL, mansion calculations, and any calendar/time logic).
