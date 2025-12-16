@@ -1,7 +1,9 @@
 import { Link } from "wouter";
+import { useEffect } from "react";
 import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Heart, BookOpen, Eye, EyeOff, RefreshCw, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Tooltip,
   TooltipContent,
@@ -9,7 +11,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-const INSTRUCTIONS_SECTIONS: TOCSection[] = [
+const INSTRUCTIONS_SECTIONS_BASE: TOCSection[] = [
   { id: "about-app", title: "About This App" },
   { id: "ibn-arabi-background", title: "Ibn ʿArabī's View of Time" },
   { id: "lunar-mansions", title: "Lunar Mansions" },
@@ -434,6 +436,18 @@ const CATEGORY_COLORS: Record<string, string> = {
 const DIVINE_NAMES_WATERMARK = "الله الرحمن الرحيم الملك القدوس السلام المؤمن المهيمن العزيز الجبار المتكبر الخالق البارئ المصور الغفار القهار الوهاب الرزاق الفتاح العليم";
 
 export default function Instructions() {
+  const { language, t } = useLanguage();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.lang = language;
+    document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+  }, [language]);
+
+  const INSTRUCTIONS_SECTIONS = INSTRUCTIONS_SECTIONS_BASE.map(section => ({
+    ...section,
+    title: t(section.title)
+  }));
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
       {/* Andalusian Divine Names Watermark Background */}
@@ -873,7 +887,7 @@ export default function Instructions() {
             <AccordionTrigger className="p-6 hover:no-underline">
               <h2 className="text-xl font-serif text-gold flex items-center gap-2">
                 <Calendar className="w-5 h-5" />
-                How to Use Daily
+                How to Use Daily <span className="font-arabic text-lg">كيفية الاستخدام اليومي</span>
               </h2>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6">
@@ -1115,7 +1129,7 @@ export default function Instructions() {
             <AccordionTrigger className="p-6 hover:no-underline">
               <h2 className="text-xl font-serif text-gold flex items-center gap-2">
                 <Orbit className="w-5 h-5" />
-                Ibn ʿArabī's Cosmology Made Simple
+                Ibn ʿArabī's Cosmology Made Simple <span className="font-arabic text-lg">علم الكون بكل بساطة</span>
               </h2>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6">
