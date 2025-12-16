@@ -45,7 +45,7 @@ export default function AdvancedAzkaar() {
       </Link>
 
       {/* Header */}
-      <div className="border-b border-border bg-foreground/5">
+      <div className="border-b border-border bg-foreground/5 relative z-30">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center gap-3">
             <Scroll className="w-6 h-6 text-purple-400" />
