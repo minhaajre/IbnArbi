@@ -472,10 +472,10 @@ export default function Instructions() {
       <div className="relative z-10 p-4 sm:p-8 md:p-12 max-w-6xl mx-auto">
         <header className="mb-8">
           <h1 className="text-3xl sm:text-4xl font-serif text-gold mb-2">
-            Instructions <span className="font-arabic">تعليمات</span>
+            {t("instructions.title")}
           </h1>
           <p className="text-muted-foreground text-lg">
-            A guide to using Ibn Arabi's Cosmology App based on his spiritual teachings
+            {t("instructions.subtitle")}
           </p>
         </header>
 
@@ -484,7 +484,7 @@ export default function Instructions() {
             <AccordionTrigger className="p-6 hover:no-underline">
               <h2 className="text-xl font-serif text-gold flex items-center gap-2">
                 <Scroll className="w-5 h-5" />
-                About This App
+                {t("section.aboutApp")}
               </h2>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6">
@@ -507,8 +507,7 @@ export default function Instructions() {
             <AccordionTrigger className="p-6 hover:no-underline">
               <h2 className="text-xl font-serif text-gold flex items-center gap-2">
                 <BookOpen className="w-5 h-5" />
-                Background: Ibn ʿArabi's View of Time
-                <span className="font-arabic text-lg">رؤية ابن عربي للزمن</span>
+                {t("section.ibnArabiTime")}
               </h2>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6">
@@ -593,7 +592,7 @@ export default function Instructions() {
             <AccordionTrigger className="p-6 hover:no-underline">
               <h2 className="text-xl font-serif text-gold flex items-center gap-2">
                 <Moon className="w-5 h-5" />
-                Lunar Mansions <span className="font-arabic text-lg">المنازل القمرية</span>
+                {t("section.lunarMansions")}
               </h2>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6">
@@ -766,7 +765,7 @@ export default function Instructions() {
             <AccordionTrigger className="p-6 hover:no-underline">
               <h2 className="text-xl font-serif text-gold flex items-center gap-2">
                 <Clock className="w-5 h-5" />
-                Planetary Hours <span className="font-arabic text-lg">الساعات الكوكبية</span>
+                {t("section.planetaryHours")}
               </h2>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6">
@@ -842,7 +841,7 @@ export default function Instructions() {
             <AccordionTrigger className="p-6 hover:no-underline">
               <h2 className="text-xl font-serif text-gold flex items-center gap-2">
                 <Orbit className="w-5 h-5" />
-                Celestial Dignities <span className="font-arabic text-lg">الكرامات السماوية</span>
+                {t("section.celestialDignities")}
               </h2>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6">
@@ -865,7 +864,7 @@ export default function Instructions() {
             <AccordionTrigger className="p-6 hover:no-underline">
               <h2 className="text-xl font-serif text-gold flex items-center gap-2">
                 <Star className="w-5 h-5" />
-                Elemental Balance <span className="font-arabic text-lg">توازن العناصر</span>
+                {t("section.elementalBalance")}
               </h2>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6">
@@ -887,7 +886,7 @@ export default function Instructions() {
             <AccordionTrigger className="p-6 hover:no-underline">
               <h2 className="text-xl font-serif text-gold flex items-center gap-2">
                 <Calendar className="w-5 h-5" />
-                How to Use Daily <span className="font-arabic text-lg">كيفية الاستخدام اليومي</span>
+                {t("section.howToUse")}
               </h2>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6">
@@ -1129,7 +1128,7 @@ export default function Instructions() {
             <AccordionTrigger className="p-6 hover:no-underline">
               <h2 className="text-xl font-serif text-gold flex items-center gap-2">
                 <Orbit className="w-5 h-5" />
-                Ibn ʿArabī's Cosmology Made Simple <span className="font-arabic text-lg">علم الكون بكل بساطة</span>
+                {t("section.cosmologySimple")}
               </h2>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6">

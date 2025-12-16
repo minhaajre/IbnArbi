@@ -84,7 +84,7 @@ const SECTION_INFO = {
 
 export default function Home() {
   const [, navigate] = useLocation();
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
   // State
   const [now, setNow] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
@@ -345,7 +345,7 @@ export default function Home() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background text-foreground">
-        <div className="animate-pulse text-gold font-serif text-2xl">Calculating Spheres...</div>
+        <div className="animate-pulse text-gold font-serif text-2xl">{t("app.calculating")}</div>
       </div>
     );
   }
@@ -371,8 +371,8 @@ export default function Home() {
       <header className="flex flex-col gap-4 sm:gap-6 border-b border-border pb-4 sm:pb-8 mb-6 sm:mb-12">
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 w-full">
           <div className="flex-1 min-w-0">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-serif text-gold mb-1 sm:mb-2">Ibn Arabi's Cosmology</h1>
-            <p className="text-muted-foreground font-light tracking-wide text-sm sm:text-base">Guide to the Prayer Timings & Planetary Alignment</p>
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-serif text-gold mb-1 sm:mb-2">{t("app.title")}</h1>
+            <p className="text-muted-foreground font-light tracking-wide text-sm sm:text-base">{t("app.subtitle")}</p>
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -394,25 +394,25 @@ export default function Home() {
                 variant="outline" 
                 className="bg-card/50 border-border h-8 sm:h-9 px-2 sm:px-3 gap-1.5"
                 data-testid="link-instructions"
-                title="Guidance"
+                title={t("nav.guidance")}
               >
                 <BookOpen className="w-4 h-4" />
-                <span className="text-xs hidden sm:inline">Guidance</span>
+                <span className="text-xs hidden sm:inline">{t("nav.guidance")}</span>
               </Button>
             </Link>
 
             {/* Sidereal Toggle */}
             <div className="flex items-center gap-1.5 sm:gap-2 bg-card/50 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 border border-border">
-              <span className={`text-[10px] sm:text-xs ${!useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Tropical</span>
+              <span className={`text-[10px] sm:text-xs ${!useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>{t("nav.tropical")}</span>
               <Switch checked={useSidereal} onCheckedChange={setUseSidereal} className="scale-90 sm:scale-100" />
-              <span className={`text-[10px] sm:text-xs ${useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Sidereal</span>
+              <span className={`text-[10px] sm:text-xs ${useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>{t("nav.sidereal")}</span>
             </div>
 
             {/* Language Toggle */}
             <div className="flex items-center gap-1.5 sm:gap-2 bg-card/50 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 border border-border">
               <span className={`text-[10px] sm:text-xs ${language === 'en' ? 'text-primary' : 'text-muted-foreground'}`}>EN</span>
               <Switch checked={language === 'ar'} onCheckedChange={(checked) => setLanguage(checked ? 'ar' : 'en')} className="scale-90 sm:scale-100" />
-              <span className={`text-[10px] sm:text-xs ${language === 'ar' ? 'text-primary' : 'text-muted-foreground'}`}>AR</span>
+              <span className={`text-[10px] sm:text-xs ${language === 'ar' ? 'text-primary' : 'text-muted-foreground'}`}>عربي</span>
             </div>
 
 
@@ -426,12 +426,12 @@ export default function Home() {
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Location Settings</DialogTitle>
+                  <DialogTitle>{t("location.settings")}</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-4 py-4">
                   <div className="relative">
                     <Input 
-                      placeholder="Enter city name..." 
+                      placeholder={t("nav.enterCity")} 
                       value={manualCity} 
                       onChange={(e) => handleCityInput(e.target.value)}
                       onFocus={() => manualCity.length >= 2 && setShowSuggestions(true)}
@@ -456,9 +456,9 @@ export default function Home() {
                     )}
                   </div>
                   
-                  <div className="text-xs text-muted-foreground text-center">- OR -</div>
+                  <div className="text-xs text-muted-foreground text-center">{t("nav.or")}</div>
                   <Button variant="secondary" onClick={detectLocation} className="w-full" disabled={isLocating}>
-                    {isLocating ? "Detecting..." : "Auto-Detect Location"}
+                    {isLocating ? t("nav.detecting") : t("nav.autoDetect")}
                   </Button>
                 </div>
               </DialogContent>
