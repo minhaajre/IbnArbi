@@ -58,9 +58,7 @@ export default function AdvancedTips() {
           </Link>
         </div>
       </div>
-
       <TableOfContents sections={ADVANCED_TIPS_SECTIONS} />
-
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Introduction */}
         <section id="intro" className="scroll-mt-20 mb-12">
@@ -76,9 +74,7 @@ export default function AdvancedTips() {
               <p className="text-foreground/90 leading-relaxed">
                 Beyond tracking time and lunar cycles, alignment arises from internal awareness. This section explores how to observe, regulate, and reflect on your inner states using modern psychological tools—while remaining grounded in Ibn ʿArabī's principles of <span className="italic">adab</span> (spiritual etiquette) and presence.
               </p>
-              <p className="text-sm text-muted-foreground italic">
-                These tools are optional. Use them gently. If they increase anxiety or self-monitoring, step back. Alignment comes from presence, not control.
-              </p>
+              <p className="text-sm text-muted-foreground italic">These tools are optional for nervous system regulation. Use them gently. If they increase anxiety or self-monitoring, step back. Alignment comes from presence, not control.</p>
             </div>
           </div>
         </section>
