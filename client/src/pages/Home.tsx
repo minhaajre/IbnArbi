@@ -492,41 +492,11 @@ export default function Home() {
           </div>
         </div>
       </header>
-      {/* Row 1: Station + Planetary Hour (side by side) */}
+      {/* Row 1: Planetary Hour + Station (reordered for mobile) */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
         
-        {/* Current Station Card - Glass Effect */}
-        <section id="lunar-mansion" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
-            <h2 className="text-base sm:text-lg font-serif text-foreground/80">
-              Current Lunar Mansion <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">المنزلة القمرية الحالية</span>
-            </h2>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
-                  <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-lunar-mansion" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-80" align="end">
-                <div className="space-y-2">
-                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.lunarMansion.title}</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.lunarMansion.description}</p>
-                  <Link href="/instructions#lunar-mansions" className="text-xs text-primary hover:underline block pt-1">
-                    Learn more →
-                  </Link>
-                </div>
-              </PopoverContent>
-            </Popover>
-          </div>
-          <div className="relative z-10">
-            <MansionCard mansion={mansion} progress={mansionProgress ?? undefined} moonPhase={moonPhase ?? undefined} />
-          </div>
-        </section>
-
-        {/* Planetary Hour Card - Glass Effect */}
-        <section id="planetary-hours" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
+        {/* Planetary Hour Card - Glass Effect (appears first on mobile) */}
+        <section id="planetary-hours" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden order-first lg:order-none">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           
@@ -720,6 +690,36 @@ export default function Home() {
               </div>
             </div>
           )}
+        </section>
+
+        {/* Current Station Card - Glass Effect (appears second on mobile after reordering) */}
+        <section id="lunar-mansion" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden order-last lg:order-none">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
+            <h2 className="text-base sm:text-lg font-serif text-foreground/80">
+              Current Lunar Mansion <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">المنزلة القمرية الحالية</span>
+            </h2>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
+                  <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-lunar-mansion" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80" align="end">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.lunarMansion.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.lunarMansion.description}</p>
+                  <Link href="/instructions#lunar-mansions" className="text-xs text-primary hover:underline block pt-1">
+                    Learn more →
+                  </Link>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+          <div className="relative z-10">
+            <MansionCard mansion={mansion} progress={mansionProgress ?? undefined} moonPhase={moonPhase ?? undefined} />
+          </div>
         </section>
       </div>
       {/* Row 2: Dignities + Elemental Balance (side by side) */}
