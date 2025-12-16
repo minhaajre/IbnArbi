@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC, MANSION_AZKAAR_SUGGESTIONS } from "@/lib/constants";
 import { MANSION_GUIDANCE, CYCLE_ROLE_COLORS } from "@/lib/spiritualGuidance";
 import { MansionProgress, MoonPhaseInfo } from "@/lib/astronomy";
-import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, Compass, ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
+import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, Compass, ChevronDown, ChevronUp, ExternalLink, Sun } from "lucide-react";
 import { format } from "date-fns";
 import { MansionCycleRing } from "@/components/MansionCycleRing";
 import {
@@ -116,8 +116,9 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                         ? 'Traditionally associated with beginnings. May support growth, gathering, and outward movement.' 
                         : 'Traditionally associated with endings. May support release, healing, and inward reflection.'}
                     </div>
-                    <div className="text-[10px] text-muted-foreground/70">
-                      {Math.round(moonPhase.illumination * 100)}% illuminated
+                    <div className="text-[10px] text-muted-foreground/70 flex items-center gap-1">
+                      <Sun className="w-3 h-3" />
+                      {Math.round(moonPhase.illumination)}% illuminated
                     </div>
                   </div>
                 </TooltipContent>
