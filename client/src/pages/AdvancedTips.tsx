@@ -78,13 +78,16 @@ export default function AdvancedTips() {
         </section>
 
         {/* Section 1: Psychological Self-Observation */}
-        <section id="psychological-observation" className="scroll-mt-20 mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <Brain className="w-6 h-6 text-primary" />
-            <h3 className="text-2xl font-serif text-gold">Psychological Self-Observation</h3>
-          </div>
-
-          <div className="space-y-4">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="psychological-observation" className="border border-border rounded-lg px-4">
+            <AccordionTrigger className="text-lg font-serif text-gold hover:no-underline py-4">
+              <div className="flex items-center gap-3">
+                <Brain className="w-6 h-6 text-primary" />
+                <span>Psychological Self-Observation</span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="pb-4">
+              <div className="space-y-4">
             {/* Core Principle Card */}
             <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
               <h4 className="font-medium text-foreground mb-2 flex items-center gap-2">
@@ -154,17 +157,22 @@ export default function AdvancedTips() {
             <div className="p-3 rounded-lg bg-background/50 border border-dashed border-border text-xs text-muted-foreground italic">
               <p>This mirrors cognitive-behavioral practice: <strong>awareness → interpretation → response.</strong> By noticing our thought patterns, we create space to choose how we respond.</p>
             </div>
-          </div>
-        </section>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
         {/* Section 2: Somatic & Emotional Awareness */}
-        <section id="somatic-awareness" className="scroll-mt-20 mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <Waves className="w-6 h-6 text-primary" />
-            <h3 className="text-2xl font-serif text-gold">Somatic & Emotional Awareness</h3>
-          </div>
-
-          <div className="space-y-4">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="somatic-awareness" className="border border-border rounded-lg px-4">
+            <AccordionTrigger className="text-lg font-serif text-gold hover:no-underline py-4">
+              <div className="flex items-center gap-3">
+                <Waves className="w-6 h-6 text-primary" />
+                <span>Somatic & Emotional Awareness</span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="pb-4">
+              <div className="space-y-4">
             {/* Core Principle */}
             <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
               <h4 className="font-medium text-foreground mb-2 flex items-center gap-2">
@@ -242,17 +250,22 @@ export default function AdvancedTips() {
                 <p className="text-[10px] text-muted-foreground">Grounds & resets</p>
               </div>
             </div>
-          </div>
-        </section>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
         {/* Section 3: Cycles & Personal Rhythms */}
-        <section id="cycles-rhythms" className="scroll-mt-20 mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <Clock className="w-6 h-6 text-primary" />
-            <h3 className="text-2xl font-serif text-gold">Cycles & Personal Rhythms</h3>
-          </div>
-
-          <div className="space-y-4">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="cycles-rhythms" className="border border-border rounded-lg px-4">
+            <AccordionTrigger className="text-lg font-serif text-gold hover:no-underline py-4">
+              <div className="flex items-center gap-3">
+                <Clock className="w-6 h-6 text-primary" />
+                <span>Cycles & Personal Rhythms</span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="pb-4">
+              <div className="space-y-4">
             {/* Core Principle */}
             <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
               <h4 className="font-medium text-foreground mb-2 flex items-center gap-2">
@@ -317,17 +330,22 @@ export default function AdvancedTips() {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
-          </div>
-        </section>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
         {/* Section 4: Regulation & Restoration */}
-        <section id="regulation-restoration" className="scroll-mt-20 mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <RefreshCw className="w-6 h-6 text-primary" />
-            <h3 className="text-2xl font-serif text-gold">Regulation & Restoration</h3>
-          </div>
-
-          <div className="space-y-4">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="regulation-restoration" className="border border-border rounded-lg px-4">
+            <AccordionTrigger className="text-lg font-serif text-gold hover:no-underline py-4">
+              <div className="flex items-center gap-3">
+                <RefreshCw className="w-6 h-6 text-primary" />
+                <span>Regulation & Restoration</span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="pb-4">
+              <div className="space-y-4">
             {/* Core Principle */}
             <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
               <h4 className="font-medium text-foreground mb-2 flex items-center gap-2">
@@ -420,10 +438,6 @@ export default function AdvancedTips() {
               </div>
             </div>
 
-            {/* Language Note */}
-            <div className="p-3 rounded-lg bg-background/50 border border-dashed border-border text-xs text-muted-foreground italic">
-              <p><strong>Language matters:</strong> We use "support", "allow", and "restore"—not "fix", "optimize", or "hack". These practices support your natural wisdom, not override it.</p>
-            </div>
           </div>
         </section>
 
