@@ -93,7 +93,7 @@ export default function AdvancedAzkaar() {
           {/* Qasīdat al-Burda */}
           <div id="qasidat-al-burda" className="glass-card rounded-xl p-6 border border-border">
             <div className="flex items-start gap-3 mb-3">
-              <BookOpen className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
+              <BookOpen className="w-5 h-5 text-stone-500 shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-lg font-semibold text-foreground">Qasīdat al-Burda (The Mantle Poem)</h3>
                 <p className="text-sm font-arabic text-muted-foreground">قصيدة البردة</p>
@@ -133,7 +133,7 @@ export default function AdvancedAzkaar() {
           {/* Ḥizb al-Naṣr */}
           <div id="hizb-al-nasr" className="glass-card rounded-xl p-6 border border-border">
             <div className="flex items-start gap-3 mb-3">
-              <BookOpen className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
+              <BookOpen className="w-5 h-5 text-stone-600 shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-lg font-semibold text-foreground">Ḥizb al-Naṣr (Litany of Victory)</h3>
                 <p className="text-sm font-arabic text-muted-foreground">حزب النصر</p>
@@ -233,7 +233,7 @@ export default function AdvancedAzkaar() {
           {/* Qur'anic Surahs */}
           <div id="quranic-surahs" className="glass-card rounded-xl p-6 border border-border">
             <div className="flex items-start gap-3 mb-3">
-              <BookOpen className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
+              <BookOpen className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-lg font-semibold text-foreground">Recommended Qur'anic Surahs</h3>
                 <p className="text-sm font-arabic text-muted-foreground">السور القرآنية المقترحة</p>
@@ -258,7 +258,7 @@ export default function AdvancedAzkaar() {
           {/* Istighfār */}
           <div id="istighfar" className="glass-card rounded-xl p-6 border border-border">
             <div className="flex items-start gap-3 mb-3">
-              <BookOpen className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
+              <BookOpen className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-lg font-semibold text-foreground">Istighfār (Seeking Forgiveness)</h3>
                 <p className="text-sm font-arabic text-muted-foreground">الاستغفار</p>
@@ -274,30 +274,30 @@ export default function AdvancedAzkaar() {
         </section>
 
         {/* How to Use */}
-        <section id="how-to-use" className="glass-card rounded-xl p-6 border border-border bg-amber-500/5 space-y-3">
+        <section id="how-to-use" className="glass-card rounded-xl p-6 border border-border bg-gold/5 space-y-3">
           <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
-            <Heart className="w-5 h-5 text-amber-500" />
+            <Heart className="w-5 h-5 text-gold" />
             How to Use These Suggestions
           </h2>
           <ul className="space-y-2 text-sm text-foreground/80 leading-relaxed">
             <li className="flex gap-2">
-              <span className="text-amber-500 font-semibold shrink-0">•</span>
+              <span className="text-gold font-semibold shrink-0">•</span>
               <span>These are <strong>optional</strong> — not prescriptive or required.</span>
             </li>
             <li className="flex gap-2">
-              <span className="text-amber-500 font-semibold shrink-0">•</span>
+              <span className="text-gold font-semibold shrink-0">•</span>
               <span>Choose what resonates with you during the suggested planetary hours or lunar mansions.</span>
             </li>
             <li className="flex gap-2">
-              <span className="text-amber-500 font-semibold shrink-0">•</span>
+              <span className="text-gold font-semibold shrink-0">•</span>
               <span>Begin with sincerity and adab (spiritual courtesy), not attachment to outcomes.</span>
             </li>
             <li className="flex gap-2">
-              <span className="text-amber-500 font-semibold shrink-0">•</span>
+              <span className="text-gold font-semibold shrink-0">•</span>
               <span>Trust your own inner guidance; not every litany will resonate with every seeker.</span>
             </li>
             <li className="flex gap-2">
-              <span className="text-amber-500 font-semibold shrink-0">•</span>
+              <span className="text-gold font-semibold shrink-0">•</span>
               <span>These are devotional practices, not talismanic or manipulative techniques.</span>
             </li>
           </ul>

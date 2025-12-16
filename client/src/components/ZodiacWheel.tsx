@@ -499,7 +499,7 @@ export function ZodiacWheel({
                 Retrograde <span className="font-arabic">{UI_LABELS_ARABIC["Retrograde"]}</span>
               </div>
             )}
-            <div className={`text-xs font-medium mt-0.5 ${hoveredPlanetData.status === 'Exalted' || hoveredPlanetData.status === 'Rulership' ? 'text-green-500' : hoveredPlanetData.status === 'Neutral' ? 'text-muted-foreground' : 'text-amber-500'}`}>
+            <div className={`text-xs font-medium mt-0.5 ${hoveredPlanetData.status === 'Exalted' || hoveredPlanetData.status === 'Rulership' ? 'text-gold' : hoveredPlanetData.status === 'Neutral' ? 'text-muted-foreground' : 'text-stone-500'}`}>
               {hoveredPlanetData.status} <span className="font-arabic">{DIGNITY_ARABIC[hoveredPlanetData.status]?.arabic || ''}</span>
             </div>
             {hoveredPlanetCritical && (
@@ -525,7 +525,7 @@ export function ZodiacWheel({
                   </span>
                   <div className="text-[10px] text-muted-foreground/60">
                     ~{format(ingress.ingressDate, "MMM d")}
-                    {ingress.isRetrograde && <span className="ml-1 text-amber-500/70">(℞)</span>}
+                    {ingress.isRetrograde && <span className="ml-1 text-stone-500/70">(℞)</span>}
                   </div>
                 </div>
               );

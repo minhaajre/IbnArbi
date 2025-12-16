@@ -477,7 +477,7 @@ export default function Home() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             {whiteDaysInfo && whiteDaysInfo.isWhiteDay && (
-              <div className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-500 border border-amber-500/30 inline-flex items-center gap-1" data-testid="white-days-indicator">
+              <div className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-gold/20 text-gold border border-gold/30 inline-flex items-center gap-1" data-testid="white-days-indicator">
                 <Moon className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 <span className="hidden sm:inline">White Day - Blessed Fast</span>
                 <span className="sm:hidden">White Day</span>
@@ -626,7 +626,7 @@ export default function Home() {
                 </span>
                 <span className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full font-medium border ${
                   moonPhase.isWaxing 
-                    ? 'bg-amber-500/10 text-amber-400 border-amber-500/30' 
+                    ? 'bg-gold/10 text-gold border-gold/30' 
                     : 'bg-slate-500/10 text-slate-400 border-slate-500/30'
                 }`}>
                   {moonPhase.isWaxing ? '☽ Waxing' : '☾ Waning'}

@@ -427,9 +427,9 @@ const MANSION_DETAILS = [
 ];
 
 const CATEGORY_COLORS: Record<string, string> = {
-  "Gathering": "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
-  "Differentiating": "bg-cyan-500/20 text-cyan-400 border-cyan-500/40",
-  "Separating": "bg-amber-500/20 text-amber-400 border-amber-500/40"
+  "Gathering": "bg-stone-600/20 text-stone-500 border-stone-600/40",
+  "Differentiating": "bg-slate-500/20 text-slate-400 border-slate-500/40",
+  "Separating": "bg-stone-700/20 text-stone-600 border-stone-700/40"
 };
 
 const DIVINE_NAMES_WATERMARK = "الله الرحمن الرحيم الملك القدوس السلام المؤمن المهيمن العزيز الجبار المتكبر الخالق البارئ المصور الغفار القهار الوهاب الرزاق الفتاح العليم";
@@ -524,7 +524,7 @@ export default function Instructions() {
               </p>
               <ul className="list-disc list-inside space-y-2 ml-2 text-base">
                 <li><strong className="text-foreground">Current Mansion:</strong> See which lunar mansion the Moon currently occupies.</li>
-                <li><strong className="text-foreground">Movement Phase:</strong> Each mansion belongs to one of three movements—Gathering (emerald), Differentiating (cyan), or Separating (amber)—indicating the quality of time.</li>
+                <li><strong className="text-foreground">Movement Phase:</strong> Each mansion belongs to one of three movements—Gathering, Differentiating, or Separating—indicating the quality of time.</li>
                 <li><strong className="text-foreground">Suggested Activities:</strong> Actions that may harmonize with the mansion's quality.</li>
                 <li><strong className="text-foreground">Divine Attributes:</strong> The Divine Name traditionally associated with this mansion, offered for contemplation.</li>
               </ul>
@@ -537,32 +537,32 @@ export default function Instructions() {
                 The mansions do not cause events. They describe how meanings move through time: gathering, differentiating, and separating.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                <div className="p-4 rounded-lg bg-card/30 border border-emerald-500/20 flex flex-col gap-3">
+                <div className="p-4 rounded-lg bg-card/30 border border-stone-600/20 flex flex-col gap-3">
                   <div className="flex items-center gap-3">
-                    <span className="px-3 py-2 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-bold text-lg block text-center min-w-16">1–11</span>
+                    <span className="px-3 py-2 rounded-lg bg-stone-600/20 text-stone-500 border border-stone-600/40 font-bold text-lg block text-center min-w-16">1–11</span>
                     <div>
                       <strong className="text-foreground text-base block">Gathering</strong>
-                      <span className="font-arabic text-emerald-400/80 text-sm">جمع</span>
+                      <span className="font-arabic text-stone-500/80 text-sm">جمع</span>
                     </div>
                   </div>
                   <p className="text-muted-foreground text-sm leading-relaxed">Time of collecting and consolidating meanings. This phase tends to support cohesion, connection, and steady building.</p>
                 </div>
-                <div className="p-4 rounded-lg bg-card/30 border border-cyan-500/20 flex flex-col gap-3">
+                <div className="p-4 rounded-lg bg-card/30 border border-slate-500/20 flex flex-col gap-3">
                   <div className="flex items-center gap-3">
-                    <span className="px-3 py-2 rounded-lg bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-bold text-lg block text-center min-w-16">12–16</span>
+                    <span className="px-3 py-2 rounded-lg bg-slate-500/20 text-slate-400 border border-slate-500/40 font-bold text-lg block text-center min-w-16">12–16</span>
                     <div>
                       <strong className="text-foreground text-base block">Differentiating</strong>
-                      <span className="font-arabic text-cyan-400/80 text-sm">تمييز</span>
+                      <span className="font-arabic text-slate-400/80 text-sm">تمييز</span>
                     </div>
                   </div>
                   <p className="text-muted-foreground text-sm leading-relaxed">Time of discernment and measure. What is mixed becomes clearer. This phase supports clarity and limits without forcing endings.</p>
                 </div>
-                <div className="p-4 rounded-lg bg-card/30 border border-amber-500/20 flex flex-col gap-3">
+                <div className="p-4 rounded-lg bg-card/30 border border-stone-700/20 flex flex-col gap-3">
                   <div className="flex items-center gap-3">
-                    <span className="px-3 py-2 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/40 font-bold text-lg block text-center min-w-16">17–28</span>
+                    <span className="px-3 py-2 rounded-lg bg-stone-700/20 text-stone-600 border border-stone-700/40 font-bold text-lg block text-center min-w-16">17–28</span>
                     <div>
                       <strong className="text-foreground text-base block">Separating</strong>
-                      <span className="font-arabic text-amber-400/80 text-sm">تفريق</span>
+                      <span className="font-arabic text-stone-600/80 text-sm">تفريق</span>
                     </div>
                   </div>
                   <p className="text-muted-foreground text-sm leading-relaxed">Time of release and completion. Forms loosen and cycles conclude. This phase supports letting go and preparing for renewal.</p>
@@ -578,7 +578,7 @@ export default function Instructions() {
               <h3 className="text-base font-medium text-foreground mb-4">Waxing vs Waning Moon</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="flex items-start gap-3">
-                  <Sun className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                  <Sun className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-foreground text-base">Waxing (New → Full)</strong>
                     <p className="text-muted-foreground text-sm mt-1">Traditionally associated with beginnings. May support growth, gathering, and outward movement.</p>
@@ -635,18 +635,18 @@ export default function Instructions() {
                             <strong className="text-green-400 text-sm uppercase tracking-wide block mb-2">May Support</strong>
                             <p className="text-foreground/80 text-base">{mansion.maySupport}</p>
                           </div>
-                          <div className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30">
-                            <strong className="text-amber-400 text-sm uppercase tracking-wide block mb-2">Use Caution With</strong>
+                          <div className="p-4 rounded-lg bg-stone-600/10 border border-stone-600/30">
+                            <strong className="text-stone-500 text-sm uppercase tracking-wide block mb-2">Use Caution With</strong>
                             <p className="text-foreground/80 text-base">{mansion.useCautionWith}</p>
                           </div>
                         </div>
 
                         {/* Waxing / Waning */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          <div className="flex items-start gap-3 p-4 rounded-lg bg-amber-500/10 border border-amber-500/30">
-                            <Sun className="w-4 h-4 text-amber-400 shrink-0 mt-1" />
+                          <div className="flex items-start gap-3 p-4 rounded-lg bg-stone-600/10 border border-stone-600/30">
+                            <Sun className="w-4 h-4 text-stone-500 shrink-0 mt-1" />
                             <div>
-                              <strong className="text-amber-400 text-sm uppercase tracking-wide">Waxing Moon</strong>
+                              <strong className="text-stone-500 text-sm uppercase tracking-wide">Waxing Moon</strong>
                               <p className="text-foreground/80 text-sm mt-1">{mansion.waxing}</p>
                             </div>
                           </div>
@@ -725,11 +725,11 @@ export default function Instructions() {
                   <p className="text-foreground/80 text-sm mt-2">Narrowing, heaviness, restraint, sobriety, quiet</p>
                   <p className="text-xs text-muted-foreground mt-2 italic">In qabḍ: simplify, reduce, avoid forcing decisions, return to essentials</p>
                 </div>
-                <div className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                <div className="p-4 rounded-lg bg-stone-600/10 border border-stone-600/30">
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <strong className="text-amber-400 text-sm cursor-help border-b border-dotted border-amber-400/50">Basṭ (بسط) — Expansion</strong>
+                        <strong className="text-stone-500 text-sm cursor-help border-b border-dotted border-stone-500/50">Basṭ (بسط) — Expansion</strong>
                       </TooltipTrigger>
                       <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
                         <div className="text-sm font-medium mb-1">Basṭ (بسط) — Expansion</div>
@@ -782,7 +782,7 @@ export default function Instructions() {
               </p>
               <ul className="list-disc list-inside space-y-3 ml-2 text-base">
                 <li><strong className="text-red-400">Fire (النار):</strong> Action, will, transformation, spiritual aspiration.</li>
-                <li><strong className="text-amber-600">Earth (التراب):</strong> Stability, manifestation, practical matters.</li>
+                <li><strong className="text-stone-600">Earth (التراب):</strong> Stability, manifestation, practical matters.</li>
                 <li><strong className="text-sky-400">Air (الهواء):</strong> Intellect, communication, social connection.</li>
                 <li><strong className="text-blue-400">Water (الماء):</strong> Emotion, intuition, purification, receptivity.</li>
               </ul>
@@ -895,11 +895,11 @@ export default function Instructions() {
                     <p className="text-foreground/80 text-sm mt-2">Meaning is present but not yet readable</p>
                     <p className="text-xs text-muted-foreground mt-2 italic">Remain steady, reduce certainty, choose patience</p>
                   </div>
-                  <div className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                  <div className="p-4 rounded-lg bg-stone-600/10 border border-stone-600/30">
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger asChild>
-                          <strong className="text-amber-400 text-sm cursor-help border-b border-dotted border-amber-400/50 flex items-center gap-1">
+                          <strong className="text-stone-500 text-sm cursor-help border-b border-dotted border-stone-500/50 flex items-center gap-1">
                             <Eye className="w-3 h-3" /> Kashf (كشف) — Unveiling
                           </strong>
                         </TooltipTrigger>
@@ -933,16 +933,16 @@ export default function Instructions() {
               <div>
                 <h3 className="text-base font-medium text-foreground mb-2">The Three Movements of the Mansions</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                  <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30">
-                    <strong className="text-emerald-400 text-sm">Gathering (1-11) <span className="font-arabic">جمع</span></strong>
+                  <div className="p-3 rounded-lg bg-stone-600/10 border border-stone-600/30">
+                    <strong className="text-stone-500 text-sm">Gathering (1-11) <span className="font-arabic">جمع</span></strong>
                     <p className="text-foreground/80 text-sm mt-1">Cohesion, connection, steady building.</p>
                   </div>
-                  <div className="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/30">
-                    <strong className="text-cyan-400 text-sm">Differentiating (12-16) <span className="font-arabic">تمييز</span></strong>
+                  <div className="p-3 rounded-lg bg-slate-500/10 border border-slate-500/30">
+                    <strong className="text-slate-400 text-sm">Differentiating (12-16) <span className="font-arabic">تمييز</span></strong>
                     <p className="text-foreground/80 text-sm mt-1">Discernment, clarity, limits.</p>
                   </div>
-                  <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30">
-                    <strong className="text-amber-400 text-sm">Separating (17-28) <span className="font-arabic">تفريق</span></strong>
+                  <div className="p-3 rounded-lg bg-stone-600/10 border border-stone-600/30">
+                    <strong className="text-stone-500 text-sm">Separating (17-28) <span className="font-arabic">تفريق</span></strong>
                     <p className="text-foreground/80 text-sm mt-1">Release, completion, renewal.</p>
                   </div>
                 </div>

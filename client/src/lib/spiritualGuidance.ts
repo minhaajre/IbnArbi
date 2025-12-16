@@ -496,30 +496,30 @@ export const MANSION_GUIDANCE: Record<number, MansionGuidance> = {
 
 export const QUALITY_COLORS = {
   'jalāl': {
-    bg: 'bg-red-500/10',
-    text: 'text-red-400',
-    border: 'border-red-500/30',
+    bg: 'bg-stone-700/10',
+    text: 'text-stone-600',
+    border: 'border-stone-700/30',
     label: 'Majestic'
   },
   'jamāl': {
-    bg: 'bg-emerald-500/10',
-    text: 'text-emerald-400',
-    border: 'border-emerald-500/30',
+    bg: 'bg-stone-600/10',
+    text: 'text-stone-500',
+    border: 'border-stone-600/30',
     label: 'Beautiful'
   },
   'kamāl': {
-    bg: 'bg-amber-500/10',
-    text: 'text-amber-400',
-    border: 'border-amber-500/30',
+    bg: 'bg-slate-500/10',
+    text: 'text-slate-400',
+    border: 'border-slate-500/30',
     label: 'Perfect'
   }
 };
 
 export const CYCLE_ROLE_COLORS: Record<string, { bg: string; text: string; border: string; label: string; labelArabic: string; tooltip: string; tooltipArabic: string; tooltipBody: string }> = {
   'gathering': {
-    bg: 'bg-emerald-500/10',
-    text: 'text-emerald-400',
-    border: 'border-emerald-500/30',
+    bg: 'bg-stone-600/10',
+    text: 'text-stone-500',
+    border: 'border-stone-600/30',
     label: 'Gathering',
     labelArabic: 'جمع',
     tooltip: 'Gathering | جمع',
@@ -527,9 +527,9 @@ export const CYCLE_ROLE_COLORS: Record<string, { bg: string; text: string; borde
     tooltipBody: 'Time of collecting and consolidating meanings. This phase tends to support cohesion, connection, and steady building.'
   },
   'differentiating': {
-    bg: 'bg-cyan-500/10',
-    text: 'text-cyan-400',
-    border: 'border-cyan-500/30',
+    bg: 'bg-slate-500/10',
+    text: 'text-slate-400',
+    border: 'border-slate-500/30',
     label: 'Differentiating',
     labelArabic: 'تمييز',
     tooltip: 'Differentiating | تمييز',
@@ -537,9 +537,9 @@ export const CYCLE_ROLE_COLORS: Record<string, { bg: string; text: string; borde
     tooltipBody: 'Time of discernment and measure. What is mixed becomes clearer. This phase supports clarity and limits without forcing endings.'
   },
   'separating': {
-    bg: 'bg-amber-500/10',
-    text: 'text-amber-400',
-    border: 'border-amber-500/30',
+    bg: 'bg-stone-700/10',
+    text: 'text-stone-600',
+    border: 'border-stone-700/30',
     label: 'Separating',
     labelArabic: 'تفريق',
     tooltip: 'Separating | تفريق',

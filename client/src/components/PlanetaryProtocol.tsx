@@ -137,7 +137,7 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
                 
                 {/* Use caution */}
                 <div className="flex items-start gap-2">
-                  <XCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                  <XCircle className="w-4 h-4 text-stone-500 shrink-0 mt-0.5" />
                   <span className="text-foreground/70">{guidance.avoidAction}</span>
                 </div>
                 
@@ -149,7 +149,7 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
             </div>
 
             {/* Inner State Check Strip */}
-            <div className="p-2.5 rounded-lg bg-gradient-to-r from-green-500/10 via-transparent to-amber-500/10 border border-border/50" data-testid="inner-state-check">
+            <div className="p-2.5 rounded-lg bg-gradient-to-r from-gold/10 via-transparent to-stone-600/10 border border-border/50" data-testid="inner-state-check">
               <div className="flex items-center gap-2 mb-1.5">
                 <Activity className="w-3.5 h-3.5 text-muted-foreground" />
                 <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Inner State Check</span>
@@ -157,11 +157,11 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
               </div>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <div className="flex items-start gap-1.5">
-                  <span className="text-green-500 shrink-0">↑</span>
+                  <span className="text-gold shrink-0">↑</span>
                   <span className="text-foreground/80">{guidance.innerStateExpansion}</span>
                 </div>
                 <div className="flex items-start gap-1.5">
-                  <span className="text-amber-500 shrink-0">↓</span>
+                  <span className="text-stone-500 shrink-0">↓</span>
                   <span className="text-foreground/70">{guidance.innerStateContraction}</span>
                 </div>
               </div>
@@ -191,7 +191,7 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
             <div className="pt-3 space-y-3">
               {/* Wear - Only colors section */}
               <div className="flex items-start gap-2">
-                <Palette className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                <Palette className="w-4 h-4 text-stone-500 shrink-0 mt-0.5" />
                 <div>
                   <div className="font-medium text-foreground/80 mb-0.5 text-xs">Wear</div>
                   <p className="text-muted-foreground leading-relaxed text-xs">
