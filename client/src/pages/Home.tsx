@@ -30,7 +30,7 @@ import { PlanetaryProtocol } from "@/components/PlanetaryProtocol";
 import { Footer } from "@/components/Footer";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
 import { CrescentStarIcon, LanternIcon, EightPointedStarIcon, IslamicPatternIcon, ZodiacWheelIcon } from "@/components/icons/IslamicIcons";
-import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen, Info, Loader2, Bell, BellOff } from "lucide-react";
+import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen, Info, Loader2, Bell, BellOff, Zap } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -396,6 +396,19 @@ export default function Home() {
               >
                 <BookOpen className="w-4 h-4" />
                 <span className="text-xs hidden sm:inline">Guidance</span>
+              </Button>
+            </Link>
+
+            {/* NS Modulation Button */}
+            <Link href="/advanced-tips">
+              <Button 
+                variant="outline" 
+                className="bg-card/50 border-border h-8 sm:h-9 px-2 sm:px-3 gap-1.5"
+                data-testid="link-advanced-tips"
+                title="Advanced Tips"
+              >
+                <Zap className="w-4 h-4" />
+                <span className="text-xs hidden sm:inline">NS Modulation</span>
               </Button>
             </Link>
 

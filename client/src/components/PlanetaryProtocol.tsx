@@ -207,16 +207,6 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
                   </div>
                 </div>
               )}
-
-              {/* NS Modulation Button */}
-              <div className="pt-2 border-t border-border/50">
-                <Link href="/advanced-tips">
-                  <button className="text-xs text-secondary hover:text-secondary/80 flex items-center gap-1 font-medium">
-                    NS Modulation
-                    <ExternalLink className="w-3 h-3" />
-                  </button>
-                </Link>
-              </div>
             </div>
           </motion.div>
         )}
