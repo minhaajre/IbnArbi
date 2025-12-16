@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { useEffect } from "react";
-import { ArrowLeft, Brain, Heart, Lightbulb, RefreshCw, Eye, Users, Droplets, Home, MessageCircle, Waves, Clock, Zap, Moon, Wind, Flame, AlertCircle, CheckCircle, Compass, BookOpen, ExternalLink } from "lucide-react";
+import { ArrowLeft, Brain, Heart, Lightbulb, RefreshCw, Eye, Users, Droplets, Home, MessageCircle, Waves, Clock, Zap, Moon, Wind, Flame, AlertCircle, CheckCircle, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
 import {
@@ -708,20 +708,6 @@ export default function AdvancedTips() {
               </div>
             </div>
 
-            {/* Resources Link */}
-            <div className="p-4 rounded-lg bg-card/50 border border-border flex items-start gap-3">
-              <BookOpen className="w-4 h-4 text-primary shrink-0 mt-1" />
-              <div className="flex-1">
-                <p className="text-sm font-medium text-foreground mb-1">Further Exploration</p>
-                <p className="text-xs text-foreground/80 mb-2">For deeper dives into these topics, visit the Key Further Readings section in the Instructions page.</p>
-                <Link href="/instructions#key-further-readings">
-                  <button className="text-xs text-primary hover:text-primary/80 font-medium flex items-center gap-1">
-                    Explore Resources
-                    <ExternalLink className="w-3 h-3" />
-                  </button>
-                </Link>
-              </div>
-            </div>
               </div>
             </AccordionContent>
           </AccordionItem>
