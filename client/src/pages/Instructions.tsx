@@ -449,7 +449,7 @@ export default function Instructions() {
     title: t(section.title)
   }));
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground relative overflow-hidden" dir="ltr">
       {/* Andalusian Divine Names Watermark Background */}
       <div className="fixed inset-0 pointer-events-none select-none overflow-hidden opacity-[0.03] z-0">
         <div className="absolute inset-0 font-arabic text-6xl sm:text-8xl leading-loose text-foreground whitespace-pre-wrap break-words p-8 transform rotate-[-5deg] scale-110">
