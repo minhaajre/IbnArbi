@@ -400,10 +400,10 @@ export default function Home() {
             </Link>
 
             {/* NS Modulation Button */}
-            <Link href="/advanced-tips">
+            <Link href="/advanced-tips" className="flex-1">
               <Button 
                 variant="outline" 
-                className="bg-card/50 border-border h-8 sm:h-9 px-2 sm:px-3 gap-1.5"
+                className="bg-card/50 border-border h-8 sm:h-9 px-2 sm:px-3 gap-1.5 w-full justify-center"
                 data-testid="link-advanced-tips"
                 title="Advanced Tips"
               >
