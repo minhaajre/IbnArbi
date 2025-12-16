@@ -32,7 +32,7 @@ interface MansionCardProps {
 }
 
 export function MansionCard({ mansion: originalMansion, progress, moonPhase }: MansionCardProps) {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [selectedMansionNumber, setSelectedMansionNumber] = useState<number | null>(null);
   const [isWheelFullscreen, setIsWheelFullscreen] = useState(false);
   
