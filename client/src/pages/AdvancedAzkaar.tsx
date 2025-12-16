@@ -5,8 +5,10 @@ import { Scroll, BookOpen, Heart, Home } from "lucide-react";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
 import { PrayerBeadsIcon, QuranIcon, DuaHandsIcon, CalligraphyIcon, MihrabIcon } from "@/components/icons/IslamicIcons";
 
+// Reordered for mobile: practical sections before detailed litanies
 const AZKAAR_SECTIONS: TOCSection[] = [
   { id: "about-azkaar", title: "About These Aẓkār", icon: <DuaHandsIcon className="w-4 h-4" /> },
+  { id: "how-to-use", title: "How to Use", icon: <PrayerBeadsIcon className="w-4 h-4" /> },
   { id: "hizb-al-bahr", title: "Hizb al-Baḥr", icon: <CalligraphyIcon className="w-4 h-4" /> },
   { id: "qasidat-al-burda", title: "Qasīdat al-Burda", icon: <CalligraphyIcon className="w-4 h-4" /> },
   { id: "hizb-al-wafi", title: "Hizb al-Wāfī", icon: <CalligraphyIcon className="w-4 h-4" /> },
@@ -17,7 +19,6 @@ const AZKAAR_SECTIONS: TOCSection[] = [
   { id: "hizb-al-dawr", title: "Hizb al-Dawr al-Aʿlā", icon: <MihrabIcon className="w-4 h-4" /> },
   { id: "quranic-surahs", title: "Qur'anic Surahs", icon: <QuranIcon className="w-4 h-4" /> },
   { id: "istighfar", title: "Istighfār", icon: <DuaHandsIcon className="w-4 h-4" /> },
-  { id: "how-to-use", title: "How to Use", icon: <PrayerBeadsIcon className="w-4 h-4" /> },
 ];
 
 export default function AdvancedAzkaar() {
@@ -31,12 +32,12 @@ export default function AdvancedAzkaar() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Fixed Home Button */}
+      {/* Fixed Home Button - integrated with TOC */}
       <Link href="/" onClick={handleBackHome}>
         <Button 
           variant="ghost" 
           size="icon"
-          className="fixed top-4 right-4 z-50 rounded-full w-12 h-12 hover:bg-foreground/10" 
+          className="fixed top-14 sm:top-12 right-4 z-40 rounded-full w-12 h-12 hover:bg-foreground/10" 
           data-testid="home-button"
           title="Return to Home"
         >
