@@ -494,7 +494,7 @@ export default function Instructions() {
                     <TooltipTrigger asChild>
                       <strong className="text-foreground cursor-help border-b border-dotted border-foreground/50"> adab</strong>
                     </TooltipTrigger>
-                    <TooltipContent side="top" className="max-w-xs">
+                    <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
                       <div className="text-sm font-medium mb-1">Adab (أدب)</div>
                       <div className="text-xs text-muted-foreground">Spiritual etiquette—meeting each moment with presence, humility, and right conduct.</div>
                     </TooltipContent>
@@ -715,7 +715,7 @@ export default function Instructions() {
                       <TooltipTrigger asChild>
                         <strong className="text-slate-400 text-sm cursor-help border-b border-dotted border-slate-400/50">Qabḍ (قبض) — Contraction</strong>
                       </TooltipTrigger>
-                      <TooltipContent side="top" className="max-w-xs">
+                      <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
                         <div className="text-sm font-medium mb-1">Qabḍ (قبض) — Contraction</div>
                         <div className="text-xs text-muted-foreground">A state of narrowing that calls for patience, humility, restraint, and simplicity. Not a punishment, but a training in adab.</div>
                       </TooltipContent>
@@ -730,7 +730,7 @@ export default function Instructions() {
                       <TooltipTrigger asChild>
                         <strong className="text-amber-400 text-sm cursor-help border-b border-dotted border-amber-400/50">Basṭ (بسط) — Expansion</strong>
                       </TooltipTrigger>
-                      <TooltipContent side="top" className="max-w-xs">
+                      <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
                         <div className="text-sm font-medium mb-1">Basṭ (بسط) — Expansion</div>
                         <div className="text-xs text-muted-foreground">A state of opening that calls for gratitude, balance, responsibility, and generosity. Not a reward to chase, but a trust to carry well.</div>
                       </TooltipContent>
@@ -885,7 +885,7 @@ export default function Instructions() {
                             <EyeOff className="w-3 h-3" /> Ḥijāb (حجاب) — Veiling
                           </strong>
                         </TooltipTrigger>
-                        <TooltipContent side="top" className="max-w-xs">
+                        <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
                           <div className="text-sm font-medium mb-1">Ḥijāb (حجاب) — Veiling</div>
                           <div className="text-xs text-muted-foreground">Meaning is present but not yet readable. The fitting response is steadiness and reduced certainty, not forced interpretation.</div>
                         </TooltipContent>
@@ -902,7 +902,7 @@ export default function Instructions() {
                             <Eye className="w-3 h-3" /> Kashf (كشف) — Unveiling
                           </strong>
                         </TooltipTrigger>
-                        <TooltipContent side="top" className="max-w-xs">
+                        <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
                           <div className="text-sm font-medium mb-1">Kashf (كشف) — Unveiling</div>
                           <div className="text-xs text-muted-foreground">Meaning becomes clearer. The fitting response is humility, gratitude, and careful action without pride.</div>
                         </TooltipContent>
@@ -919,7 +919,7 @@ export default function Instructions() {
                       <TooltipTrigger asChild>
                         <span className="text-foreground cursor-help border-b border-dotted border-foreground/50"> preparedness (istiʿdād)</span>
                       </TooltipTrigger>
-                      <TooltipContent side="top" className="max-w-xs">
+                      <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
                         <div className="text-sm font-medium mb-1">Istiʿdād (استعداد) — Preparedness</div>
                         <div className="text-xs text-muted-foreground">Disclosure appears according to readiness. The same sign can teach two people differently.</div>
                       </TooltipContent>
@@ -1040,7 +1040,7 @@ export default function Instructions() {
                       <TooltipTrigger asChild>
                         <strong className="text-foreground cursor-help border-b border-dotted border-foreground/50">Preparedness (istiʿdād)</strong>
                       </TooltipTrigger>
-                      <TooltipContent side="top" className="max-w-xs">
+                      <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
                         <div className="text-sm font-medium mb-1">Istiʿdād (استعداد) — Preparedness</div>
                         <div className="text-xs text-muted-foreground">Disclosure appears according to readiness. The same sign can teach two people differently.</div>
                       </TooltipContent>
@@ -1056,7 +1056,7 @@ export default function Instructions() {
                       <TooltipTrigger asChild>
                         <strong className="text-foreground cursor-help border-b border-dotted border-foreground/50">no repetition in divine self-disclosure</strong>
                       </TooltipTrigger>
-                      <TooltipContent side="top" className="max-w-xs">
+                      <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
                         <div className="text-sm font-medium mb-1">No Repetition in Disclosure <span className="font-arabic">لا تكرار في التجلي</span></div>
                         <div className="text-xs text-muted-foreground">Even when the same hour or mansion returns, the self-disclosure is new. Repetition is for deepening presence, not for expecting identical results.</div>
                       </TooltipContent>
