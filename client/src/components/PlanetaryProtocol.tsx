@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { PLANET_PROFILES, PLANET_ARABIC, ADVANCED_AZKAAR } from "@/lib/constants";
 import { PLANETARY_HOUR_GUIDANCE, QUALITY_COLORS } from "@/lib/spiritualGuidance";
-import { Palette, Sparkles, Apple, Ban, Zap, Heart, Compass, ChevronDown, ChevronUp, BookOpen, CheckCircle, XCircle, Activity, Scroll, ExternalLink } from "lucide-react";
+import { Sparkles, Apple, Ban, Zap, Heart, Compass, ChevronDown, ChevronUp, BookOpen, CheckCircle, XCircle, Activity, Scroll, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface PlanetaryProtocolProps {
@@ -189,17 +189,6 @@ export function PlanetaryProtocol({ activePlanet, isExpanded: controlledIsExpand
             className="overflow-hidden"
           >
             <div className="pt-3 space-y-3">
-              {/* Wear - Only colors section */}
-              <div className="flex items-start gap-2">
-                <Palette className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-medium text-foreground/80 mb-0.5 text-xs">Wear</div>
-                  <p className="text-muted-foreground leading-relaxed text-xs">
-                    {profile.colors.join(", ")}
-                  </p>
-                </div>
-              </div>
-
               {/* Optional Advanced Devotional Suggestions */}
               {ADVANCED_AZKAAR[activePlanet] && (
                 <div className="flex items-start gap-2 pt-2 border-t border-border/50">
