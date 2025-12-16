@@ -442,14 +442,21 @@ export default function Instructions() {
           {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK}
         </div>
       </div>
+      {/* Fixed Home Button */}
+      <Link href="/">
+        <Button 
+          variant="ghost" 
+          size="icon"
+          className="fixed top-4 right-4 z-50 rounded-full w-12 h-12 hover:bg-foreground/10" 
+          data-testid="home-button"
+          title="Return to Home"
+        >
+          <Home className="w-5 h-5 text-gold" />
+        </Button>
+      </Link>
+
       <div className="relative z-10 p-4 sm:p-8 md:p-12 max-w-6xl mx-auto">
         <header className="mb-8">
-          <Link href="/">
-            <Button variant="ghost" size="sm" className="mb-4" data-testid="back-to-home">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to App
-            </Button>
-          </Link>
           <h1 className="text-3xl sm:text-4xl font-serif text-gold mb-2">
             Instructions <span className="font-arabic">تعليمات</span>
           </h1>

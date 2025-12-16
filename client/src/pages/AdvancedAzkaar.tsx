@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Scroll, BookOpen, Heart } from "lucide-react";
+import { Scroll, BookOpen, Heart, Home } from "lucide-react";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
 import { PrayerBeadsIcon, QuranIcon, DuaHandsIcon, CalligraphyIcon, MihrabIcon } from "@/components/icons/IslamicIcons";
 
@@ -31,15 +31,22 @@ export default function AdvancedAzkaar() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Fixed Home Button */}
+      <Link href="/" onClick={handleBackHome}>
+        <Button 
+          variant="ghost" 
+          size="icon"
+          className="fixed top-4 right-4 z-50 rounded-full w-12 h-12 hover:bg-foreground/10" 
+          data-testid="home-button"
+          title="Return to Home"
+        >
+          <Home className="w-5 h-5 text-gold" />
+        </Button>
+      </Link>
+
       {/* Header */}
       <div className="border-b border-border bg-foreground/5">
         <div className="max-w-4xl mx-auto px-4 py-4">
-          <Link href="/" onClick={handleBackHome}>
-            <Button variant="ghost" size="sm" className="gap-2 mb-3">
-              <ArrowLeft className="w-4 h-4" />
-              Back to Home
-            </Button>
-          </Link>
           <div className="flex items-center gap-3">
             <Scroll className="w-6 h-6 text-purple-400" />
             <div>
@@ -303,15 +310,6 @@ export default function AdvancedAzkaar() {
           </ul>
         </section>
 
-        {/* Footer */}
-        <div className="text-center pt-8 pb-12 space-y-2">
-          <Link href="/">
-            <Button variant="outline" className="gap-2">
-              <ArrowLeft className="w-4 h-4" />
-              Return to Home
-            </Button>
-          </Link>
-        </div>
       </div>
       <TableOfContents sections={AZKAAR_SECTIONS} title="Litanies & Practices" />
     </div>
