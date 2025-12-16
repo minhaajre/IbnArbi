@@ -8,6 +8,21 @@ Al-Falak is a specialized astronomical and spiritual calendar application that c
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes (December 2025)
+
+- **Mansion Theme Section**: Now starts collapsed by default on app load (was expanded)
+- **Hourly Protocol**: Removed "Wear" section that displayed planet colors
+- **Advanced Tips Page**: New page (`/advanced-tips`) added with 7 comprehensive sections on psychological and somatic alignment:
+  - Psychological Self-Observation (CBT-aligned)
+  - Somatic & Emotional Awareness
+  - Cycles & Personal Rhythms
+  - Regulation & Restoration practices
+  - Cognitive & Environmental Clarity
+  - Support for Neurodiverse Users
+  - Recovery During Stress
+- **NS Modulation Button**: Added to PlanetaryProtocol component (appears when expanded) linking to Advanced Tips page
+- **Navigation**: Advanced Tips page linked from Instructions footer and accessible via URL `/advanced-tips`
+
 ## System Architecture
 
 ### Frontend Architecture
