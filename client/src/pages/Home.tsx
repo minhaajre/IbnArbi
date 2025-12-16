@@ -53,10 +53,10 @@ import { useTheme } from "next-themes";
 
 const DIVINE_NAMES_WATERMARK = "الله الرحمن الرحيم الملك القدوس السلام المؤمن المهيمن العزيز الجبار المتكبر الخالق البارئ المصور الغفار القهار الوهاب الرزاق الفتاح العليم";
 
-// Reorder sections for mobile: show planetary hours before mansion
+// Reorder sections for mobile: show lunar mansion before planetary hours
 const HOME_SECTIONS: TOCSection[] = [
-  { id: "planetary-hours", title: "Planetary Hours", icon: <LanternIcon className="w-4 h-4" /> },
   { id: "lunar-mansion", title: "Current Lunar Mansion", icon: <CrescentStarIcon className="w-4 h-4" /> },
+  { id: "planetary-hours", title: "Planetary Hours", icon: <LanternIcon className="w-4 h-4" /> },
   { id: "celestial-dignities", title: "Celestial Dignities", icon: <EightPointedStarIcon className="w-4 h-4" /> },
   { id: "elemental-balance", title: "Elemental Balance", icon: <IslamicPatternIcon className="w-4 h-4" /> },
   { id: "sky-map", title: "Current Sky Map", icon: <ZodiacWheelIcon className="w-4 h-4" /> },
