@@ -22,6 +22,7 @@ const INSTRUCTIONS_SECTIONS: TOCSection[] = [
   { id: "combining-hour-mansion", title: "Combining Hour & Mansion" },
   { id: "ibn-arabi-background", title: "Ibn ʿArabī Background" },
   { id: "cosmology-simple", title: "Cosmology Made Simple" },
+  { id: "key-further-readings", title: "Key Further Readings" },
 ];
 import {
   Accordion,
@@ -1092,15 +1093,6 @@ export default function Instructions() {
                 what inner state might serve, and which Divine Name to contemplate.
               </p>
 
-              <div className="pt-4 border-t border-border mt-4">
-                <h3 className="text-base font-medium text-foreground mb-3">Key Sources for Further Reading</h3>
-                <ul className="list-disc list-inside space-y-2 ml-2 text-sm text-foreground/80">
-                  <li>Ibn ʿArabi – <em>Mawāqiʿ al-Nujūm</em> (The Setting of the Stars)</li>
-                  <li>Ibn ʿArabi – <em>al-Futūḥāt al-Makkiyya</em> (The Meccan Openings), especially chapters on time, imagination, hours, and planets</li>
-                  <li>Titus Burckhardt – <em>Mystical Astrology According to Ibn ʿArabi</em></li>
-                  <li>William Chittick – <em>The Sufi Path of Knowledge</em></li>
-                </ul>
-              </div>
             </div>
           </section>
 
@@ -1189,6 +1181,106 @@ export default function Instructions() {
                 <strong>In one sentence:</strong> The Real breathes the cosmos into being, it descends through the spheres until it reaches your heart, and your heart rises back through these same layers through awareness, sincerity, and remembrance—completing the circle of existence.
               </p>
             </div>
+          </section>
+
+          <section id="key-further-readings" className="glass-card rounded-xl p-6 border border-border">
+            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
+              <BookOpen className="w-5 h-5" />
+              Key Sources for Further Reading
+              <span className="font-arabic text-lg">مصادر للقراءة الإضافية</span>
+            </h2>
+            <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+              These works are not manuals for prediction or control. They are aids for <strong>contemplation, self-knowledge, and adab with time</strong>. Approach them slowly, reflectively, with attention to inner states rather than outcomes.
+            </p>
+
+            <Accordion type="single" collapsible className="space-y-4">
+              {/* Primary Works */}
+              <AccordionItem value="primary-works" className="border border-border rounded-lg px-4">
+                <AccordionTrigger className="text-base font-medium text-foreground hover:text-gold">
+                  Primary Works by Ibn ʿArabī
+                </AccordionTrigger>
+                <AccordionContent className="space-y-4 pt-4">
+                  <div>
+                    <h4 className="font-medium text-foreground mb-2">1. al-Futūḥāt al-Makkiyya (The Meccan Openings)</h4>
+                    <p className="text-sm text-foreground/80 mb-3">The central and most comprehensive source for Ibn ʿArabī's cosmology, view of time, celestial symbolism, and spiritual psychology.</p>
+                    <p className="text-sm text-muted-foreground mb-2"><strong>Recommended thematic chapters:</strong></p>
+                    <ul className="list-disc list-inside space-y-1 ml-2 text-sm text-foreground/80">
+                      <li><strong>Ch. 1–2:</strong> On knowledge, divine self-disclosure (tajallī), and structure of existence</li>
+                      <li><strong>Ch. 73 – The Spirits of the Hours:</strong> Planetary hours, angelic attendance, and spiritual adab</li>
+                      <li><strong>Ch. 178 – Imagination (al-Khayāl):</strong> How celestial meanings appear in the world and heart</li>
+                      <li><strong>Ch. 195 – The Heavens and Spirits:</strong> Seven heavens, planetary intelligences, and mediation of meaning</li>
+                      <li><strong>Ch. 198 – Time, Moon, Lunar Mansions:</strong> Core chapter on waqt, khalq jadīd, mansions as stations of meaning</li>
+                      <li><strong>Ch. 390 – The Spirit of Time:</strong> Time as living reality and relation to divine presence</li>
+                      <li><strong>Ch. 559 – From Divine Decree to Manifest Event:</strong> Descent of meanings through cosmic levels</li>
+                    </ul>
+                  </div>
+                  <div className="pt-4 border-t border-border">
+                    <h4 className="font-medium text-foreground mb-2">2. Mawāqiʿ al-Nujūm (The Setting-Points of the Stars)</h4>
+                    <p className="text-sm text-foreground/80 mb-2">A concise work on the spiritual journey through changing states. Key themes: movement through light/shadow, alternation of expansion and contraction, spiritual stages, warnings against mistaking signs for guarantees. Strongly informs the app's emphasis on awareness rather than prediction.</p>
+                  </div>
+                  <div className="pt-4 border-t border-border">
+                    <h4 className="font-medium text-foreground mb-2">3. Inshāʾ al-Dawāʾir (The Creation of the Circles)</h4>
+                    <p className="text-sm text-foreground/80">A foundational cosmological treatise on concentric reality, the human as microcosm, relationship between knowledge and forms, and the heart as meeting point of heaven and earth. Underlies the app's cosmological diagrams.</p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Secondary Scholarship */}
+              <AccordionItem value="secondary-scholarship" className="border border-border rounded-lg px-4">
+                <AccordionTrigger className="text-base font-medium text-foreground hover:text-gold">
+                  Authoritative Secondary Scholarship
+                </AccordionTrigger>
+                <AccordionContent className="space-y-4 pt-4">
+                  <div>
+                    <h4 className="font-medium text-foreground mb-2">4. Titus Burckhardt – <em>Mystical Astrology According to Ibn ʿArabī</em></h4>
+                    <p className="text-sm text-foreground/80">One of the most precise and respectful expositions of Ibn ʿArabī's celestial symbolism. Especially useful for lunar mansions as qualitative time, rejection of causal astrology, and distinction between symbol and mechanism. Closely adheres to Ibn ʿArabī's metaphysical intent.</p>
+                  </div>
+                  <div className="pt-4 border-t border-border">
+                    <h4 className="font-medium text-foreground mb-2">5. William C. Chittick – <em>The Sufi Path of Knowledge</em></h4>
+                    <p className="text-sm text-foreground/80 mb-2">The most reliable English-language guide to Ibn ʿArabī's metaphysics.</p>
+                    <p className="text-sm text-muted-foreground"><strong>Recommended chapters:</strong> Sections on tajallī (divine self-disclosure), time, imagination, the heart, and non-repetition of disclosure. Essential for conceptual clarity without distortion.</p>
+                  </div>
+                  <div className="pt-4 border-t border-border">
+                    <h4 className="font-medium text-foreground mb-2">6. William C. Chittick – <em>Imaginal Worlds</em></h4>
+                    <p className="text-sm text-foreground/80">Highly relevant for understanding imagination as real ontological realm, how celestial meanings appear in perception, and why symbols are neither literal nor arbitrary. Supports the app's treatment of mansions and hours as imaginal lenses.</p>
+                  </div>
+                  <div className="pt-4 border-t border-border">
+                    <h4 className="font-medium text-foreground mb-2">7. Henry Corbin – <em>Creative Imagination in the Sufism of Ibn ʿArabī</em></h4>
+                    <p className="text-sm text-foreground/80">A classic study of imaginal perception, unveiling and veiling, and spiritual vision versus fantasy. Helps understand how meaning appears without reducing it to psychology or superstition.</p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Quranic Foundations */}
+              <AccordionItem value="quranic-foundations" className="border border-border rounded-lg px-4">
+                <AccordionTrigger className="text-base font-medium text-foreground hover:text-gold">
+                  Related Classical Context: Qur'anic Foundations
+                </AccordionTrigger>
+                <AccordionContent className="space-y-3 pt-4">
+                  <p className="text-sm text-foreground/80">Especially verses frequently cited by Ibn ʿArabī:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-2 text-sm text-foreground/80">
+                    <li><strong>"Every day He is upon a task"</strong> (Qur'an 55:29) — Underpin concept of renewal</li>
+                    <li><strong>"We are closer to him than his jugular vein"</strong> (50:16) — Divine presence and intimacy</li>
+                    <li><strong>"God is the Light of the heavens and the earth"</strong> (24:35) — Symbolic disclosure and illumination</li>
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* How to Use */}
+              <AccordionItem value="how-to-use-readings" className="border border-border rounded-lg px-4">
+                <AccordionTrigger className="text-base font-medium text-foreground hover:text-gold">
+                  How to Use These Sources
+                </AccordionTrigger>
+                <AccordionContent className="space-y-3 pt-4">
+                  <p className="text-sm text-foreground/80">These teachings describe <strong>how meaning becomes readable in time</strong>, not how to secure specific results. They invite attentiveness, humility, and presence rather than certainty.</p>
+                  <div className="p-3 rounded bg-gold/10 border border-gold/30 mt-3">
+                    <p className="text-xs text-foreground/80 leading-relaxed">
+                      <strong>Remember:</strong> If the app increases fear, certainty, or obsession, return to simplicity, silence, and remembrance. These sources are companions for reflection, not blueprints for control.
+                    </p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </section>
 
           <section className="glass-card rounded-xl p-6 border border-border bg-gold/5">
