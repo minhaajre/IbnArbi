@@ -1361,6 +1361,12 @@ export default function Instructions() {
 
           {/* Divider & Links */}
           <div className="flex flex-wrap items-center justify-center gap-4 text-xs pt-4">
+            <Link href="/advanced-tips">
+              <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto text-xs">
+                Advanced Tips
+              </Button>
+            </Link>
+            <span className="text-border">|</span>
             <Link href="/privacy">
               <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto text-xs">
                 Privacy Policy

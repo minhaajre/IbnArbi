@@ -1,0 +1,318 @@
+Below is a **clean, structured instruction manual for a Replit AI agent** to integrate an **Advanced Psychological & Somatic Alignment layer** into your app.
+
+This is written to be:
+
+* concise but rich
+* spiritually grounded (Akbarian adab, not self-optimization hype)
+* aligned with **modern psychology and neuroscience (CBT, somatic awareness)**
+* non-promotional (no brand pushing)
+* considerate of **neurodiverse users**
+* modular, so it can be added without breaking existing pages
+
+---
+
+# Replit AI Agent Instructions
+
+## Advanced Psychological & Somatic Alignment Module
+
+### Purpose
+
+Add a new optional section to the Guidance page that helps users **observe, regulate, and reflect on their inner states** using modern psychological tools, while remaining aligned with the app’s spiritual framework of time, adab, and awareness.
+
+This section must:
+
+* support self-regulation, not prediction
+* reduce overwhelm, not add information pressure
+* bridge spiritual timing with psychological insight
+* remain suggestive, not prescriptive
+
+---
+
+## SECTION STRUCTURE (High-Level)
+
+Create a **new collapsible section** titled:
+
+### Advanced Psychological & Somatic Alignment
+
+تعزيزات نفسية وجسدية متقدمة
+
+Place it **after** “Background: Ibn ʿArabi’s View of Time” and **before** “Key Sources for Further Reading”.
+
+This section contains **6 subsections**, each lightweight, skimmable, and expandable.
+
+---
+
+## SECTION 1: Psychological Self-Observation (CBT-Aligned)
+
+### Title
+
+Psychological self-observation
+الملاحظة النفسية
+
+### Core Principle (display text)
+
+Ibn ʿArabī emphasizes awareness before action. Modern psychology confirms this: noticing thoughts, emotions, and bodily signals reduces reactivity and increases clarity.
+
+### Content Rules
+
+* Do not diagnose
+* Do not label emotions as good/bad
+* Use neutral language: “notice”, “observe”, “track”
+
+### Suggested Guidance Copy
+
+Encourage users to:
+
+* notice mood shifts across the day
+* identify recurring triggers (fatigue, conflict, overstimulation)
+* observe thoughts without immediately see them as facts
+
+### CBT Alignment (short note)
+
+This mirrors cognitive-behavioral practice: awareness → interpretation → response.
+
+### Journaling Prompts (rotating or static)
+
+* What am I feeling right now?
+* What thought is accompanying this feeling?
+* Is this thought a fact, or an interpretation?
+* What response would reflect adab in this moment?
+
+---
+
+## SECTION 2: Mood, Body & Somatic Awareness
+
+### Title
+
+Somatic and emotional awareness
+الوعي الجسدي والعاطفي
+
+### Core Principle
+
+The body registers meaning before the intellect. Awareness of bodily signals helps regulate emotional states.
+
+### Guidance Copy
+
+Invite users to:
+
+* notice physical sensations (tightness, heaviness, restlessness, calm)
+* map emotions to body regions (chest, stomach, jaw, shoulders)
+* track energy levels rather than forcing productivity
+
+### Somatic Prompts
+
+* Where do I feel this emotion in my body?
+* Is my body signaling rest, movement, or stillness?
+* What happens if I slow my breathing for one minute?
+
+---
+
+## SECTION 3: Cycles, Rhythms & Long-Term Patterns
+
+### Title
+
+Cycles and personal rhythms
+الدورات والإيقاعات الشخصية
+
+### Core Principle
+
+Time is lived differently by each person. Patterns become visible only through review.
+
+### Guidance Copy
+
+Encourage tracking of:
+
+* daily energy rhythms
+* monthly emotional cycles
+* seasonal shifts
+* significant life events
+
+### Inclusive Language Rule
+
+Use **gender-neutral wording**, but explicitly acknowledge:
+
+* hormonal cycles
+* menstrual cycles
+* mood variability related to physiology
+
+Example phrasing:
+“Some people experience monthly physiological rhythms that affect mood and energy. Tracking these patterns can increase self-compassion and planning clarity.”
+
+### Reflection Prompts
+
+* What patterns repeat each month?
+* Which times support clarity? Which require gentleness?
+* How does my body respond to stress over time?
+
+---
+
+## SECTION 4: Regulation & Restoration Practices
+
+### Title
+
+Regulation and restoration
+التهدئة وإعادة التوازن
+
+### Core Principle
+
+Alignment with time requires a regulated nervous system.
+
+### Categorize practices into 3 cards or lists:
+
+#### A) Nervous System Calming
+
+* slow breathing (long exhale)
+* quiet walking
+* gentle stretching
+* body-based grounding
+
+#### B) Water & Heat Therapies
+
+* warm baths
+* water immersion
+* onsen-style soaking
+* contrast showers (gentle)
+
+#### C) Manual & Passive Relaxation
+
+* lymphatic drainage
+* Thai or gentle massage
+* resting in low-light environments
+
+### Language Rule
+
+Avoid “fix”, “optimize”, “hack”.
+Use “support”, “allow”, “restore”.
+
+---
+
+## SECTION 5: Cognitive & Environmental Hygiene
+
+### Title
+
+Cognitive and environmental clarity
+صفاء ذهني وبيئي
+
+### Core Principle
+
+Excess stimulation disrupts perception of time and meaning.
+
+### Guidance Copy
+
+Encourage:
+
+* reducing information intake during stress
+* limiting multitasking
+* simplifying environments
+
+### Practical Suggestions
+
+* digital quiet hours
+* reduced notifications
+* minimalist visual environments
+* single-task focus
+
+### Organization Tools (Neutral)
+
+Mention categories, not brands:
+
+* task lists
+* reminders
+* calendar blocking
+
+Purpose:
+To reduce cognitive load, not increase productivity pressure.
+
+---
+
+## SECTION 6: Support for Neurodiverse Users
+
+### Title
+
+For neurodiverse users
+للمستخدمين ذوي الحساسية العصبية
+
+### Tone Rule
+
+Respectful, validating, non-medical.
+
+### Guidance Copy
+
+Acknowledge that some users may be more sensitive to:
+
+* light
+* sound
+* visual clutter
+* information density
+* social intensity
+
+### Practical Suggestions
+
+* low-stimulus environments
+* softer lighting
+* noise reduction (ear protection)
+* predictable routines
+* fewer but deeper social interactions
+
+### Design Instruction
+
+If possible, allow:
+
+* reduced animation
+* simplified visual mode
+* minimal color contrast
+
+---
+
+## OPTIONAL MICRO-SECTION: Nutrition & Recovery (Non-Medical)
+
+### Title
+
+Recovery support during stress
+دعم التعافي في فترات الضغط
+
+### Rule
+
+Do not give medical advice.
+
+### Guidance Copy
+
+During demanding periods, some people benefit from:
+
+* adequate hydration
+* regular meals
+* minerals that support relaxation
+* sleep hygiene tools (darkness, quiet)
+
+Phrase as:
+“Some people find support in…”
+
+---
+
+## GLOBAL RULES FOR THIS MODULE
+
+1. No predictive language
+2. No spiritual superiority claims
+3. No medical diagnosis
+4. No app or brand promotion
+5. Use invitational language only
+6. Reinforce adab, patience, self-compassion
+
+---
+
+## FINAL CLOSING TEXT FOR SECTION
+
+Suggested closing paragraph:
+
+This section is optional. Use it gently.
+If these tools increase anxiety or self-monitoring, step back.
+Alignment arises from presence, not control.
+
+---
+
+If you want, next I can:
+
+* compress this into **UI-ready microcopy**
+* design **info-tooltips** for each subsection
+* align these practices with **planetary hours or mansions without causal language**
+* or create a **minimal version** for users who want fewer words
