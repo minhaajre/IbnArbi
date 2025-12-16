@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { useEffect } from "react";
-import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Heart, BookOpen, Eye, EyeOff, RefreshCw, Home } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Heart, BookOpen, Eye, EyeOff, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -456,18 +456,22 @@ export default function Instructions() {
           {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK} {DIVINE_NAMES_WATERMARK}
         </div>
       </div>
-      {/* Fixed Home Button */}
-      <Link href="/">
-        <Button 
-          variant="ghost" 
-          size="icon"
-          className="fixed top-4 right-4 z-50 rounded-full w-12 h-12 hover:bg-foreground/10" 
-          data-testid="home-button"
-          title="Return to Home"
-        >
-          <Home className="w-5 h-5 text-gold" />
-        </Button>
-      </Link>
+      {/* Header with Back Arrow */}
+      <div className="sticky top-0 z-30 bg-background/95 backdrop-blur-sm border-b border-border">
+        <div className="w-full px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Link href="/">
+              <button
+                className="p-2 rounded-lg hover:bg-foreground/5 transition-colors"
+                data-testid="button-back"
+              >
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+            </Link>
+            <h1 className="text-lg font-serif text-gold">Guidance</h1>
+          </div>
+        </div>
+      </div>
 
       <div className="relative z-10 p-4 sm:p-8 md:p-12 max-w-6xl mx-auto">
         <header className="mb-8">

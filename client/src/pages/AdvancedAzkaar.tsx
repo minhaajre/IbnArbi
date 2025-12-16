@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Scroll, BookOpen, Heart, Home } from "lucide-react";
+import { Scroll, BookOpen, Heart, ArrowLeft, Home } from "lucide-react";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
 import { PrayerBeadsIcon, QuranIcon, DuaHandsIcon, CalligraphyIcon, MihrabIcon } from "@/components/icons/IslamicIcons";
 
@@ -32,34 +32,33 @@ export default function AdvancedAzkaar() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Fixed Home Button - integrated with TOC */}
-      <Link href="/" onClick={handleBackHome}>
-        <Button 
-          variant="ghost" 
-          size="icon"
-          className="fixed top-14 sm:top-12 right-4 z-40 rounded-full w-12 h-12 hover:bg-foreground/10" 
-          data-testid="home-button"
-          title="Return to Home"
-        >
-          <Home className="w-5 h-5 text-gold" />
-        </Button>
-      </Link>
-
-      {/* Header */}
-      <div className="border-b border-border bg-foreground/5 relative z-30">
-        <div className="max-w-4xl mx-auto px-4 py-4">
+      {/* Header with Back Arrow */}
+      <div className="sticky top-0 z-30 bg-background/95 backdrop-blur-sm border-b border-border">
+        <div className="w-full px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Scroll className="w-6 h-6 text-purple-400" />
-            <div>
-              <h1 className="text-3xl font-serif text-gold">Advanced Sufi Aẓkār</h1>
-              <p className="text-sm text-muted-foreground">Curated litanies and devotional recitations</p>
-            </div>
+            <Link href="/" onClick={handleBackHome}>
+              <button
+                className="p-2 rounded-lg hover:bg-foreground/5 transition-colors"
+                data-testid="button-back"
+              >
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+            </Link>
+            <h1 className="text-lg font-serif text-gold">Advanced Sufi Aẓkār</h1>
           </div>
+          <Link href="/" onClick={handleBackHome}>
+            <button
+              className="p-2 rounded-lg hover:bg-foreground/5 transition-colors"
+              data-testid="button-home"
+            >
+              <Home className="w-4 h-4" />
+            </button>
+          </Link>
         </div>
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 py-8 space-y-8">
+      <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
         {/* Introduction */}
         <section id="about-azkaar" className="glass-card rounded-xl p-6 border border-border bg-purple-500/5">
           <div className="flex items-start gap-3 mb-4">
