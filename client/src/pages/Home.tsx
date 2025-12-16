@@ -20,7 +20,6 @@ import {
 } from "@/lib/astronomy";
 import { useDynamicFavicon } from "@/hooks/useDynamicFavicon";
 import { usePlanetaryNotifications } from "@/hooks/usePlanetaryNotifications";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { AYANAMSHA_J2000, PLANET_PROPHETS, PLANET_ARABIC } from "@/lib/constants";
 import { PlanetaryHoursDisplay } from "@/components/PlanetaryHoursDisplay";
 import { PlanetaryTable } from "@/components/PlanetaryTable";
@@ -84,7 +83,6 @@ const SECTION_INFO = {
 
 export default function Home() {
   const [, navigate] = useLocation();
-  const { language, setLanguage } = useLanguage();
   // State
   const [now, setNow] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
@@ -406,13 +404,6 @@ export default function Home() {
               <span className={`text-[10px] sm:text-xs ${!useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Tropical</span>
               <Switch checked={useSidereal} onCheckedChange={setUseSidereal} className="scale-90 sm:scale-100" />
               <span className={`text-[10px] sm:text-xs ${useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Sidereal</span>
-            </div>
-
-            {/* Language Toggle */}
-            <div className="flex items-center gap-1.5 sm:gap-2 bg-card/50 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 border border-border">
-              <span className={`text-[10px] sm:text-xs ${language === 'en' ? 'text-primary' : 'text-muted-foreground'}`}>EN</span>
-              <Switch checked={language === 'ar'} onCheckedChange={(checked) => setLanguage(checked ? 'ar' : 'en')} className="scale-90 sm:scale-100" />
-              <span className={`text-[10px] sm:text-xs ${language === 'ar' ? 'text-primary' : 'text-muted-foreground'}`}>AR</span>
             </div>
 
 
