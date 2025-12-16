@@ -64,9 +64,7 @@ export default function AdvancedTips() {
         <section id="intro" className="scroll-mt-20 mb-12">
           <div className="mb-6">
             <h2 className="text-3xl font-serif text-gold mb-3">Advanced Tips</h2>
-            <p className="text-muted-foreground text-sm">
-              Psychological & Somatic Alignment
-            </p>
+            <p className="text-muted-foreground text-sm">Psychological & Somatic Alignment for Nervous System</p>
           </div>
 
           <div className="space-y-4 mb-8">
