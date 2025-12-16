@@ -54,19 +54,37 @@ import { useTheme } from "next-themes";
 
 const DIVINE_NAMES_WATERMARK = "الله الرحمن الرحيم الملك القدوس السلام المؤمن المهيمن العزيز الجبار المتكبر الخالق البارئ المصور الغفار القهار الوهاب الرزاق الفتاح العليم";
 
+// Reorder sections for mobile: show lunar mansion before planetary hours
+const HOME_SECTIONS: TOCSection[] = [
+  { id: "lunar-mansion", title: "Current Lunar Mansion", icon: <CrescentStarIcon className="w-4 h-4" /> },
+  { id: "planetary-hours", title: "Planetary Hours", icon: <LanternIcon className="w-4 h-4" /> },
+  { id: "celestial-dignities", title: "Celestial Dignities", icon: <EightPointedStarIcon className="w-4 h-4" /> },
+  { id: "elemental-balance", title: "Elemental Balance", icon: <IslamicPatternIcon className="w-4 h-4" /> },
+  { id: "sky-map", title: "Current Sky Map", icon: <ZodiacWheelIcon className="w-4 h-4" /> },
+];
+
+const SECTION_INFO = {
+  lunarMansion: {
+    title: "Lunar Mansions",
+    description: "The Moon travels through each of the 28 mansions approximately every day. Each mansion represents one of three movements: Gathering (1-11), Differentiating (12-16), or Separating (17-28). Understanding which movement you are in helps align your activities and inner state with the lunar rhythm.",
+  },
+  planetaryHours: {
+    title: "Planetary Hours",
+    description: "Each day is divided into 24 planetary hours, with each hour ruled by one of the seven classical planets. The day ruler sets the spiritual tone for the entire day. The VOC (Void of Course) indicator means the Moon makes no major aspects before leaving its sign.",
+  },
+  dignities: {
+    title: "Celestial Dignities",
+    description: "Shows current positions of the seven classical planets and their dignities. Rulership (R) means strongest expression, Exaltation (E) means elevated influence, Detriment (d) means weakened, and Fall (f) means most challenged.",
+  },
+  elements: {
+    title: "Elemental Balance",
+    description: "The four elements (Fire, Earth, Air, Water) represent fundamental qualities of existence. This shows which elements are emphasized based on current planetary positions, helping you understand the day's overall energy.",
+  },
+};
+
 export default function Home() {
   const [, navigate] = useLocation();
-  const { language, setLanguage, t } = useLanguage();
-  
-  // Translated sections for Table of Contents
-  const HOME_SECTIONS: TOCSection[] = [
-    { id: "lunar-mansion", title: t("section.lunarMansion"), icon: <CrescentStarIcon className="w-4 h-4" /> },
-    { id: "planetary-hours", title: t("section.planetaryHours"), icon: <LanternIcon className="w-4 h-4" /> },
-    { id: "celestial-dignities", title: t("section.celestialDignities"), icon: <EightPointedStarIcon className="w-4 h-4" /> },
-    { id: "elemental-balance", title: t("section.elementalBalance"), icon: <IslamicPatternIcon className="w-4 h-4" /> },
-    { id: "sky-map", title: t("section.skyMap"), icon: <ZodiacWheelIcon className="w-4 h-4" /> },
-  ];
-  
+  const { language, setLanguage } = useLanguage();
   // State
   const [now, setNow] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
@@ -327,7 +345,7 @@ export default function Home() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background text-foreground">
-        <div className="animate-pulse text-gold font-serif text-2xl">{t("app.calculating")}</div>
+        <div className="animate-pulse text-gold font-serif text-2xl">Calculating Spheres...</div>
       </div>
     );
   }
@@ -353,8 +371,8 @@ export default function Home() {
       <header className="flex flex-col gap-4 sm:gap-6 border-b border-border pb-4 sm:pb-8 mb-6 sm:mb-12">
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 w-full">
           <div className="flex-1 min-w-0">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-serif text-gold mb-1 sm:mb-2">{t("app.title")}</h1>
-            <p className="text-muted-foreground font-light tracking-wide text-sm sm:text-base">{t("app.subtitle")}</p>
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-serif text-gold mb-1 sm:mb-2">Ibn Arabi's Cosmology</h1>
+            <p className="text-muted-foreground font-light tracking-wide text-sm sm:text-base">Guide to the Prayer Timings & Planetary Alignment</p>
           </div>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -376,25 +394,25 @@ export default function Home() {
                 variant="outline" 
                 className="bg-card/50 border-border h-8 sm:h-9 px-2 sm:px-3 gap-1.5"
                 data-testid="link-instructions"
-                title={t("nav.guidance")}
+                title="Guidance"
               >
                 <BookOpen className="w-4 h-4" />
-                <span className="text-xs hidden sm:inline">{t("nav.guidance")}</span>
+                <span className="text-xs hidden sm:inline">Guidance</span>
               </Button>
             </Link>
 
             {/* Sidereal Toggle */}
             <div className="flex items-center gap-1.5 sm:gap-2 bg-card/50 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 border border-border">
-              <span className={`text-[10px] sm:text-xs ${!useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>{t("nav.tropical")}</span>
+              <span className={`text-[10px] sm:text-xs ${!useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Tropical</span>
               <Switch checked={useSidereal} onCheckedChange={setUseSidereal} className="scale-90 sm:scale-100" />
-              <span className={`text-[10px] sm:text-xs ${useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>{t("nav.sidereal")}</span>
+              <span className={`text-[10px] sm:text-xs ${useSidereal ? 'text-primary' : 'text-muted-foreground'}`}>Sidereal</span>
             </div>
 
             {/* Language Toggle */}
             <div className="flex items-center gap-1.5 sm:gap-2 bg-card/50 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 border border-border">
               <span className={`text-[10px] sm:text-xs ${language === 'en' ? 'text-primary' : 'text-muted-foreground'}`}>EN</span>
               <Switch checked={language === 'ar'} onCheckedChange={(checked) => setLanguage(checked ? 'ar' : 'en')} className="scale-90 sm:scale-100" />
-              <span className={`text-[10px] sm:text-xs ${language === 'ar' ? 'text-primary' : 'text-muted-foreground'}`}>عربي</span>
+              <span className={`text-[10px] sm:text-xs ${language === 'ar' ? 'text-primary' : 'text-muted-foreground'}`}>AR</span>
             </div>
 
 
@@ -408,12 +426,12 @@ export default function Home() {
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>{t("location.settings")}</DialogTitle>
+                  <DialogTitle>Location Settings</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-4 py-4">
                   <div className="relative">
                     <Input 
-                      placeholder={t("nav.enterCity")} 
+                      placeholder="Enter city name..." 
                       value={manualCity} 
                       onChange={(e) => handleCityInput(e.target.value)}
                       onFocus={() => manualCity.length >= 2 && setShowSuggestions(true)}
@@ -438,9 +456,9 @@ export default function Home() {
                     )}
                   </div>
                   
-                  <div className="text-xs text-muted-foreground text-center">{t("nav.or")}</div>
+                  <div className="text-xs text-muted-foreground text-center">- OR -</div>
                   <Button variant="secondary" onClick={detectLocation} className="w-full" disabled={isLocating}>
-                    {isLocating ? t("nav.detecting") : t("nav.autoDetect")}
+                    {isLocating ? "Detecting..." : "Auto-Detect Location"}
                   </Button>
                 </div>
               </DialogContent>
@@ -492,7 +510,7 @@ export default function Home() {
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
             <h2 className="text-base sm:text-lg font-serif text-foreground/80">
-              {t("section.lunarMansion")}
+              Current Lunar Mansion <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">المنزلة القمرية الحالية</span>
             </h2>
             <Popover>
               <PopoverTrigger asChild>
@@ -502,10 +520,10 @@ export default function Home() {
               </PopoverTrigger>
               <PopoverContent className="w-80" align="end">
                 <div className="space-y-2">
-                  <h4 className="text-sm font-medium text-foreground">{t("info.lunarMansion.title")}</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{t("info.lunarMansion.description")}</p>
+                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.lunarMansion.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.lunarMansion.description}</p>
                   <Link href="/instructions#lunar-mansions" className="text-xs text-primary hover:underline block pt-1">
-                    {t("nav.learnMore")}
+                    Learn more →
                   </Link>
                 </div>
               </PopoverContent>
@@ -525,7 +543,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2 sm:mb-3 relative z-10">
             <div className="flex items-center gap-2">
               <h2 className="text-base sm:text-lg font-serif text-foreground/80">
-                {t("section.planetaryHours")}
+                Planetary Hours <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الساعات الكوكبية</span>
               </h2>
               <Popover>
                 <PopoverTrigger asChild>
@@ -535,10 +553,10 @@ export default function Home() {
                 </PopoverTrigger>
                 <PopoverContent className="w-80" align="start">
                   <div className="space-y-2">
-                    <h4 className="text-sm font-medium text-foreground">{t("info.planetaryHours.title")}</h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{t("info.planetaryHours.description")}</p>
+                    <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.planetaryHours.title}</h4>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.planetaryHours.description}</p>
                     <Link href="/instructions#planetary-hours" className="text-xs text-primary hover:underline block pt-1">
-                      {t("nav.learnMore")}
+                      Learn more →
                     </Link>
                   </div>
                 </PopoverContent>
@@ -722,7 +740,7 @@ export default function Home() {
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
             <h2 className="text-base sm:text-lg font-serif text-foreground/80">
-              {t("section.celestialDignities")}
+              Celestial Dignities <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الكرامات السماوية</span>
             </h2>
             <Popover>
               <PopoverTrigger asChild>
@@ -732,10 +750,10 @@ export default function Home() {
               </PopoverTrigger>
               <PopoverContent className="w-80" align="end">
                 <div className="space-y-2">
-                  <h4 className="text-sm font-medium text-foreground">{t("info.dignities.title")}</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{t("info.dignities.description")}</p>
+                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.dignities.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.dignities.description}</p>
                   <Link href="/instructions#celestial-dignities" className="text-xs text-primary hover:underline block pt-1">
-                    {t("nav.learnMore")}
+                    Learn more →
                   </Link>
                 </div>
               </PopoverContent>
@@ -756,7 +774,7 @@ export default function Home() {
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
             <h2 className="text-base sm:text-lg font-serif text-foreground/80">
-              {t("section.elementalBalance")}
+              Elemental Balance <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">توازن العناصر</span>
             </h2>
             <Popover>
               <PopoverTrigger asChild>
@@ -766,10 +784,10 @@ export default function Home() {
               </PopoverTrigger>
               <PopoverContent className="w-80" align="end">
                 <div className="space-y-2">
-                  <h4 className="text-sm font-medium text-foreground">{t("info.elements.title")}</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{t("info.elements.description")}</p>
+                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.elements.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.elements.description}</p>
                   <Link href="/instructions#elemental-balance" className="text-xs text-primary hover:underline block pt-1">
-                    {t("nav.learnMore")}
+                    Learn more →
                   </Link>
                 </div>
               </PopoverContent>
@@ -790,12 +808,12 @@ export default function Home() {
           {/* Title - Centered on mobile */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 order-first sm:order-2 flex-1">
             <h2 className="text-base sm:text-lg font-serif text-center sm:text-left text-foreground/80">
-              {t("section.skyMap")}
+              Current Sky Map <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">خريطة السماء الحالية</span>
             </h2>
             <div className="flex items-center gap-1.5 bg-card/60 rounded-lg px-2 py-1 border border-border mx-auto sm:mx-0">
-              <span className={`text-[10px] ${!useSidereal ? 'text-primary font-medium' : 'text-muted-foreground'}`}>{t("nav.tropical")}</span>
+              <span className={`text-[10px] ${!useSidereal ? 'text-primary font-medium' : 'text-muted-foreground'}`}>Tropical</span>
               <Switch checked={useSidereal} onCheckedChange={setUseSidereal} className="scale-75" data-testid="skymap-zodiac-toggle" />
-              <span className={`text-[10px] ${useSidereal ? 'text-primary font-medium' : 'text-muted-foreground'}`}>{t("nav.sidereal")}</span>
+              <span className={`text-[10px] ${useSidereal ? 'text-primary font-medium' : 'text-muted-foreground'}`}>Sidereal</span>
             </div>
           </div>
 
