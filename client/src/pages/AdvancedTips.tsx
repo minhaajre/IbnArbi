@@ -59,7 +59,7 @@ export default function AdvancedTips() {
         </div>
       </div>
       <TableOfContents sections={ADVANCED_TIPS_SECTIONS} />
-      <div className="w-full px-4 py-8">
+      <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Introduction */}
         <section id="intro" className="scroll-mt-20 mb-12">
           <div className="mb-6">
