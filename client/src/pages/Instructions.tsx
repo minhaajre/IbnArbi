@@ -1,10 +1,17 @@
 import { Link } from "wouter";
-import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Heart, BookOpen } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Heart, BookOpen, Eye, EyeOff, Compass, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const INSTRUCTIONS_SECTIONS: TOCSection[] = [
   { id: "about-app", title: "About This App" },
+  { id: "signs-not-causes", title: "Signs, Not Causes" },
   { id: "lunar-mansions", title: "Lunar Mansions" },
   { id: "planetary-hours", title: "Planetary Hours" },
   { id: "celestial-dignities", title: "Celestial Dignities" },
@@ -471,6 +478,38 @@ export default function Instructions() {
             </p>
           </section>
 
+          {/* A1: How Ibn ʿArabī reads time */}
+          <section id="signs-not-causes" className="glass-card rounded-xl p-6 border border-border">
+            <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
+              <Compass className="w-5 h-5" />
+              How Ibn ʿArabī Reads Time: Signs, Not Causes
+              <span className="font-arabic text-lg">كيف يقرأ ابن عربي الزمن: علامات لا أسباب</span>
+            </h2>
+            <div className="space-y-4 text-muted-foreground">
+              <p className="leading-relaxed text-base">
+                In Ibn ʿArabī's view, celestial cycles do not compel outcomes. They are a symbolic language 
+                through which meanings become readable in time. The value of this app is not control, but 
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <strong className="text-foreground cursor-help border-b border-dotted border-foreground/50"> adab</strong>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" className="max-w-xs">
+                      <div className="text-sm font-medium mb-1">Adab (أدب)</div>
+                      <div className="text-xs text-muted-foreground">Spiritual etiquette—meeting each moment with presence, humility, and right conduct.</div>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+                : meeting the moment with presence, humility, and clear intention.
+              </p>
+              <div className="p-4 rounded-lg bg-gold/10 border border-gold/30">
+                <p className="text-sm italic text-foreground/80 text-center">
+                  Read the sky as a mirror, not as a machine.
+                </p>
+              </div>
+            </div>
+          </section>
+
           <section id="lunar-mansions" className="glass-card rounded-xl p-6 border border-border">
             <h2 className="text-xl font-serif text-gold mb-4 flex items-center gap-2">
               <Moon className="w-5 h-5" />
@@ -658,6 +697,58 @@ export default function Instructions() {
                 <li><strong className="text-foreground">Void of Course Moon:</strong> Yellow VOC indicator means avoid important decisions.</li>
               </ul>
             </div>
+
+            {/* A2: Inner States - Qabd and Bast */}
+            <div className="mt-6 p-5 rounded-lg bg-foreground/5 border border-border">
+              <h3 className="text-base font-medium text-foreground mb-3 flex items-center gap-2">
+                <RefreshCw className="w-4 h-4 text-gold" />
+                Inner States: Qabḍ and Basṭ
+                <span className="font-arabic text-sm text-muted-foreground">الأحوال الداخلية: قبض وبسط</span>
+              </h3>
+              <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                Ibn ʿArabī describes recurring inner climates that shape how a moment is received:
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div className="p-4 rounded-lg bg-slate-500/10 border border-slate-500/30">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <strong className="text-slate-400 text-sm cursor-help border-b border-dotted border-slate-400/50">Qabḍ (قبض) — Contraction</strong>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs">
+                        <div className="text-sm font-medium mb-1">Qabḍ (قبض) — Contraction</div>
+                        <div className="text-xs text-muted-foreground">A state of narrowing that calls for patience, humility, restraint, and simplicity. Not a punishment, but a training in adab.</div>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                  <p className="text-foreground/80 text-sm mt-2">Narrowing, heaviness, restraint, sobriety, quiet</p>
+                  <p className="text-xs text-muted-foreground mt-2 italic">In qabḍ: simplify, reduce, avoid forcing decisions, return to essentials</p>
+                </div>
+                <div className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <strong className="text-amber-400 text-sm cursor-help border-b border-dotted border-amber-400/50">Basṭ (بسط) — Expansion</strong>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs">
+                        <div className="text-sm font-medium mb-1">Basṭ (بسط) — Expansion</div>
+                        <div className="text-xs text-muted-foreground">A state of opening that calls for gratitude, balance, responsibility, and generosity. Not a reward to chase, but a trust to carry well.</div>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                  <p className="text-foreground/80 text-sm mt-2">Openness, ease, energy, joy, confidence</p>
+                  <p className="text-xs text-muted-foreground mt-2 italic">In basṭ: give thanks, act with balance, avoid excess and self-importance</p>
+                </div>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                These are not good or bad. They are ways the Real educates the heart. The same hour can feel different to different people because states reflect readiness.
+              </p>
+              <div className="mt-3 p-3 rounded bg-gold/10 border border-gold/30">
+                <p className="text-xs italic text-foreground/80 text-center">
+                  Do not chase expansion and do not resent contraction.
+                </p>
+              </div>
+            </div>
           </section>
 
           <section id="celestial-dignities" className="glass-card rounded-xl p-6 border border-border">
@@ -769,8 +860,72 @@ export default function Instructions() {
                 <h3 className="text-base font-medium text-foreground mb-2">What is a Lunar Mansion?</h3>
                 <p className="leading-relaxed text-base">
                   The Moon travels through 28 stations (manazil) over its monthly cycle. Each mansion is not just a celestial 
-                  location but a doorway through which divine qualities descend. When the Moon enters a mansion, that mansion's 
-                  spiritual quality becomes accessible on Earth—influencing moods, events, and spiritual openings.
+                  location but a doorway through which divine qualities descend. When the Moon enters a mansion, its station 
+                  becomes a lens through which meanings may be perceived in time. This can shape moods and spiritual openings. 
+                  Do not treat it as a guarantee of events.
+                </p>
+              </div>
+
+              {/* A3: Veiling and Unveiling */}
+              <div className="p-5 rounded-lg bg-foreground/5 border border-border">
+                <h3 className="text-base font-medium text-foreground mb-3 flex items-center gap-2">
+                  <Eye className="w-4 h-4 text-gold" />
+                  Veiling and Unveiling: Ḥijāb and Kashf
+                  <span className="font-arabic text-sm text-muted-foreground">الحجاب والكشف: ستر وظهور</span>
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                  Ibn ʿArabī speaks of veiling and unveiling as modes of disclosure:
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                  <div className="p-4 rounded-lg bg-slate-500/10 border border-slate-500/30">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <strong className="text-slate-400 text-sm cursor-help border-b border-dotted border-slate-400/50 flex items-center gap-1">
+                            <EyeOff className="w-3 h-3" /> Ḥijāb (حجاب) — Veiling
+                          </strong>
+                        </TooltipTrigger>
+                        <TooltipContent side="top" className="max-w-xs">
+                          <div className="text-sm font-medium mb-1">Ḥijāb (حجاب) — Veiling</div>
+                          <div className="text-xs text-muted-foreground">Meaning is present but not yet readable. The fitting response is steadiness and reduced certainty, not forced interpretation.</div>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <p className="text-foreground/80 text-sm mt-2">Meaning is present but not yet readable</p>
+                    <p className="text-xs text-muted-foreground mt-2 italic">Remain steady, reduce certainty, choose patience</p>
+                  </div>
+                  <div className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <strong className="text-amber-400 text-sm cursor-help border-b border-dotted border-amber-400/50 flex items-center gap-1">
+                            <Eye className="w-3 h-3" /> Kashf (كشف) — Unveiling
+                          </strong>
+                        </TooltipTrigger>
+                        <TooltipContent side="top" className="max-w-xs">
+                          <div className="text-sm font-medium mb-1">Kashf (كشف) — Unveiling</div>
+                          <div className="text-xs text-muted-foreground">Meaning becomes clearer. The fitting response is humility, gratitude, and careful action without pride.</div>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <p className="text-foreground/80 text-sm mt-2">Meaning becomes clear</p>
+                    <p className="text-xs text-muted-foreground mt-2 italic">Receive clarity as a trust, not a trophy</p>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Unveiling may arrive gently or sharply. This is usually a matter of 
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span className="text-foreground cursor-help border-b border-dotted border-foreground/50"> preparedness (istiʿdād)</span>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs">
+                        <div className="text-sm font-medium mb-1">Istiʿdād (استعداد) — Preparedness</div>
+                        <div className="text-xs text-muted-foreground">Disclosure appears according to readiness. The same sign can teach two people differently.</div>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                  , not a property of the mansion itself. When veiled, do not force interpretation. When unveiled, keep humility.
                 </p>
               </div>
               
@@ -815,6 +970,12 @@ export default function Instructions() {
               <p className="leading-relaxed text-base">
                 The deepest reading comes from combining the current planetary hour with the current lunar mansion. 
                 Together they create a specific "moment-quality" that can guide your actions and inner state.
+              </p>
+              
+              {/* B2: Added paragraph */}
+              <p className="leading-relaxed text-base">
+                This combination does not predict outcomes. It describes a moment-quality: what kind of attention, 
+                restraint, gratitude, or clarity may be most fitting.
               </p>
               
               <div className="space-y-3">
@@ -865,6 +1026,51 @@ export default function Instructions() {
                 The past has passed, the future is not yet, and only the present moment is real. This is why 
                 awareness of the spiritual quality of "now" holds meaning.
               </p>
+
+              {/* A4: Preparedness and Non-Repetition */}
+              <div className="p-5 rounded-lg bg-foreground/5 border border-border">
+                <h3 className="text-base font-medium text-foreground mb-3 flex items-center gap-2">
+                  <RefreshCw className="w-4 h-4 text-gold" />
+                  Preparedness and Non-Repetition
+                  <span className="font-arabic text-sm text-muted-foreground">الاستعداد وعدم تكرار التجلي</span>
+                </h3>
+                <p className="text-muted-foreground text-sm mb-3 leading-relaxed">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <strong className="text-foreground cursor-help border-b border-dotted border-foreground/50">Preparedness (istiʿdād)</strong>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs">
+                        <div className="text-sm font-medium mb-1">Istiʿdād (استعداد) — Preparedness</div>
+                        <div className="text-xs text-muted-foreground">Disclosure appears according to readiness. The same sign can teach two people differently.</div>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                  {" "}is central in Ibn ʿArabī. Disclosure appears according to the readiness of the heart. 
+                  This is why a single moment can comfort one person and challenge another.
+                </p>
+                <p className="text-muted-foreground text-sm mb-3 leading-relaxed">
+                  He also teaches that there is{" "}
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <strong className="text-foreground cursor-help border-b border-dotted border-foreground/50">no repetition in divine self-disclosure</strong>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs">
+                        <div className="text-sm font-medium mb-1">No Repetition in Disclosure <span className="font-arabic">لا تكرار في التجلي</span></div>
+                        <div className="text-xs text-muted-foreground">Even when the same hour or mansion returns, the self-disclosure is new. Repetition is for deepening presence, not for expecting identical results.</div>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                  . Even when the same mansion or hour returns, what is shown is never identical. Each instant is a new creation.
+                </p>
+                <div className="p-3 rounded bg-gold/10 border border-gold/30">
+                  <p className="text-xs text-foreground/80 leading-relaxed">
+                    <strong>How to use this in the app:</strong> Use repetition to deepen presence, not to expect identical outcomes. 
+                    If the app increases fear, certainty, or obsession, return to simplicity, silence, and remembrance.
+                  </p>
+                </div>
+              </div>
               
               <p className="leading-relaxed text-base">
                 Each hour is traditionally understood to have an angelic spirit attending it and a ruling Divine Name 

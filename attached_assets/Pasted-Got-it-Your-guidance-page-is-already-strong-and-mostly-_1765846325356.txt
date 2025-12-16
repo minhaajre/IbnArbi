@@ -1,0 +1,238 @@
+Got it. Your guidance page is already strong and mostly aligned with Ibn ʿArabī’s adab-first approach. What’s missing is a clean, explicit “Akbarian inner-state layer” (qabḍ/basṭ, ḥijāb/kashf, istiʿdād, lā takrār fī al-tajallī) integrated in a way that:
+
+1. stays inside spiritual alignment
+2. does not slide into prediction or “effects on earth” claims
+3. does not contradict your existing “not entertainment, not divination” stance
+
+Below are complete Replit AI agent instructions plus the exact copy blocks to add, and on-hover texts.
+
+---
+
+Replit AI Agent Instructions: Integrate Akbarian Inner-State Layer into Guidance Page
+
+Objective
+Enhance the Instructions page by adding Ibn ʿArabī’s core time-reception concepts in a way that reinforces spiritual alignment and avoids predictive framing. Add new sections and small edits to existing sections. Preserve current structure, headings, bilingual style, and overall tone.
+
+Constraints
+Do not change navigation, layout, routes, or styling system.
+Do not remove existing sections.
+Do not change mansion ordering or category mapping.
+Do not add citations or references.
+Do not introduce “blessed” or “challenging” labels for mansions.
+Do not claim mansions cause events. Use “states of reception” language.
+
+Implementation Plan
+A) Insert 4 new sections at specific locations
+B) Add 2 short edits to existing sections to keep logic consistent
+C) Add hover tooltip copy for the new concepts and update existing hover tooltips where relevant
+
+---
+
+A) Insert new sections
+
+Insert A1 immediately after About This App (after the paragraph ending “inviting awareness rather than prescription.”)
+
+New Section Title
+How Ibn ʿArabī reads time: signs, not causes
+كيف يقرأ ابن عربي الزمن: علامات لا أسباب
+
+Body copy
+In Ibn ʿArabī’s view, celestial cycles do not compel outcomes. They are a symbolic language through which meanings become readable in time. The value of this app is not control, but adab: meeting the moment with presence, humility, and clear intention.
+
+Short reminder line
+Read the sky as a mirror, not as a machine.
+
+---
+
+Insert A2 inside Planetary Hours section, after the bullet list (after “Void of Course Moon: Yellow VOC indicator means avoid important decisions.”)
+
+New Section Title
+Inner states: qabḍ and basṭ
+الأحوال الداخلية: قبض وبسط
+
+Body copy
+Ibn ʿArabī describes recurring inner climates that shape how a moment is received:
+
+Qabḍ (قبض) contraction: narrowing, heaviness, restraint, sobriety, quiet
+Basṭ (بسط) expansion: openness, ease, energy, joy, confidence
+
+These are not good or bad. They are ways the Real educates the heart. The same hour can feel different to different people because states reflect readiness.
+
+How to align
+In qabḍ: simplify, reduce, avoid forcing decisions, return to essentials
+In basṭ: give thanks, act with balance, avoid excess and self-importance
+
+Micro-guardrail
+Do not chase expansion and do not resent contraction.
+
+---
+
+Insert A3 inside How to Read the Lunar Mansion, after the paragraph ending “spiritual openings.”
+
+New Section Title
+Veiling and unveiling: ḥijāb and kashf
+الحجاب والكشف: ستر وظهور
+
+Body copy
+Ibn ʿArabī speaks of veiling and unveiling as modes of disclosure:
+
+Ḥijāb (حجاب) veiling: meaning is present but not yet readable
+Kashf (كشف) unveiling: meaning becomes clear
+
+Unveiling may arrive gently or sharply. This is usually a matter of preparedness, not a property of the mansion itself. When veiled, do not force interpretation. When unveiled, keep humility.
+
+Practical adab
+Veiling: remain steady, reduce certainty, choose patience
+Unveiling: receive clarity as a trust, not a trophy
+
+---
+
+Insert A4 inside Background: Ibn ʿArabi’s View of Time, after the first paragraph ending “only the present moment is real.”
+
+New Section Title
+Preparedness and non-repetition
+الاستعداد وعدم تكرار التجلي
+
+Body copy
+Preparedness (istiʿdād) is central in Ibn ʿArabī. Disclosure appears according to the readiness of the heart. This is why a single moment can comfort one person and challenge another.
+
+He also teaches that there is no repetition in divine self-disclosure. Even when the same mansion or hour returns, what is shown is never identical. Each instant is a new creation.
+
+How to use this in the app
+Use repetition to deepen presence, not to expect identical outcomes. If the app increases fear, certainty, or obsession, return to simplicity, silence, and remembrance.
+
+---
+
+B) Required edits to existing copy to avoid drift
+
+Edit B1 in How to Read the Lunar Mansion section
+Locate this sentence:
+“When the Moon enters a mansion, that mansion’s spiritual quality becomes accessible on Earth inﬂuencing moods, events, and spiritual openings.”
+
+Replace it with
+“When the Moon enters a mansion, its station becomes a lens through which meanings may be perceived in time. This can shape moods and spiritual openings. Do not treat it as a guarantee of events.”
+
+Rationale: keeps spiritual alignment while removing event-causality language.
+
+Edit B2 in Combining Hour and Mansion section
+Add one paragraph immediately after the first paragraph (after “guide your actions and inner state.”)
+
+New paragraph
+This combination does not predict outcomes. It describes a moment-quality: what kind of attention, restraint, gratitude, or clarity may be most fitting.
+
+---
+
+C) Add hover tooltip text for the new concepts
+
+Where to implement
+Wherever you have hover tooltips for keywords, badges, or info icons in the guidance page and hour/mansion cards. If you already have a tooltip component, reuse it. If not, add small info icons next to the terms qabḍ/basṭ, ḥijāb/kashf, istiʿdād, and lā takrār.
+
+Tooltip Copy Library
+
+1. Qabḍ tooltip
+   Title
+   Qabḍ (قبض) contraction
+   Body
+   A state of narrowing that calls for patience, humility, restraint, and simplicity. Not a punishment, but a training in adab.
+
+2. Basṭ tooltip
+   Title
+   Basṭ (بسط) expansion
+   Body
+   A state of opening that calls for gratitude, balance, responsibility, and generosity. Not a reward to chase, but a trust to carry well.
+
+3. Ḥijāb tooltip
+   Title
+   Ḥijāb (حجاب) veiling
+   Body
+   Meaning is present but not yet readable. The fitting response is steadiness and reduced certainty, not forced interpretation.
+
+4. Kashf tooltip
+   Title
+   Kashf (كشف) unveiling
+   Body
+   Meaning becomes clearer. The fitting response is humility, gratitude, and careful action without pride.
+
+5. Istiʿdād tooltip
+   Title
+   Istiʿdād (استعداد) preparedness
+   Body
+   Disclosure appears according to readiness. The same sign can teach two people differently.
+
+6. No repetition tooltip
+   Title
+   No repetition in disclosure
+   لا تكرار في التجلي
+   Body
+   Even when the same hour or mansion returns, the self-disclosure is new. Repetition is for deepening presence, not for expecting identical results.
+
+7. Mirror principle tooltip
+   Title
+   The heart is the mirror
+   Body
+   The sky is a sign. The heart is where meaning becomes readable. Work on reception before interpretation.
+
+Optional shared footer line for these tooltips
+A lens for awareness, not a prediction.
+
+---
+
+Now: Updated Guidance Page Copy Blocks (ready to paste)
+
+Below are the exact blocks as they should appear in your page, matching your current voice. You can paste them as-is.
+
+Block 1
+How Ibn ʿArabī reads time: signs, not causes
+كيف يقرأ ابن عربي الزمن: علامات لا أسباب
+
+In Ibn ʿArabī’s view, celestial cycles do not compel outcomes. They are a symbolic language through which meanings become readable in time. The value of this app is not control, but adab: meeting the moment with presence, humility, and clear intention.
+
+Read the sky as a mirror, not as a machine.
+
+Block 2
+Inner states: qabḍ and basṭ
+الأحوال الداخلية: قبض وبسط
+
+Ibn ʿArabī describes recurring inner climates that shape how a moment is received:
+
+Qabḍ (قبض) contraction: narrowing, heaviness, restraint, sobriety, quiet
+Basṭ (بسط) expansion: openness, ease, energy, joy, confidence
+
+These are not good or bad. They are ways the Real educates the heart. The same hour can feel different to different people because states reflect readiness.
+
+In qabḍ: simplify, reduce, avoid forcing decisions, return to essentials
+In basṭ: give thanks, act with balance, avoid excess and self-importance
+
+Do not chase expansion and do not resent contraction.
+
+Block 3
+Veiling and unveiling: ḥijāb and kashf
+الحجاب والكشف: ستر وظهور
+
+Ibn ʿArabī speaks of veiling and unveiling as modes of disclosure:
+
+Ḥijāb (حجاب) veiling: meaning is present but not yet readable
+Kashf (كشف) unveiling: meaning becomes clear
+
+Unveiling may arrive gently or sharply. This is usually a matter of preparedness, not a property of the mansion itself. When veiled, do not force interpretation. When unveiled, keep humility.
+
+Veiling: remain steady, reduce certainty, choose patience
+Unveiling: receive clarity as a trust, not a trophy
+
+Block 4
+Preparedness and non-repetition
+الاستعداد وعدم تكرار التجلي
+
+Preparedness (istiʿdād) is central in Ibn ʿArabī. Disclosure appears according to the readiness of the heart. This is why a single moment can comfort one person and challenge another.
+
+He also teaches that there is no repetition in divine self-disclosure. Even when the same mansion or hour returns, what is shown is never identical. Each instant is a new creation.
+
+Use repetition to deepen presence, not to expect identical outcomes. If the app increases fear, certainty, or obsession, return to simplicity, silence, and remembrance.
+
+---
+
+One more important alignment fix
+
+Your current “How to Read the Lunar Mansion” paragraph still says “influencing events.” That’s the one phrase most likely to push the user into divination thinking. The edit I gave above resolves that without weakening the spiritual tone.
+
+If you want, I can also rewrite your “Each Hour Has a Spiritual Face” subsection to tighten it further into Ibn ʿArabī’s language of angelic attendance and Divine Names while removing anything that sounds like cause-and-effect.
