@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Heart, BookOpen, Eye, EyeOff, Compass, RefreshCw } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Clock, Orbit, Star, Scroll, MapPin, Calendar, ChevronDown, Sparkles, Heart, BookOpen, Eye, EyeOff, RefreshCw, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
 import {
@@ -11,7 +11,7 @@ import {
 
 const INSTRUCTIONS_SECTIONS: TOCSection[] = [
   { id: "about-app", title: "About This App" },
-  { id: "signs-not-causes", title: "Signs, Not Causes" },
+  { id: "ibn-arabi-background", title: "Ibn ʿArabī's View of Time" },
   { id: "lunar-mansions", title: "Lunar Mansions" },
   { id: "planetary-hours", title: "Planetary Hours" },
   { id: "celestial-dignities", title: "Celestial Dignities" },
@@ -20,7 +20,6 @@ const INSTRUCTIONS_SECTIONS: TOCSection[] = [
   { id: "reading-planetary-hours", title: "Reading Planetary Hours" },
   { id: "reading-lunar-mansion", title: "Reading Lunar Mansion" },
   { id: "combining-hour-mansion", title: "Combining Hour & Mansion" },
-  { id: "ibn-arabi-background", title: "Ibn ʿArabī Background" },
   { id: "cosmology-simple", title: "Cosmology Made Simple" },
   { id: "key-further-readings", title: "Key Further Readings" },
 ];
@@ -483,39 +482,89 @@ export default function Instructions() {
             </AccordionContent>
           </AccordionItem>
 
-          {/* A1: How Ibn ʿArabī reads time */}
-          <AccordionItem value="signs-not-causes" id="signs-not-causes" className="glass-card rounded-xl border border-border">
+          <AccordionItem value="ibn-arabi-background" id="ibn-arabi-background" className="glass-card rounded-xl border border-border">
             <AccordionTrigger className="p-6 hover:no-underline">
               <h2 className="text-xl font-serif text-gold flex items-center gap-2">
-                <Compass className="w-5 h-5" />
-                How Ibn ʿArabī Reads Time: Signs, Not Causes
-                <span className="font-arabic text-lg">كيف يقرأ ابن عربي الزمن: علامات لا أسباب</span>
+                <BookOpen className="w-5 h-5" />
+                Background: Ibn ʿArabi's View of Time
+                <span className="font-arabic text-lg">رؤية ابن عربي للزمن</span>
               </h2>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6">
-              <div className="space-y-4 text-muted-foreground">
-                <p className="leading-relaxed text-base">
-                  In Ibn ʿArabī's view, celestial cycles do not compel outcomes. They are a symbolic language 
-                  through which meanings become readable in time. The value of this app is not control, but 
+            <div className="space-y-4 text-muted-foreground">
+              <p className="leading-relaxed text-base">
+                For Ibn ʿArabi, time is not an empty container but a living reality. Each instant (waqt) is 
+                renewed by the Divine—a new creation (khalq jadīd) that carries its own unique signature. 
+                The past has passed, the future is not yet, and only the present moment is real. This is why 
+                awareness of the spiritual quality of "now" holds meaning.
+              </p>
+
+              {/* A4: Preparedness and Non-Repetition */}
+              <div className="p-5 rounded-lg bg-foreground/5 border border-border">
+                <h3 className="text-base font-medium text-foreground mb-3 flex items-center gap-2">
+                  <RefreshCw className="w-4 h-4 text-gold" />
+                  Preparedness and Non-Repetition
+                  <span className="font-arabic text-sm text-muted-foreground">الاستعداد وعدم تكرار التجلي</span>
+                </h3>
+                <p className="text-muted-foreground text-sm mb-3 leading-relaxed">
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <strong className="text-foreground cursor-help border-b border-dotted border-foreground/50"> adab</strong>
+                        <strong className="text-foreground cursor-help border-b border-dotted border-foreground/50">Preparedness (istiʿdād)</strong>
                       </TooltipTrigger>
                       <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
-                        <div className="text-sm font-medium mb-1">Adab (أدب)</div>
-                        <div className="text-xs text-muted-foreground">Spiritual etiquette—meeting each moment with presence, humility, and right conduct.</div>
+                        <div className="text-sm font-medium mb-1">Istiʿdād (استعداد) — Preparedness</div>
+                        <div className="text-xs text-muted-foreground">Disclosure appears according to readiness. The same sign can teach two people differently.</div>
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
-                  : meeting the moment with presence, humility, and clear intention.
+                  {" "}is central in Ibn ʿArabī. Disclosure appears according to the readiness of the heart. 
+                  This is why a single moment can comfort one person and challenge another.
                 </p>
-                <div className="p-4 rounded-lg bg-gold/10 border border-gold/30">
-                  <p className="text-sm italic text-foreground/80 text-center">
-                    Read the sky as a mirror, not as a machine.
+                <p className="text-muted-foreground text-sm mb-3 leading-relaxed">
+                  He also teaches that there is{" "}
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <strong className="text-foreground cursor-help border-b border-dotted border-foreground/50">no repetition in divine self-disclosure</strong>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
+                        <div className="text-sm font-medium mb-1">No Repetition in Disclosure <span className="font-arabic">لا تكرار في التجلي</span></div>
+                        <div className="text-xs text-muted-foreground">Even when the same hour or mansion returns, the self-disclosure is new. Repetition is for deepening presence, not for expecting identical results.</div>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                  . Even when the same mansion or hour returns, what is shown is never identical. Each instant is a new creation.
+                </p>
+                <div className="p-3 rounded bg-gold/10 border border-gold/30">
+                  <p className="text-xs text-foreground/80 leading-relaxed">
+                    <strong>How to use this in the app:</strong> Use repetition to deepen presence, not to expect identical outcomes. 
+                    If the app increases fear, certainty, or obsession, return to simplicity, silence, and remembrance.
                   </p>
                 </div>
               </div>
+              
+              <p className="leading-relaxed text-base">
+                Each hour is traditionally understood to have an angelic spirit attending it and a ruling Divine Name 
+                that colors its quality. When one aligns with the hour's nature, one may find harmony with the cosmos—this is 
+                the meaning of <strong className="text-foreground">adab</strong> (spiritual etiquette). When one resists the hour's nature, 
+                one may encounter friction or difficulty.
+              </p>
+              
+              <p className="leading-relaxed text-base">
+                The Moon is traditionally viewed as the primary mirror for divine decrees descending into the material world. 
+                As it travels through the 28 mansions, it reflects different aspects of the divine qualities 
+                into earthly life. Each mansion marks a stage of that reflection—from the first spark of intention 
+                (Mansion 1) to the final surrender and completion (Mansion 28).
+              </p>
+              
+              <p className="leading-relaxed text-base">
+                This app offers this cosmological framework to support awareness of <strong className="text-foreground">adab</strong> (أدب)—right conduct in 
+                each moment. By observing the hour and mansion, you may gain insight into what kind of action tends to harmonize, 
+                what inner state might serve, and which Divine Name to contemplate.
+              </p>
+
+            </div>
             </AccordionContent>
           </AccordionItem>
 
@@ -987,7 +1036,7 @@ export default function Instructions() {
                 <h3 className="text-base font-medium text-foreground mb-2">How to Use the Mansion Cards</h3>
                 <ul className="list-disc list-inside space-y-2 ml-2 text-base">
                   <li><strong className="text-foreground">Look at "Mansion Theme":</strong> Understand the core energy of this station.</li>
-                  <li><strong className="text-foreground">Check "Good For / Not Ideal For":</strong> Align your activities accordingly.</li>
+                  <li><strong className="text-foreground">Check "May Support / Use Caution":</strong> Align your activities accordingly.</li>
                   <li><strong className="text-foreground">Use "Suggested Dhikr & Practice":</strong> The Divine Name and practice for this mansion.</li>
                   <li><strong className="text-foreground">Note the Movement tag:</strong> See where you are in the 28-day cycle (Gathering/Differentiating/Separating).</li>
                   <li><strong className="text-foreground">Combine with Moon phase:</strong> Waxing supports beginning; waning supports ending.</li>
@@ -1054,101 +1103,16 @@ export default function Instructions() {
             </AccordionContent>
           </AccordionItem>
 
-          <AccordionItem value="ibn-arabi-background" id="ibn-arabi-background" className="glass-card rounded-xl border border-border">
-            <AccordionTrigger className="p-6 hover:no-underline">
-              <h2 className="text-xl font-serif text-gold flex items-center gap-2">
-                <BookOpen className="w-5 h-5" />
-                Background: Ibn ʿArabi's View of Time
-                <span className="font-arabic text-lg">رؤية ابن عربي للزمن</span>
-              </h2>
-            </AccordionTrigger>
-            <AccordionContent className="px-6 pb-6">
-            <div className="space-y-4 text-muted-foreground">
-              <p className="leading-relaxed text-base">
-                For Ibn ʿArabi, time is not an empty container but a living reality. Each instant (waqt) is 
-                renewed by the Divine—a new creation (khalq jadīd) that carries its own unique signature. 
-                The past has passed, the future is not yet, and only the present moment is real. This is why 
-                awareness of the spiritual quality of "now" holds meaning.
-              </p>
-
-              {/* A4: Preparedness and Non-Repetition */}
-              <div className="p-5 rounded-lg bg-foreground/5 border border-border">
-                <h3 className="text-base font-medium text-foreground mb-3 flex items-center gap-2">
-                  <RefreshCw className="w-4 h-4 text-gold" />
-                  Preparedness and Non-Repetition
-                  <span className="font-arabic text-sm text-muted-foreground">الاستعداد وعدم تكرار التجلي</span>
-                </h3>
-                <p className="text-muted-foreground text-sm mb-3 leading-relaxed">
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <strong className="text-foreground cursor-help border-b border-dotted border-foreground/50">Preparedness (istiʿdād)</strong>
-                      </TooltipTrigger>
-                      <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
-                        <div className="text-sm font-medium mb-1">Istiʿdād (استعداد) — Preparedness</div>
-                        <div className="text-xs text-muted-foreground">Disclosure appears according to readiness. The same sign can teach two people differently.</div>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                  {" "}is central in Ibn ʿArabī. Disclosure appears according to the readiness of the heart. 
-                  This is why a single moment can comfort one person and challenge another.
-                </p>
-                <p className="text-muted-foreground text-sm mb-3 leading-relaxed">
-                  He also teaches that there is{" "}
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <strong className="text-foreground cursor-help border-b border-dotted border-foreground/50">no repetition in divine self-disclosure</strong>
-                      </TooltipTrigger>
-                      <TooltipContent side="top" className="max-w-xs bg-white text-foreground border border-border p-3 rounded-lg shadow-lg">
-                        <div className="text-sm font-medium mb-1">No Repetition in Disclosure <span className="font-arabic">لا تكرار في التجلي</span></div>
-                        <div className="text-xs text-muted-foreground">Even when the same hour or mansion returns, the self-disclosure is new. Repetition is for deepening presence, not for expecting identical results.</div>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                  . Even when the same mansion or hour returns, what is shown is never identical. Each instant is a new creation.
-                </p>
-                <div className="p-3 rounded bg-gold/10 border border-gold/30">
-                  <p className="text-xs text-foreground/80 leading-relaxed">
-                    <strong>How to use this in the app:</strong> Use repetition to deepen presence, not to expect identical outcomes. 
-                    If the app increases fear, certainty, or obsession, return to simplicity, silence, and remembrance.
-                  </p>
-                </div>
-              </div>
-              
-              <p className="leading-relaxed text-base">
-                Each hour is traditionally understood to have an angelic spirit attending it and a ruling Divine Name 
-                that colors its quality. When one aligns with the hour's nature, one may find harmony with the cosmos—this is 
-                the meaning of <strong className="text-foreground">adab</strong> (spiritual etiquette). When one resists the hour's nature, 
-                one may encounter friction or difficulty.
-              </p>
-              
-              <p className="leading-relaxed text-base">
-                The Moon is traditionally viewed as the primary mirror for divine decrees descending into the material world. 
-                As it travels through the 28 mansions, it reflects different aspects of the divine qualities 
-                into earthly life. Each mansion marks a stage of that reflection—from the first spark of intention 
-                (Mansion 1) to the final surrender and completion (Mansion 28).
-              </p>
-              
-              <p className="leading-relaxed text-base">
-                This app offers this cosmological framework to support awareness of <strong className="text-foreground">adab</strong> (أدب)—right conduct in 
-                each moment. By observing the hour and mansion, you may gain insight into what kind of action tends to harmonize, 
-                what inner state might serve, and which Divine Name to contemplate.
-              </p>
-
-            </div>
-            </AccordionContent>
-          </AccordionItem>
-
           {/* Ibn Arabi's Cosmology Card */}
           <AccordionItem value="cosmology-simple" id="cosmology-simple" className="glass-card rounded-xl border border-border">
             <AccordionTrigger className="p-6 hover:no-underline">
-              <div className="text-left">
-                <h2 className="text-2xl font-serif text-gold">Ibn ʿArabī's Cosmology Made Simple</h2>
-                <p className="text-sm text-muted-foreground mt-1">From the Breath of the Real to the Human Heart — and Back Again</p>
-              </div>
+              <h2 className="text-xl font-serif text-gold flex items-center gap-2">
+                <Orbit className="w-5 h-5" />
+                Ibn ʿArabī's Cosmology Made Simple
+              </h2>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6">
+            <p className="text-sm text-muted-foreground mb-6 italic">From the Breath of the Real to the Human Heart — and Back Again</p>
             <div className="space-y-5 text-muted-foreground">
               {/* 1 */}
               <div>
