@@ -437,18 +437,22 @@ export default function AdvancedTips() {
                 </ul>
               </div>
             </div>
-
-          </div>
-        </section>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
         {/* Section 5: Cognitive & Environmental Clarity */}
-        <section id="cognitive-clarity" className="scroll-mt-20 mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <Eye className="w-6 h-6 text-primary" />
-            <h3 className="text-2xl font-serif text-gold">Cognitive & Environmental Clarity</h3>
-          </div>
-
-          <div className="space-y-4">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="cognitive-clarity" className="border border-border rounded-lg px-4">
+            <AccordionTrigger className="text-lg font-serif text-gold hover:no-underline py-4">
+              <div className="flex items-center gap-3">
+                <Eye className="w-6 h-6 text-primary" />
+                <span>Cognitive & Environmental Clarity</span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="pb-4">
+              <div className="space-y-4">
             {/* Core Principle */}
             <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
               <h4 className="font-medium text-foreground mb-2 flex items-center gap-2">
@@ -510,17 +514,22 @@ export default function AdvancedTips() {
             <div className="p-3 rounded-lg bg-background/50 border border-dashed border-border text-xs text-muted-foreground italic">
               <p><strong>Purpose:</strong> To reduce cognitive load and create mental space—not to increase productivity pressure or perfectionism.</p>
             </div>
-          </div>
-        </section>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
         {/* Section 6: Neurodiverse Support */}
-        <section id="neurodiverse-support" className="scroll-mt-20 mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <Users className="w-6 h-6 text-primary" />
-            <h3 className="text-2xl font-serif text-gold">Support for Neurodiverse Users</h3>
-          </div>
-
-          <div className="space-y-4">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="neurodiverse-support" className="border border-border rounded-lg px-4">
+            <AccordionTrigger className="text-lg font-serif text-gold hover:no-underline py-4">
+              <div className="flex items-center gap-3">
+                <Users className="w-6 h-6 text-primary" />
+                <span>Support for Neurodiverse Users</span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="pb-4">
+              <div className="space-y-4">
             {/* Core Principle */}
             <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
               <h4 className="font-medium text-foreground mb-2 flex items-center gap-2">
@@ -598,17 +607,22 @@ export default function AdvancedTips() {
             <div className="p-3 rounded-lg bg-background/50 border border-dashed border-border text-xs text-muted-foreground italic">
               <p><strong>This app:</strong> Uses soft, dark-friendly theming by default. You can customize brightness, animation, and information density to suit your needs. Pause any section that feels overwhelming.</p>
             </div>
-          </div>
-        </section>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
         {/* Section 7: Recovery Support */}
-        <section id="recovery-support" className="scroll-mt-20 mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <Droplets className="w-6 h-6 text-primary" />
-            <h3 className="text-2xl font-serif text-gold">Recovery Support During Stress</h3>
-          </div>
-
-          <div className="space-y-4">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="recovery-support" className="border border-border rounded-lg px-4">
+            <AccordionTrigger className="text-lg font-serif text-gold hover:no-underline py-4">
+              <div className="flex items-center gap-3">
+                <Droplets className="w-6 h-6 text-primary" />
+                <span>Recovery Support During Stress</span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="pb-4">
+              <div className="space-y-4">
             {/* Core Principle */}
             <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
               <h4 className="font-medium text-foreground mb-2 flex items-center gap-2">
@@ -660,16 +674,19 @@ export default function AdvancedTips() {
               <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
               <p className="text-xs text-amber-900/80"><strong>Not medical advice:</strong> This section offers general supportive practices. For specific health concerns, consult a healthcare provider.</p>
             </div>
-          </div>
-        </section>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
         {/* Closing */}
-        <section id="closing" className="scroll-mt-20 mb-12">
-          <div className="mb-6">
-            <h3 className="text-2xl font-serif text-gold">A Gentle Reminder</h3>
-          </div>
-
-          <div className="space-y-4">
+        <Accordion type="single" collapsible defaultValue="closing">
+          <AccordionItem value="closing" className="border border-border rounded-lg px-4">
+            <AccordionTrigger className="text-lg font-serif text-gold hover:no-underline py-4">
+              <span>A Gentle Reminder</span>
+            </AccordionTrigger>
+            <AccordionContent className="pb-4">
+              <div className="space-y-4">
             <div className="p-6 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/5 border border-primary/20 space-y-4">
               <div className="space-y-3">
                 <p className="text-foreground/90 leading-relaxed">
@@ -705,8 +722,10 @@ export default function AdvancedTips() {
                 </Link>
               </div>
             </div>
-          </div>
-        </section>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
     </div>
   );
