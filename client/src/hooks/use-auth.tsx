@@ -16,22 +16,40 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getRedirectResult(auth)
-      .then((result) => {
-        if (result) {
-          setUser(result.user);
+    let isMounted = true;
+
+    const initAuth = async () => {
+      try {
+        // Handle redirect result from Google sign-in
+        const result = await getRedirectResult(auth);
+        if (isMounted && result?.user) {
+          console.log('User authenticated via redirect:', result.user.email);
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Redirect error:', error);
+      }
+
+      // Set up auth state listener - this will capture the current user state
+      const unsubscribe = onAuthChange((user) => {
+        if (isMounted) {
+          console.log('Auth state changed:', user?.email || 'logged out');
+          setUser(user);
+          setLoading(false);
+        }
       });
 
-    const unsubscribe = onAuthChange((user) => {
-      setUser(user);
-      setLoading(false);
+      return unsubscribe;
+    };
+
+    let unsubscribe: (() => void) | null = null;
+    initAuth().then((unsub) => {
+      unsubscribe = unsub;
     });
 
-    return () => unsubscribe();
+    return () => {
+      isMounted = false;
+      if (unsubscribe) unsubscribe();
+    };
   }, []);
 
   const signIn = async () => {
