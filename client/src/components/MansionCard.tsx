@@ -3,8 +3,9 @@ import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC, MANSION_AZKAAR_SUGGESTIONS } from "@/lib/constants";
 import { MANSION_GUIDANCE, CYCLE_ROLE_COLORS } from "@/lib/spiritualGuidance";
+import { MANSIONS_AKBARIAN, type AkbarianMansion } from "@/data/mansions.akbarian";
 import { MansionProgress, MoonPhaseInfo } from "@/lib/astronomy";
-import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, Compass, ChevronDown, ChevronUp, ExternalLink, Sun } from "lucide-react";
+import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, Compass, ChevronDown, ChevronUp, ExternalLink, Sun, Badge } from "lucide-react";
 import { format } from "date-fns";
 import { MansionCycleRing } from "@/components/MansionCycleRing";
 import {
@@ -39,6 +40,9 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
   const mansion = selectedMansionNumber 
     ? IBN_ARABI_MANSIONS[selectedMansionNumber - 1] 
     : originalMansion;
+  
+  // Get Akbarian mansion data
+  const akbarianMansion = MANSIONS_AKBARIAN[originalMansion.number - 1];
   
   const isBlessed = mansion.nature === "blessed";
   const guidance = MANSION_GUIDANCE[mansion.number];
@@ -158,6 +162,20 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
           </div>
         )}
 
+        {/* Movement Tag + Source Status Badge */}
+        <div className="mb-2 flex items-center gap-2">
+          <div className={`inline-flex items-center gap-1 px-2 py-1 rounded text-[10px] font-medium ${
+            akbarianMansion.movement === "Gathering" ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30' :
+            akbarianMansion.movement === "Differentiating" ? 'bg-purple-500/10 text-purple-400 border border-purple-500/30' :
+            'bg-amber-500/10 text-amber-400 border border-amber-500/30'
+          }`} data-testid={`mansion-movement-${akbarianMansion.movement}`}>
+            {akbarianMansion.movement}
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-1 rounded text-[10px] font-medium bg-foreground/5 text-muted-foreground border border-border">
+            {akbarianMansion.source_status}
+          </div>
+        </div>
+
         {/* Quick Start Guide */}
         <div className="mb-2 p-2 rounded-lg bg-primary/5 border border-primary/20">
           <div className="text-[9px] font-medium text-primary uppercase tracking-wide mb-1">Working with celestial rhythms</div>
@@ -199,15 +217,14 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
           </div>
         )}
 
-        {/* NEW: Mansion Theme Card with Collapse/Expand */}
-        {guidance && (
+        {/* Akbarian Theme Card with Collapse/Expand */}
+        {akbarianMansion && (
           <div>
             <div className="mb-3 p-3 rounded-lg bg-card/50 border border-border" data-testid="mansion-theme-card">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-primary" />
                   <span className="text-xs font-medium text-foreground uppercase tracking-wide">Mansion Theme</span>
-                  <span className="text-xs font-arabic text-muted-foreground">{guidance.themeArabic}</span>
                 </div>
                 <button
                   type="button"
@@ -229,10 +246,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                     className="overflow-hidden"
                   >
                     <p className="text-sm text-foreground/90 leading-relaxed mt-2">
-                      {guidance.theme}
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-1.5 italic">
-                      Energy: {guidance.energy === 'beginning' ? 'Beginning / Initiating' : guidance.energy === 'stabilizing' ? 'Stabilizing / Building' : 'Ending / Releasing'}
+                      {akbarianMansion.akbarian_theme_en}
                     </p>
                   </motion.div>
                 )}
@@ -251,8 +265,8 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
               transition={{ duration: 0.2 }}
               className="overflow-hidden space-y-3"
             >
-              {/* NEW: May Support / Use Caution With Card */}
-              {guidance && (
+              {/* May Support / Use Caution With Card */}
+              {akbarianMansion && (
                 <div className="mb-3 p-3 rounded-lg bg-foreground/5 border border-border" data-testid="mansion-guidance-card">
                   <div className="grid grid-cols-2 gap-3">
                     <div>
@@ -260,7 +274,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                         <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">May Support</span>
                       </div>
                       <ul className="space-y-1">
-                        {guidance.goodFor.slice(0, 4).map((item, i) => (
+                        {akbarianMansion.inner_adab_en.slice(0, 4).map((item, i) => (
                           <li key={i} className="text-xs text-foreground/80 flex items-start gap-1.5">
                             <span className="text-green-500 mt-0.5">•</span>
                             <span>{item}</span>
@@ -273,7 +287,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                         <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Use Caution With</span>
                       </div>
                       <ul className="space-y-1">
-                        {guidance.notIdealFor.slice(0, 4).map((item, i) => (
+                        {akbarianMansion.cautions_en.slice(0, 4).map((item, i) => (
                           <li key={i} className="text-xs text-foreground/60 flex items-start gap-1.5">
                             <span className="text-amber-400 mt-0.5">•</span>
                             <span>{item}</span>
@@ -285,25 +299,21 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                 </div>
               )}
 
-              {/* NEW: Suggested Dhikr & Practice Card */}
-              {guidance && (
+              {/* Suggested Dhikr & Practice Card */}
+              {akbarianMansion && (
                 <div className="mb-3 p-3 rounded-lg bg-primary/5 border border-primary/20" data-testid="mansion-dhikr-card">
                   <div className="flex items-center gap-2 mb-2">
                     <Sparkles className="w-4 h-4 text-primary" />
-                    <span className="text-xs font-medium text-foreground uppercase tracking-wide">Suggested Dhikr & Practice</span>
+                    <span className="text-xs font-medium text-foreground uppercase tracking-wide">Suggested Practice</span>
                   </div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-sm font-semibold text-foreground">{guidance.dhikr.name}</span>
-                    <span className="font-arabic text-primary">{guidance.dhikr.nameArabic}</span>
-                    <span className="text-xs text-muted-foreground">({guidance.dhikr.meaning})</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Compass className="w-3.5 h-3.5 text-primary/70 mt-0.5 shrink-0" />
-                    <p className="text-xs text-foreground/80 leading-relaxed">{guidance.practice}</p>
-                  </div>
-                  <p className="text-xs font-arabic text-muted-foreground/70 mt-1.5 text-right" dir="rtl">
-                    {guidance.practiceArabic}
-                  </p>
+                  <ul className="space-y-1.5">
+                    {akbarianMansion.suggested_practice_en.map((item, i) => (
+                      <li key={i} className="text-xs text-foreground/80 flex items-start gap-2">
+                        <Compass className="w-3 h-3 text-primary/70 mt-0.5 shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               )}
 

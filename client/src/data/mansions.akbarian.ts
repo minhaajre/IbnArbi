@@ -1,0 +1,521 @@
+// data/mansions.akbarian.ts
+// Framework-safe mansion copy aligned with Ibn ʿArabī principles:
+// - Time as a mirror (not a cause)
+// - Adab with the moment (right response)
+// - Heart-centered perception
+// - Movement phases: Gathering / Differentiating / Separating
+//
+// NOTE: This file intentionally avoids "friendship/enmity", "blessed/challenging",
+// and fixed outcome claims unless you add text-attested excerpts later.
+
+export type MansionMovement = "Gathering" | "Differentiating" | "Separating";
+
+export type SourceStatus =
+  | "Framework-based (Ibn ʿArabī-aligned)"
+  | "Text-attested (requires excerpt)";
+
+export interface AkbarianMansion {
+  id: number; // 1–28
+  name_ar: string;
+  name_translit: string;
+  movement: MansionMovement;
+
+  // One-sentence, posture-based theme
+  akbarian_theme_en: string;
+
+  // Optional Arabic theme if you already have it; keep blank rather than inventing.
+  akbarian_theme_ar?: string;
+
+  // Left column: what this time may support in inner posture / adab
+  inner_adab_en: string[];
+
+  // Right column: cautions (inner pitfalls; avoid prediction language)
+  cautions_en: string[];
+
+  // Prompts for journaling and self-observation
+  reflection_prompts: string[];
+
+  // Neutral practice suggestions (avoid claiming "Ibn ʿArabī assigns X Name")
+  suggested_practice_en: string[];
+
+  // Integrity flag for UI
+  source_status: SourceStatus;
+}
+
+const P = {
+  gatheringEnergy: "Collecting / Integrating",
+  differentiatingEnergy: "Clarifying / Measuring",
+  separatingEnergy: "Releasing / Completing",
+};
+
+function mkPrompts(kind: "gather" | "differentiate" | "separate"): string[] {
+  if (kind === "gather") {
+    return [
+      "What is being gathered in my attention right now?",
+      "Where am I scattering energy unnecessarily?",
+      "What small, consistent act would reflect good adab today?",
+    ];
+  }
+  if (kind === "differentiate") {
+    return [
+      "What needs clearer boundaries or better measure right now?",
+      "What am I confusing—fact, interpretation, and feeling?",
+      "What would an honest, measured response look like?",
+    ];
+  }
+  return [
+    "What is naturally completing or loosening its hold right now?",
+    "Am I in qabḍ (constriction) or basṭ (expansion)—and can I accept it?",
+    "What would release look like without resentment or haste?",
+  ];
+}
+
+function mkPractice(kind: "gather" | "differentiate" | "separate"): string[] {
+  if (kind === "gather") {
+    return [
+      "Short, steady remembrance (dhikr) without strain",
+      "Simple planning: choose one priority and commit gently",
+      "Reduce distractions; strengthen consistency",
+      `Energy: ${P.gatheringEnergy}`,
+      "Read as a mirror for awareness, not a prediction.",
+    ];
+  }
+  if (kind === "differentiate") {
+    return [
+      "Quiet reflection before speech or decisions",
+      "Write one page: what is clear / what is unclear / what is next",
+      "Choose restraint over intensity; measure over impulse",
+      `Energy: ${P.differentiatingEnergy}`,
+      "Read as a mirror for awareness, not a prediction.",
+    ];
+  }
+  return [
+    "Simplify: reduce inputs, reduce commitments, increase stillness",
+    "Gentle dhikr and sincere dua for right response",
+    "Evening review: release what is not yours to carry",
+    `Energy: ${P.separatingEnergy}`,
+    "Read as a mirror for awareness, not a prediction.",
+  ];
+}
+
+function mkAdab(kind: "gather" | "differentiate" | "separate"): string[] {
+  if (kind === "gather") {
+    return [
+      "Favor consistency over intensity.",
+      "Gather attention before gathering outcomes.",
+      "Strengthen foundations: sleep, prayer, nourishment, routine.",
+      "Let meanings accumulate without forcing certainty.",
+    ];
+  }
+  if (kind === "differentiate") {
+    return [
+      "Seek clarity through measure, not harshness.",
+      "Name things accurately: needs, limits, responsibilities.",
+      "Choose the simplest honest step.",
+      "Discern what is essential from what is noise.",
+    ];
+  }
+  return [
+    "Allow completion without drama.",
+    "Return to inward honesty and quiet presence.",
+    "Release what has finished its term.",
+    "Let the heart turn without forcing a conclusion.",
+  ];
+}
+
+function mkCautions(kind: "gather" | "differentiate" | "separate"): string[] {
+  if (kind === "gather") {
+    return [
+      "Avoid scattering energy across too many goals.",
+      "Avoid rushing commitments before foundations exist.",
+      "Avoid overexposure to stimulation and information.",
+      "Avoid turning signs into guarantees.",
+    ];
+  }
+  if (kind === "differentiate") {
+    return [
+      "Avoid harsh judgment (of self or others).",
+      "Avoid over-controlling what needs time to clarify.",
+      "Avoid making decisions purely from anxiety.",
+      "Avoid confusing certainty with rigidity.",
+    ];
+  }
+  return [
+    "Avoid binding commitments made under pressure.",
+    "Avoid clinging to what is already loosening.",
+    "Avoid escalation; choose de-escalation and simplicity.",
+    "Avoid interpreting endings as failure.",
+  ];
+}
+
+export const MANSIONS_AKBARIAN: AkbarianMansion[] = [
+  // 1–11 Gathering
+  {
+    id: 1,
+    name_ar: "الشراطان",
+    name_translit: "Al-Sharṭayn",
+    movement: "Gathering",
+    akbarian_theme_en:
+      "A beginning of gathering: collect intention, steady attention, and start with adab rather than haste.",
+    inner_adab_en: mkAdab("gather"),
+    cautions_en: mkCautions("gather"),
+    reflection_prompts: mkPrompts("gather"),
+    suggested_practice_en: mkPractice("gather"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 2,
+    name_ar: "البطين",
+    name_translit: "Al-Butayn",
+    movement: "Gathering",
+    akbarian_theme_en:
+      "Gathering deepens: strengthen inner readiness and stabilize the basics before expanding outward.",
+    inner_adab_en: mkAdab("gather"),
+    cautions_en: mkCautions("gather"),
+    reflection_prompts: mkPrompts("gather"),
+    suggested_practice_en: mkPractice("gather"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 3,
+    name_ar: "الثريا",
+    name_translit: "Al-Thurayyā",
+    movement: "Gathering",
+    akbarian_theme_en:
+      "Gathering becomes more visible: refine attention and let your purpose become coherent without forcing outcomes.",
+    inner_adab_en: mkAdab("gather"),
+    cautions_en: mkCautions("gather"),
+    reflection_prompts: mkPrompts("gather"),
+    suggested_practice_en: mkPractice("gather"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 4,
+    name_ar: "الدبران",
+    name_translit: "Al-Dabarān",
+    movement: "Gathering",
+    akbarian_theme_en:
+      "Gathering meets momentum: hold steadiness as energy rises, and keep the heart's aim clean.",
+    inner_adab_en: mkAdab("gather"),
+    cautions_en: mkCautions("gather"),
+    reflection_prompts: mkPrompts("gather"),
+    suggested_practice_en: mkPractice("gather"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 5,
+    name_ar: "الهقعة",
+    name_translit: "Al-Ḥaqʿa",
+    movement: "Gathering",
+    akbarian_theme_en:
+      "Gathering invites interior order: gather your thoughts, simplify your plan, and strengthen the inner container.",
+    inner_adab_en: mkAdab("gather"),
+    cautions_en: mkCautions("gather"),
+    reflection_prompts: mkPrompts("gather"),
+    suggested_practice_en: mkPractice("gather"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 6,
+    name_ar: "الهنعة",
+    name_translit: "Al-Hanʿa",
+    movement: "Gathering",
+    akbarian_theme_en:
+      "Gathering matures: allow meanings to ripen through patience, not by forcing certainty.",
+    inner_adab_en: mkAdab("gather"),
+    cautions_en: mkCautions("gather"),
+    reflection_prompts: mkPrompts("gather"),
+    suggested_practice_en: mkPractice("gather"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 7,
+    name_ar: "الذراع",
+    name_translit: "Al-Dhirāʿ",
+    movement: "Gathering",
+    akbarian_theme_en:
+      "Gathering learns action: choose one measured effort and protect attention from distraction.",
+    inner_adab_en: mkAdab("gather"),
+    cautions_en: mkCautions("gather"),
+    reflection_prompts: mkPrompts("gather"),
+    suggested_practice_en: mkPractice("gather"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 8,
+    name_ar: "النثرة",
+    name_translit: "Al-Nathrah",
+    movement: "Gathering",
+    akbarian_theme_en:
+      "Gathering clarifies intent through the heart: collect what matters and let the rest fall away.",
+    inner_adab_en: mkAdab("gather"),
+    cautions_en: mkCautions("gather"),
+    reflection_prompts: mkPrompts("gather"),
+    suggested_practice_en: mkPractice("gather"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 9,
+    name_ar: "الطرف",
+    name_translit: "Al-Ṭarf",
+    movement: "Gathering",
+    akbarian_theme_en:
+      "Gathering invites watchfulness: observe how the moment turns, and respond with restraint and presence.",
+    inner_adab_en: mkAdab("gather"),
+    cautions_en: mkCautions("gather"),
+    reflection_prompts: mkPrompts("gather"),
+    suggested_practice_en: mkPractice("gather"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 10,
+    name_ar: "الجبهة",
+    name_translit: "Al-Jabhah",
+    movement: "Gathering",
+    akbarian_theme_en:
+      "Gathering consolidates direction: unify priorities and strengthen the inner agreement to stay consistent.",
+    inner_adab_en: mkAdab("gather"),
+    cautions_en: mkCautions("gather"),
+    reflection_prompts: mkPrompts("gather"),
+    suggested_practice_en: mkPractice("gather"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 11,
+    name_ar: "الزبرة",
+    name_translit: "Al-Zubrah",
+    movement: "Gathering",
+    akbarian_theme_en:
+      "The final gathering: complete what you started collecting, and prepare for clarity and measure to arrive.",
+    inner_adab_en: mkAdab("gather"),
+    cautions_en: mkCautions("gather"),
+    reflection_prompts: mkPrompts("gather"),
+    suggested_practice_en: mkPractice("gather"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+
+  // 12–16 Differentiating
+  {
+    id: 12,
+    name_ar: "الصرفة",
+    name_translit: "Al-Ṣarfah",
+    movement: "Differentiating",
+    akbarian_theme_en:
+      "Differentiating begins: what was gathered seeks clear measure—name things precisely and reduce ambiguity.",
+    inner_adab_en: mkAdab("differentiate"),
+    cautions_en: mkCautions("differentiate"),
+    reflection_prompts: mkPrompts("differentiate"),
+    suggested_practice_en: mkPractice("differentiate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 13,
+    name_ar: "العواء",
+    name_translit: "Al-ʿAwwā",
+    movement: "Differentiating",
+    akbarian_theme_en:
+      "Differentiating continues: discern what belongs together and what does not, without harshness.",
+    inner_adab_en: mkAdab("differentiate"),
+    cautions_en: mkCautions("differentiate"),
+    reflection_prompts: mkPrompts("differentiate"),
+    suggested_practice_en: mkPractice("differentiate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 14,
+    name_ar: "السماك",
+    name_translit: "Al-Simāk",
+    movement: "Differentiating",
+    akbarian_theme_en:
+      "Differentiating invites balance: keep a just measure—neither excess nor deficiency—especially in speech and action.",
+    inner_adab_en: mkAdab("differentiate"),
+    cautions_en: mkCautions("differentiate"),
+    reflection_prompts: mkPrompts("differentiate"),
+    suggested_practice_en: mkPractice("differentiate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 15,
+    name_ar: "الغفر",
+    name_translit: "Al-Ghafr",
+    movement: "Differentiating",
+    akbarian_theme_en:
+      "Differentiating refines discernment: notice subtle misalignment and correct gently, without self-attack.",
+    inner_adab_en: mkAdab("differentiate"),
+    cautions_en: mkCautions("differentiate"),
+    reflection_prompts: mkPrompts("differentiate"),
+    suggested_practice_en: mkPractice("differentiate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 16,
+    name_ar: "الزبانى",
+    name_translit: "Al-Zubānā",
+    movement: "Differentiating",
+    akbarian_theme_en:
+      "The final differentiating: boundaries become clear—choose right limits and let clarity settle before final release.",
+    inner_adab_en: mkAdab("differentiate"),
+    cautions_en: mkCautions("differentiate"),
+    reflection_prompts: mkPrompts("differentiate"),
+    suggested_practice_en: mkPractice("differentiate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+
+  // 17–28 Separating
+  {
+    id: 17,
+    name_ar: "الإكليل",
+    name_translit: "Al-Iklīl",
+    movement: "Separating",
+    akbarian_theme_en:
+      "Separating begins: reduce what is unnecessary and allow the cycle to loosen from its earlier form.",
+    inner_adab_en: mkAdab("separate"),
+    cautions_en: mkCautions("separate"),
+    reflection_prompts: mkPrompts("separate"),
+    suggested_practice_en: mkPractice("separate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 18,
+    name_ar: "القلب",
+    name_translit: "Al-Qalb",
+    movement: "Separating",
+    akbarian_theme_en:
+      "The turning of the heart: inward sensitivity increases, revealing what truly aligns and what no longer does.",
+    inner_adab_en: mkAdab("separate"),
+    cautions_en: mkCautions("separate"),
+    reflection_prompts: mkPrompts("separate"),
+    suggested_practice_en: mkPractice("separate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 19,
+    name_ar: "الشولة",
+    name_translit: "Al-Shawlah",
+    movement: "Separating",
+    akbarian_theme_en:
+      "Separating sharpens awareness: keep restraint in intensity, and choose clarity without aggression.",
+    inner_adab_en: mkAdab("separate"),
+    cautions_en: mkCautions("separate"),
+    reflection_prompts: mkPrompts("separate"),
+    suggested_practice_en: mkPractice("separate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 20,
+    name_ar: "النعائم",
+    name_translit: "Al-Naʿāʾim",
+    movement: "Separating",
+    akbarian_theme_en:
+      "Separating invites acceptance: let what is departing depart, and support the heart with gentleness.",
+    inner_adab_en: mkAdab("separate"),
+    cautions_en: mkCautions("separate"),
+    reflection_prompts: mkPrompts("separate"),
+    suggested_practice_en: mkPractice("separate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 21,
+    name_ar: "البلدة",
+    name_translit: "Al-Baldah",
+    movement: "Separating",
+    akbarian_theme_en:
+      "A pause within release: simplify plans, rest the mind, and allow silence to restore proportion.",
+    inner_adab_en: mkAdab("separate"),
+    cautions_en: mkCautions("separate"),
+    reflection_prompts: mkPrompts("separate"),
+    suggested_practice_en: mkPractice("separate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 22,
+    name_ar: "سعد الذابح",
+    name_translit: "Saʿd al-Dhābiḥ",
+    movement: "Separating",
+    akbarian_theme_en:
+      "Release through right sacrifice: let go of what drains integrity, and choose inward truth over appearance.",
+    inner_adab_en: mkAdab("separate"),
+    cautions_en: mkCautions("separate"),
+    reflection_prompts: mkPrompts("separate"),
+    suggested_practice_en: mkPractice("separate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 23,
+    name_ar: "سعد بلع",
+    name_translit: "Saʿd Bulaʿ",
+    movement: "Separating",
+    akbarian_theme_en:
+      "Digest what has occurred: allow experience to be assimilated before you seek a new chapter.",
+    inner_adab_en: mkAdab("separate"),
+    cautions_en: mkCautions("separate"),
+    reflection_prompts: mkPrompts("separate"),
+    suggested_practice_en: mkPractice("separate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 24,
+    name_ar: "سعد السعود",
+    name_translit: "Saʿd al-Suʿūd",
+    movement: "Separating",
+    akbarian_theme_en:
+      "A quiet ease within completion: protect calm, reduce burdens, and let gratitude soften the ending.",
+    inner_adab_en: mkAdab("separate"),
+    cautions_en: mkCautions("separate"),
+    reflection_prompts: mkPrompts("separate"),
+    suggested_practice_en: mkPractice("separate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 25,
+    name_ar: "سعد الأخبية",
+    name_translit: "Saʿd al-Akhbiyah",
+    movement: "Separating",
+    akbarian_theme_en:
+      "Withdrawal for preservation: keep what is essential, shelter the heart, and release what is excess.",
+    inner_adab_en: mkAdab("separate"),
+    cautions_en: mkCautions("separate"),
+    reflection_prompts: mkPrompts("separate"),
+    suggested_practice_en: mkPractice("separate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 26,
+    name_ar: "الفرغ المقدم",
+    name_translit: "Al-Fargh al-Muqaddam",
+    movement: "Separating",
+    akbarian_theme_en:
+      "Completion approaches: clear unfinished threads and let simplification prepare you for renewal.",
+    inner_adab_en: mkAdab("separate"),
+    cautions_en: mkCautions("separate"),
+    reflection_prompts: mkPrompts("separate"),
+    suggested_practice_en: mkPractice("separate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 27,
+    name_ar: "الفرغ المؤخر",
+    name_translit: "Al-Fargh al-Muʾakhkhar",
+    movement: "Separating",
+    akbarian_theme_en:
+      "Near-final release: allow closure, forgive where possible, and avoid reopening what is already ending.",
+    inner_adab_en: mkAdab("separate"),
+    cautions_en: mkCautions("separate"),
+    reflection_prompts: mkPrompts("separate"),
+    suggested_practice_en: mkPractice("separate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+  {
+    id: 28,
+    name_ar: "بطن الحوت",
+    name_translit: "Baṭn al-Ḥūt",
+    movement: "Separating",
+    akbarian_theme_en:
+      "The end of the cycle: surrender what you cannot control, rest in presence, and prepare for a new beginning.",
+    inner_adab_en: mkAdab("separate"),
+    cautions_en: mkCautions("separate"),
+    reflection_prompts: mkPrompts("separate"),
+    suggested_practice_en: mkPractice("separate"),
+    source_status: "Framework-based (Ibn ʿArabī-aligned)",
+  },
+];
