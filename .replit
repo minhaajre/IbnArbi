@@ -44,7 +44,7 @@ waitForPort = 5000
 
 [agent]
 mockupState = "FULLSTACK"
-integrations = ["google-mail:1.0.0"]
+integrations = ["google-mail:1.0.0", "javascript_google_analytics:1.0.0"]
 
 [userenv]
 
