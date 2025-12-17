@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithRedirect, signOut, GoogleAuthProvider, onAuthStateChanged, User } from "firebase/auth";
+import { getAuth, signInWithPopup, signOut, GoogleAuthProvider, onAuthStateChanged, User, setPersistence, browserLocalPersistence } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -13,10 +13,15 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
+// Enable persistent authentication
+setPersistence(auth, browserLocalPersistence).catch((error) => {
+  console.error('Failed to set persistence:', error);
+});
+
 export { auth, provider };
 
 export function loginWithGoogle() {
-  return signInWithRedirect(auth, provider);
+  return signInWithPopup(auth, provider);
 }
 
 export function logout() {
