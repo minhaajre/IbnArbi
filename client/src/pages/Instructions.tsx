@@ -434,7 +434,7 @@ export default function Instructions() {
             Instructions <span className="font-arabic">تعليمات</span>
           </h1>
           <p className="text-muted-foreground text-lg">
-            A guide to using Ibn Arabi's Cosmology App based on his spiritual teachings
+            A guide to using Test App based on his spiritual teachings
           </p>
         </header>
 

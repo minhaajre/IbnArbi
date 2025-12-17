@@ -306,7 +306,7 @@ export default function Home() {
       <header className="flex flex-col gap-4 sm:gap-6 border-b border-border pb-4 sm:pb-8 mb-6 sm:mb-12">
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 w-full">
           <div className="flex-1 min-w-0">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-serif text-gold mb-1 sm:mb-2">Ibn Arabi's Cosmology</h1>
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-serif text-gold mb-1 sm:mb-2">Test</h1>
             <p className="text-muted-foreground font-light tracking-wide text-sm sm:text-base">
               Guide to the Celestial Spheres
             </p>
