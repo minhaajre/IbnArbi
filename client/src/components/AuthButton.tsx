@@ -40,8 +40,8 @@ export function AuthButton() {
       <DropdownMenuTrigger asChild>
         <Button 
           variant="ghost" 
-          size="sm" 
-          className="gap-2 px-2"
+          size="icon"
+          className="rounded-full w-8 h-8 sm:w-9 sm:h-9"
           data-testid="button-user-menu"
         >
           <Avatar className="w-6 h-6">
@@ -50,9 +50,6 @@ export function AuthButton() {
               {user.displayName?.charAt(0) || user.email?.charAt(0) || "U"}
             </AvatarFallback>
           </Avatar>
-          <span className="hidden sm:inline text-sm max-w-24 truncate">
-            {user.displayName || user.email?.split("@")[0]}
-          </span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
