@@ -41,8 +41,8 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
     ? IBN_ARABI_MANSIONS[selectedMansionNumber - 1] 
     : originalMansion;
   
-  // Get Akbarian mansion data
-  const akbarianMansion = MANSIONS_AKBARIAN[originalMansion.number - 1];
+  // Get Akbarian mansion data - use currently viewed mansion, not original
+  const akbarianMansion = MANSIONS_AKBARIAN[mansion.number - 1];
   
   const isBlessed = mansion.nature === "blessed";
   const guidance = MANSION_GUIDANCE[mansion.number];
