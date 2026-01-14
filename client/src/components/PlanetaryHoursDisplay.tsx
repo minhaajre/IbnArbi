@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { PlanetaryHour } from "@/lib/astronomy";
 import { format } from "date-fns";
-import { Clock, Sparkles, Flame, Crown } from "lucide-react";
+import { Clock, Sparkles, Flame, Crown, Lock } from "lucide-react";
 import { PLANET_PROPHETS, PLANET_ARABIC } from "@/lib/constants";
 import { PLANETARY_SPIRITS } from "@/data/buni";
+import { useAuth } from "@/hooks/use-auth";
 
 const PLANET_SYMBOLS: Record<string, string> = {
   Sun: "☉", Moon: "☾", Mars: "♂", Mercury: "☿",
@@ -31,6 +32,9 @@ interface PlanetaryHoursDisplayProps {
 }
 
 export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, selectedPlanet, onPlanetSelect, lunarDay, isWaxing }: PlanetaryHoursDisplayProps) {
+  const { user, signIn } = useAuth();
+  const isSignedIn = !!user;
+  
   if (!currentHour) return null;
 
   const now = new Date();
@@ -85,42 +89,53 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, select
             {format(currentHour.start, "h:mm a")} — {format(currentHour.end, "h:mm a")}
           </div>
 
-          {/* Buni Planetary Spirits Info */}
-          {PLANETARY_SPIRITS[currentHour.planet] && (
-            <div className="flex flex-wrap items-center justify-center gap-2 mb-4 text-xs">
-              <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-sky-500/10 border border-sky-500/20">
-                <span className="text-sky-400">✦</span>
-                <span className="text-sky-300">Angel:</span>
-                <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].angel}</span>
-                <span className="font-arabic text-[10px] text-sky-400/70">{PLANETARY_SPIRITS[currentHour.planet].angelArabic}</span>
+          {/* Buni Planetary Spirits Info - Auth Gated */}
+          {PLANETARY_SPIRITS[currentHour.planet] && isSignedIn && (
+            <>
+              <div className="flex flex-wrap items-center justify-center gap-2 mb-4 text-xs">
+                <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-sky-500/10 border border-sky-500/20">
+                  <span className="text-sky-400">✦</span>
+                  <span className="text-sky-300">Angel:</span>
+                  <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].angel}</span>
+                  <span className="font-arabic text-[10px] text-sky-400/70">{PLANETARY_SPIRITS[currentHour.planet].angelArabic}</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">
+                  <Flame className="w-3 h-3 text-amber-400" />
+                  <span className="text-amber-300">Incense:</span>
+                  <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].incense}</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
+                  <Crown className="w-3 h-3 text-purple-400" />
+                  <span className="text-purple-300">Jinn King:</span>
+                  <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].jinnKing}</span>
+                  <span className="font-arabic text-[10px] text-purple-400/70">{PLANETARY_SPIRITS[currentHour.planet].jinnKingArabic}</span>
+                </div>
               </div>
-              <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">
-                <Flame className="w-3 h-3 text-amber-400" />
-                <span className="text-amber-300">Incense:</span>
-                <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].incense}</span>
+              <div className="flex flex-wrap items-center justify-center gap-2 mb-4 text-xs">
+                <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-slate-500/10 border border-slate-500/20">
+                  <span className="text-slate-400">⚙</span>
+                  <span className="text-slate-300">Metal:</span>
+                  <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].metal}</span>
+                  <span className="font-arabic text-[10px] text-slate-400/70">{PLANETARY_SPIRITS[currentHour.planet].metalArabic}</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-rose-500/10 border border-rose-500/20">
+                  <span className="text-rose-400">✎</span>
+                  <span className="text-rose-300">Ink:</span>
+                  <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].ink}</span>
+                </div>
               </div>
-              <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
-                <Crown className="w-3 h-3 text-purple-400" />
-                <span className="text-purple-300">Jinn King:</span>
-                <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].jinnKing}</span>
-                <span className="font-arabic text-[10px] text-purple-400/70">{PLANETARY_SPIRITS[currentHour.planet].jinnKingArabic}</span>
-              </div>
-            </div>
+            </>
           )}
-          {/* Planetary Metal & Ink Info */}
-          {PLANETARY_SPIRITS[currentHour.planet] && (
-            <div className="flex flex-wrap items-center justify-center gap-2 mb-4 text-xs">
-              <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-slate-500/10 border border-slate-500/20">
-                <span className="text-slate-400">⚙</span>
-                <span className="text-slate-300">Metal:</span>
-                <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].metal}</span>
-                <span className="font-arabic text-[10px] text-slate-400/70">{PLANETARY_SPIRITS[currentHour.planet].metalArabic}</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-rose-500/10 border border-rose-500/20">
-                <span className="text-rose-400">✎</span>
-                <span className="text-rose-300">Ink:</span>
-                <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].ink}</span>
-              </div>
+          {/* Sign-in prompt for Buni info */}
+          {PLANETARY_SPIRITS[currentHour.planet] && !isSignedIn && (
+            <div className="flex items-center justify-center gap-2 mb-4 text-xs">
+              <button
+                onClick={signIn}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20 transition-colors"
+              >
+                <Lock className="w-3 h-3" />
+                <span>Sign in to view Al-Buni guidance (Angel, Incense, Metal, Ink)</span>
+              </button>
             </div>
           )}
 
