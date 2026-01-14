@@ -87,7 +87,7 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, select
 
           {/* Buni Planetary Spirits Info */}
           {PLANETARY_SPIRITS[currentHour.planet] && (
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-4 text-xs">
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-4 text-xs">
               <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-sky-500/10 border border-sky-500/20">
                 <span className="text-sky-400">✦</span>
                 <span className="text-sky-300">Angel:</span>
@@ -104,6 +104,22 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, select
                 <span className="text-purple-300">Jinn King:</span>
                 <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].jinnKing}</span>
                 <span className="font-arabic text-[10px] text-purple-400/70">{PLANETARY_SPIRITS[currentHour.planet].jinnKingArabic}</span>
+              </div>
+            </div>
+          )}
+          {/* Planetary Metal & Ink Info */}
+          {PLANETARY_SPIRITS[currentHour.planet] && (
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-4 text-xs">
+              <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-slate-500/10 border border-slate-500/20">
+                <span className="text-slate-400">⚙</span>
+                <span className="text-slate-300">Metal:</span>
+                <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].metal}</span>
+                <span className="font-arabic text-[10px] text-slate-400/70">{PLANETARY_SPIRITS[currentHour.planet].metalArabic}</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-rose-500/10 border border-rose-500/20">
+                <span className="text-rose-400">✎</span>
+                <span className="text-rose-300">Ink:</span>
+                <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].ink}</span>
               </div>
             </div>
           )}

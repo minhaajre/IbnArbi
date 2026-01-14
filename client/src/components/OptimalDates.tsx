@@ -237,6 +237,31 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                               <div className="text-[9px] text-amber-400 uppercase mb-1">Al-Buni Guideline</div>
                               <div className="text-xs text-foreground/80">{catData.guideline}</div>
                             </div>
+
+                            {/* Material Requirements */}
+                            <div className="p-2 rounded bg-violet-500/5 border border-violet-500/20">
+                              <div className="text-[9px] text-violet-400 uppercase mb-2">Material Requirements (Al-Tabayi')</div>
+                              <div className="grid grid-cols-3 gap-2">
+                                <div>
+                                  <div className="text-[9px] text-muted-foreground">The Body (Metal)</div>
+                                  <div className="text-xs text-foreground font-medium">{catData.materials.metal}</div>
+                                  <div className="text-[9px] font-arabic text-violet-400/70">{catData.materials.metalArabic}</div>
+                                </div>
+                                <div>
+                                  <div className="text-[9px] text-muted-foreground">The Soul (Ink)</div>
+                                  <div className="text-xs text-foreground font-medium">{catData.materials.ink}</div>
+                                  <div className="text-[9px] font-arabic text-violet-400/70">{catData.materials.inkArabic}</div>
+                                </div>
+                                <div>
+                                  <div className="text-[9px] text-muted-foreground">The Breath (Incense)</div>
+                                  <div className="text-xs text-foreground font-medium">{catData.materials.incense}</div>
+                                  <div className="text-[9px] font-arabic text-violet-400/70">{catData.materials.incenseArabic}</div>
+                                </div>
+                              </div>
+                              <div className="mt-2 text-[9px] text-violet-300/80 italic">
+                                {catData.materials.metalInstruction}
+                              </div>
+                            </div>
                             
                             <div className="grid grid-cols-2 gap-3">
                               <div>

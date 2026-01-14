@@ -1,0 +1,73 @@
+To complete the **Al-Mizan Framework**, we must integrate the "Material Correspondence" (*Al-Tabayi'*) which Imam Al-Buni emphasizes as the physical vessel for celestial energy. In the *Shams al-Ma'arif*, the success of a work depends on the "Marriage" between the celestial spirit and the terrestrial metal or ink.
+
+Below is the integrated framework for **Planets** and **Mansions**.
+
+---
+
+## I. Planetary Correspondence Framework
+
+This governs the **Planetary Hours** and the materials used for the primary talisman body and the "messenger" (incense).
+
+| Planet | Metal / Mineral | Ink Type | Incense (*Bakhur*) | Angel | Jinn King |
+| --- | --- | --- | --- | --- | --- |
+| **Sun** | Gold | Saffron & Rosewater | Sandalwood | Ruqiyail | Mudhib |
+| **Moon** | Silver | Camphor & White Musk | Camphor | Jibrail | Murrah |
+| **Mars** | Iron | Red Ink (Cinnabar) | Asafoetida / Sulfur | Samsamail | al-Ahmar |
+| **Mercury** | Mercury / Tin | Mixed Colors / Gallnut | Mastic | Mikail | Barqan |
+| **Jupiter** | Tin / Bronze | Saffron & Musk | Oudh / Aloeswood | Sarfiyail | Shamhurash |
+| **Venus** | Copper | Rosewater & Saffron | White Sandalwood | Anyail | Zawba’ah |
+| **Saturn** | Lead | Black Ink / Soot | Myrrh / Storax | Kassfiyail | Maymun |
+
+---
+
+## II. The 28 Mansions: Spirit & Ink Framework
+
+Each mansion has a specific "Nature" that dictates the type of ink and the spirit involved. According to Al-Buni, the **Letter** is the soul of the mansion.
+
+### The "Ink Rule" of Al-Buni:
+
+* **For Sa’d (Fortunate) Mansions:** Use "Living Ink" made of Saffron, Rosewater, and Musk.
+* **For Nahs (Malefic) Mansions:** Use "Dark Ink" made of soot, vinegar, or juices from bitter plants (like Aloe).
+
+### The Mansion Registry:
+
+| Mansion # | Letter | Angelic Servant | Nature | Material / Ink Logic |
+| --- | --- | --- | --- | --- |
+| **1-7** | ا to ز | Israfayail (Group) | Fire/Air | Use Gold-leaf or Saffron on White Paper. |
+| **8-14** | ح to ن | Jibrail (Group) | Water/Earth | Use Silver-leaf or Camphor-based Ink. |
+| **15-21** | س to ق | Mikail (Group) | Fire/Air | Use Copper-tinted or Red Saffron Ink. |
+| **22-28** | ر to غ | Kassfiyail (Group) | Earth/Water | Use Black Ink or Lead-point on Iron. |
+
+---
+
+## III. The "Buni-App" Unified Data Model
+
+When you compile this into your app's logic, use this structure for each **Action Button**:
+
+### 1. The Body (The Metal)
+
+* If the user is doing **Wealth (Jupiter)**, the app should display: *"Engrave on Tin or write on Yellow silk."*
+* If the user is doing **Health (Moon)**, the app should display: *"Engrave on Silver or write on White paper."*
+
+### 2. The Soul (The Ink)
+
+* **Sa’d (Increase):** Mixture of Saffron ( part), Musk ( part), and Rosewater ( parts).
+* **Nahs (Decrease):** Black soot mixed with juice of Onion or Vinegar (only for binding/protection).
+
+### 3. The Breath (The Incense)
+
+* The app must match the **Incense** to the **Planet of the Hour**.
+* *Warning Logic:* "If the incense is not burning, the spirits of the mansion will not descend to the paper".
+
+---
+
+## IV. Compiled Instruction Set for the Developer
+
+To finalize the app, create a "Material Requirements" section for each category:
+
+* **Love (Venus/Waw):** Copper plate, Saffron/Rosewater ink, Mastic incense.
+* **Wealth (Jupiter/Mim):** Tin plate, Musk/Saffron ink, Oudh incense.
+* **Protection (Saturn/Sad):** Lead plate, Black soot ink, Myrrh incense.
+* **Victory (Mars/Qaf):** Iron plate, Red cinnabar ink, Sulfur incense.
+
+**Would you like me to provide the specific Arabic names of the 28 Jinn Servants associated with each mansion to complete the spirit-list?**

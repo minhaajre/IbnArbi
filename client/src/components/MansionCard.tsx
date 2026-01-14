@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC, MANSION_AZKAAR_SUGGESTIONS } from "@/lib/constants";
 import { MANSION_GUIDANCE, CYCLE_ROLE_COLORS } from "@/lib/spiritualGuidance";
 import { MANSIONS_AKBARIAN, type AkbarianMansion } from "@/data/mansions.akbarian";
-import { getMansionBuniData, type MansionBuniData } from "@/data/buni";
+import { getMansionBuniData, getMansionGroup, INK_RULES, type MansionBuniData } from "@/data/buni";
 import { MansionProgress, MoonPhaseInfo } from "@/lib/astronomy";
 import { useAuth } from "@/hooks/use-auth";
 import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, Compass, ChevronDown, ChevronUp, ExternalLink, Sun, Badge, Lock, Heart, Briefcase, Shield, Zap } from "lucide-react";
@@ -51,6 +51,9 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
   
   // Get Buni data for this mansion
   const buniData = getMansionBuniData(mansion.number);
+  
+  // Get mansion group data (angelic group, ink logic)
+  const mansionGroup = getMansionGroup(mansion.number);
   
   const isBlessed = mansion.nature === "blessed";
   const guidance = MANSION_GUIDANCE[mansion.number];
@@ -193,6 +196,44 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
             {akbarianMansion.source_status}
           </div>
         </div>
+
+        {/* Material Correspondence (Al-Tabayi') */}
+        {mansionGroup && isSignedIn && (
+          <div className="mb-2 p-2 rounded-lg bg-violet-500/5 border border-violet-500/20">
+            <div className="text-[9px] font-medium text-violet-400 uppercase tracking-wide mb-1.5">Material Correspondence (Al-Tabayi')</div>
+            <div className="flex flex-wrap items-center gap-2 text-[10px]">
+              <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-500/10 border border-slate-500/20">
+                <span className="text-slate-400">✦</span>
+                <span className="text-slate-300">Angelic Group:</span>
+                <span className="text-foreground/80">{mansionGroup.angelicGroup}</span>
+                <span className="font-arabic text-[9px] text-slate-400/70">{mansionGroup.angelicGroupArabic}</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-amber-500/10 border border-amber-500/20">
+                <span className="text-amber-400">⚡</span>
+                <span className="text-amber-300">Nature:</span>
+                <span className="text-foreground/80">{mansionGroup.nature}</span>
+              </div>
+            </div>
+            <div className="mt-1.5 text-[9px] text-violet-300/80 italic">
+              {mansionGroup.inkLogic}
+            </div>
+            <div className="mt-1.5 text-[9px] text-muted-foreground">
+              {buniData?.nature === "sad" 
+                ? `${INK_RULES.sad.name}: ${INK_RULES.sad.description}` 
+                : `${INK_RULES.nahs.name}: ${INK_RULES.nahs.description}`
+              }
+            </div>
+          </div>
+        )}
+        {mansionGroup && !isSignedIn && (
+          <div className="mb-2 p-2 rounded-lg bg-violet-500/5 border border-violet-500/20 flex items-center gap-2">
+            <Lock className="w-4 h-4 text-muted-foreground shrink-0" />
+            <div className="flex-1">
+              <span className="text-[10px] text-muted-foreground">Sign in to view Material Correspondence (metals, inks, incense)</span>
+            </div>
+            <button onClick={signIn} className="text-[10px] text-primary hover:underline shrink-0">Sign in</button>
+          </div>
+        )}
 
         {/* Quick Start Guide */}
         <div className="mb-2 p-2 rounded-lg bg-primary/5 border border-primary/20">
