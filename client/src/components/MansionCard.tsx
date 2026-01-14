@@ -4,8 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC, MANSION_AZKAAR_SUGGESTIONS } from "@/lib/constants";
 import { MANSION_GUIDANCE, CYCLE_ROLE_COLORS } from "@/lib/spiritualGuidance";
 import { MANSIONS_AKBARIAN, type AkbarianMansion } from "@/data/mansions.akbarian";
+import { getMansionBuniData, type MansionBuniData } from "@/data/buni";
 import { MansionProgress, MoonPhaseInfo } from "@/lib/astronomy";
-import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, Compass, ChevronDown, ChevronUp, ExternalLink, Sun, Badge } from "lucide-react";
+import { useAuth } from "@/hooks/use-auth";
+import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, Compass, ChevronDown, ChevronUp, ExternalLink, Sun, Badge, Lock, Heart, Briefcase, Shield, Zap } from "lucide-react";
 import { format } from "date-fns";
 import { MansionCycleRing } from "@/components/MansionCycleRing";
 import {
@@ -37,12 +39,18 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
   const [selectedMansionNumber, setSelectedMansionNumber] = useState<number | null>(null);
   const [isWheelFullscreen, setIsWheelFullscreen] = useState(false);
   
+  const { user, signIn } = useAuth();
+  const isSignedIn = !!user;
+  
   const mansion = selectedMansionNumber 
     ? IBN_ARABI_MANSIONS[selectedMansionNumber - 1] 
     : originalMansion;
   
   // Get Akbarian mansion data - use currently viewed mansion, not original
   const akbarianMansion = MANSIONS_AKBARIAN[mansion.number - 1];
+  
+  // Get Buni data for this mansion
+  const buniData = getMansionBuniData(mansion.number);
   
   const isBlessed = mansion.nature === "blessed";
   const guidance = MANSION_GUIDANCE[mansion.number];
@@ -162,8 +170,8 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
           </div>
         )}
 
-        {/* Movement Tag + Source Status Badge */}
-        <div className="mb-2 flex items-center gap-2">
+        {/* Movement Tag + Sa'd/Nahs + Source Status Badge */}
+        <div className="mb-2 flex flex-wrap items-center gap-2">
           <div className={`inline-flex items-center gap-1 px-2 py-1 rounded text-[10px] font-medium ${
             akbarianMansion.movement === "Gathering" ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30' :
             akbarianMansion.movement === "Differentiating" ? 'bg-purple-500/10 text-purple-400 border border-purple-500/30' :
@@ -171,6 +179,16 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
           }`} data-testid={`mansion-movement-${akbarianMansion.movement}`}>
             {akbarianMansion.movement}
           </div>
+          {buniData && (
+            <div className={`inline-flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold uppercase ${
+              buniData.nature === "sad" 
+                ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30' 
+                : 'bg-red-500/15 text-red-400 border border-red-500/30'
+            }`} data-testid={`mansion-nature-${buniData.nature}`}>
+              {buniData.nature === "sad" ? "Sa'd (Benefic)" : "Naḥs (Malefic)"}
+              <span className="font-arabic text-[9px]">{buniData.nature === "sad" ? "سعد" : "نحس"}</span>
+            </div>
+          )}
           <div className="inline-flex items-center gap-1 px-2 py-1 rounded text-[10px] font-medium bg-foreground/5 text-muted-foreground border border-border">
             {akbarianMansion.source_status}
           </div>
@@ -255,7 +273,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
           </div>
         )}
 
-        {/* Collapsible Content */}
+        {/* Collapsible Content - Gated for signed-in users */}
         <AnimatePresence>
           {isExpanded && (
             <motion.div
@@ -265,75 +283,159 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
               transition={{ duration: 0.2 }}
               className="overflow-hidden space-y-3"
             >
-              {/* May Support / Use Caution With Card */}
-              {akbarianMansion && (
-                <div className="mb-3 p-3 rounded-lg bg-foreground/5 border border-border" data-testid="mansion-guidance-card">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <div className="flex items-center gap-1.5 mb-2">
-                        <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">May Support</span>
-                      </div>
-                      <ul className="space-y-1">
-                        {akbarianMansion.inner_adab_en.slice(0, 4).map((item, i) => (
-                          <li key={i} className="text-xs text-foreground/80 flex items-start gap-1.5">
-                            <span className="text-green-500 mt-0.5">•</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-1.5 mb-2">
-                        <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Use Caution With</span>
-                      </div>
-                      <ul className="space-y-1">
-                        {akbarianMansion.cautions_en.slice(0, 4).map((item, i) => (
-                          <li key={i} className="text-xs text-foreground/60 flex items-start gap-1.5">
-                            <span className="text-amber-400 mt-0.5">•</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Suggested Dhikr & Practice Card */}
-              {akbarianMansion && (
-                <div className="mb-3 p-3 rounded-lg bg-primary/5 border border-primary/20" data-testid="mansion-dhikr-card">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Sparkles className="w-4 h-4 text-primary" />
-                    <span className="text-xs font-medium text-foreground uppercase tracking-wide">Suggested Practice</span>
-                  </div>
-                  <ul className="space-y-1.5">
-                    {akbarianMansion.suggested_practice_en.map((item, i) => (
-                      <li key={i} className="text-xs text-foreground/80 flex items-start gap-2">
-                        <Compass className="w-3 h-3 text-primary/70 mt-0.5 shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Optional Advanced Devotional Suggestions */}
-              {MANSION_AZKAAR_SUGGESTIONS[mansion.number] && (
-                <div className="mb-3 p-3 rounded-lg bg-purple-500/5 border border-purple-500/20">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Scroll className="w-4 h-4 text-purple-400" />
-                    <span className="text-xs font-medium text-foreground uppercase tracking-wide">Optional Advanced Aẓkār</span>
-                  </div>
-                  <p className="text-xs text-foreground/80 leading-relaxed italic mb-2">
-                    {MANSION_AZKAAR_SUGGESTIONS[mansion.number]}
+              {/* Sign-in prompt for non-authenticated users */}
+              {!isSignedIn ? (
+                <div className="mb-3 p-4 rounded-lg bg-foreground/5 border border-border text-center" data-testid="sign-in-prompt">
+                  <Lock className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
+                  <h4 className="text-sm font-medium text-foreground mb-1">Sign in to unlock full guidance</h4>
+                  <p className="text-xs text-muted-foreground mb-3">
+                    Access detailed spiritual guidance, Buni protocols, and personalized mansion insights.
                   </p>
-                  <Link href="/azkaar#about-azkaar" onClick={() => sessionStorage.setItem('homeScrollPos', window.scrollY.toString())}>
-                    <button className="text-xs text-purple-400 hover:text-purple-300 flex items-center gap-1 font-medium">
-                      Learn more about these litanies
-                      <ExternalLink className="w-3 h-3" />
-                    </button>
-                  </Link>
+                  <button
+                    onClick={signIn}
+                    className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
+                    data-testid="sign-in-button"
+                  >
+                    Sign in with Google
+                  </button>
                 </div>
+              ) : (
+                <>
+                  {/* Divine Name & Letter Card - Buni Framework */}
+                  {buniData && (
+                    <div className="mb-3 p-3 rounded-lg bg-amber-500/5 border border-amber-500/20" data-testid="divine-name-card">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Zap className="w-4 h-4 text-amber-400" />
+                        <span className="text-xs font-medium text-foreground uppercase tracking-wide">Divine Name & Recitation</span>
+                        <span className="text-[9px] font-arabic text-muted-foreground">الاسم الإلهي</span>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="text-center">
+                          <div className="text-3xl font-arabic text-amber-400">{buniData.divineNameArabic}</div>
+                          <div className="text-xs text-foreground/80">{buniData.divineName}</div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-xs text-muted-foreground mb-1">Recite <span className="text-amber-400 font-bold">{buniData.divineNameCount}</span> times</div>
+                          <div className="text-xs text-muted-foreground">
+                            Letter: <span className="font-arabic text-lg text-primary mx-1">{mansion.letterArabic}</span> ({mansion.letter})
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* May Support / Use Caution With Card */}
+                  {akbarianMansion && (
+                    <div className="mb-3 p-3 rounded-lg bg-foreground/5 border border-border" data-testid="mansion-guidance-card">
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <div className="flex items-center gap-1.5 mb-2">
+                            <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">May Support</span>
+                          </div>
+                          <ul className="space-y-1">
+                            {akbarianMansion.inner_adab_en.slice(0, 4).map((item, i) => (
+                              <li key={i} className="text-xs text-foreground/80 flex items-start gap-1.5">
+                                <span className="text-green-500 mt-0.5">•</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-1.5 mb-2">
+                            <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Use Caution With</span>
+                          </div>
+                          <ul className="space-y-1">
+                            {akbarianMansion.cautions_en.slice(0, 4).map((item, i) => (
+                              <li key={i} className="text-xs text-foreground/60 flex items-start gap-1.5">
+                                <span className="text-amber-400 mt-0.5">•</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Buni Guidelines Card */}
+                  {buniData && (
+                    <div className="mb-3 p-3 rounded-lg bg-indigo-500/5 border border-indigo-500/20" data-testid="buni-guidelines-card">
+                      <div className="flex items-center gap-2 mb-2">
+                        <BookOpen className="w-4 h-4 text-indigo-400" />
+                        <span className="text-xs font-medium text-foreground uppercase tracking-wide">Buni Guidelines</span>
+                        <span className="text-[9px] font-arabic text-muted-foreground">توجيهات البوني</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="flex items-start gap-2">
+                          <Heart className="w-3.5 h-3.5 text-pink-400 mt-0.5 shrink-0" />
+                          <div>
+                            <div className="text-[10px] font-medium text-foreground uppercase">Love</div>
+                            <div className="text-xs text-foreground/70">{buniData.guidelines.love}</div>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <Briefcase className="w-3.5 h-3.5 text-blue-400 mt-0.5 shrink-0" />
+                          <div>
+                            <div className="text-[10px] font-medium text-foreground uppercase">Career</div>
+                            <div className="text-xs text-foreground/70">{buniData.guidelines.career}</div>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <Shield className="w-3.5 h-3.5 text-emerald-400 mt-0.5 shrink-0" />
+                          <div>
+                            <div className="text-[10px] font-medium text-foreground uppercase">Health</div>
+                            <div className="text-xs text-foreground/70">{buniData.guidelines.health}</div>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <Sparkles className="w-3.5 h-3.5 text-purple-400 mt-0.5 shrink-0" />
+                          <div>
+                            <div className="text-[10px] font-medium text-foreground uppercase">Spirit</div>
+                            <div className="text-xs text-foreground/70">{buniData.guidelines.spirit}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Suggested Dhikr & Practice Card */}
+                  {akbarianMansion && (
+                    <div className="mb-3 p-3 rounded-lg bg-primary/5 border border-primary/20" data-testid="mansion-dhikr-card">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Sparkles className="w-4 h-4 text-primary" />
+                        <span className="text-xs font-medium text-foreground uppercase tracking-wide">Suggested Practice</span>
+                      </div>
+                      <ul className="space-y-1.5">
+                        {akbarianMansion.suggested_practice_en.map((item, i) => (
+                          <li key={i} className="text-xs text-foreground/80 flex items-start gap-2">
+                            <Compass className="w-3 h-3 text-primary/70 mt-0.5 shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Optional Advanced Devotional Suggestions */}
+                  {MANSION_AZKAAR_SUGGESTIONS[mansion.number] && (
+                    <div className="mb-3 p-3 rounded-lg bg-purple-500/5 border border-purple-500/20">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Scroll className="w-4 h-4 text-purple-400" />
+                        <span className="text-xs font-medium text-foreground uppercase tracking-wide">Optional Advanced Aẓkār</span>
+                      </div>
+                      <p className="text-xs text-foreground/80 leading-relaxed italic mb-2">
+                        {MANSION_AZKAAR_SUGGESTIONS[mansion.number]}
+                      </p>
+                      <Link href="/azkaar#about-azkaar" onClick={() => sessionStorage.setItem('homeScrollPos', window.scrollY.toString())}>
+                        <button className="text-xs text-purple-400 hover:text-purple-300 flex items-center gap-1 font-medium">
+                          Learn more about these litanies
+                          <ExternalLink className="w-3 h-3" />
+                        </button>
+                      </Link>
+                    </div>
+                  )}
+                </>
               )}
 
               <div className="space-y-3 text-sm text-muted-foreground/90 font-light leading-relaxed flex-1">
