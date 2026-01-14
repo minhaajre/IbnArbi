@@ -567,7 +567,7 @@ export default function Home() {
           
           {/* Optimal Dates Section */}
           <div className="mt-4 relative z-10">
-            <OptimalDates currentMansionNumber={mansion.number} />
+            <OptimalDates currentMansionNumber={mansion.number} isWaning={moonPhase ? !moonPhase.isWaxing : false} />
           </div>
         </section>
 

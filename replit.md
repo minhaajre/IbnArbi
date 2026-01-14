@@ -8,20 +8,29 @@ Al-Falak is a specialized astronomical and spiritual calendar application that c
 
 Preferred communication style: Simple, everyday language.
 
-## Recent Changes (December 2025)
+## Recent Changes (January 2026)
+
+- **Al-Buni Framework Integration**: Comprehensive Imam Al-Buni framework from Shams al-Ma'arif al-Kubra implemented:
+  - 7 work categories: Love, Wealth, Authority, Protection, Health, Knowledge, Conflict
+  - Each category includes Divine Names (primary & secondary) with Abjad values
+  - Arabic letters with numerical values
+  - Recommended planetary hours for each category
+  - Al-Buni guidelines for optimal timing
+- **Optimal Dates Finder**: New collapsible section displaying:
+  - Correct optimal and avoid mansions per Al-Buni framework
+  - Scorpio Block warning (Mansions 16-21 block Love & Health)
+  - Waning Moon warning (weakens Love & Wealth activities)
+  - Divine Names, Abjad values, governing letters, planetary hours
+- **Planetary Hours Buni Info**: Current hour displays ruling angel, recommended incense, and jinn king
+- **Auth-Gated Premium Content**: Akbarian guidance and Optimal Dates require Google sign-in
+- **Mansion Sa'd/Nahs Tags**: Benefic (green) and Malefic (red) nature indicators
+
+## Previous Changes (December 2025)
 
 - **Mansion Theme Section**: Now starts collapsed by default on app load (was expanded)
 - **Hourly Protocol**: Removed "Wear" section that displayed planet colors
-- **Advanced Tips Page**: New page (`/advanced-tips`) added with 7 comprehensive sections on psychological and somatic alignment:
-  - Psychological Self-Observation (CBT-aligned)
-  - Somatic & Emotional Awareness
-  - Cycles & Personal Rhythms
-  - Regulation & Restoration practices
-  - Cognitive & Environmental Clarity
-  - Support for Neurodiverse Users
-  - Recovery During Stress
-- **NS Modulation Button**: Added to PlanetaryProtocol component (appears when expanded) linking to Advanced Tips page
-- **Navigation**: Advanced Tips page linked from Instructions footer and accessible via URL `/advanced-tips`
+- **Advanced Tips Page**: New page (`/advanced-tips`) added with 7 comprehensive sections on psychological and somatic alignment
+- **NS Modulation Button**: Added to PlanetaryProtocol component linking to Advanced Tips page
 
 ## System Architecture
 

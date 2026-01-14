@@ -1,0 +1,78 @@
+To correct and align your app with the **Imam Al-Buni framework** from the *Shams al-Ma’arif al-Kubra*, use this comprehensive instruction set. This combines the optimal mansions, Divine Names, Abjad values, and governing letters into a single logic engine.
+
+---
+
+## 🕋 Al-Buni App Core Logic & Instruction Set
+
+### 1. ❤️ Love & Relationships (Al-Hubb)
+
+* **Optimal Mansions:** 6 (Al-Han'a), 8 (Al-Nathra), 13 (Al-Awwa), 24 (Sa'd al-Su'ud).
+* **Avoid Mansions:** 4 (Al-Dabaran), 12 (Al-Sarfa), 19 (Al-Shawla), 22 (Sa'd al-Dhabih).
+* **Divine Name & Abjad:** **Ya Wadud** (يا ودود) — **20**.
+* **Secondary Name & Abjad:** **Ya Latif** (يا لطيف) — **129**.
+* **Letter & Value:** **و (Waw)** — **6**.
+* **Guideline:** Best used during the **Hour of Venus**. Focus on reconciliation and fostering sympathy.
+
+### 2. 💰 Wealth & Business (Al-Tharwah)
+
+* **Optimal Mansions:** 7 (Al-Dhira), 10 (Al-Jabha), 24 (Sa'd al-Su'ud), 26 (Fargh al-Awwal), 28 (Batn al-Hut).
+* **Avoid Mansions:** 4 (Al-Dabaran), 8 (Al-Nathrah), 19 (Al-Shawla), 22 (Sa'd al-Dhabih).
+* **Divine Name & Abjad:** **Ya Ghani** (يا غني) — **1060**.
+* **Secondary Name & Abjad:** **Ya Wahhab** (يا وهاب) — **14**.
+* **Letter & Value:** **م (Mim)** — **40**.
+* **Guideline:** Best used during the **Hour of Jupiter** while the Moon is waxing.
+
+### 3. 💼 Authority & Career (Al-Sultah)
+
+* **Optimal Mansions:** 10 (Al-Jabha), 11 (Al-Zubra), 21 (Al-Balda), 28 (Batn al-Hut).
+* **Avoid Mansions:** 1 (Al-Sharatain), 9 (Al-Tarfa), 16 (Al-Zubana).
+* **Divine Name & Abjad:** **Ya Aziz** (يا عزيز) — **94**.
+* **Secondary Name & Abjad:** **Ya Rafi'** (يا رافع) — **351**.
+* **Letter & Value:** **ا (Alif)** — **1**.
+* **Guideline:** Use during the **Hour of the Sun** for charisma or **Jupiter** for rank.
+
+### 4. 🛡️ Protection (Al-Himayah)
+
+* **Optimal Mansions:** 17 (Al-Iklil), 18 (Al-Qalb), 21 (Al-Balda).
+* **Avoid/Caution Mansions:** 19 (Al-Shawla), 22 (Sa'd al-Dhabih).
+* **Divine Name & Abjad:** **Ya Hafiz** (يا حفيظ) — **998**.
+* **Secondary Name & Abjad:** **Ya Mani'** (يا مانع) — **161**.
+* **Letter & Value:** **ص (Sad)** — **90**.
+* **Guideline:** Use **Hour of Saturn** for binding enemies or **Mars** for active defense.
+
+### 5. 🩺 Health & Healing (Al-Sihhah)
+
+* **Optimal Mansions:** 2 (Al-Butain), 14 (Al-Simak), 23 (Sa'd Bula').
+* **Avoid Mansions:** 9 (Al-Tarfa), 18 (Al-Qalb), 19 (Al-Shawla).
+* **Divine Name & Abjad:** **Ya Shafi** (يا شافي) — **391**.
+* **Secondary Name & Abjad:** **Ya Salam** (يا سلام) — **131**.
+* **Letter & Value:** **ح (Hah)** — **8**.
+* **Guideline:** Use the **Hour of the Moon**. **Never** perform surgery during the "Sting" (Mansion 19).
+
+### 6. 📖 Knowledge & Study (Al-Ilm)
+
+* **Optimal Mansions:** 5 (Al-Haqa), 11 (Al-Zubra), 15 (Al-Ghafr).
+* **Avoid Mansions:** 19 (Al-Shawla).
+* **Divine Name & Abjad:** **Ya 'Alim** (يا عليم) — **150**.
+* **Secondary Name & Abjad:** **Ya Hadi** (يا هادي) — **20**.
+* **Letter & Value:** **ي (Ya)** — **10**.
+* **Guideline:** Best used during the **Hour of Mercury**.
+
+### ⚔️ Conflict & Victory (Al-Nasr)
+
+* **Optimal Mansions:** 1 (Al-Sharatain), 18 (Al-Qalb), 19 (Al-Shawla).
+* **Divine Name & Abjad:** **Ya Qahhar** (يا قهار) — **306**.
+* **Secondary Name & Abjad:** **Ya Jabbar** (يا جبار) — **206**.
+* **Letter & Value:** **ق (Qaf)** — **100**.
+* **Guideline:** Use for subduing internal ego or external oppression during the **Hour of Mars**.
+
+---
+
+## ⚙️ App Global Logic Rules
+
+1. **The Scorpio Block:** If Moon is in **Scorpio** (Mansions 16–21), block all **Love** and **Health** buttons.
+2. **The Phase Rule:** For **Love** and **Wealth**, mark as "Avoid" if the Moon is **Waning**, regardless of the mansion.
+3. **Retrograde/Combust Alert:** If the planet governing the category (e.g., Venus for Love) is **Retrograde** or **Combust**, display a warning: "Energy is weakened/burnt."
+4. **Recitation Calculation:** Total Count = (User's Name Abjad) + (Divine Name Abjad).
+
+Would you like me to provide the specific Arabic script for each mansion's name to ensure your UI is linguistically accurate?

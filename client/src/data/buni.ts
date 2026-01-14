@@ -512,66 +512,184 @@ export interface CategoryOptimalMansions {
   description: string;
   optimalMansions: number[];
   avoidMansions: number[];
+  divineName: string;
+  divineNameArabic: string;
+  divineNameAbjad: number;
+  secondaryName: string;
+  secondaryNameArabic: string;
+  secondaryNameAbjad: number;
+  letter: string;
+  letterArabic: string;
+  letterValue: number;
+  guideline: string;
+  planetaryHour: string;
+  affectedByWaning?: boolean;
+  blockedInScorpio?: boolean;
 }
 
 export const WORK_CATEGORIES: CategoryOptimalMansions[] = [
   {
     category: "Love & Relationships",
-    categoryArabic: "الحب والعلاقات",
-    description: "Marriage, romance, reconciliation, and strengthening bonds",
-    optimalMansions: [3, 6, 15, 16, 17, 27],
-    avoidMansions: [5, 8, 18, 19, 24],
-  },
-  {
-    category: "Authority & Leadership",
-    categoryArabic: "السلطة والقيادة",
-    description: "Gaining power, meeting officials, promotions, and recognition",
-    optimalMansions: [1, 10, 11, 13, 17],
-    avoidMansions: [2, 9, 12, 24],
-  },
-  {
-    category: "Protection & Safety",
-    categoryArabic: "الحماية والأمان",
-    description: "Warding off enemies, protection from harm, and spiritual shielding",
-    optimalMansions: [3, 7, 25, 11],
-    avoidMansions: [5, 18, 19, 26],
+    categoryArabic: "الحب",
+    description: "Reconciliation, fostering sympathy, and strengthening bonds",
+    optimalMansions: [6, 8, 13, 24],
+    avoidMansions: [4, 12, 19, 22],
+    divineName: "Ya Wadud",
+    divineNameArabic: "يا ودود",
+    divineNameAbjad: 20,
+    secondaryName: "Ya Latif",
+    secondaryNameArabic: "يا لطيف",
+    secondaryNameAbjad: 129,
+    letter: "Waw",
+    letterArabic: "و",
+    letterValue: 6,
+    guideline: "Best used during the Hour of Venus. Focus on reconciliation and fostering sympathy.",
+    planetaryHour: "Venus",
+    affectedByWaning: true,
+    blockedInScorpio: true,
   },
   {
     category: "Wealth & Business",
-    categoryArabic: "الثروة والتجارة",
-    description: "Financial gain, starting businesses, and increasing prosperity",
-    optimalMansions: [4, 7, 10, 16, 23],
-    avoidMansions: [2, 8, 22, 28],
+    categoryArabic: "الثروة",
+    description: "Financial gain, starting businesses, increasing prosperity",
+    optimalMansions: [7, 10, 24, 26, 28],
+    avoidMansions: [4, 8, 19, 22],
+    divineName: "Ya Ghani",
+    divineNameArabic: "يا غني",
+    divineNameAbjad: 1060,
+    secondaryName: "Ya Wahhab",
+    secondaryNameArabic: "يا وهاب",
+    secondaryNameAbjad: 14,
+    letter: "Mim",
+    letterArabic: "م",
+    letterValue: 40,
+    guideline: "Best used during the Hour of Jupiter while the Moon is waxing.",
+    planetaryHour: "Jupiter",
+    affectedByWaning: true,
   },
   {
-    category: "Travel & Journeys",
-    categoryArabic: "السفر والرحلات",
-    description: "Safe travels, exploring new places, and returning safely",
-    optimalMansions: [1, 4, 7, 13, 27],
-    avoidMansions: [5, 18, 19, 26],
+    category: "Authority & Leadership",
+    categoryArabic: "السلطة",
+    description: "Gaining power, meeting officials, promotions, and recognition",
+    optimalMansions: [10, 11, 21, 28],
+    avoidMansions: [1, 9, 16],
+    divineName: "Ya Aziz",
+    divineNameArabic: "يا عزيز",
+    divineNameAbjad: 94,
+    secondaryName: "Ya Rafi'",
+    secondaryNameArabic: "يا رافع",
+    secondaryNameAbjad: 351,
+    letter: "Alif",
+    letterArabic: "ا",
+    letterValue: 1,
+    guideline: "Use during the Hour of the Sun for charisma or Jupiter for rank.",
+    planetaryHour: "Sun",
+  },
+  {
+    category: "Protection & Safety",
+    categoryArabic: "الحماية",
+    description: "Warding off enemies, protection from harm, and spiritual shielding",
+    optimalMansions: [17, 18, 21],
+    avoidMansions: [19, 22],
+    divineName: "Ya Hafiz",
+    divineNameArabic: "يا حفيظ",
+    divineNameAbjad: 998,
+    secondaryName: "Ya Mani'",
+    secondaryNameArabic: "يا مانع",
+    secondaryNameAbjad: 161,
+    letter: "Sad",
+    letterArabic: "ص",
+    letterValue: 90,
+    guideline: "Use Hour of Saturn for binding enemies or Mars for active defense.",
+    planetaryHour: "Saturn",
   },
   {
     category: "Health & Healing",
-    categoryArabic: "الصحة والشفاء",
+    categoryArabic: "الصحة",
     description: "Recovery from illness, starting treatments, and vitality",
-    optimalMansions: [6, 15, 16, 20, 23],
-    avoidMansions: [5, 18, 19, 22],
+    optimalMansions: [2, 14, 23],
+    avoidMansions: [9, 18, 19],
+    divineName: "Ya Shafi",
+    divineNameArabic: "يا شافي",
+    divineNameAbjad: 391,
+    secondaryName: "Ya Salam",
+    secondaryNameArabic: "يا سلام",
+    secondaryNameAbjad: 131,
+    letter: "Hah",
+    letterArabic: "ح",
+    letterValue: 8,
+    guideline: "Use the Hour of the Moon. Never perform surgery during Mansion 19 (Al-Shawla).",
+    planetaryHour: "Moon",
+    blockedInScorpio: true,
   },
   {
     category: "Knowledge & Learning",
-    categoryArabic: "العلم والتعلم",
+    categoryArabic: "العلم",
     description: "Study, acquiring wisdom, and discovering hidden knowledge",
-    optimalMansions: [3, 6, 12, 14],
-    avoidMansions: [5, 8, 19],
+    optimalMansions: [5, 11, 15],
+    avoidMansions: [19],
+    divineName: "Ya 'Alim",
+    divineNameArabic: "يا عليم",
+    divineNameAbjad: 150,
+    secondaryName: "Ya Hadi",
+    secondaryNameArabic: "يا هادي",
+    secondaryNameAbjad: 20,
+    letter: "Ya",
+    letterArabic: "ي",
+    letterValue: 10,
+    guideline: "Best used during the Hour of Mercury.",
+    planetaryHour: "Mercury",
   },
   {
     category: "Conflict & Victory",
-    categoryArabic: "الصراع والنصر",
-    description: "Overcoming enemies, legal matters, and asserting oneself",
-    optimalMansions: [10, 13, 25],
-    avoidMansions: [2, 9, 24, 28],
+    categoryArabic: "النصر",
+    description: "Subduing internal ego or external oppression, overcoming enemies",
+    optimalMansions: [1, 18, 19],
+    avoidMansions: [],
+    divineName: "Ya Qahhar",
+    divineNameArabic: "يا قهار",
+    divineNameAbjad: 306,
+    secondaryName: "Ya Jabbar",
+    secondaryNameArabic: "يا جبار",
+    secondaryNameAbjad: 206,
+    letter: "Qaf",
+    letterArabic: "ق",
+    letterValue: 100,
+    guideline: "Use for subduing internal ego or external oppression during the Hour of Mars.",
+    planetaryHour: "Mars",
   },
 ];
+
+export const SCORPIO_MANSIONS = [16, 17, 18, 19, 20, 21];
+
+export function isInScorpio(mansionNumber: number): boolean {
+  return SCORPIO_MANSIONS.includes(mansionNumber);
+}
+
+export function isCategoryBlocked(
+  category: string,
+  currentMansion: number,
+  isWaning: boolean
+): { blocked: boolean; reason?: string } {
+  const categoryData = WORK_CATEGORIES.find(c => c.category === category);
+  if (!categoryData) return { blocked: false };
+
+  if (categoryData.blockedInScorpio && isInScorpio(currentMansion)) {
+    return { blocked: true, reason: "Blocked: Moon in Scorpio (Mansions 16-21)" };
+  }
+
+  if (categoryData.affectedByWaning && isWaning) {
+    return { blocked: false, reason: "Caution: Moon is waning - energy weakened" };
+  }
+
+  return { blocked: false };
+}
+
+export function calculateRecitationCount(userNameAbjad: number, divineName: string): number {
+  const categoryData = WORK_CATEGORIES.find(c => c.divineName === divineName);
+  if (!categoryData) return 0;
+  return userNameAbjad + categoryData.divineNameAbjad;
+}
 
 export function getMansionBuniData(mansionNumber: number): MansionBuniData | undefined {
   return MANSION_BUNI_DATA.find(m => m.id === mansionNumber);

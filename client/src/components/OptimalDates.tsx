@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { WORK_CATEGORIES, getOptimalDatesForCategory, MANSION_BUNI_DATA } from "@/data/buni";
+import { WORK_CATEGORIES, getOptimalDatesForCategory, MANSION_BUNI_DATA, isCategoryBlocked, isInScorpio } from "@/data/buni";
 import { IBN_ARABI_MANSIONS } from "@/lib/constants";
 import { useAuth } from "@/hooks/use-auth";
-import { Calendar, Heart, Crown, Shield, Coins, Plane, Stethoscope, BookOpen, Sword, ChevronDown, ChevronUp, Lock, Check, X } from "lucide-react";
+import { Calendar, Heart, Crown, Shield, Coins, Stethoscope, BookOpen, Sword, ChevronDown, ChevronUp, Lock, Check, X, AlertTriangle, Clock } from "lucide-react";
 
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   "Love & Relationships": <Heart className="w-4 h-4" />,
   "Authority & Leadership": <Crown className="w-4 h-4" />,
   "Protection & Safety": <Shield className="w-4 h-4" />,
   "Wealth & Business": <Coins className="w-4 h-4" />,
-  "Travel & Journeys": <Plane className="w-4 h-4" />,
   "Health & Healing": <Stethoscope className="w-4 h-4" />,
   "Knowledge & Learning": <BookOpen className="w-4 h-4" />,
   "Conflict & Victory": <Sword className="w-4 h-4" />,
@@ -21,7 +20,6 @@ const CATEGORY_COLORS: Record<string, string> = {
   "Authority & Leadership": "text-amber-400 bg-amber-500/10 border-amber-500/30",
   "Protection & Safety": "text-emerald-400 bg-emerald-500/10 border-emerald-500/30",
   "Wealth & Business": "text-yellow-400 bg-yellow-500/10 border-yellow-500/30",
-  "Travel & Journeys": "text-sky-400 bg-sky-500/10 border-sky-500/30",
   "Health & Healing": "text-green-400 bg-green-500/10 border-green-500/30",
   "Knowledge & Learning": "text-indigo-400 bg-indigo-500/10 border-indigo-500/30",
   "Conflict & Victory": "text-red-400 bg-red-500/10 border-red-500/30",
@@ -29,9 +27,10 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 interface OptimalDatesProps {
   currentMansionNumber: number;
+  isWaning?: boolean;
 }
 
-export function OptimalDates({ currentMansionNumber }: OptimalDatesProps) {
+export function OptimalDates({ currentMansionNumber, isWaning = false }: OptimalDatesProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const { user, signIn } = useAuth();
@@ -39,6 +38,7 @@ export function OptimalDates({ currentMansionNumber }: OptimalDatesProps) {
 
   const currentMansion = IBN_ARABI_MANSIONS[currentMansionNumber - 1];
   const currentBuniData = MANSION_BUNI_DATA.find(m => m.id === currentMansionNumber);
+  const inScorpio = isInScorpio(currentMansionNumber);
 
   return (
     <div className="rounded-lg border border-border bg-card/50 overflow-hidden" data-testid="optimal-dates-section">
@@ -102,6 +102,28 @@ export function OptimalDates({ currentMansionNumber }: OptimalDatesProps) {
                   </div>
                 </div>
 
+                {/* Scorpio Warning */}
+                {inScorpio && (
+                  <div className="p-3 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-start gap-2">
+                    <AlertTriangle className="w-4 h-4 text-orange-400 mt-0.5 shrink-0" />
+                    <div>
+                      <div className="text-xs font-medium text-orange-400">Moon in Scorpio (Mansions 16-21)</div>
+                      <div className="text-[10px] text-orange-300/80">Love & Health activities are blocked during this period.</div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Waning Warning */}
+                {isWaning && (
+                  <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-start gap-2">
+                    <AlertTriangle className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
+                    <div>
+                      <div className="text-xs font-medium text-amber-400">Moon is Waning</div>
+                      <div className="text-[10px] text-amber-300/80">Love & Wealth activities are weakened. Wait for waxing phase for best results.</div>
+                    </div>
+                  </div>
+                )}
+
                 {/* Category Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {WORK_CATEGORIES.map((cat) => {
@@ -110,6 +132,7 @@ export function OptimalDates({ currentMansionNumber }: OptimalDatesProps) {
                     const colorClass = CATEGORY_COLORS[cat.category] || "text-muted-foreground bg-foreground/5 border-border";
                     const isCurrentOptimal = cat.optimalMansions.includes(currentMansionNumber);
                     const isCurrentAvoid = cat.avoidMansions.includes(currentMansionNumber);
+                    const blockStatus = isCategoryBlocked(cat.category, currentMansionNumber, isWaning);
 
                     return (
                       <button
@@ -117,7 +140,7 @@ export function OptimalDates({ currentMansionNumber }: OptimalDatesProps) {
                         onClick={() => setSelectedCategory(isSelected ? null : cat.category)}
                         className={`p-3 rounded-lg border text-left transition-all ${colorClass} ${
                           isSelected ? 'ring-2 ring-primary/50' : ''
-                        }`}
+                        } ${blockStatus.blocked ? 'opacity-50' : ''}`}
                         data-testid={`category-${cat.category.toLowerCase().replace(/\s+/g, '-')}`}
                       >
                         <div className="flex items-center gap-2 mb-1">
@@ -125,17 +148,22 @@ export function OptimalDates({ currentMansionNumber }: OptimalDatesProps) {
                           <span className="text-xs font-medium truncate">{cat.category.split(' & ')[0]}</span>
                         </div>
                         <div className="text-[9px] font-arabic text-muted-foreground truncate">{cat.categoryArabic}</div>
-                        {isCurrentOptimal && (
+                        {blockStatus.blocked && (
+                          <div className="mt-1 flex items-center gap-1 text-[9px] text-orange-400">
+                            <X className="w-3 h-3" /> Blocked
+                          </div>
+                        )}
+                        {!blockStatus.blocked && isCurrentOptimal && (
                           <div className="mt-1 flex items-center gap-1 text-[9px] text-emerald-400">
                             <Check className="w-3 h-3" /> Now optimal
                           </div>
                         )}
-                        {isCurrentAvoid && (
+                        {!blockStatus.blocked && isCurrentAvoid && (
                           <div className="mt-1 flex items-center gap-1 text-[9px] text-red-400">
                             <X className="w-3 h-3" /> Avoid now
                           </div>
                         )}
-                        {!isCurrentOptimal && !isCurrentAvoid && optimalInfo && (
+                        {!blockStatus.blocked && !isCurrentOptimal && !isCurrentAvoid && optimalInfo && (
                           <div className="mt-1 text-[9px] text-muted-foreground">
                             ~{optimalInfo.daysUntil}d to optimal
                           </div>
@@ -165,6 +193,50 @@ export function OptimalDates({ currentMansionNumber }: OptimalDatesProps) {
                               <h4 className="text-sm font-medium text-foreground mb-1">{selectedCategory}</h4>
                               <p className="text-xs text-muted-foreground">{catData.description}</p>
                             </div>
+
+                            {/* Divine Names & Abjad */}
+                            <div className="grid grid-cols-2 gap-3">
+                              <div className="p-2 rounded bg-primary/5 border border-primary/20">
+                                <div className="text-[9px] text-muted-foreground uppercase mb-1">Primary Divine Name</div>
+                                <div className="flex items-center gap-2">
+                                  <span className="text-sm font-arabic text-primary">{catData.divineNameArabic}</span>
+                                  <span className="text-xs text-foreground/80">{catData.divineName}</span>
+                                </div>
+                                <div className="text-[9px] text-muted-foreground mt-1">Abjad: {catData.divineNameAbjad}</div>
+                              </div>
+                              <div className="p-2 rounded bg-secondary/5 border border-secondary/20">
+                                <div className="text-[9px] text-muted-foreground uppercase mb-1">Secondary Name</div>
+                                <div className="flex items-center gap-2">
+                                  <span className="text-sm font-arabic text-secondary-foreground">{catData.secondaryNameArabic}</span>
+                                  <span className="text-xs text-foreground/80">{catData.secondaryName}</span>
+                                </div>
+                                <div className="text-[9px] text-muted-foreground mt-1">Abjad: {catData.secondaryNameAbjad}</div>
+                              </div>
+                            </div>
+
+                            {/* Letter & Planetary Hour */}
+                            <div className="flex flex-wrap items-center gap-3">
+                              <div className="flex items-center gap-2 px-2 py-1 rounded bg-foreground/5 border border-border">
+                                <span className="text-lg font-arabic text-primary">{catData.letterArabic}</span>
+                                <div>
+                                  <div className="text-[9px] text-muted-foreground uppercase">Letter</div>
+                                  <div className="text-xs text-foreground">{catData.letter} = {catData.letterValue}</div>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-2 px-2 py-1 rounded bg-foreground/5 border border-border">
+                                <Clock className="w-4 h-4 text-primary" />
+                                <div>
+                                  <div className="text-[9px] text-muted-foreground uppercase">Best Hour</div>
+                                  <div className="text-xs text-foreground">Hour of {catData.planetaryHour}</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Guideline */}
+                            <div className="p-2 rounded bg-amber-500/5 border border-amber-500/20">
+                              <div className="text-[9px] text-amber-400 uppercase mb-1">Al-Buni Guideline</div>
+                              <div className="text-xs text-foreground/80">{catData.guideline}</div>
+                            </div>
                             
                             <div className="grid grid-cols-2 gap-3">
                               <div>
@@ -191,7 +263,7 @@ export function OptimalDates({ currentMansionNumber }: OptimalDatesProps) {
                               <div>
                                 <div className="text-[10px] font-medium text-red-400 uppercase mb-1">Avoid Mansions</div>
                                 <div className="flex flex-wrap gap-1">
-                                  {catData.avoidMansions.map(num => {
+                                  {catData.avoidMansions.length > 0 ? catData.avoidMansions.map(num => {
                                     const m = IBN_ARABI_MANSIONS[num - 1];
                                     const isCurrent = num === currentMansionNumber;
                                     return (
@@ -206,7 +278,9 @@ export function OptimalDates({ currentMansionNumber }: OptimalDatesProps) {
                                         {num}. {m?.name.split(' ')[0]}
                                       </span>
                                     );
-                                  })}
+                                  }) : (
+                                    <span className="text-[9px] text-muted-foreground italic">None specified</span>
+                                  )}
                                 </div>
                               </div>
                             </div>
