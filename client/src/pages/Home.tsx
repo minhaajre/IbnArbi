@@ -24,6 +24,7 @@ import { AYANAMSHA_J2000, PLANET_PROPHETS, PLANET_ARABIC } from "@/lib/constants
 import { PlanetaryHoursDisplay } from "@/components/PlanetaryHoursDisplay";
 import { PlanetaryTable } from "@/components/PlanetaryTable";
 import { MansionCard } from "@/components/MansionCard";
+import { OptimalDates } from "@/components/OptimalDates";
 import { ZodiacWheel } from "@/components/ZodiacWheel";
 import { ElementalBalance } from "@/components/ElementalBalance";
 import { PlanetaryProtocol } from "@/components/PlanetaryProtocol";
@@ -562,6 +563,11 @@ export default function Home() {
           </div>
           <div className="relative z-10">
             <MansionCard mansion={mansion} progress={mansionProgress ?? undefined} moonPhase={moonPhase ?? undefined} />
+          </div>
+          
+          {/* Optimal Dates Section */}
+          <div className="mt-4 relative z-10">
+            <OptimalDates currentMansionNumber={mansion.number} />
           </div>
         </section>
 

@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { PlanetaryHour } from "@/lib/astronomy";
 import { format } from "date-fns";
-import { Clock, Sparkles } from "lucide-react";
+import { Clock, Sparkles, Flame, Crown } from "lucide-react";
 import { PLANET_PROPHETS, PLANET_ARABIC } from "@/lib/constants";
+import { PLANETARY_SPIRITS } from "@/data/buni";
 
 const PLANET_SYMBOLS: Record<string, string> = {
   Sun: "☉", Moon: "☾", Mars: "♂", Mercury: "☿",
@@ -79,10 +80,33 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, select
             ساعة {PLANET_ARABIC[currentHour.planet]?.arabic}
           </div>
           
-          <div className="flex items-center justify-center gap-2 text-muted-foreground mb-6 font-light tracking-wide bg-foreground/5 px-3 py-1 rounded-full w-fit mx-auto border border-border">
+          <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4 font-light tracking-wide bg-foreground/5 px-3 py-1 rounded-full w-fit mx-auto border border-border">
             <Clock className="w-3 h-3" />
             {format(currentHour.start, "h:mm a")} — {format(currentHour.end, "h:mm a")}
           </div>
+
+          {/* Buni Planetary Spirits Info */}
+          {PLANETARY_SPIRITS[currentHour.planet] && (
+            <div className="flex flex-wrap items-center justify-center gap-3 mb-4 text-xs">
+              <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-sky-500/10 border border-sky-500/20">
+                <span className="text-sky-400">✦</span>
+                <span className="text-sky-300">Angel:</span>
+                <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].angel}</span>
+                <span className="font-arabic text-[10px] text-sky-400/70">{PLANETARY_SPIRITS[currentHour.planet].angelArabic}</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">
+                <Flame className="w-3 h-3 text-amber-400" />
+                <span className="text-amber-300">Incense:</span>
+                <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].incense}</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
+                <Crown className="w-3 h-3 text-purple-400" />
+                <span className="text-purple-300">Jinn King:</span>
+                <span className="text-foreground/80">{PLANETARY_SPIRITS[currentHour.planet].jinnKing}</span>
+                <span className="font-arabic text-[10px] text-purple-400/70">{PLANETARY_SPIRITS[currentHour.planet].jinnKingArabic}</span>
+              </div>
+            </div>
+          )}
 
           {/* Progress Bar */}
           <div className="w-64 h-1 bg-foreground/10 rounded-full overflow-hidden mx-auto mb-4 relative">
