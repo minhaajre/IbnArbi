@@ -3,7 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { WORK_CATEGORIES, getOptimalDatesForCategory, MANSION_BUNI_DATA, isCategoryBlocked, isInScorpio } from "@/data/buni";
 import { IBN_ARABI_MANSIONS } from "@/lib/constants";
 import { useAuth } from "@/hooks/use-auth";
-import { Calendar, Heart, Crown, Shield, Coins, Stethoscope, BookOpen, Sword, ChevronDown, ChevronUp, Lock, Check, X, AlertTriangle, Clock } from "lucide-react";
+import { Calendar, Heart, Crown, Shield, Coins, Stethoscope, BookOpen, Sword, ChevronDown, ChevronUp, Lock, Check, X, AlertTriangle, Clock, Info, Snowflake } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   "Love & Relationships": <Heart className="w-4 h-4" />,
@@ -16,13 +22,13 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
-  "Love & Relationships": "text-pink-400 bg-pink-500/10 border-pink-500/30",
-  "Authority & Leadership": "text-amber-400 bg-amber-500/10 border-amber-500/30",
-  "Protection & Safety": "text-emerald-400 bg-emerald-500/10 border-emerald-500/30",
-  "Wealth & Business": "text-yellow-400 bg-yellow-500/10 border-yellow-500/30",
-  "Health & Healing": "text-green-400 bg-green-500/10 border-green-500/30",
-  "Knowledge & Learning": "text-indigo-400 bg-indigo-500/10 border-indigo-500/30",
-  "Conflict & Victory": "text-red-400 bg-red-500/10 border-red-500/30",
+  "Love & Relationships": "text-foreground bg-card border-primary/30 hover:border-primary/50",
+  "Authority & Leadership": "text-foreground bg-card border-primary/30 hover:border-primary/50",
+  "Protection & Safety": "text-foreground bg-card border-primary/30 hover:border-primary/50",
+  "Wealth & Business": "text-foreground bg-card border-primary/30 hover:border-primary/50",
+  "Health & Healing": "text-foreground bg-card border-primary/30 hover:border-primary/50",
+  "Knowledge & Learning": "text-foreground bg-card border-primary/30 hover:border-primary/50",
+  "Conflict & Victory": "text-foreground bg-card border-primary/30 hover:border-primary/50",
 };
 
 interface OptimalDatesProps {
@@ -102,24 +108,54 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                   </div>
                 </div>
 
+                {/* Dual-System Explanation */}
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground cursor-help">
+                        <Info className="w-3.5 h-3.5" />
+                        <span>Dual-System Guidance</span>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" className="max-w-xs">
+                      <div className="text-xs space-y-1.5">
+                        <p className="font-medium">This app combines two classical frameworks:</p>
+                        <p><strong>1. Ibn Arabi (The Essence):</strong> Explains the spiritual nature of the hour (e.g., Al-Qabid for Constriction).</p>
+                        <p><strong>2. Al-Buni (The Tool):</strong> Provides the specific Abjad counts, Metals, and Inks required to manifest or shield that energy.</p>
+                      </div>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+
                 {/* Scorpio Warning */}
                 {inScorpio && (
-                  <div className="p-3 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-start gap-2">
-                    <AlertTriangle className="w-4 h-4 text-orange-400 mt-0.5 shrink-0" />
+                  <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/30 flex items-start gap-2">
+                    <AlertTriangle className="w-4 h-4 text-destructive mt-0.5 shrink-0" />
                     <div>
-                      <div className="text-xs font-medium text-orange-400">Moon in Scorpio (Mansions 16-21)</div>
-                      <div className="text-[10px] text-orange-300/80">Love & Health activities are blocked during this period.</div>
+                      <div className="text-xs font-medium text-foreground">Moon in Scorpio (Mansions 16-21)</div>
+                      <div className="text-[10px] text-muted-foreground">Love & Health activities are blocked during this period.</div>
                     </div>
                   </div>
                 )}
 
                 {/* Waning Warning */}
                 {isWaning && (
-                  <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-start gap-2">
-                    <AlertTriangle className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
+                  <div className="p-3 rounded-lg bg-muted/50 border border-border flex items-start gap-2">
+                    <AlertTriangle className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
                     <div>
-                      <div className="text-xs font-medium text-amber-400">Moon is Waning</div>
-                      <div className="text-[10px] text-amber-300/80">Love & Wealth activities are weakened. Wait for waxing phase for best results.</div>
+                      <div className="text-xs font-medium text-foreground">Moon is Waning</div>
+                      <div className="text-[10px] text-muted-foreground">Love & Wealth activities are weakened. Wait for waxing phase for best results.</div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Tooth Pain Logic - Mansion 18/19 during Waning */}
+                {(currentMansionNumber === 18 || currentMansionNumber === 19) && isWaning && (
+                  <div className="p-3 rounded-lg bg-primary/5 border border-primary/20 flex items-start gap-2">
+                    <Snowflake className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                    <div>
+                      <div className="text-xs font-medium text-foreground">Energy of Constriction (Al-Qabid)</div>
+                      <div className="text-[10px] text-muted-foreground">Use Cooling materials (Silver/Camphor) to balance the Sting energy.</div>
                     </div>
                   </div>
                 )}
@@ -149,17 +185,17 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                         </div>
                         <div className="text-[9px] font-arabic text-muted-foreground truncate">{cat.categoryArabic}</div>
                         {blockStatus.blocked && (
-                          <div className="mt-1 flex items-center gap-1 text-[9px] text-orange-400">
+                          <div className="mt-1 flex items-center gap-1 text-[9px] text-destructive font-medium">
                             <X className="w-3 h-3" /> Blocked
                           </div>
                         )}
                         {!blockStatus.blocked && isCurrentOptimal && (
-                          <div className="mt-1 flex items-center gap-1 text-[9px] text-emerald-400">
+                          <div className="mt-1 flex items-center gap-1 text-[9px] text-primary font-medium">
                             <Check className="w-3 h-3" /> Now optimal
                           </div>
                         )}
                         {!blockStatus.blocked && isCurrentAvoid && (
-                          <div className="mt-1 flex items-center gap-1 text-[9px] text-red-400">
+                          <div className="mt-1 flex items-center gap-1 text-[9px] text-destructive font-medium">
                             <X className="w-3 h-3" /> Avoid now
                           </div>
                         )}
@@ -233,39 +269,39 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                             </div>
 
                             {/* Guideline */}
-                            <div className="p-2 rounded bg-amber-500/5 border border-amber-500/20">
-                              <div className="text-[9px] text-amber-400 uppercase mb-1">Al-Buni Guideline</div>
+                            <div className="p-2 rounded bg-muted/30 border border-border">
+                              <div className="text-[9px] text-primary uppercase mb-1">Al-Buni Guideline</div>
                               <div className="text-xs text-foreground/80">{catData.guideline}</div>
                             </div>
 
                             {/* Material Requirements */}
-                            <div className="p-2 rounded bg-violet-500/5 border border-violet-500/20">
-                              <div className="text-[9px] text-violet-400 uppercase mb-2">Material Requirements (Al-Tabayi')</div>
+                            <div className="p-2 rounded bg-muted/30 border border-border">
+                              <div className="text-[9px] text-primary uppercase mb-2">Material Requirements (Al-Tabayi')</div>
                               <div className="grid grid-cols-3 gap-2">
                                 <div>
                                   <div className="text-[9px] text-muted-foreground">The Body (Metal)</div>
                                   <div className="text-xs text-foreground font-medium">{catData.materials.metal}</div>
-                                  <div className="text-[9px] font-arabic text-violet-400/70">{catData.materials.metalArabic}</div>
+                                  <div className="text-[9px] font-arabic text-muted-foreground">{catData.materials.metalArabic}</div>
                                 </div>
                                 <div>
                                   <div className="text-[9px] text-muted-foreground">The Soul (Ink)</div>
                                   <div className="text-xs text-foreground font-medium">{catData.materials.ink}</div>
-                                  <div className="text-[9px] font-arabic text-violet-400/70">{catData.materials.inkArabic}</div>
+                                  <div className="text-[9px] font-arabic text-muted-foreground">{catData.materials.inkArabic}</div>
                                 </div>
                                 <div>
                                   <div className="text-[9px] text-muted-foreground">The Breath (Incense)</div>
                                   <div className="text-xs text-foreground font-medium">{catData.materials.incense}</div>
-                                  <div className="text-[9px] font-arabic text-violet-400/70">{catData.materials.incenseArabic}</div>
+                                  <div className="text-[9px] font-arabic text-muted-foreground">{catData.materials.incenseArabic}</div>
                                 </div>
                               </div>
-                              <div className="mt-2 text-[9px] text-violet-300/80 italic">
+                              <div className="mt-2 text-[9px] text-muted-foreground italic">
                                 {catData.materials.metalInstruction}
                               </div>
                             </div>
                             
                             <div className="grid grid-cols-2 gap-3">
                               <div>
-                                <div className="text-[10px] font-medium text-emerald-400 uppercase mb-1">Optimal Mansions</div>
+                                <div className="text-[10px] font-medium text-primary uppercase mb-1">Optimal Mansions</div>
                                 <div className="flex flex-wrap gap-1">
                                   {catData.optimalMansions.map(num => {
                                     const m = IBN_ARABI_MANSIONS[num - 1];
@@ -275,7 +311,7 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                                         key={num} 
                                         className={`text-[9px] px-1.5 py-0.5 rounded border ${
                                           isCurrent 
-                                            ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30 font-bold' 
+                                            ? 'bg-primary/20 text-primary border-primary/30 font-bold' 
                                             : 'bg-foreground/5 text-foreground/70 border-border'
                                         }`}
                                       >
@@ -286,7 +322,7 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                                 </div>
                               </div>
                               <div>
-                                <div className="text-[10px] font-medium text-red-400 uppercase mb-1">Avoid Mansions</div>
+                                <div className="text-[10px] font-medium text-destructive uppercase mb-1">Avoid Mansions</div>
                                 <div className="flex flex-wrap gap-1">
                                   {catData.avoidMansions.length > 0 ? catData.avoidMansions.map(num => {
                                     const m = IBN_ARABI_MANSIONS[num - 1];
@@ -296,7 +332,7 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                                         key={num} 
                                         className={`text-[9px] px-1.5 py-0.5 rounded border ${
                                           isCurrent 
-                                            ? 'bg-red-500/20 text-red-400 border-red-500/30 font-bold' 
+                                            ? 'bg-destructive/20 text-destructive border-destructive/30 font-bold' 
                                             : 'bg-foreground/5 text-foreground/70 border-border'
                                         }`}
                                       >

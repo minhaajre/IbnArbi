@@ -1,0 +1,64 @@
+To implement this dual-layer framework in your app via Replit AI, use the following instruction set. This maintains your current **Ibn Arabi** UI while layering in the **Al-Buni** operative data.
+
+---
+
+## 🏗️ Replit AI Implementation Instructions
+
+### 1. Data Structure Update
+
+Modify your mansion database to a "Dual-Layer" object. This ensures the app displays the **Spiritual Essence** (Ibn Arabi) and the **Practical Tool** (Al-Buni) simultaneously.
+
+```javascript
+// Database Schema Example for Mansion #18
+{
+  id: 18,
+  name: "Al-Qalb",
+  essence: {
+    system: "Ibn Arabi (Ontological)",
+    letter: "ت", // Derived from uploaded chart
+    divineName: "Al-Qabid", // "The Constrictor"
+    meaning: "Constriction & Purification"
+  },
+  practical: {
+    system: "Al-Buni (Abjad/Talismanic)",
+    letter: "ص", // Al-Buni Standard
+    abjadValue: 90, // Value of Sad
+    metal: "Lead", // Earth Nature
+    ink: "Black Soot / Iron Gall"
+  }
+}
+
+```
+
+### 2. Category Logic & Material Display
+
+For each category (Wealth, Love, etc.), the AI agent should pull from both systems to create a "Recipe for Action."
+
+* **Love:** Essence (Mansion 6) uses Letter **ح** (Al-Muhyi); Practical Key uses **Ya Wadud** (Abjad 20) with **Copper** and **Saffron Ink**.
+* **Wealth:** Essence (Mansion 10) uses Letter **ك** (Al-Latif); Practical Key uses **Ya Ghani** (Abjad 1060) with **Tin** and **Musk Ink**.
+* **Health:** Essence (Mansion 2) uses Letter **ب** (Al-Latif); Practical Key uses **Ya Salam** (Abjad 131) with **Silver** and **Camphor Ink**.
+
+### 3. Global App Overrides (The Guardrails)
+
+* **The Scorpio Block:** If the Moon is in Scorpio (Mansions 16–21), the UI must show "Avoid Now" for **Love** and **Health**.
+* **The Waxing/Waning Rule:** For **Wealth** and **Love**, if the Moon is Waning, mark as "Avoid" or "Weak Energy".
+* **The Tooth Pain Logic:** If Mansion 18 or 19 is active during a Waning Moon, display: *"Energy of Constriction (Al-Qabid). Use Cooling (Silver/Camphor) to balance the Sting."*.
+
+---
+
+## 📖 User Interface Explanation
+
+Ensure the Replit agent adds a "System Toggle" or a "Details" tooltip with this copy:
+
+> **Dual-System Guidance:**
+> This app combines two classical frameworks:
+> 1. **Ibn Arabi (The Essence):** Explains the spiritual nature of the hour (e.g., **Al-Qabid** for Constriction).
+> 2. **Al-Buni (The Tool):** Provides the specific **Abjad counts**, **Metals**, and **Inks** required to manifest or shield that energy.
+> 
+> 
+
+### 4. Next Step for Replit Agent:
+
+"Map the remaining 27 mansions using the uploaded Ibn Arabi circular chart for the **Essence** and the standard Al-Buni table for the **Practical Key**."
+
+Would you like me to generate the full JSON mapping for all 28 mansions so you can paste it directly into your Replit environment?
