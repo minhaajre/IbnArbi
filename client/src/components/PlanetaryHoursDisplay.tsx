@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { PlanetaryHour } from "@/lib/astronomy";
 import { format } from "date-fns";
-import { Clock, Sparkles, Flame, Crown, Lock } from "lucide-react";
+import { Clock, Sparkles, Flame, Crown } from "lucide-react";
 import { PLANET_PROPHETS, PLANET_ARABIC } from "@/lib/constants";
 import { PLANETARY_SPIRITS } from "@/data/buni";
 import { useAuth } from "@/hooks/use-auth";
@@ -32,7 +32,7 @@ interface PlanetaryHoursDisplayProps {
 }
 
 export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, selectedPlanet, onPlanetSelect, lunarDay, isWaxing }: PlanetaryHoursDisplayProps) {
-  const { user, signIn } = useAuth();
+  const { user } = useAuth();
   const isSignedIn = !!user;
   
   if (!currentHour) return null;
@@ -125,18 +125,6 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, select
                 </div>
               </div>
             </>
-          )}
-          {/* Sign-in prompt for Buni info */}
-          {PLANETARY_SPIRITS[currentHour.planet] && !isSignedIn && (
-            <div className="flex items-center justify-center gap-2 mb-4 text-xs">
-              <button
-                onClick={signIn}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20 transition-colors"
-              >
-                <Lock className="w-3 h-3" />
-                <span>Sign in to view Al-Buni guidance (Angel, Incense, Metal, Ink)</span>
-              </button>
-            </div>
           )}
 
           {/* Progress Bar */}
