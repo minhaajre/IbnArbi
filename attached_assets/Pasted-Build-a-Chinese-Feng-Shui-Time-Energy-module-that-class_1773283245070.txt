@@ -1,0 +1,339 @@
+Build a **Chinese Feng Shui Time Energy module** that classifies the quality of time for **activity planning** (research, learning, business, construction, travel, strategy, etc.).
+
+The system should work similarly to **Vedic Nakshatra logic**, but using **Chinese Feng Shui calendrical variables**.
+
+Do NOT implement personal astrology (BaZi charts, personality analysis, compatibility, etc.).
+This module should only analyze **cosmic time conditions**.
+
+---
+
+# 1. Core Concept
+
+The system evaluates the **energy of a given date** using Chinese metaphysical calendar systems.
+
+The output should classify whether the time is suitable for activities such as:
+
+* research
+* learning
+* writing
+* business
+* trade
+* negotiation
+* travel
+* construction
+* planning
+* spiritual work
+* healing
+* strategy
+
+---
+
+# 2. Required Time Variables
+
+The module must calculate or store the following variables.
+
+## Lunar Mansion (28 Xiu)
+
+This is the Chinese equivalent of lunar mansions or nakshatras.
+
+Each mansion must include:
+
+* name
+* chinese_name
+* group
+* associated element
+* activity themes
+* recommended activities
+* activities to avoid
+
+The 28 mansions are grouped into four celestial animals.
+
+### Azure Dragon (East)
+
+Horn
+Neck
+Root
+Room
+Heart
+Tail
+Winnowing Basket
+
+### Black Tortoise (North)
+
+Dipper
+Ox
+Girl
+Emptiness
+Rooftop
+Encampment
+Wall
+
+### White Tiger (West)
+
+Legs
+Bond
+Stomach
+Hairy Head
+Net
+Turtle Beak
+Three Stars
+
+### Vermilion Bird (South)
+
+Well
+Ghost
+Willow
+Star
+Extended Net
+Wings
+Chariot
+
+---
+
+# 3. Heavenly Stems
+
+These represent the elemental energy of the day.
+
+List of stems:
+
+Jia – Wood – Yang
+Yi – Wood – Yin
+Bing – Fire – Yang
+Ding – Fire – Yin
+Wu – Earth – Yang
+Ji – Earth – Yin
+Geng – Metal – Yang
+Xin – Metal – Yin
+Ren – Water – Yang
+Gui – Water – Yin
+
+Each stem should include:
+
+* element
+* polarity (yin/yang)
+* thematic meaning
+
+Example:
+
+Wood → growth, learning
+Fire → visibility, creativity
+Earth → stability, construction
+Metal → finance, organization
+Water → research, strategy
+
+---
+
+# 4. Earthly Branches
+
+These represent cyclical time energy.
+
+Branches:
+
+Zi – Rat
+Chou – Ox
+Yin – Tiger
+Mao – Rabbit
+Chen – Dragon
+Si – Snake
+Wu – Horse
+Wei – Goat
+Shen – Monkey
+You – Rooster
+Xu – Dog
+Hai – Pig
+
+Branches are used together with stems to form **sexagenary cycle days**.
+
+---
+
+# 5. Sexagenary Cycle
+
+Combine heavenly stems and earthly branches to produce **60 repeating day energies**.
+
+Example:
+
+Jia-Zi
+Yi-Chou
+Bing-Yin
+
+Each day should store:
+
+* stem
+* branch
+* element
+* polarity
+* thematic energy
+
+---
+
+# 6. Five Elements System
+
+Elements used:
+
+Wood
+Fire
+Earth
+Metal
+Water
+
+Each element should contain:
+
+* keywords describing activity energy
+* compatible elements
+* controlling elements
+
+Example:
+
+Wood
+keywords: growth, study, planning
+
+Fire
+keywords: creativity, visibility
+
+Earth
+keywords: stability, construction
+
+Metal
+keywords: structure, finance
+
+Water
+keywords: research, strategy
+
+---
+
+# 7. Yin and Yang
+
+Every time energy should have polarity.
+
+Yin → introspection, planning, study
+Yang → action, execution, movement
+
+This should influence recommended activities.
+
+---
+
+# 8. 24 Solar Terms
+
+Implement the Chinese solar seasonal system.
+
+Examples:
+
+Beginning of Spring
+Rain Water
+Awakening of Insects
+Clear Bright
+Grain Rain
+Summer Solstice
+Beginning of Autumn
+Winter Solstice
+
+Each solar term should store:
+
+* season
+* dominant element
+* seasonal themes
+
+Example:
+
+Spring → wood → growth and expansion
+Summer → fire → activity and visibility
+Autumn → metal → commerce and organization
+Winter → water → research and strategy
+
+---
+
+# 9. Day Officer System
+
+Implement the **12 Day Officers**, which determine what activities are appropriate.
+
+List of officers:
+
+Establish
+Remove
+Full
+Balance
+Stable
+Initiate
+Destroy
+Danger
+Success
+Receive
+Open
+Close
+
+Each officer should define recommended activities.
+
+Example:
+
+Establish → starting projects
+Remove → clearing obstacles
+Stable → long term work
+Open → launching activities
+Close → finishing tasks
+
+---
+
+# 10. Activity Classification Layer
+
+The system must translate all time variables into **activity recommendations**.
+
+Activity categories:
+
+research
+learning
+writing
+business
+trade
+negotiation
+travel
+construction
+planning
+strategy
+spiritual work
+healing
+craftsmanship
+
+The algorithm should combine:
+
+* lunar mansion theme
+* day officer
+* element
+* polarity
+* solar term
+
+to produce:
+
+recommended_activities
+discouraged_activities
+
+---
+
+# 11. Suggested Data Structure
+
+Use a structure similar to the following.
+
+{
+"time_energy": {
+"lunar_mansion": "",
+"mansion_group": "",
+"heavenly_stem": "",
+"earthly_branch": "",
+"sexagenary_day": "",
+"element": "",
+"yin_yang": "",
+"solar_term": "",
+"day_officer": ""
+},
+"activity_output": {
+"recommended": [],
+"avoid": []
+}
+}
+
+---
+
+# 12. Goal of the Module
+
+The module should allow the application to input a **date** and output a **time-energy profile** describing the most suitable activities for that period.
+
+This creates a Chinese Feng Shui equivalent of a **Nakshatra-based activity calendar**.
