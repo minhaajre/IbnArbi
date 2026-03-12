@@ -31,9 +31,17 @@ export function NakshatraDisplay({ nakshatraInfo }: NakshatraDisplayProps) {
   const hours = Math.floor(nakshatraInfo.hoursUntilNext);
   const minutes = Math.round((nakshatraInfo.hoursUntilNext - hours) * 60);
 
+  const DAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const nakshatraSize = 360 / 27;
+  const avgMoonSpeedPerHour = 13.0 / 24;
+
   const upcomingNakshatras = Array.from({ length: 6 }, (_, i) => {
     const idx = (nakshatraInfo.nakshatraIndex + 1 + i) % 27;
-    return NAKSHATRAS[idx];
+    const n = NAKSHATRAS[idx];
+    const hoursFromNow = (nakshatraInfo.degreesRemaining + i * nakshatraSize) / avgMoonSpeedPerHour;
+    const entryDate = new Date(Date.now() + hoursFromNow * 60 * 60 * 1000);
+    const dayName = DAY_NAMES[entryDate.getDay()];
+    return { ...n, entryDate, dayName };
   });
 
   return (
@@ -164,15 +172,21 @@ export function NakshatraDisplay({ nakshatraInfo }: NakshatraDisplayProps) {
           return (
             <div
               key={n.number}
-              className="bg-foreground/5 border border-border rounded-lg p-3 text-center backdrop-blur-sm flex flex-col items-center justify-between h-full"
+              className="bg-foreground/5 border border-border rounded-lg p-2.5 sm:p-3 text-center backdrop-blur-sm flex flex-col items-center justify-between h-full gap-1"
               data-testid={`nakshatra-card-${n.number}`}
             >
-              <div className="text-xl mb-1">{cat.icon}</div>
-              <div className="text-[10px] font-medium text-foreground/70 uppercase tracking-wider">
+              <div className="text-lg sm:text-xl mb-0.5">{cat.icon}</div>
+              <div className="text-[10px] font-medium text-foreground/70 uppercase tracking-wider leading-tight">
                 {n.name}
               </div>
-              <div className={`text-[9px] px-1.5 py-0.5 rounded-full mt-1 ${s.bg} ${s.border} border ${s.text}`}>
+              <div className={`text-[9px] px-1.5 py-0.5 rounded-full ${s.bg} ${s.border} border ${s.text}`}>
                 {cat.name}
+              </div>
+              <div className="text-[9px] text-muted-foreground mt-0.5">
+                {n.dayName} • {n.rulingPlanet}
+              </div>
+              <div className="text-[9px] text-foreground/50">
+                {n.element}
               </div>
             </div>
           );
