@@ -1,0 +1,458 @@
+Below is a **practical system to convert the 7 Nakshatra categories into a recurring Google Calendar (.ICS) system** with rich descriptions so each day automatically tells you **what type of actions are aligned with the lunar energy**.
+
+I will break this into **4 parts**:
+
+1. Core Nakshatra classification (from your page)
+2. Data structure for calendar events
+3. ICS generation plan (automation approach)
+4. Example event template you can replicate for all Nakshatras
+
+---
+
+# 1. Core Nakshatra Classification (7 Types)
+
+In Vedic astrology the zodiac is divided into **27 segments of 13°20′ each**, called Nakshatras, representing the Moon’s position in the sky. ([Wikipedia][1])
+
+These are grouped into **seven categories based on their energetic nature**. ([Drik Panchang][2])
+
+### The Seven Groups
+
+| Category  | Sanskrit Name    | Nature     | Typical Use         |
+| --------- | ---------------- | ---------- | ------------------- |
+| Fixed     | Dhruva / Sthira  | Stable     | long-term work      |
+| Movable   | Chara            | Dynamic    | travel & movement   |
+| Cruel     | Ugra / Krura     | Aggressive | destructive acts    |
+| Ordinary  | Mishra           | Neutral    | mixed works         |
+| Short     | Kshipra / Laghu  | Quick      | fast actions        |
+| Gentle    | Mridu            | Soft       | relationships & art |
+| Ferocious | Tikshna / Daruna | Intense    | transformation      |
+
+---
+
+# 2. Nakshatra → Category Mapping
+
+### Fixed (Dhruva)
+
+Stable and long-lasting actions.
+
+* Rohini
+* Uttara Phalguni
+* Uttara Ashadha
+* Uttara Bhadrapada
+
+Best for:
+
+* Buying property
+* Laying foundations
+* Agriculture
+* Starting long-term business
+* Marriage alliances
+* Government positions
+
+Avoid:
+
+* Temporary work
+* Short-term trades
+* Travel
+
+---
+
+### Movable (Chara)
+
+Good for motion and change.
+
+Nakshatras:
+
+* Punarvasu
+* Swati
+* Shravana
+* Dhanishtha
+* Shatabhisha
+
+Best for:
+
+* Travel
+* Transport
+* Business trade
+* Changing jobs
+* Moving house
+* Negotiations
+
+Avoid:
+
+* Foundations
+* Real estate purchases
+* Permanent commitments
+
+---
+
+### Cruel (Ugra)
+
+Aggressive and forceful energy.
+
+Nakshatras:
+
+* Bharani
+* Magha
+* Purva Phalguni
+* Purva Ashadha
+* Purva Bhadrapada
+
+Best for:
+
+* Surgery
+* Military acts
+* Destroying obstacles
+* Fire or chemical work
+* Competitive actions
+
+Avoid:
+
+* Marriage
+* Spiritual ceremonies
+* Diplomacy
+
+---
+
+### Ordinary (Mishra)
+
+Mixed results.
+
+Nakshatras:
+
+* Krittika
+* Vishakha
+
+Best for:
+
+* Fire related work
+* Metalwork
+* Engineering
+* Chemical or industrial processes
+
+Avoid:
+
+* Sensitive negotiations
+* Marriage
+
+---
+
+### Short / Swift (Kshipra)
+
+Fast results.
+
+Nakshatras:
+
+* Ashwini
+* Pushya
+* Hasta
+* Abhijit
+
+Best for:
+
+* Starting business
+* Learning skills
+* Trade and commerce
+* Buying jewelry
+* Creative arts
+* Medicine
+
+Avoid:
+
+* Long projects
+
+Note:
+Pushya is usually **not recommended for marriage**. ([Drik Panchang][2])
+
+---
+
+### Gentle (Mridu)
+
+Soft harmonious energy.
+
+Nakshatras:
+
+* Mrigashira
+* Chitra
+* Anuradha
+* Revati
+
+Best for:
+
+* Marriage
+* Friendship
+* Music
+* Education
+* Social gatherings
+
+Avoid:
+
+* Aggressive actions
+* Conflict
+
+---
+
+### Ferocious (Tikshna)
+
+Intense transformative energy.
+
+Nakshatras:
+
+* Ardra
+* Ashlesha
+* Jyeshtha
+* Mula
+
+Best for:
+
+* Tantra
+* Research
+* Destroying enemies
+* Psychological transformation
+
+Avoid:
+
+* Marriage
+* Financial deals
+* Celebrations
+
+---
+
+# 3. ICS Calendar Design
+
+Google Calendar events should represent **the Moon entering a Nakshatra**.
+
+Each Nakshatra lasts roughly **~1 day**.
+
+Calendar event fields:
+
+### Title
+
+```
+Nakshatra: Rohini (Fixed / Dhruva)
+```
+
+### Event Length
+
+From:
+
+```
+Moon enters Rohini
+```
+
+To:
+
+```
+Moon enters next Nakshatra
+```
+
+You must pull these times from:
+
+* Drik Panchang API
+* Swiss Ephemeris
+* Astro-Seek export
+* Panchang API
+
+---
+
+# 4. Event Description Template
+
+Each ICS event description should contain:
+
+### Basic info
+
+```
+Nakshatra: Rohini
+Category: Fixed (Dhruva)
+Ruling Planet: Moon
+Deity: Brahma
+Symbol: Chariot / Temple
+Element: Earth
+```
+
+---
+
+### Energetic meaning
+
+```
+Rohini represents growth, fertility and material creation.
+It is considered one of the most stable lunar mansions.
+Actions begun during this period tend to produce lasting results.
+```
+
+---
+
+### Recommended activities
+
+```
+✓ Buy property
+✓ Build house
+✓ Plant trees
+✓ Agriculture
+✓ Marriage alliances
+✓ Long-term contracts
+✓ Government work
+✓ Spiritual vows
+```
+
+---
+
+### Avoid
+
+```
+✗ Short-term speculation
+✗ Travel
+✗ Temporary work
+✗ Day trading
+```
+
+---
+
+### Spiritual practice
+
+For a spiritual calendar you could add:
+
+```
+Recommended practices:
+
+• Charity
+• Family prayers
+• Quran reflection
+• Planting trees
+• Building beneficial projects
+```
+
+---
+
+# 5. ICS Event Example
+
+Example:
+
+```
+BEGIN:VEVENT
+SUMMARY:Nakshatra: Rohini (Fixed Dhruva)
+DESCRIPTION:Rohini Nakshatra – Fixed Energy
+
+Best Activities:
+- Buying property
+- Agriculture
+- Long-term planning
+- Marriage alliances
+
+Avoid:
+- Travel
+- Temporary work
+
+Ruling Planet: Moon
+Deity: Brahma
+END:VEVENT
+```
+
+---
+
+# 6. Automating the Calendar
+
+Recommended pipeline:
+
+### Step 1
+
+Get Nakshatra times from:
+
+```
+Drik Panchang API
+Swiss Ephemeris
+NASA JPL
+```
+
+### Step 2
+
+Script:
+
+Python
+
+```
+pyswisseph
+ics.py
+```
+
+Steps:
+
+1. Calculate Moon longitude
+2. Determine Nakshatra
+3. Generate ICS events
+4. Import to Google Calendar
+
+---
+
+### Step 3
+
+Update yearly.
+
+Generate:
+
+```
+nakshatra_2026.ics
+```
+
+Import once.
+
+---
+
+# 7. Optional Advanced Layer
+
+You can enhance events with:
+
+### Planetary ruler
+
+Example:
+
+| Nakshatra  | Ruler |
+| ---------- | ----- |
+| Ashwini    | Ketu  |
+| Bharani    | Venus |
+| Krittika   | Sun   |
+| Rohini     | Moon  |
+| Mrigashira | Mars  |
+
+---
+
+### Spiritual notes
+
+You could add daily guidance like:
+
+```
+Recommended charity
+Recommended dhikr
+Recommended reflection
+```
+
+---
+
+# 8. Final Calendar Structure
+
+Your Google Calendar will look like:
+
+```
+Nakshatra: Ashwini (Short)
+Nakshatra: Bharani (Cruel)
+Nakshatra: Krittika (Ordinary)
+Nakshatra: Rohini (Fixed)
+Nakshatra: Mrigashira (Gentle)
+Nakshatra: Ardra (Ferocious)
+...
+```
+
+Repeating every lunar cycle.
+
+---
+
+✅ If you want, I can also generate:
+
+* **A full 27-Nakshatra ICS file template**
+* **A Python script that auto-generates the calendar**
+* **A spiritualized version aligned with Islamic practices (dhikr, charity, fasting suggestions)**
+
+That would make your **Moon-aligned productivity calendar extremely powerful.**
+
+[1]: https://en.wikipedia.org/wiki/Astronomical_basis_of_the_Hindu_calendar?utm_source=chatgpt.com "Astronomical basis of the Hindu calendar"
+[2]: https://www.drikpanchang.com/panchang/nakshatra/classification/nakshatra-seven-category.html?utm_source=chatgpt.com "Nakshatra Seven Category Classification"

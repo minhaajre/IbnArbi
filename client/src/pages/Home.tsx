@@ -10,13 +10,15 @@ import {
   getWhiteDaysInfo,
   getPlanetIngresses,
   getMoonTimes,
+  getNakshatraInfo,
   PlanetaryHour,
   PlanetStatus,
   MoonPhaseInfo,
   MansionProgress,
   WhiteDaysInfo,
   PlanetIngress,
-  MoonTimes
+  MoonTimes,
+  NakshatraInfo
 } from "@/lib/astronomy";
 import { useDynamicFavicon } from "@/hooks/useDynamicFavicon";
 import { usePlanetaryNotifications } from "@/hooks/usePlanetaryNotifications";
@@ -28,6 +30,7 @@ import { OptimalDates } from "@/components/OptimalDates";
 import { ZodiacWheel } from "@/components/ZodiacWheel";
 import { ElementalBalance } from "@/components/ElementalBalance";
 import { PlanetaryProtocol } from "@/components/PlanetaryProtocol";
+import { NakshatraDisplay } from "@/components/NakshatraDisplay";
 import { Footer } from "@/components/Footer";
 import { AuthButton } from "@/components/AuthButton";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
@@ -61,6 +64,7 @@ const HOME_SECTIONS: TOCSection[] = [
   { id: "planetary-hours", title: "Planetary Hours", icon: <LanternIcon className="w-4 h-4" /> },
   { id: "celestial-dignities", title: "Celestial Dignities", icon: <EightPointedStarIcon className="w-4 h-4" /> },
   { id: "elemental-balance", title: "Elemental Balance", icon: <IslamicPatternIcon className="w-4 h-4" /> },
+  { id: "nakshatra", title: "Nakshatra", icon: <EightPointedStarIcon className="w-4 h-4" /> },
   { id: "sky-map", title: "Current Sky Map", icon: <ZodiacWheelIcon className="w-4 h-4" /> },
 ];
 
@@ -80,6 +84,10 @@ const SECTION_INFO = {
   elements: {
     title: "Elemental Balance",
     description: "The four elements (Fire, Earth, Air, Water) represent fundamental qualities of existence. This shows which elements are emphasized based on current planetary positions, helping you understand the day's overall energy.",
+  },
+  nakshatra: {
+    title: "Nakshatra",
+    description: "The Moon travels through 27 Nakshatras (lunar stations in Vedic astronomy), each spanning 13°20'. These are grouped into 7 categories based on their energetic nature: Fixed, Movable, Cruel, Ordinary, Short/Swift, Gentle, and Ferocious. Each category indicates which activities are supported or should be avoided.",
   },
 };
 
@@ -111,6 +119,7 @@ export default function Home() {
   const [whiteDaysInfo, setWhiteDaysInfo] = useState<WhiteDaysInfo | null>(null);
   const [ingresses, setIngresses] = useState<PlanetIngress[]>([]);
   const [moonTimes, setMoonTimes] = useState<MoonTimes | null>(null);
+  const [nakshatraInfo, setNakshatraInfo] = useState<NakshatraInfo | null>(null);
   
   // Selected planet for protocol display
   const [selectedPlanet, setSelectedPlanet] = useState<string | null>(null);
@@ -337,6 +346,7 @@ export default function Home() {
       const whiteInfo = getWhiteDaysInfo(now);
       const planetIngresses = getPlanetIngresses(now, useSidereal);
       const moonRiseSet = getMoonTimes(now, location.lat, location.lng);
+      const nakshatraData = getNakshatraInfo(now);
 
       setHoursData(hours);
       setPlanets(planetPos);
@@ -347,6 +357,7 @@ export default function Home() {
       setWhiteDaysInfo(whiteInfo);
       setIngresses(planetIngresses);
       setMoonTimes(moonRiseSet);
+      setNakshatraInfo(nakshatraData);
       setLoading(false);
     } catch (e) {
       console.error("Calculation error:", e);
@@ -835,7 +846,36 @@ export default function Home() {
           </div>
         </section>
       </div>
-      {/* Row 3: Celestial Zodiac Wheel (full width) */}
+      {/* Row 3: Nakshatra Section (full width) */}
+      {nakshatraInfo && (
+        <section id="nakshatra" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden mb-4 sm:mb-6">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
+            <h2 className="text-base sm:text-lg font-serif text-foreground/80">
+              Nakshatra <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">النكشترا</span>
+            </h2>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
+                  <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-nakshatra" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80" align="end">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.nakshatra.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.nakshatra.description}</p>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+          <div className="relative z-10">
+            <NakshatraDisplay nakshatraInfo={nakshatraInfo} />
+          </div>
+        </section>
+      )}
+
+      {/* Row 4: Celestial Zodiac Wheel (full width) */}
       <section id="sky-map" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />

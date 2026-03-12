@@ -507,3 +507,41 @@ export function getWhiteDaysInfo(date: Date): WhiteDaysInfo {
     daysUntilNext
   };
 }
+
+export interface NakshatraInfo {
+  siderealLongitude: number;
+  nakshatraIndex: number;
+  progressPercent: number;
+  degreesRemaining: number;
+  hoursUntilNext: number;
+  nextTransitDate: Date;
+}
+
+export function getNakshatraInfo(date: Date): NakshatraInfo {
+  const body = Astronomy.Body.Moon;
+  const coords = Astronomy.GeoVector(body, date, false);
+  const ecliptic = Astronomy.Ecliptic(coords);
+  const tropicalLon = ecliptic.elon;
+  const siderealLon = getSiderealLongitude(tropicalLon, date);
+
+  const nakshatraSize = 360 / 27;
+  const index = Math.floor((siderealLon % 360) / nakshatraSize);
+  const safeIndex = Math.max(0, Math.min(26, index));
+
+  const positionInNakshatra = (siderealLon % 360) - (safeIndex * nakshatraSize);
+  const progressPercent = (positionInNakshatra / nakshatraSize) * 100;
+  const degreesRemaining = nakshatraSize - positionInNakshatra;
+
+  const avgMoonSpeedPerHour = 13.0 / 24;
+  const hoursUntilNext = degreesRemaining / avgMoonSpeedPerHour;
+  const nextTransitDate = new Date(date.getTime() + hoursUntilNext * 60 * 60 * 1000);
+
+  return {
+    siderealLongitude: siderealLon,
+    nakshatraIndex: safeIndex,
+    progressPercent,
+    degreesRemaining,
+    hoursUntilNext,
+    nextTransitDate
+  };
+}

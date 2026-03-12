@@ -8,7 +8,19 @@ Al-Falak is a specialized astronomical and spiritual calendar application that c
 
 Preferred communication style: Simple, everyday language.
 
-## Recent Changes (January 2026)
+## Recent Changes (March 2026)
+
+- **Nakshatra Section**: New full-width section displaying Vedic lunar stations (27 Nakshatras)
+  - Real-time Moon position tracking using sidereal longitude (Lahiri Ayanamsha)
+  - 7 category classification: Fixed (Dhruva), Movable (Chara), Cruel (Ugra), Ordinary (Mishra), Short/Swift (Kshipra), Gentle (Mridu), Ferocious (Tikshna)
+  - Shows ruling planet, deity, symbol, element for current Nakshatra
+  - Progress bar with time until next Nakshatra transit
+  - Expandable recommended/avoid activities list
+  - 6 upcoming Nakshatras grid with category badges
+  - Data file: `client/src/data/nakshatras.ts`, Component: `client/src/components/NakshatraDisplay.tsx`
+- **Al-Buni guidance notification removed**: Signed-in users see Al-Buni info automatically; non-signed-in users see clean version with no sign-in prompt
+
+## Previous Changes (January 2026)
 
 - **Al-Buni Framework Integration**: Comprehensive Imam Al-Buni framework from Shams al-Ma'arif al-Kubra implemented:
   - 7 work categories: Love, Wealth, Authority, Protection, Health, Knowledge, Conflict
