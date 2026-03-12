@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { NakshatraInfo } from "@/lib/astronomy";
+import { NakshatraInfo, PlanetNakshatra } from "@/lib/astronomy";
 import { NAKSHATRAS, NAKSHATRA_CATEGORIES, Nakshatra } from "@/data/nakshatras";
 import { format } from "date-fns";
 import { Clock, ChevronDown, ChevronUp, Check, X } from "lucide-react";
@@ -7,6 +7,7 @@ import { useState } from "react";
 
 interface NakshatraDisplayProps {
   nakshatraInfo: NakshatraInfo;
+  planetNakshatras?: PlanetNakshatra[];
 }
 
 const CATEGORY_STYLES: Record<string, { bg: string; border: string; text: string }> = {
@@ -19,7 +20,24 @@ const CATEGORY_STYLES: Record<string, { bg: string; border: string; text: string
   Ferocious: { bg: "bg-orange-500/10", border: "border-orange-500/30", text: "text-orange-500" },
 };
 
-export function NakshatraDisplay({ nakshatraInfo }: NakshatraDisplayProps) {
+const PLANET_SYMBOLS: Record<string, string> = {
+  Sun: "☉", Moon: "☾", Mars: "♂", Mercury: "☿",
+  Jupiter: "♃", Venus: "♀", Saturn: "♄", Rahu: "☊", Ketu: "☋"
+};
+
+const PLANET_DISPLAY_COLORS: Record<string, string> = {
+  Sun: "text-amber-500",
+  Moon: "text-slate-400",
+  Mars: "text-red-500",
+  Mercury: "text-emerald-400",
+  Jupiter: "text-orange-400",
+  Venus: "text-pink-400",
+  Saturn: "text-indigo-400",
+  Rahu: "text-slate-500",
+  Ketu: "text-slate-500"
+};
+
+export function NakshatraDisplay({ nakshatraInfo, planetNakshatras = [] }: NakshatraDisplayProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const nakshatra = NAKSHATRAS[nakshatraInfo.nakshatraIndex];
   const category = NAKSHATRA_CATEGORIES[nakshatra.category];
@@ -97,6 +115,36 @@ export function NakshatraDisplay({ nakshatraInfo }: NakshatraDisplayProps) {
               <span className="text-foreground/80 font-medium">{nakshatra.element}</span>
             </div>
           </div>
+
+          {planetNakshatras.length > 0 && (
+            <div className="mb-3 max-w-md mx-auto">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5 font-medium">
+                Planets in Nakshatras
+              </div>
+              <div className="grid grid-cols-3 sm:grid-cols-3 gap-1.5">
+                {planetNakshatras.filter(p => p.planet !== "Moon").map((pn) => {
+                  const pNak = NAKSHATRAS[pn.nakshatraIndex];
+                  const pCat = NAKSHATRA_CATEGORIES[pNak.category];
+                  const pStyle = CATEGORY_STYLES[pNak.category] || CATEGORY_STYLES.Ordinary;
+                  return (
+                    <div
+                      key={pn.planet}
+                      className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-foreground/5 border border-border text-left"
+                      data-testid={`planet-nakshatra-${pn.planet}`}
+                    >
+                      <span className={`text-sm ${PLANET_DISPLAY_COLORS[pn.planet] || "text-foreground"}`}>
+                        {PLANET_SYMBOLS[pn.planet] || pn.planet[0]}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <div className="text-[10px] font-medium text-foreground/70 truncate">{pn.planet}</div>
+                        <div className={`text-[9px] truncate ${pStyle.text}`}>{pNak.name}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           <div className="flex items-center justify-center gap-2 text-muted-foreground mb-3 font-light tracking-wide bg-foreground/5 px-3 py-1 rounded-full w-fit mx-auto border border-border text-xs">
             <Clock className="w-3 h-3" />

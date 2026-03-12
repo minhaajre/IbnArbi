@@ -11,6 +11,7 @@ import {
   getPlanetIngresses,
   getMoonTimes,
   getNakshatraInfo,
+  getAllPlanetNakshatras,
   PlanetaryHour,
   PlanetStatus,
   MoonPhaseInfo,
@@ -18,7 +19,8 @@ import {
   WhiteDaysInfo,
   PlanetIngress,
   MoonTimes,
-  NakshatraInfo
+  NakshatraInfo,
+  PlanetNakshatra
 } from "@/lib/astronomy";
 import { useDynamicFavicon } from "@/hooks/useDynamicFavicon";
 import { usePlanetaryNotifications } from "@/hooks/usePlanetaryNotifications";
@@ -120,6 +122,7 @@ export default function Home() {
   const [ingresses, setIngresses] = useState<PlanetIngress[]>([]);
   const [moonTimes, setMoonTimes] = useState<MoonTimes | null>(null);
   const [nakshatraInfo, setNakshatraInfo] = useState<NakshatraInfo | null>(null);
+  const [planetNakshatras, setPlanetNakshatras] = useState<PlanetNakshatra[]>([]);
   
   // Selected planet for protocol display
   const [selectedPlanet, setSelectedPlanet] = useState<string | null>(null);
@@ -347,6 +350,7 @@ export default function Home() {
       const planetIngresses = getPlanetIngresses(now, useSidereal);
       const moonRiseSet = getMoonTimes(now, location.lat, location.lng);
       const nakshatraData = getNakshatraInfo(now);
+      const allPlanetNakshatras = getAllPlanetNakshatras(now);
 
       setHoursData(hours);
       setPlanets(planetPos);
@@ -358,6 +362,7 @@ export default function Home() {
       setIngresses(planetIngresses);
       setMoonTimes(moonRiseSet);
       setNakshatraInfo(nakshatraData);
+      setPlanetNakshatras(allPlanetNakshatras);
       setLoading(false);
     } catch (e) {
       console.error("Calculation error:", e);
@@ -870,7 +875,7 @@ export default function Home() {
             </Popover>
           </div>
           <div className="relative z-10">
-            <NakshatraDisplay nakshatraInfo={nakshatraInfo} />
+            <NakshatraDisplay nakshatraInfo={nakshatraInfo} planetNakshatras={planetNakshatras} />
           </div>
         </section>
       )}

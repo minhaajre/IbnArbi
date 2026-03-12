@@ -545,3 +545,56 @@ export function getNakshatraInfo(date: Date): NakshatraInfo {
     nextTransitDate
   };
 }
+
+export interface PlanetNakshatra {
+  planet: string;
+  nakshatraIndex: number;
+  siderealLongitude: number;
+  degree: number;
+}
+
+export function getAllPlanetNakshatras(date: Date): PlanetNakshatra[] {
+  const classicalPlanets = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn"];
+  const nakshatraSize = 360 / 27;
+  const results: PlanetNakshatra[] = [];
+
+  for (const name of classicalPlanets) {
+    const body = Astronomy.Body[name as keyof typeof Astronomy.Body];
+    const coords = Astronomy.GeoVector(body, date, false);
+    const ecliptic = Astronomy.Ecliptic(coords);
+    const siderealLon = getSiderealLongitude(ecliptic.elon, date);
+    const index = Math.floor((siderealLon % 360) / nakshatraSize);
+    results.push({
+      planet: name,
+      nakshatraIndex: Math.max(0, Math.min(26, index)),
+      siderealLongitude: siderealLon,
+      degree: siderealLon % nakshatraSize
+    });
+  }
+
+  const j2000 = new Date("2000-01-01T12:00:00Z");
+  const daysSinceJ2000 = (date.getTime() - j2000.getTime()) / (1000 * 60 * 60 * 24);
+  const yearsSinceJ2000 = daysSinceJ2000 / 365.25;
+
+  let rahuTropical = 125.04 + (-19.355 * yearsSinceJ2000);
+  rahuTropical = ((rahuTropical % 360) + 360) % 360;
+  const rahuSidereal = getSiderealLongitude(rahuTropical, date);
+  const rahuIndex = Math.floor((rahuSidereal % 360) / nakshatraSize);
+  results.push({
+    planet: "Rahu",
+    nakshatraIndex: Math.max(0, Math.min(26, rahuIndex)),
+    siderealLongitude: rahuSidereal,
+    degree: rahuSidereal % nakshatraSize
+  });
+
+  let ketuSidereal = (rahuSidereal + 180) % 360;
+  const ketuIndex = Math.floor(ketuSidereal / nakshatraSize);
+  results.push({
+    planet: "Ketu",
+    nakshatraIndex: Math.max(0, Math.min(26, ketuIndex)),
+    siderealLongitude: ketuSidereal,
+    degree: ketuSidereal % nakshatraSize
+  });
+
+  return results;
+}
