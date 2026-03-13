@@ -23,6 +23,7 @@ export interface EarthlyBranch {
   name: string;
   chinese: string;
   animal: string;
+  emoji: string;
   element: string;
   polarity: "Yang" | "Yin";
 }
@@ -75,18 +76,18 @@ export const HEAVENLY_STEMS: HeavenlyStem[] = [
 ];
 
 export const EARTHLY_BRANCHES: EarthlyBranch[] = [
-  { name: "Zǐ", chinese: "子", animal: "Rat", element: "Water", polarity: "Yang" },
-  { name: "Chǒu", chinese: "丑", animal: "Ox", element: "Earth", polarity: "Yin" },
-  { name: "Yín", chinese: "寅", animal: "Tiger", element: "Wood", polarity: "Yang" },
-  { name: "Mǎo", chinese: "卯", animal: "Rabbit", element: "Wood", polarity: "Yin" },
-  { name: "Chén", chinese: "辰", animal: "Dragon", element: "Earth", polarity: "Yang" },
-  { name: "Sì", chinese: "巳", animal: "Snake", element: "Fire", polarity: "Yin" },
-  { name: "Wǔ", chinese: "午", animal: "Horse", element: "Fire", polarity: "Yang" },
-  { name: "Wèi", chinese: "未", animal: "Goat", element: "Earth", polarity: "Yin" },
-  { name: "Shēn", chinese: "申", animal: "Monkey", element: "Metal", polarity: "Yang" },
-  { name: "Yǒu", chinese: "酉", animal: "Rooster", element: "Metal", polarity: "Yin" },
-  { name: "Xū", chinese: "戌", animal: "Dog", element: "Earth", polarity: "Yang" },
-  { name: "Hài", chinese: "亥", animal: "Pig", element: "Water", polarity: "Yin" },
+  { name: "Zǐ", chinese: "子", animal: "Rat", emoji: "🐀", element: "Water", polarity: "Yang" },
+  { name: "Chǒu", chinese: "丑", animal: "Ox", emoji: "🐂", element: "Earth", polarity: "Yin" },
+  { name: "Yín", chinese: "寅", animal: "Tiger", emoji: "🐅", element: "Wood", polarity: "Yang" },
+  { name: "Mǎo", chinese: "卯", animal: "Rabbit", emoji: "🐇", element: "Wood", polarity: "Yin" },
+  { name: "Chén", chinese: "辰", animal: "Dragon", emoji: "🐉", element: "Earth", polarity: "Yang" },
+  { name: "Sì", chinese: "巳", animal: "Snake", emoji: "🐍", element: "Fire", polarity: "Yin" },
+  { name: "Wǔ", chinese: "午", animal: "Horse", emoji: "🐴", element: "Fire", polarity: "Yang" },
+  { name: "Wèi", chinese: "未", animal: "Goat", emoji: "🐐", element: "Earth", polarity: "Yin" },
+  { name: "Shēn", chinese: "申", animal: "Monkey", emoji: "🐒", element: "Metal", polarity: "Yang" },
+  { name: "Yǒu", chinese: "酉", animal: "Rooster", emoji: "🐓", element: "Metal", polarity: "Yin" },
+  { name: "Xū", chinese: "戌", animal: "Dog", emoji: "🐕", element: "Earth", polarity: "Yang" },
+  { name: "Hài", chinese: "亥", animal: "Pig", emoji: "🐖", element: "Water", polarity: "Yin" },
 ];
 
 export const DAY_OFFICERS: DayOfficer[] = [

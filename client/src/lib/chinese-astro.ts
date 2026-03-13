@@ -13,7 +13,17 @@ import {
   SolarTerm,
 } from "@/data/chinese-astro";
 
+export interface Pillar {
+  stem: HeavenlyStem;
+  branch: EarthlyBranch;
+  chinese: string;
+  pinyin: string;
+}
+
 export interface ChineseTimeEnergy {
+  yearPillar: Pillar;
+  monthPillar: Pillar;
+  dayPillar: Pillar;
   lunarMansion: LunarMansionXiu;
   heavenlyStem: HeavenlyStem;
   earthlyBranch: EarthlyBranch;
@@ -75,6 +85,76 @@ function getCurrentSolarTerm(date: Date): SolarTerm {
   return closest;
 }
 
+function getYearPillar(date: Date): Pillar {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  let chineseYear = year;
+  if (month < 2 || (month === 2 && day < 4)) {
+    chineseYear -= 1;
+  }
+  const stemIndex = ((chineseYear - 4) % 10 + 10) % 10;
+  const branchIndex = ((chineseYear - 4) % 12 + 12) % 12;
+  const stem = HEAVENLY_STEMS[stemIndex];
+  const branch = EARTHLY_BRANCHES[branchIndex];
+  return {
+    stem,
+    branch,
+    chinese: `${stem.chinese}${branch.chinese}`,
+    pinyin: `${stem.name}-${branch.name}`,
+  };
+}
+
+function getMonthPillar(date: Date, yearStemIndex: number): Pillar {
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  const solarMonthStarts = [
+    { month: 2, day: 4 },
+    { month: 3, day: 6 },
+    { month: 4, day: 5 },
+    { month: 5, day: 6 },
+    { month: 6, day: 6 },
+    { month: 7, day: 7 },
+    { month: 8, day: 7 },
+    { month: 9, day: 8 },
+    { month: 10, day: 8 },
+    { month: 11, day: 7 },
+    { month: 12, day: 7 },
+    { month: 1, day: 6 },
+  ];
+
+  let chineseMonthIndex = 0;
+  for (let i = solarMonthStarts.length - 1; i >= 0; i--) {
+    const start = solarMonthStarts[i];
+    if (start.month === 1) {
+      if (month === 1 && day >= start.day) {
+        chineseMonthIndex = 11;
+        break;
+      }
+      if (month === 12 && day >= 7) {
+        chineseMonthIndex = 10;
+        break;
+      }
+    } else if (month > start.month || (month === start.month && day >= start.day)) {
+      chineseMonthIndex = i;
+      break;
+    }
+  }
+
+  const monthStemIndex = ((yearStemIndex % 5) * 2 + chineseMonthIndex) % 10;
+  const monthBranchIndex = (chineseMonthIndex + 2) % 12;
+
+  const stem = HEAVENLY_STEMS[monthStemIndex];
+  const branch = EARTHLY_BRANCHES[monthBranchIndex];
+  return {
+    stem,
+    branch,
+    chinese: `${stem.chinese}${branch.chinese}`,
+    pinyin: `${stem.name}-${branch.name}`,
+  };
+}
+
 function classifyActivities(
   mansion: LunarMansionXiu,
   officer: DayOfficer,
@@ -124,7 +204,21 @@ export function getChineseTimeEnergy(date: Date): ChineseTimeEnergy {
 
   const { recommended, avoid } = classifyActivities(mansion, officer, stem, solarTerm);
 
+  const yearPillar = getYearPillar(date);
+  const yearStemIndex = HEAVENLY_STEMS.indexOf(yearPillar.stem);
+  const monthPillar = getMonthPillar(date, yearStemIndex);
+
+  const dayPillar: Pillar = {
+    stem,
+    branch,
+    chinese: sexagenaryChinese,
+    pinyin: sexagenaryDay,
+  };
+
   return {
+    yearPillar,
+    monthPillar,
+    dayPillar,
     lunarMansion: mansion,
     heavenlyStem: stem,
     earthlyBranch: branch,
