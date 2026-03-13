@@ -18,6 +18,15 @@ Preferred communication style: Simple, everyday language.
   - Expandable recommended/avoid activities list
   - 6 upcoming Nakshatras grid with category badges
   - Data file: `client/src/data/nakshatras.ts`, Component: `client/src/components/NakshatraDisplay.tsx`
+- **Planets in Nakshatras**: Shows which Nakshatra each planet occupies (Sun, Mercury, Venus, Mars, Jupiter, Saturn, Rahu, Ketu)
+- **Chinese Feng Shui Time Energy Section**: New full-width section with complete Chinese metaphysical calendar
+  - 28 Xiu (Chinese Lunar Mansions) grouped into 4 celestial animals (Azure Dragon, Black Tortoise, White Tiger, Vermilion Bird)
+  - Heavenly Stems (10) and Earthly Branches (12) with Sexagenary Cycle (60-day cycle)
+  - 12 Day Officers system (Establish, Remove, Full, Balance, Stable, Initiate, Destroy, Danger, Success, Receive, Open, Close)
+  - 24 Solar Terms based on Sun's tropical longitude
+  - Five Elements (Wood, Fire, Earth, Metal, Water) with Yin/Yang polarity
+  - Activity classification layer combining all systems into recommended/avoid lists
+  - Data file: `client/src/data/chinese-astro.ts`, Calc: `client/src/lib/chinese-astro.ts`, Component: `client/src/components/ChineseAstroDisplay.tsx`
 - **Al-Buni guidance notification removed**: Signed-in users see Al-Buni info automatically; non-signed-in users see clean version with no sign-in prompt
 
 ## Previous Changes (January 2026)

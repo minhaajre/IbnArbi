@@ -33,6 +33,8 @@ import { ZodiacWheel } from "@/components/ZodiacWheel";
 import { ElementalBalance } from "@/components/ElementalBalance";
 import { PlanetaryProtocol } from "@/components/PlanetaryProtocol";
 import { NakshatraDisplay } from "@/components/NakshatraDisplay";
+import { ChineseAstroDisplay } from "@/components/ChineseAstroDisplay";
+import { getChineseTimeEnergy, ChineseTimeEnergy } from "@/lib/chinese-astro";
 import { Footer } from "@/components/Footer";
 import { AuthButton } from "@/components/AuthButton";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
@@ -67,6 +69,7 @@ const HOME_SECTIONS: TOCSection[] = [
   { id: "celestial-dignities", title: "Celestial Dignities", icon: <EightPointedStarIcon className="w-4 h-4" /> },
   { id: "elemental-balance", title: "Elemental Balance", icon: <IslamicPatternIcon className="w-4 h-4" /> },
   { id: "nakshatra", title: "Nakshatra", icon: <EightPointedStarIcon className="w-4 h-4" /> },
+  { id: "chinese-astro", title: "Feng Shui Time", icon: <IslamicPatternIcon className="w-4 h-4" /> },
   { id: "sky-map", title: "Current Sky Map", icon: <ZodiacWheelIcon className="w-4 h-4" /> },
 ];
 
@@ -90,6 +93,10 @@ const SECTION_INFO = {
   nakshatra: {
     title: "Nakshatra",
     description: "The Moon travels through 27 Nakshatras (lunar stations in Vedic astronomy), each spanning 13°20'. These are grouped into 7 categories based on their energetic nature: Fixed, Movable, Cruel, Ordinary, Short/Swift, Gentle, and Ferocious. Each category indicates which activities are supported or should be avoided.",
+  },
+  chineseAstro: {
+    title: "Feng Shui Time Energy",
+    description: "Chinese metaphysical calendar combining the 28 Xiu (lunar mansions), Heavenly Stems, Earthly Branches, Sexagenary Cycle, Day Officers, Five Elements, and 24 Solar Terms. These systems together classify the quality of time for activity planning — research, business, travel, construction, spiritual work, and more.",
   },
 };
 
@@ -123,6 +130,7 @@ export default function Home() {
   const [moonTimes, setMoonTimes] = useState<MoonTimes | null>(null);
   const [nakshatraInfo, setNakshatraInfo] = useState<NakshatraInfo | null>(null);
   const [planetNakshatras, setPlanetNakshatras] = useState<PlanetNakshatra[]>([]);
+  const [chineseTimeEnergy, setChineseTimeEnergy] = useState<ChineseTimeEnergy | null>(null);
   
   // Selected planet for protocol display
   const [selectedPlanet, setSelectedPlanet] = useState<string | null>(null);
@@ -351,6 +359,7 @@ export default function Home() {
       const moonRiseSet = getMoonTimes(now, location.lat, location.lng);
       const nakshatraData = getNakshatraInfo(now);
       const allPlanetNakshatras = getAllPlanetNakshatras(now);
+      const chineseData = getChineseTimeEnergy(now);
 
       setHoursData(hours);
       setPlanets(planetPos);
@@ -363,6 +372,7 @@ export default function Home() {
       setMoonTimes(moonRiseSet);
       setNakshatraInfo(nakshatraData);
       setPlanetNakshatras(allPlanetNakshatras);
+      setChineseTimeEnergy(chineseData);
       setLoading(false);
     } catch (e) {
       console.error("Calculation error:", e);
@@ -880,7 +890,36 @@ export default function Home() {
         </section>
       )}
 
-      {/* Row 4: Celestial Zodiac Wheel (full width) */}
+      {/* Row 4: Chinese Feng Shui Time Energy (full width) */}
+      {chineseTimeEnergy && (
+        <section id="chinese-astro" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden mb-4 sm:mb-6">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
+            <h2 className="text-base sm:text-lg font-serif text-foreground/80">
+              Feng Shui Time Energy <span className="text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">風水時能</span>
+            </h2>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
+                  <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-chinese-astro" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80" align="end">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.chineseAstro.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.chineseAstro.description}</p>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+          <div className="relative z-10">
+            <ChineseAstroDisplay timeEnergy={chineseTimeEnergy} />
+          </div>
+        </section>
+      )}
+
+      {/* Row 5: Celestial Zodiac Wheel (full width) */}
       <section id="sky-map" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
