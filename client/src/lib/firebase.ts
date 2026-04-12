@@ -1,33 +1,60 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, signOut, GoogleAuthProvider, onAuthStateChanged, User, setPersistence, browserLocalPersistence } from "firebase/auth";
+import { initializeApp, FirebaseApp } from "firebase/app";
+import {
+  getAuth,
+  signInWithPopup,
+  signOut,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  setPersistence,
+  browserLocalPersistence,
+  type Auth,
+  type User,
+} from "firebase/auth";
 
-const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: `${import.meta.env.VITE_FIREBASE_PROJECT_ID}.firebaseapp.com`,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: `${import.meta.env.VITE_FIREBASE_PROJECT_ID}.firebasestorage.app`,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-};
+const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
+const projectId = import.meta.env.VITE_FIREBASE_PROJECT_ID;
+const appId = import.meta.env.VITE_FIREBASE_APP_ID;
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+export const isConfigured = !!(apiKey && projectId && appId);
 
-// Enable persistent authentication
-setPersistence(auth, browserLocalPersistence).catch((error) => {
-  console.error('Failed to set persistence:', error);
-});
+let _app: FirebaseApp | null = null;
+let _auth: Auth | null = null;
+let _provider: GoogleAuthProvider | null = null;
 
-export { auth, provider };
-
-export function loginWithGoogle() {
-  return signInWithPopup(auth, provider);
+if (isConfigured) {
+  _app = initializeApp({
+    apiKey,
+    authDomain: `${projectId}.firebaseapp.com`,
+    projectId,
+    storageBucket: `${projectId}.firebasestorage.app`,
+    appId,
+  });
+  _auth = getAuth(_app);
+  _provider = new GoogleAuthProvider();
+  setPersistence(_auth, browserLocalPersistence).catch((err) => {
+    console.error("Firebase persistence error:", err);
+  });
 }
 
-export function logout() {
-  return signOut(auth);
+export { _auth as auth, _provider as provider };
+
+export function loginWithGoogle(): Promise<void> {
+  if (!_auth || !_provider) {
+    console.warn("Firebase not configured — sign-in unavailable");
+    return Promise.resolve();
+  }
+  return signInWithPopup(_auth, _provider).then(() => {});
 }
 
-export function onAuthChange(callback: (user: User | null) => void) {
-  return onAuthStateChanged(auth, callback);
+export function logout(): Promise<void> {
+  if (!_auth) return Promise.resolve();
+  return signOut(_auth);
+}
+
+export function onAuthChange(callback: (user: User | null) => void): () => void {
+  if (!_auth) {
+    callback(null);
+    return () => {};
+  }
+  return onAuthStateChanged(_auth, callback);
 }
