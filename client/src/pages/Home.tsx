@@ -36,7 +36,6 @@ import { NakshatraDisplay } from "@/components/NakshatraDisplay";
 import { ChineseAstroDisplay } from "@/components/ChineseAstroDisplay";
 import { getChineseTimeEnergy, ChineseTimeEnergy } from "@/lib/chinese-astro";
 import { Footer } from "@/components/Footer";
-import { AuthButton } from "@/components/AuthButton";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
 import { CrescentStarIcon, LanternIcon, EightPointedStarIcon, IslamicPatternIcon, ZodiacWheelIcon } from "@/components/icons/IslamicIcons";
 import { MapPin, Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, RotateCcw, Moon, Sun, AlertTriangle, Search, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen, Info, Loader2, Bell, BellOff, Zap } from "lucide-react";
@@ -520,7 +519,6 @@ export default function Home() {
             </Dialog>
 
             {/* Auth Button */}
-            <AuthButton />
 
           </div>
         </div>

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { WORK_CATEGORIES, getOptimalDatesForCategory, MANSION_BUNI_DATA, isCategoryBlocked, isInScorpio } from "@/data/buni";
 import { IBN_ARABI_MANSIONS } from "@/lib/constants";
-import { useAuth } from "@/hooks/use-auth";
 import { Calendar, Heart, Crown, Shield, Coins, Stethoscope, BookOpen, Sword, ChevronDown, ChevronUp, Lock, Check, X, AlertTriangle, Clock, Info, Snowflake } from "lucide-react";
 import {
   Tooltip,
@@ -39,9 +38,6 @@ interface OptimalDatesProps {
 export function OptimalDates({ currentMansionNumber, isWaning = false }: OptimalDatesProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const { user, signIn } = useAuth();
-  const isSignedIn = !!user;
-
   const currentMansion = IBN_ARABI_MANSIONS[currentMansionNumber - 1];
   const currentBuniData = MANSION_BUNI_DATA.find(m => m.id === currentMansionNumber);
   const inScorpio = isInScorpio(currentMansionNumber);
@@ -72,22 +68,7 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            {!isSignedIn ? (
-              <div className="p-4 text-center border-t border-border">
-                <Lock className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
-                <h4 className="text-sm font-medium text-foreground mb-1">Sign in to access Optimal Dates</h4>
-                <p className="text-xs text-muted-foreground mb-3">
-                  Discover the best mansion times for love, wealth, protection, and more.
-                </p>
-                <button
-                  onClick={signIn}
-                  className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
-                >
-                  Sign in with Google
-                </button>
-              </div>
-            ) : (
-              <div className="p-4 border-t border-border space-y-4">
+            <div className="p-4 border-t border-border space-y-4">
                 {/* Current Mansion Status */}
                 <div className="p-3 rounded-lg bg-foreground/5 border border-border">
                   <div className="text-xs text-muted-foreground mb-1">Current Mansion</div>

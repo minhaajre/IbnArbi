@@ -4,7 +4,6 @@ import { format } from "date-fns";
 import { Clock, Sparkles, Flame, Crown } from "lucide-react";
 import { PLANET_PROPHETS, PLANET_ARABIC } from "@/lib/constants";
 import { PLANETARY_SPIRITS } from "@/data/buni";
-import { useAuth } from "@/hooks/use-auth";
 
 const PLANET_SYMBOLS: Record<string, string> = {
   Sun: "☉", Moon: "☾", Mars: "♂", Mercury: "☿",
@@ -32,9 +31,6 @@ interface PlanetaryHoursDisplayProps {
 }
 
 export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, selectedPlanet, onPlanetSelect, lunarDay, isWaxing }: PlanetaryHoursDisplayProps) {
-  const { user } = useAuth();
-  const isSignedIn = !!user;
-  
   if (!currentHour) return null;
 
   const now = new Date();
@@ -90,7 +86,7 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, select
           </div>
 
           {/* Buni Planetary Spirits Info - Auth Gated */}
-          {PLANETARY_SPIRITS[currentHour.planet] && isSignedIn && (
+          {PLANETARY_SPIRITS[currentHour.planet] && (
             <>
               <div className="flex flex-wrap items-center justify-center gap-2 mb-4 text-xs">
                 <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-sky-500/10 border border-sky-500/20">

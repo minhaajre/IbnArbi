@@ -6,7 +6,6 @@ import { MANSION_GUIDANCE, CYCLE_ROLE_COLORS } from "@/lib/spiritualGuidance";
 import { MANSIONS_AKBARIAN, type AkbarianMansion } from "@/data/mansions.akbarian";
 import { getMansionBuniData, getMansionGroup, INK_RULES, type MansionBuniData } from "@/data/buni";
 import { MansionProgress, MoonPhaseInfo } from "@/lib/astronomy";
-import { useAuth } from "@/hooks/use-auth";
 import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, Compass, ChevronDown, ChevronUp, ExternalLink, Sun, Badge, Lock, Heart, Briefcase, Shield, Zap } from "lucide-react";
 import { format } from "date-fns";
 import { MansionCycleRing } from "@/components/MansionCycleRing";
@@ -38,9 +37,6 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedMansionNumber, setSelectedMansionNumber] = useState<number | null>(null);
   const [isWheelFullscreen, setIsWheelFullscreen] = useState(false);
-  
-  const { user, signIn } = useAuth();
-  const isSignedIn = !!user;
   
   const mansion = selectedMansionNumber 
     ? IBN_ARABI_MANSIONS[selectedMansionNumber - 1] 
@@ -198,7 +194,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
         </div>
 
         {/* Material Correspondence (Al-Tabayi') */}
-        {mansionGroup && isSignedIn && (
+        {mansionGroup && (
           <div className="mb-2 p-2 rounded-lg bg-violet-500/5 border border-violet-500/20">
             <div className="text-[9px] font-medium text-violet-400 uppercase tracking-wide mb-1.5">Material Correspondence (Al-Tabayi')</div>
             <div className="flex flex-wrap items-center gap-2 text-[10px]">
@@ -223,15 +219,6 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                 : `${INK_RULES.nahs.name}: ${INK_RULES.nahs.description}`
               }
             </div>
-          </div>
-        )}
-        {mansionGroup && !isSignedIn && (
-          <div className="mb-2 p-2 rounded-lg bg-violet-500/5 border border-violet-500/20 flex items-center gap-2">
-            <Lock className="w-4 h-4 text-muted-foreground shrink-0" />
-            <div className="flex-1">
-              <span className="text-[10px] text-muted-foreground">Sign in to view Material Correspondence (metals, inks, incense)</span>
-            </div>
-            <button onClick={signIn} className="text-[10px] text-primary hover:underline shrink-0">Sign in</button>
           </div>
         )}
 
@@ -314,7 +301,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
           </div>
         )}
 
-        {/* Collapsible Content - Gated for signed-in users */}
+        {/* Collapsible Content */}
         <AnimatePresence>
           {isExpanded && (
             <motion.div
@@ -324,24 +311,6 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
               transition={{ duration: 0.2 }}
               className="overflow-hidden space-y-3"
             >
-              {/* Sign-in prompt for non-authenticated users */}
-              {!isSignedIn ? (
-                <div className="mb-3 p-4 rounded-lg bg-foreground/5 border border-border text-center" data-testid="sign-in-prompt">
-                  <Lock className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
-                  <h4 className="text-sm font-medium text-foreground mb-1">Sign in to unlock full guidance</h4>
-                  <p className="text-xs text-muted-foreground mb-3">
-                    Access detailed spiritual guidance, Buni protocols, and personalized mansion insights.
-                  </p>
-                  <button
-                    onClick={signIn}
-                    className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
-                    data-testid="sign-in-button"
-                  >
-                    Sign in with Google
-                  </button>
-                </div>
-              ) : (
-                <>
                   {/* Divine Name & Letter Card - Buni Framework */}
                   {buniData && (
                     <div className="mb-3 p-3 rounded-lg bg-amber-500/5 border border-amber-500/20" data-testid="divine-name-card">
@@ -476,8 +445,6 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                       </Link>
                     </div>
                   )}
-                </>
-              )}
 
               <div className="space-y-3 text-sm text-muted-foreground/90 font-light leading-relaxed flex-1">
                 {/* Suggested Activities - Prominent */}
