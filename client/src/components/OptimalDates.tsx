@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   WORK_CATEGORIES, 
@@ -10,8 +10,8 @@ import {
 import { IBN_ARABI_MANSIONS } from "@/lib/constants";
 import { 
   Calendar, Heart, Crown, Shield, Coins, Stethoscope, 
-  BookOpen, Sword, ChevronDown, ChevronUp, Lock, 
-  Check, X, AlertTriangle, Clock, Info, Snowflake 
+  BookOpen, Sword, ChevronDown, ChevronUp, Check, X, 
+  AlertTriangle, Clock, Info, Snowflake 
 } from "lucide-react";
 import {
   Tooltip,
@@ -49,7 +49,6 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  // Safety: Ensure index is within bounds
   const currentMansion = IBN_ARABI_MANSIONS[currentMansionNumber - 1];
   const currentBuniData = MANSION_BUNI_DATA.find(m => m.id === currentMansionNumber);
   const inScorpio = isInScorpio(currentMansionNumber);
@@ -86,7 +85,7 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                 <div className="text-xs text-muted-foreground mb-1">Current Mansion</div>
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-sm font-medium text-foreground">{currentMansion?.name}</span>
+                    <span className="text-sm font-medium text-foreground">{currentMansion?.name || "Unknown"}</span>
                     <span className="text-xs text-muted-foreground ml-2">#{currentMansionNumber}</span>
                   </div>
                   {currentBuniData && (
@@ -112,9 +111,9 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                   </TooltipTrigger>
                   <TooltipContent side="bottom" className="max-w-xs">
                     <div className="text-xs space-y-1.5">
-                      <p className="font-medium">This app combines two classical frameworks:</p>
-                      <p><strong>1. Ibn Arabi (The Essence):</strong> Explains the spiritual nature of the hour.</p>
-                      <p><strong>2. Al-Buni (The Tool):</strong> Provides specific Abjad counts and materials.</p>
+                      <p className="font-medium">Combined Frameworks:</p>
+                      <p><strong>Ibn Arabi:</strong> Spiritual nature of the hour.</p>
+                      <p><strong>Al-Buni:</strong> Practical Abjad, metals, and inks.</p>
                     </div>
                   </TooltipContent>
                 </Tooltip>
@@ -125,8 +124,18 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                 <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/30 flex items-start gap-2">
                   <AlertTriangle className="w-4 h-4 text-destructive mt-0.5 shrink-0" />
                   <div>
-                    <div className="text-xs font-medium text-foreground">Moon in Scorpio (Mansions 16-21)</div>
+                    <div className="text-xs font-medium text-foreground">Moon in Scorpio</div>
                     <div className="text-[10px] text-muted-foreground">Love & Health activities are blocked.</div>
+                  </div>
+                </div>
+              )}
+
+              {isWaning && (
+                <div className="p-3 rounded-lg bg-muted/50 border border-border flex items-start gap-2">
+                  <AlertTriangle className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
+                  <div>
+                    <div className="text-xs font-medium text-foreground">Moon is Waning</div>
+                    <div className="text-[10px] text-muted-foreground">Expansion activities are weakened.</div>
                   </div>
                 </div>
               )}
@@ -164,4 +173,118 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                           <Check className="w-3 h-3" /> Now optimal
                         </div>
                       ) : isCurrentAvoid ? (
-                        <div className="mt-1 flex items-center gap-1 text-
+                        <div className="mt-1 flex items-center gap-1 text-[9px] text-destructive font-medium">
+                          <X className="w-3 h-3" /> Avoid now
+                        </div>
+                      ) : (
+                        optimalInfo && (
+                          <div className="mt-1 text-[9px] text-muted-foreground">
+                            ~{optimalInfo.daysUntil}d to optimal
+                          </div>
+                        )
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Selected Category Details */}
+              <AnimatePresence>
+                {selectedCategory && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden"
+                  >
+                    {(() => {
+                      const catData = WORK_CATEGORIES.find(c => c.category === selectedCategory);
+                      if (!catData) return null;
+                      const optimalInfo = getOptimalDatesForCategory(selectedCategory, currentMansionNumber);
+                      
+                      return (
+                        <div className="p-3 rounded-lg bg-foreground/5 border border-border space-y-3 mt-2">
+                          <div>
+                            <h4 className="text-sm font-medium text-foreground mb-1">{selectedCategory}</h4>
+                            <p className="text-xs text-muted-foreground">{catData.description}</p>
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="p-2 rounded bg-primary/5 border border-primary/20">
+                              <div className="text-[9px] text-muted-foreground uppercase mb-1">Primary Divine Name</div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-sm font-arabic text-primary">{catData.divineNameArabic}</span>
+                                <span className="text-xs text-foreground/80">{catData.divineName}</span>
+                              </div>
+                              <div className="text-[9px] text-muted-foreground mt-1">Abjad: {catData.divineNameAbjad}</div>
+                            </div>
+                            <div className="p-2 rounded bg-secondary/5 border border-secondary/20">
+                              <div className="text-[9px] text-muted-foreground uppercase mb-1">Secondary Name</div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-sm font-arabic text-secondary-foreground">{catData.secondaryNameArabic}</span>
+                                <span className="text-xs text-foreground/80">{catData.secondaryName}</span>
+                              </div>
+                              <div className="text-[9px] text-muted-foreground mt-1">Abjad: {catData.secondaryNameAbjad}</div>
+                            </div>
+                          </div>
+
+                          <div className="flex flex-wrap items-center gap-3">
+                            <div className="flex items-center gap-2 px-2 py-1 rounded bg-foreground/5 border border-border">
+                              <span className="text-lg font-arabic text-primary">{catData.letterArabic}</span>
+                              <div>
+                                <div className="text-[9px] text-muted-foreground uppercase">Letter</div>
+                                <div className="text-xs text-foreground">{catData.letter} = {catData.letterValue}</div>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2 px-2 py-1 rounded bg-foreground/5 border border-border">
+                              <Clock className="w-4 h-4 text-primary" />
+                              <div>
+                                <div className="text-[9px] text-muted-foreground uppercase">Best Hour</div>
+                                <div className="text-xs text-foreground">Hour of {catData.planetaryHour}</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="p-2 rounded bg-muted/30 border border-border">
+                            <div className="text-[9px] text-primary uppercase mb-1">Al-Buni Guideline</div>
+                            <div className="text-xs text-foreground/80">{catData.guideline}</div>
+                          </div>
+
+                          <div className="p-2 rounded bg-muted/30 border border-border">
+                            <div className="text-[9px] text-primary uppercase mb-2">Material Requirements</div>
+                            <div className="grid grid-cols-3 gap-2">
+                              <div>
+                                <div className="text-[9px] text-muted-foreground">Metal</div>
+                                <div className="text-xs text-foreground font-medium">{catData.materials?.metal}</div>
+                              </div>
+                              <div>
+                                <div className="text-[9px] text-muted-foreground">Ink</div>
+                                <div className="text-xs text-foreground font-medium">{catData.materials?.ink}</div>
+                              </div>
+                              <div>
+                                <div className="text-[9px] text-muted-foreground">Incense</div>
+                                <div className="text-xs text-foreground font-medium">{catData.materials?.incense}</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {optimalInfo && optimalInfo.nextOptimal !== currentMansionNumber && (
+                            <div className="text-xs text-muted-foreground pt-1">
+                              Next optimal: <span className="text-primary font-medium">
+                                Mansion {optimalInfo.nextOptimal} ({IBN_ARABI_MANSIONS[optimalInfo.nextOptimal - 1]?.name})
+                              </span> in ~{optimalInfo.daysUntil} days
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })()}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
