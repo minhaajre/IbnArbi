@@ -123,11 +123,7 @@ export default function Home() {
     loading,
   } = useAstronomyData(now, hoursTime, location, useSidereal);
 
-  // Initialize location on mount
-  useEffect(() => {
-    detectLocation();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // Location is auto-detected inside useLocationSearch (IP → GPS → Mecca fallback).
 
   // Restore scroll position once data is ready
   useEffect(() => {

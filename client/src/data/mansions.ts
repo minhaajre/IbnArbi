@@ -11,7 +11,7 @@
  * The original files are kept as data sources; this file is the canonical export.
  */
 
-import { IBN_ARABI_MANSIONS } from "@/lib/constants";
+import { IBN_ARABI_MANSIONS } from "./ibn-arabi-mansions";
 import { MANSIONS_AKBARIAN } from "./mansions.akbarian";
 import { MANSION_GUIDANCE } from "@/lib/spiritualGuidance";
 import { MANSION_BUNI_DATA } from "./buni";

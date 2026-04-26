@@ -16,13 +16,23 @@ import Privacy from "@/pages/Privacy";
 import AdvancedAzkaar from "@/pages/AdvancedAzkaar";
 import AdvancedTips from "@/pages/AdvancedTips";
 
+// LanguageProvider is only consumed by Instructions — wrap it at the route
+// level rather than the app root to avoid unnecessary context overhead.
+function WrappedInstructions() {
+  return (
+    <LanguageProvider>
+      <Instructions />
+    </LanguageProvider>
+  );
+}
+
 function Router() {
   useAnalytics();
-  
+
   return (
     <Switch>
       <Route path="/" component={Home}/>
-      <Route path="/instructions" component={Instructions}/>
+      <Route path="/instructions" component={WrappedInstructions}/>
       <Route path="/chart" component={PersonalChart}/>
       <Route path="/legal" component={Legal}/>
       <Route path="/terms" component={Terms}/>
@@ -45,12 +55,10 @@ function App() {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <LanguageProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </LanguageProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Router />
+      </TooltipProvider>
     </ThemeProvider>
   );
 }

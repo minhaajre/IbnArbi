@@ -29,15 +29,7 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   "Conflict & Victory": <Sword className="w-4 h-4" />,
 };
 
-const CATEGORY_COLORS: Record<string, string> = {
-  "Love & Relationships": "text-foreground bg-card border-primary/30 hover:border-primary/50",
-  "Authority & Leadership": "text-foreground bg-card border-primary/30 hover:border-primary/50",
-  "Protection & Safety": "text-foreground bg-card border-primary/30 hover:border-primary/50",
-  "Wealth & Business": "text-foreground bg-card border-primary/30 hover:border-primary/50",
-  "Health & Healing": "text-foreground bg-card border-primary/30 hover:border-primary/50",
-  "Knowledge & Learning": "text-foreground bg-card border-primary/30 hover:border-primary/50",
-  "Conflict & Victory": "text-foreground bg-card border-primary/30 hover:border-primary/50",
-};
+const CATEGORY_CARD_CLASS = "text-foreground bg-card border-primary/30 hover:border-primary/50";
 
 interface OptimalDatesProps {
   currentMansionNumber: number;
@@ -143,7 +135,7 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                 {WORK_CATEGORIES.map((cat) => {
                   const optimalInfo = getOptimalDatesForCategory(cat.category, currentMansionNumber);
                   const isSelected = selectedCategory === cat.category;
-                  const colorClass = CATEGORY_COLORS[cat.category] || "text-muted-foreground bg-foreground/5 border-border";
+                  const colorClass = CATEGORY_CARD_CLASS;
                   const isCurrentOptimal = cat.optimalMansions.includes(currentMansionNumber);
                   const isCurrentAvoid = cat.avoidMansions.includes(currentMansionNumber);
                   const blockStatus = isCategoryBlocked(cat.category, currentMansionNumber, isWaning);

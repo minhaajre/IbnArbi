@@ -202,9 +202,9 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   {
     id: 1,
     nature: "sad",
-    divineName: "Allah",
-    divineNameArabic: "الله",
-    divineNameCount: 66,
+    divineName: "Al-Badi'",
+    divineNameArabic: "البديع",
+    divineNameCount: 86,
     categories: ["travel", "authority", "beginnings"],
     guidelines: {
       health: "Favorable for starting treatments. Good for vitality.",
@@ -286,9 +286,9 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   {
     id: 7,
     nature: "sad",
-    divineName: "Al-Wasi",
-    divineNameArabic: "الواسع",
-    divineNameCount: 137,
+    divineName: "Al-Muhit",
+    divineNameArabic: "المحيط",
+    divineNameCount: 67,
     categories: ["expansion", "charity", "abundance"],
     guidelines: {
       health: "Favorable for expansive treatments and healing.",
@@ -328,9 +328,9 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   {
     id: 10,
     nature: "sad",
-    divineName: "Al-Qawi",
-    divineNameArabic: "القوي",
-    divineNameCount: 116,
+    divineName: "Al-Muqtadir",
+    divineNameArabic: "المقتدر",
+    divineNameCount: 744,
     categories: ["strength", "authority", "power"],
     guidelines: {
       health: "Good for building strength and vitality.",
@@ -370,8 +370,8 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   {
     id: 13,
     nature: "sad",
-    divineName: "Al-Qahir",
-    divineNameArabic: "القاهر",
+    divineName: "Al-Qahhar",
+    divineNameArabic: "القهار",
     divineNameCount: 306,
     categories: ["victory", "courage", "challenges"],
     guidelines: {
@@ -496,9 +496,9 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   {
     id: 22,
     nature: "nahs",
-    divineName: "Al-Karim",
-    divineNameArabic: "الكريم",
-    divineNameCount: 270,
+    divineName: "Al-'Aziz",
+    divineNameArabic: "العزيز",
+    divineNameCount: 94,
     categories: ["generosity", "sacrifice", "release"],
     guidelines: {
       health: "Avoid major procedures. Minor sacrifice helps.",
@@ -510,9 +510,9 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   {
     id: 23,
     nature: "sad",
-    divineName: "Al-Muqit",
-    divineNameArabic: "المقيت",
-    divineNameCount: 550,
+    divineName: "Al-Razzaq",
+    divineNameArabic: "الرزاق",
+    divineNameCount: 308,
     categories: ["nourishment", "growth", "planting"],
     guidelines: {
       health: "Excellent for nutrition and building strength.",
@@ -580,8 +580,8 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   {
     id: 28,
     nature: "nahs",
-    divineName: "Al-Rafi",
-    divineNameArabic: "الرافع",
+    divineName: "Al-Rafi' al-Darajat",
+    divineNameArabic: "الرافع الدرجات",
     divineNameCount: 351,
     categories: ["surrender", "completion", "elevation"],
     guidelines: {

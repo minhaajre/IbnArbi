@@ -22,6 +22,7 @@ import {
 } from "@/lib/astronomy";
 import { getChineseTimeEnergy, type ChineseTimeEnergy } from "@/lib/chinese-astro";
 import type { LocationData } from "@/hooks/useLocationSearch";
+import type { Mansion } from "@/data/mansions";
 
 // All astronomy calculations are synchronous, so useMemo is the right primitive —
 // no intermediate state, no batched re-renders, no useEffect needed.
@@ -29,8 +30,7 @@ import type { LocationData } from "@/hooks/useLocationSearch";
 interface AstroSnapshot {
   hoursData: ReturnType<typeof getPlanetaryHours>;
   planets: PlanetStatus[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  mansion: any;
+  mansion: Mansion;
   hijriDate: string;
   moonPhase: MoonPhaseInfo;
   mansionProgress: MansionProgress;

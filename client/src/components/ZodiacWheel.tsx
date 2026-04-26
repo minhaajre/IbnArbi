@@ -8,11 +8,6 @@ import { format } from "date-fns";
 interface ZodiacWheelProps {
   planets: PlanetStatus[];
   variant?: "compact" | "expanded";
-  gregorianDate?: string;
-  hijriDate?: string;
-  currentTime?: string;
-  moonPhaseLabel?: string;
-  isWaxing?: boolean;
   ingresses?: PlanetIngress[];
 }
 
@@ -72,14 +67,9 @@ function ModalityIcon({ modality, size = 12 }: { modality: string; size?: number
   }
 }
 
-export function ZodiacWheel({ 
-  planets, 
+export function ZodiacWheel({
+  planets,
   variant = "compact",
-  gregorianDate,
-  hijriDate,
-  currentTime,
-  moonPhaseLabel,
-  isWaxing,
   ingresses = []
 }: ZodiacWheelProps) {
   const [hoveredSign, setHoveredSign] = useState<string | null>(null);
