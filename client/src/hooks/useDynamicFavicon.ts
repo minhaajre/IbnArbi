@@ -1,31 +1,12 @@
 import { useEffect } from "react";
-
-const PLANET_SYMBOLS: Record<string, string> = {
-  Sun: "☉",
-  Moon: "☾",
-  Mars: "♂",
-  Mercury: "☿",
-  Jupiter: "♃",
-  Venus: "♀",
-  Saturn: "♄"
-};
-
-const PLANET_COLORS: Record<string, string> = {
-  Sun: "#f59e0b",
-  Moon: "#94a3b8",
-  Mars: "#dc2626",
-  Mercury: "#10b981",
-  Jupiter: "#f97316",
-  Venus: "#ec4899",
-  Saturn: "#6366f1"
-};
+import { PLANET_SYMBOLS, PLANET_HEX_COLORS } from "@/lib/constants";
 
 function createFaviconCanvas(planet: string): string {
   const canvas = document.createElement("canvas");
   canvas.width = 64;
   canvas.height = 64;
   const ctx = canvas.getContext("2d");
-  
+
   if (!ctx) return "";
 
   ctx.fillStyle = "#1a1a2e";
@@ -38,7 +19,7 @@ function createFaviconCanvas(planet: string): string {
   ctx.arc(32, 32, 28, 0, Math.PI * 2);
   ctx.fill();
 
-  const color = PLANET_COLORS[planet] || "#fcd34d";
+  const color = PLANET_HEX_COLORS[planet] || "#fcd34d";
   ctx.fillStyle = color;
   ctx.font = "bold 36px serif";
   ctx.textAlign = "center";
@@ -53,15 +34,15 @@ export function useDynamicFavicon(planet: string | null) {
     if (!planet) return;
 
     const faviconUrl = createFaviconCanvas(planet);
-    
+
     let link: HTMLLinkElement | null = document.querySelector("link[rel~='icon']");
-    
+
     if (!link) {
       link = document.createElement("link");
       link.rel = "icon";
       document.head.appendChild(link);
     }
-    
+
     link.href = faviconUrl;
   }, [planet]);
 }

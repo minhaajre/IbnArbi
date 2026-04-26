@@ -2,23 +2,8 @@ import { motion } from "framer-motion";
 import { PlanetaryHour } from "@/lib/astronomy";
 import { format } from "date-fns";
 import { Clock, Sparkles, Flame, Crown } from "lucide-react";
-import { PLANET_PROPHETS, PLANET_ARABIC } from "@/lib/constants";
+import { PLANET_PROPHETS, PLANET_ARABIC, PLANET_SYMBOLS, PLANET_TAILWIND_COLORS } from "@/lib/constants";
 import { PLANETARY_SPIRITS } from "@/data/buni";
-
-const PLANET_SYMBOLS: Record<string, string> = {
-  Sun: "☉", Moon: "☾", Mars: "♂", Mercury: "☿",
-  Jupiter: "♃", Venus: "♀", Saturn: "♄"
-};
-
-const PLANET_COLORS: Record<string, string> = {
-  Sun: "text-amber-500 dark:text-yellow-400",
-  Moon: "text-slate-600 dark:text-slate-200",
-  Mars: "text-red-600 dark:text-red-400",
-  Mercury: "text-emerald-600 dark:text-emerald-300",
-  Jupiter: "text-orange-600 dark:text-orange-300",
-  Venus: "text-pink-600 dark:text-pink-300",
-  Saturn: "text-indigo-600 dark:text-indigo-300"
-};
 
 interface PlanetaryHoursDisplayProps {
   currentHour: PlanetaryHour | null;
@@ -68,7 +53,7 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, select
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className={`text-7xl mb-4 font-serif ${PLANET_COLORS[currentHour.planet] || "text-primary"}`}
+            className={`text-7xl mb-4 font-serif ${PLANET_TAILWIND_COLORS[currentHour.planet] || "text-primary"}`}
           >
             {PLANET_SYMBOLS[currentHour.planet]}
           </motion.div>
@@ -151,7 +136,7 @@ export function PlanetaryHoursDisplay({ currentHour, nextHours, dayRuler, select
                 isSelected ? 'border-primary ring-2 ring-primary/30 bg-primary/10' : 'border-border'
               }`}
             >
-              <div className={`text-xl mb-1 ${PLANET_COLORS[h.planet]} group-hover:scale-110 transition-transform`}>
+              <div className={`text-xl mb-1 ${PLANET_TAILWIND_COLORS[h.planet]} group-hover:scale-110 transition-transform`}>
                 {PLANET_SYMBOLS[h.planet]}
               </div>
               <div className="text-[10px] font-medium text-foreground/70 uppercase tracking-wider">

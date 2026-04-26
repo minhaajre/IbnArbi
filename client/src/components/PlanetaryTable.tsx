@@ -14,18 +14,13 @@ import {
   Star
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { PLANET_ARABIC, DIGNITY_ARABIC, SIGN_DATA, UI_LABELS_ARABIC } from "@/lib/constants";
+import { PLANET_ARABIC, DIGNITY_ARABIC, SIGN_DATA, UI_LABELS_ARABIC, PLANET_SYMBOLS } from "@/lib/constants";
 
 interface PlanetaryTableProps {
   planets: PlanetStatus[];
   useSidereal?: boolean;
   onToggleSystem?: (val: boolean) => void;
 }
-
-const PLANET_SYMBOLS: Record<string, string> = {
-  Sun: "☉", Moon: "☾", Mars: "♂", Mercury: "☿",
-  Jupiter: "♃", Venus: "♀", Saturn: "♄"
-};
 
 export function PlanetaryTable({ planets, useSidereal, onToggleSystem }: PlanetaryTableProps) {
   return (

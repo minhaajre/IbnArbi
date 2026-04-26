@@ -935,3 +935,49 @@ export const PLANET_PROFILES: Record<string, PlanetProfile> = {
     behaviorFocus: "Be gentle, rhythmic, and nurturing."
   }
 };
+
+// ─── Shared Planet Constants ───────────────────────────────────────────────
+// Single source of truth — import from here, never redefine locally.
+
+/** Unicode astronomical symbols for each planet. */
+export const PLANET_SYMBOLS: Record<string, string> = {
+  Sun: "☉",
+  Moon: "☾",
+  Mars: "♂",
+  Mercury: "☿",
+  Jupiter: "♃",
+  Venus: "♀",
+  Saturn: "♄",
+  Rahu: "☊",
+  Ketu: "☋",
+};
+
+/**
+ * Hex colours for canvas / SVG rendering (ZodiacWheel, dynamic favicon).
+ * Aligned with the Tailwind palette used elsewhere (amber/slate/red/emerald/orange/pink/indigo).
+ */
+export const PLANET_HEX_COLORS: Record<string, string> = {
+  Sun: "#f59e0b",      // amber-500
+  Moon: "#94a3b8",     // slate-400
+  Mars: "#ef4444",     // red-500
+  Mercury: "#10b981",  // emerald-500
+  Jupiter: "#f97316",  // orange-500
+  Venus: "#ec4899",    // pink-500
+  Saturn: "#6366f1",   // indigo-500
+};
+
+/**
+ * Tailwind text-colour classes for inline UI (tables, hour displays, nakshatra cards).
+ * Uses dark-mode variants for proper theming.
+ */
+export const PLANET_TAILWIND_COLORS: Record<string, string> = {
+  Sun: "text-amber-500 dark:text-yellow-400",
+  Moon: "text-slate-500 dark:text-slate-300",
+  Mars: "text-red-500 dark:text-red-400",
+  Mercury: "text-emerald-600 dark:text-emerald-400",
+  Jupiter: "text-orange-500 dark:text-orange-400",
+  Venus: "text-pink-500 dark:text-pink-400",
+  Saturn: "text-indigo-500 dark:text-indigo-400",
+  Rahu: "text-violet-500 dark:text-violet-400",
+  Ketu: "text-rose-400 dark:text-rose-300",
+};

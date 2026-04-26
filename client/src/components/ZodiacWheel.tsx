@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { PlanetStatus, PlanetIngress } from "@/lib/astronomy";
-import { SIGNS, SIGN_DATA, getCriticalDegree, PLANET_ARABIC, DIGNITY_ARABIC, UI_LABELS_ARABIC } from "@/lib/constants";
+import { SIGNS, SIGN_DATA, getCriticalDegree, PLANET_ARABIC, DIGNITY_ARABIC, UI_LABELS_ARABIC, PLANET_SYMBOLS, PLANET_HEX_COLORS } from "@/lib/constants";
 import { useState, useMemo, useEffect } from "react";
 import { Flame, Mountain, Wind, Droplets, Sun as SunIcon, Moon as MoonIcon, Leaf, Snowflake, Flower2, CircleDot, Triangle, Mars } from "lucide-react";
 import { format } from "date-fns";
@@ -23,20 +23,6 @@ const ELEMENT_COLORS = {
   Water: { fill: "rgba(59, 130, 246, 0.15)", stroke: "rgb(59, 130, 246)", glow: "rgba(59, 130, 246, 0.4)" }
 };
 
-const PLANET_SYMBOLS: Record<string, string> = {
-  Sun: "☉", Moon: "☽", Mars: "♂", Mercury: "☿",
-  Jupiter: "♃", Venus: "♀", Saturn: "♄"
-};
-
-const PLANET_COLORS: Record<string, string> = {
-  Sun: "#f59e0b",
-  Moon: "#94a3b8",
-  Mercury: "#a78bfa",
-  Venus: "#f472b6",
-  Mars: "#ef4444",
-  Jupiter: "#3b82f6",
-  Saturn: "#6b7280"
-};
 
 const CRITICAL_DEGREE_COLORS = {
   first: "#22c55e",
@@ -305,7 +291,7 @@ export function ZodiacWheel({
         {planetPositions.map(({ planet, angle, radius, criticalDegree }) => {
           const pos = getCoords(angle, radius);
           const isHovered = hoveredPlanet === planet.name;
-          const planetColor = PLANET_COLORS[planet.name] || "#888";
+          const planetColor = PLANET_HEX_COLORS[planet.name] || "#888";
           const isSun = planet.name === "Sun";
           const circleSize = isSun ? (variant === "expanded" ? 18 : 15) : (variant === "expanded" ? 14 : 12);
           const hasCritical = criticalDegree !== null;
@@ -484,10 +470,10 @@ export function ZodiacWheel({
               marginTop: '-20px'
             }}
           >
-            <div className="font-serif text-base flex items-center justify-center gap-2" style={{ color: PLANET_COLORS[hoveredPlanetData.name] }}>
+            <div className="font-serif text-base flex items-center justify-center gap-2" style={{ color: PLANET_HEX_COLORS[hoveredPlanetData.name] }}>
               {PLANET_SYMBOLS[hoveredPlanetData.name]} {hoveredPlanetData.name}
             </div>
-            <div className="text-sm font-arabic" style={{ color: PLANET_COLORS[hoveredPlanetData.name] }}>
+            <div className="text-sm font-arabic" style={{ color: PLANET_HEX_COLORS[hoveredPlanetData.name] }}>
               {PLANET_ARABIC[hoveredPlanetData.name]?.arabic}
             </div>
             <div className="text-xs text-muted-foreground mt-1">

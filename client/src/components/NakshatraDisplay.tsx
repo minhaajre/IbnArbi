@@ -4,6 +4,7 @@ import { NAKSHATRAS, NAKSHATRA_CATEGORIES, Nakshatra } from "@/data/nakshatras";
 import { format } from "date-fns";
 import { Clock, ChevronDown, ChevronUp, Check, X } from "lucide-react";
 import { useState } from "react";
+import { PLANET_SYMBOLS, PLANET_TAILWIND_COLORS } from "@/lib/constants";
 
 interface NakshatraDisplayProps {
   nakshatraInfo: NakshatraInfo;
@@ -20,22 +21,6 @@ const CATEGORY_STYLES: Record<string, { bg: string; border: string; text: string
   Ferocious: { bg: "bg-orange-500/10", border: "border-orange-500/30", text: "text-orange-500" },
 };
 
-const PLANET_SYMBOLS: Record<string, string> = {
-  Sun: "☉", Moon: "☾", Mars: "♂", Mercury: "☿",
-  Jupiter: "♃", Venus: "♀", Saturn: "♄", Rahu: "☊", Ketu: "☋"
-};
-
-const PLANET_DISPLAY_COLORS: Record<string, string> = {
-  Sun: "text-amber-500",
-  Moon: "text-slate-400",
-  Mars: "text-red-500",
-  Mercury: "text-emerald-400",
-  Jupiter: "text-orange-400",
-  Venus: "text-pink-400",
-  Saturn: "text-indigo-400",
-  Rahu: "text-slate-500",
-  Ketu: "text-slate-500"
-};
 
 export function NakshatraDisplay({ nakshatraInfo, planetNakshatras = [] }: NakshatraDisplayProps) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -132,7 +117,7 @@ export function NakshatraDisplay({ nakshatraInfo, planetNakshatras = [] }: Naksh
                       className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-foreground/5 border border-border text-left"
                       data-testid={`planet-nakshatra-${pn.planet}`}
                     >
-                      <span className={`text-sm ${PLANET_DISPLAY_COLORS[pn.planet] || "text-foreground"}`}>
+                      <span className={`text-sm ${PLANET_TAILWIND_COLORS[pn.planet] || "text-foreground"}`}>
                         {PLANET_SYMBOLS[pn.planet] || pn.planet[0]}
                       </span>
                       <div className="min-w-0 flex-1">
