@@ -1,5 +1,6 @@
 import * as Astronomy from "astronomy-engine";
-import { IBN_ARABI_MANSIONS, PLANETARY_RULERS_ORDER, DAY_RULERS, PLANET_STATUS_RULES, SIGNS, AYANAMSHA_J2000, PRECESSION_RATE, ELEMENT_RULES, ELEMENT_ACTIVITIES } from "./constants";
+import { PLANETARY_RULERS_ORDER, DAY_RULERS, PLANET_STATUS_RULES, SIGNS, AYANAMSHA_J2000, PRECESSION_RATE, ELEMENT_RULES, ELEMENT_ACTIVITIES } from "./constants";
+import { MANSIONS, type Mansion } from "@/data/mansions";
 
 export { ELEMENT_RULES, ELEMENT_ACTIVITIES, SIGNS };
 
@@ -331,7 +332,7 @@ export function getLunarMansion(date: Date, useSidereal: boolean = true) {
   const mansionIndex = Math.floor((lon % 360) / (360 / 28));
   const safeIndex = Math.max(0, Math.min(27, mansionIndex));
   
-  return IBN_ARABI_MANSIONS[safeIndex];
+  return MANSIONS[safeIndex];
 }
 
 export function getMoonPhase(date: Date, useSidereal: boolean = true): MoonPhaseInfo {
@@ -390,7 +391,7 @@ export interface MansionProgress {
   progressPercent: number;
   nextMansionDate: Date;
   timeUntilNext: string;
-  nextMansion: typeof IBN_ARABI_MANSIONS[0];
+  nextMansion: Mansion;
   lunarDay: number;
 }
 
@@ -439,7 +440,7 @@ export function getLunarMansionProgress(date: Date, useSidereal: boolean = true)
     progressPercent,
     nextMansionDate,
     timeUntilNext,
-    nextMansion: IBN_ARABI_MANSIONS[nextIndex],
+    nextMansion: MANSIONS[nextIndex],
     lunarDay
   };
 }

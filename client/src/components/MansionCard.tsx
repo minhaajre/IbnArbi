@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { IBN_ARABI_MANSIONS, UI_LABELS_ARABIC, MANSION_AZKAAR_SUGGESTIONS } from "@/lib/constants";
-import { MANSION_GUIDANCE, CYCLE_ROLE_COLORS } from "@/lib/spiritualGuidance";
-import { MANSIONS_AKBARIAN, type AkbarianMansion } from "@/data/mansions.akbarian";
-import { getMansionBuniData, getMansionGroup, INK_RULES, type MansionBuniData } from "@/data/buni";
+import { UI_LABELS_ARABIC, MANSION_AZKAAR_SUGGESTIONS } from "@/lib/constants";
+import { CYCLE_ROLE_COLORS } from "@/lib/spiritualGuidance";
+import { MANSIONS, type Mansion } from "@/data/mansions";
+import { getMansionGroup, INK_RULES } from "@/data/buni";
 import { MansionProgress, MoonPhaseInfo } from "@/lib/astronomy";
 import { Moon, Sparkles, Scroll, Clock, ArrowRight, Orbit, Star, Check, X, Lightbulb, BookOpen, Compass, ChevronDown, ChevronUp, ExternalLink, Sun, Badge, Lock, Heart, Briefcase, Shield, Zap } from "lucide-react";
 import { format } from "date-fns";
@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/dialog";
 
 interface MansionCardProps {
-  mansion: typeof IBN_ARABI_MANSIONS[0];
+  mansion: Mansion;
   progress?: MansionProgress;
   moonPhase?: MoonPhaseInfo;
 }
@@ -38,22 +38,16 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
   const [selectedMansionNumber, setSelectedMansionNumber] = useState<number | null>(null);
   const [isWheelFullscreen, setIsWheelFullscreen] = useState(false);
   
-  const mansion = selectedMansionNumber 
-    ? IBN_ARABI_MANSIONS[selectedMansionNumber - 1] 
+  // When a different mansion is selected via the cycle ring, show that mansion's full data
+  const mansion: Mansion = selectedMansionNumber
+    ? MANSIONS[selectedMansionNumber - 1]
     : originalMansion;
-  
-  // Get Akbarian mansion data - use currently viewed mansion, not original
-  const akbarianMansion = MANSIONS_AKBARIAN[mansion.number - 1];
-  
-  // Get Buni data for this mansion
-  const buniData = getMansionBuniData(mansion.number);
-  
-  // Get mansion group data (angelic group, ink logic)
+
+  // Get mansion group data (angelic group, ink logic) — grouped structure, not per-mansion
   const mansionGroup = getMansionGroup(mansion.number);
-  
+
   const isBlessed = mansion.nature === "blessed";
-  const guidance = MANSION_GUIDANCE[mansion.number];
-  const cycleColors = guidance ? CYCLE_ROLE_COLORS[guidance.cycleRole] : null;
+  const cycleColors = CYCLE_ROLE_COLORS[mansion.cycleRole];
   
   const handleMansionSelect = (mansionNumber: number) => {
     setSelectedMansionNumber(mansionNumber);
@@ -86,7 +80,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
         
         {/* Cycle Role Tag and Moon Phase with Tooltip */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {guidance && cycleColors && (
+          {cycleColors && (
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -172,24 +166,22 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
         {/* Movement Tag + Sa'd/Nahs + Source Status Badge */}
         <div className="mb-2 flex flex-wrap items-center gap-2">
           <div className={`inline-flex items-center gap-1 px-2 py-1 rounded text-[10px] font-medium ${
-            akbarianMansion.movement === "Gathering" ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30' :
-            akbarianMansion.movement === "Differentiating" ? 'bg-purple-500/10 text-purple-400 border border-purple-500/30' :
+            mansion.movement === "Gathering" ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30' :
+            mansion.movement === "Differentiating" ? 'bg-purple-500/10 text-purple-400 border border-purple-500/30' :
             'bg-amber-500/10 text-amber-400 border border-amber-500/30'
-          }`} data-testid={`mansion-movement-${akbarianMansion.movement}`}>
-            {akbarianMansion.movement}
+          }`} data-testid={`mansion-movement-${mansion.movement}`}>
+            {mansion.movement}
           </div>
-          {buniData && (
-            <div className={`inline-flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold uppercase ${
-              buniData.nature === "sad" 
-                ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30' 
-                : 'bg-red-500/15 text-red-400 border border-red-500/30'
-            }`} data-testid={`mansion-nature-${buniData.nature}`}>
-              {buniData.nature === "sad" ? "Sa'd (Benefic)" : "Naḥs (Malefic)"}
-              <span className="font-arabic text-[9px]">{buniData.nature === "sad" ? "سعد" : "نحس"}</span>
-            </div>
-          )}
+          <div className={`inline-flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold uppercase ${
+            mansion.buniNature === "sad"
+              ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+              : 'bg-red-500/15 text-red-400 border border-red-500/30'
+          }`} data-testid={`mansion-nature-${mansion.buniNature}`}>
+            {mansion.buniNature === "sad" ? "Sa'd (Benefic)" : "Naḥs (Malefic)"}
+            <span className="font-arabic text-[9px]">{mansion.buniNature === "sad" ? "سعد" : "نحس"}</span>
+          </div>
           <div className="inline-flex items-center gap-1 px-2 py-1 rounded text-[10px] font-medium bg-foreground/5 text-muted-foreground border border-border">
-            {akbarianMansion.source_status}
+            {mansion.source_status}
           </div>
         </div>
 
@@ -214,8 +206,8 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
               {mansionGroup.inkLogic}
             </div>
             <div className="mt-1.5 text-[9px] text-muted-foreground">
-              {buniData?.nature === "sad" 
-                ? `${INK_RULES.sad.name}: ${INK_RULES.sad.description}` 
+              {mansion.buniNature === "sad"
+                ? `${INK_RULES.sad.name}: ${INK_RULES.sad.description}`
                 : `${INK_RULES.nahs.name}: ${INK_RULES.nahs.description}`
               }
             </div>
@@ -264,7 +256,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
         )}
 
         {/* Akbarian Theme Card with Collapse/Expand */}
-        {akbarianMansion && (
+        <div>
           <div>
             <div className="mb-3 p-3 rounded-lg bg-card/50 border border-border" data-testid="mansion-theme-card">
               <div className="flex items-center justify-between">
@@ -292,14 +284,14 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                     className="overflow-hidden"
                   >
                     <p className="text-sm text-foreground/90 leading-relaxed mt-2">
-                      {akbarianMansion.akbarian_theme_en}
+                      {mansion.akbarian_theme_en}
                     </p>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
           </div>
-        )}
+        </div>
 
         {/* Collapsible Content */}
         <AnimatePresence>
@@ -312,38 +304,35 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
               className="overflow-hidden space-y-3"
             >
                   {/* Divine Name & Letter Card - Buni Framework */}
-                  {buniData && (
-                    <div className="mb-3 p-3 rounded-lg bg-amber-500/5 border border-amber-500/20" data-testid="divine-name-card">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Zap className="w-4 h-4 text-amber-400" />
-                        <span className="text-xs font-medium text-foreground uppercase tracking-wide">Divine Name & Recitation</span>
-                        <span className="text-[9px] font-arabic text-muted-foreground">الاسم الإلهي</span>
+                  <div className="mb-3 p-3 rounded-lg bg-amber-500/5 border border-amber-500/20" data-testid="divine-name-card">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Zap className="w-4 h-4 text-amber-400" />
+                      <span className="text-xs font-medium text-foreground uppercase tracking-wide">Divine Name & Recitation</span>
+                      <span className="text-[9px] font-arabic text-muted-foreground">الاسم الإلهي</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="text-center">
+                        <div className="text-3xl font-arabic text-amber-400">{mansion.divineNameArabic}</div>
+                        <div className="text-xs text-foreground/80">{mansion.divineName}</div>
                       </div>
-                      <div className="flex items-center gap-4">
-                        <div className="text-center">
-                          <div className="text-3xl font-arabic text-amber-400">{buniData.divineNameArabic}</div>
-                          <div className="text-xs text-foreground/80">{buniData.divineName}</div>
-                        </div>
-                        <div className="flex-1">
-                          <div className="text-xs text-muted-foreground mb-1">Recite <span className="text-amber-400 font-bold">{buniData.divineNameCount}</span> times</div>
-                          <div className="text-xs text-muted-foreground">
-                            Letter: <span className="font-arabic text-lg text-primary mx-1">{mansion.letterArabic}</span> ({mansion.letter})
-                          </div>
+                      <div className="flex-1">
+                        <div className="text-xs text-muted-foreground mb-1">Recite <span className="text-amber-400 font-bold">{mansion.divineNameCount}</span> times</div>
+                        <div className="text-xs text-muted-foreground">
+                          Letter: <span className="font-arabic text-lg text-primary mx-1">{mansion.letterArabic}</span> ({mansion.letter})
                         </div>
                       </div>
                     </div>
-                  )}
+                  </div>
 
                   {/* May Support / Use Caution With Card */}
-                  {akbarianMansion && (
-                    <div className="mb-3 p-3 rounded-lg bg-foreground/5 border border-border" data-testid="mansion-guidance-card">
+                  <div className="mb-3 p-3 rounded-lg bg-foreground/5 border border-border" data-testid="mansion-guidance-card">
                       <div className="grid grid-cols-2 gap-3">
                         <div>
                           <div className="flex items-center gap-1.5 mb-2">
                             <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">May Support</span>
                           </div>
                           <ul className="space-y-1">
-                            {akbarianMansion.inner_adab_en.slice(0, 4).map((item, i) => (
+                            {mansion.inner_adab_en.slice(0, 4).map((item, i) => (
                               <li key={i} className="text-xs text-foreground/80 flex items-start gap-1.5">
                                 <span className="text-green-500 mt-0.5">•</span>
                                 <span>{item}</span>
@@ -356,7 +345,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                             <span className="text-[10px] font-medium text-foreground uppercase tracking-wide">Use Caution With</span>
                           </div>
                           <ul className="space-y-1">
-                            {akbarianMansion.cautions_en.slice(0, 4).map((item, i) => (
+                            {mansion.cautions_en.slice(0, 4).map((item, i) => (
                               <li key={i} className="text-xs text-foreground/60 flex items-start gap-1.5">
                                 <span className="text-amber-400 mt-0.5">•</span>
                                 <span>{item}</span>
@@ -365,67 +354,62 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                           </ul>
                         </div>
                       </div>
-                    </div>
-                  )}
+                  </div>
 
                   {/* Buni Guidelines Card */}
-                  {buniData && (
-                    <div className="mb-3 p-3 rounded-lg bg-indigo-500/5 border border-indigo-500/20" data-testid="buni-guidelines-card">
-                      <div className="flex items-center gap-2 mb-2">
-                        <BookOpen className="w-4 h-4 text-indigo-400" />
-                        <span className="text-xs font-medium text-foreground uppercase tracking-wide">Buni Guidelines</span>
-                        <span className="text-[9px] font-arabic text-muted-foreground">توجيهات البوني</span>
+                  <div className="mb-3 p-3 rounded-lg bg-indigo-500/5 border border-indigo-500/20" data-testid="buni-guidelines-card">
+                    <div className="flex items-center gap-2 mb-2">
+                      <BookOpen className="w-4 h-4 text-indigo-400" />
+                      <span className="text-xs font-medium text-foreground uppercase tracking-wide">Buni Guidelines</span>
+                      <span className="text-[9px] font-arabic text-muted-foreground">توجيهات البوني</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="flex items-start gap-2">
+                        <Heart className="w-3.5 h-3.5 text-pink-400 mt-0.5 shrink-0" />
+                        <div>
+                          <div className="text-[10px] font-medium text-foreground uppercase">Love</div>
+                          <div className="text-xs text-foreground/70">{mansion.guidelines.love}</div>
+                        </div>
                       </div>
-                      <div className="grid grid-cols-2 gap-2">
-                        <div className="flex items-start gap-2">
-                          <Heart className="w-3.5 h-3.5 text-pink-400 mt-0.5 shrink-0" />
-                          <div>
-                            <div className="text-[10px] font-medium text-foreground uppercase">Love</div>
-                            <div className="text-xs text-foreground/70">{buniData.guidelines.love}</div>
-                          </div>
+                      <div className="flex items-start gap-2">
+                        <Briefcase className="w-3.5 h-3.5 text-blue-400 mt-0.5 shrink-0" />
+                        <div>
+                          <div className="text-[10px] font-medium text-foreground uppercase">Career</div>
+                          <div className="text-xs text-foreground/70">{mansion.guidelines.career}</div>
                         </div>
-                        <div className="flex items-start gap-2">
-                          <Briefcase className="w-3.5 h-3.5 text-blue-400 mt-0.5 shrink-0" />
-                          <div>
-                            <div className="text-[10px] font-medium text-foreground uppercase">Career</div>
-                            <div className="text-xs text-foreground/70">{buniData.guidelines.career}</div>
-                          </div>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <Shield className="w-3.5 h-3.5 text-emerald-400 mt-0.5 shrink-0" />
+                        <div>
+                          <div className="text-[10px] font-medium text-foreground uppercase">Health</div>
+                          <div className="text-xs text-foreground/70">{mansion.guidelines.health}</div>
                         </div>
-                        <div className="flex items-start gap-2">
-                          <Shield className="w-3.5 h-3.5 text-emerald-400 mt-0.5 shrink-0" />
-                          <div>
-                            <div className="text-[10px] font-medium text-foreground uppercase">Health</div>
-                            <div className="text-xs text-foreground/70">{buniData.guidelines.health}</div>
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-2">
-                          <Sparkles className="w-3.5 h-3.5 text-purple-400 mt-0.5 shrink-0" />
-                          <div>
-                            <div className="text-[10px] font-medium text-foreground uppercase">Spirit</div>
-                            <div className="text-xs text-foreground/70">{buniData.guidelines.spirit}</div>
-                          </div>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <Sparkles className="w-3.5 h-3.5 text-purple-400 mt-0.5 shrink-0" />
+                        <div>
+                          <div className="text-[10px] font-medium text-foreground uppercase">Spirit</div>
+                          <div className="text-xs text-foreground/70">{mansion.guidelines.spirit}</div>
                         </div>
                       </div>
                     </div>
-                  )}
+                  </div>
 
                   {/* Suggested Dhikr & Practice Card */}
-                  {akbarianMansion && (
-                    <div className="mb-3 p-3 rounded-lg bg-primary/5 border border-primary/20" data-testid="mansion-dhikr-card">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Sparkles className="w-4 h-4 text-primary" />
-                        <span className="text-xs font-medium text-foreground uppercase tracking-wide">Suggested Practice</span>
-                      </div>
-                      <ul className="space-y-1.5">
-                        {akbarianMansion.suggested_practice_en.map((item, i) => (
-                          <li key={i} className="text-xs text-foreground/80 flex items-start gap-2">
-                            <Compass className="w-3 h-3 text-primary/70 mt-0.5 shrink-0" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                  <div className="mb-3 p-3 rounded-lg bg-primary/5 border border-primary/20" data-testid="mansion-dhikr-card">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Sparkles className="w-4 h-4 text-primary" />
+                      <span className="text-xs font-medium text-foreground uppercase tracking-wide">Suggested Practice</span>
                     </div>
-                  )}
+                    <ul className="space-y-1.5">
+                      {mansion.suggested_practice_en.map((item, i) => (
+                        <li key={i} className="text-xs text-foreground/80 flex items-start gap-2">
+                          <Compass className="w-3 h-3 text-primary/70 mt-0.5 shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
                   {/* Optional Advanced Devotional Suggestions */}
                   {MANSION_AZKAAR_SUGGESTIONS[mansion.number] && (
@@ -448,7 +432,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
 
               <div className="space-y-3 text-sm text-muted-foreground/90 font-light leading-relaxed flex-1">
                 {/* Suggested Activities - Prominent */}
-                {'activities' in mansion && mansion.activities && (
+                {mansion.activities && (
                   <div className={`flex gap-3 p-2.5 rounded-lg border ${
                     isBlessed 
                       ? 'bg-green-500/5 border-green-500/20' 
@@ -466,7 +450,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
 
                 <Accordion type="single" collapsible className="space-y-2">
                   {/* Sphere/Realm - Collapsible */}
-                  {('sphere' in mansion && mansion.sphere) && (
+                  {mansion.sphere && (
                     <AccordionItem value="sphere" className="border border-primary/10 rounded-lg bg-primary/5">
                       <AccordionTrigger className="px-3 py-2 hover:no-underline text-xs font-medium text-foreground uppercase tracking-wide opacity-70">
                         <div className="flex items-center gap-2">
@@ -476,7 +460,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                       </AccordionTrigger>
                       <AccordionContent className="px-3 pb-2 pt-0 text-sm">
                         <span className="text-gold/90">{mansion.sphere}</span>
-                        {'sphereArabic' in mansion && mansion.sphereArabic && (
+                        {mansion.sphereArabic && (
                           <span className="block font-arabic text-xs text-muted-foreground mt-1.5">{mansion.sphereArabic}</span>
                         )}
                       </AccordionContent>
@@ -505,7 +489,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                             Divine Attribute <span className="font-arabic text-xs">الصفة الإلهية</span>
                           </strong>
                           <span className="text-foreground/90">{mansion.attribute}</span>
-                          {'attributeArabic' in mansion && mansion.attributeArabic && (
+                          {mansion.attributeArabic && (
                             <span className="font-arabic text-xs text-muted-foreground ml-2">{mansion.attributeArabic}</span>
                           )}
                         </div>
@@ -516,7 +500,7 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                           </strong>
                           <div className="flex items-center gap-2">
                             <span>{mansion.letter} • {mansion.degrees}</span>
-                            {'letterArabic' in mansion && mansion.letterArabic && (
+                            {mansion.letterArabic && (
                               <span className="font-arabic text-lg text-primary">{mansion.letterArabic}</span>
                             )}
                           </div>

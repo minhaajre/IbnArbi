@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { IBN_ARABI_MANSIONS } from "@/lib/constants";
+import { MANSIONS } from "@/data/mansions";
 
 interface MansionCycleRingProps {
   mansionNumber: number;
@@ -16,7 +16,7 @@ export function MansionCycleRing({ mansionNumber, onMansionSelect, selectedMansi
   const positions = Array.from({ length: 28 }, (_, i) => i + 1);
 
   const getMansionData = (position: number) => {
-    return IBN_ARABI_MANSIONS[position - 1];
+    return MANSIONS[position - 1];
   };
 
   const getCategory = (position: number) => {

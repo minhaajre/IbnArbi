@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  WORK_CATEGORIES, 
-  getOptimalDatesForCategory, 
-  MANSION_BUNI_DATA, 
-  isCategoryBlocked, 
-  isInScorpio 
+import {
+  WORK_CATEGORIES,
+  getOptimalDatesForCategory,
+  isCategoryBlocked,
+  isInScorpio
 } from "@/data/buni";
-import { IBN_ARABI_MANSIONS } from "@/lib/constants";
+import { MANSIONS } from "@/data/mansions";
 import { 
   Calendar, Heart, Crown, Shield, Coins, Stethoscope, 
   BookOpen, Sword, ChevronDown, ChevronUp, Check, X, 
@@ -49,8 +48,7 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const currentMansion = IBN_ARABI_MANSIONS[currentMansionNumber - 1];
-  const currentBuniData = MANSION_BUNI_DATA.find(m => m.id === currentMansionNumber);
+  const currentMansion = MANSIONS[currentMansionNumber - 1];
   const inScorpio = isInScorpio(currentMansionNumber);
 
   return (
@@ -88,9 +86,9 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                     <span className="text-sm font-medium text-foreground">{currentMansion?.name || "Unknown"}</span>
                     <span className="text-xs text-muted-foreground ml-2">#{currentMansionNumber}</span>
                   </div>
-                  {currentBuniData && (
+                  {currentMansion && (
                     <div className="flex flex-wrap gap-1">
-                      {currentBuniData.categories.slice(0, 3).map((cat, i) => (
+                      {currentMansion.categories.slice(0, 3).map((cat, i) => (
                         <span key={i} className="text-[9px] px-1.5 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">
                           {cat}
                         </span>
@@ -271,7 +269,7 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                           {optimalInfo && optimalInfo.nextOptimal !== currentMansionNumber && (
                             <div className="text-xs text-muted-foreground pt-1">
                               Next optimal: <span className="text-primary font-medium">
-                                Mansion {optimalInfo.nextOptimal} ({IBN_ARABI_MANSIONS[optimalInfo.nextOptimal - 1]?.name})
+                                Mansion {optimalInfo.nextOptimal} ({MANSIONS[optimalInfo.nextOptimal - 1]?.name})
                               </span> in ~{optimalInfo.daysUntil} days
                             </div>
                           )}
