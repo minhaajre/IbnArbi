@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
 import {
   getPlanetaryHours,
   getPlanetaryPositions,
@@ -23,91 +23,82 @@ import {
 import { getChineseTimeEnergy, type ChineseTimeEnergy } from "@/lib/chinese-astro";
 import type { LocationData } from "@/hooks/useLocationSearch";
 
+// All astronomy calculations are synchronous, so useMemo is the right primitive —
+// no intermediate state, no batched re-renders, no useEffect needed.
+
+interface AstroSnapshot {
+  hoursData: ReturnType<typeof getPlanetaryHours>;
+  planets: PlanetStatus[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  mansion: any;
+  hijriDate: string;
+  moonPhase: MoonPhaseInfo;
+  mansionProgress: MansionProgress;
+  whiteDaysInfo: WhiteDaysInfo;
+  ingresses: PlanetIngress[];
+  moonTimes: MoonTimes;
+  nakshatraInfo: NakshatraInfo;
+  planetNakshatras: PlanetNakshatra[];
+  chineseTimeEnergy: ChineseTimeEnergy;
+}
+
 export function useAstronomyData(
   now: Date,
   hoursTime: Date,
   location: LocationData | null,
   useSidereal: boolean
 ) {
-  const [hoursData, setHoursData] = useState<ReturnType<typeof getPlanetaryHours> | null>(null);
-  const [planets, setPlanets] = useState<PlanetStatus[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [mansion, setMansion] = useState<any>(null);
-  const [hijriDate, setHijriDate] = useState<string>("");
-  const [moonPhase, setMoonPhase] = useState<MoonPhaseInfo | null>(null);
-  const [mansionProgress, setMansionProgress] = useState<MansionProgress | null>(null);
-  const [whiteDaysInfo, setWhiteDaysInfo] = useState<WhiteDaysInfo | null>(null);
-  const [ingresses, setIngresses] = useState<PlanetIngress[]>([]);
-  const [moonTimes, setMoonTimes] = useState<MoonTimes | null>(null);
-  const [nakshatraInfo, setNakshatraInfo] = useState<NakshatraInfo | null>(null);
-  const [planetNakshatras, setPlanetNakshatras] = useState<PlanetNakshatra[]>([]);
-  const [chineseTimeEnergy, setChineseTimeEnergy] = useState<ChineseTimeEnergy | null>(null);
-  const [hoursSectionData, setHoursSectionData] = useState<ReturnType<typeof getPlanetaryHours> | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  // Main astronomical calculation — recomputes when date, location, or zodiac system changes
-  useEffect(() => {
-    if (!location) return;
+  // Main snapshot — recomputes when date, location, or zodiac system changes
+  const astroData = useMemo((): AstroSnapshot | null => {
+    if (!location) return null;
     try {
-      const hours = getPlanetaryHours(now, location.lat, location.lng);
-      const planetPos = getPlanetaryPositions(now, useSidereal);
-      const moonMansion = getLunarMansion(now, useSidereal);
-      const hijri = getHijriDate(now);
-      const phase = getMoonPhase(now, useSidereal);
-      const progress = getLunarMansionProgress(now, useSidereal);
-      const whiteInfo = getWhiteDaysInfo(now);
-      const planetIngresses = getPlanetIngresses(now, useSidereal);
-      const moonRiseSet = getMoonTimes(now, location.lat, location.lng);
-      const nakshatraData = getNakshatraInfo(now);
-      const allPlanetNakshatras = getAllPlanetNakshatras(now);
-      const chineseData = getChineseTimeEnergy(now);
-
-      setHoursData(hours);
-      setPlanets(planetPos);
-      setMansion(moonMansion);
-      setHijriDate(hijri);
-      setMoonPhase(phase);
-      setMansionProgress(progress);
-      setWhiteDaysInfo(whiteInfo);
-      setIngresses(planetIngresses);
-      setMoonTimes(moonRiseSet);
-      setNakshatraInfo(nakshatraData);
-      setPlanetNakshatras(allPlanetNakshatras);
-      setChineseTimeEnergy(chineseData);
-      setLoading(false);
+      return {
+        hoursData: getPlanetaryHours(now, location.lat, location.lng),
+        planets: getPlanetaryPositions(now, useSidereal),
+        mansion: getLunarMansion(now, useSidereal),
+        hijriDate: getHijriDate(now),
+        moonPhase: getMoonPhase(now, useSidereal),
+        mansionProgress: getLunarMansionProgress(now, useSidereal),
+        whiteDaysInfo: getWhiteDaysInfo(now),
+        ingresses: getPlanetIngresses(now, useSidereal),
+        moonTimes: getMoonTimes(now, location.lat, location.lng),
+        nakshatraInfo: getNakshatraInfo(now),
+        planetNakshatras: getAllPlanetNakshatras(now),
+        chineseTimeEnergy: getChineseTimeEnergy(now),
+      };
     } catch (e) {
       console.error("Calculation error:", e);
-      setError("Failed to calculate astronomical data.");
+      return null;
     }
   }, [now, location, useSidereal]);
 
-  // Separate calculation for the Planetary Hours section (uses its own independent time)
-  useEffect(() => {
-    if (!location) return;
+  // Independent snapshot for the Planetary Hours section time-travel picker
+  const hoursSectionData = useMemo(() => {
+    if (!location) return null;
     try {
-      const hours = getPlanetaryHours(hoursTime, location.lat, location.lng);
-      setHoursSectionData(hours);
+      return getPlanetaryHours(hoursTime, location.lat, location.lng);
     } catch (e) {
       console.error("Hours calculation error:", e);
+      return null;
     }
   }, [hoursTime, location]);
 
+  const loading = !location || !astroData;
+
   return {
-    hoursData,
-    planets,
-    mansion,
-    hijriDate,
-    moonPhase,
-    mansionProgress,
-    whiteDaysInfo,
-    ingresses,
-    moonTimes,
-    nakshatraInfo,
-    planetNakshatras,
-    chineseTimeEnergy,
+    hoursData: astroData?.hoursData ?? null,
+    planets: astroData?.planets ?? [],
+    mansion: astroData?.mansion ?? null,
+    hijriDate: astroData?.hijriDate ?? "",
+    moonPhase: astroData?.moonPhase ?? null,
+    mansionProgress: astroData?.mansionProgress ?? null,
+    whiteDaysInfo: astroData?.whiteDaysInfo ?? null,
+    ingresses: astroData?.ingresses ?? [],
+    moonTimes: astroData?.moonTimes ?? null,
+    nakshatraInfo: astroData?.nakshatraInfo ?? null,
+    planetNakshatras: astroData?.planetNakshatras ?? [],
+    chineseTimeEnergy: astroData?.chineseTimeEnergy ?? null,
     hoursSectionData,
     loading,
-    error,
   };
 }
