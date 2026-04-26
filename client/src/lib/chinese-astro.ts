@@ -184,6 +184,60 @@ function classifyActivities(
   };
 }
 
+export interface XiuCountdown {
+  hours: number;
+  minutes: number;
+  seconds: number;
+  totalSeconds: number;
+  progressPercent: number; // 0–100, how much of the current day has elapsed
+}
+
+/** Returns time remaining until the next Xiu (which changes at midnight). */
+export function getXiuCountdown(): XiuCountdown {
+  const now = new Date();
+  const midnight = new Date(now);
+  midnight.setHours(24, 0, 0, 0);
+  const totalSecondsInDay = 24 * 60 * 60;
+  const elapsed = (now.getHours() * 3600) + (now.getMinutes() * 60) + now.getSeconds();
+  const remaining = Math.max(0, Math.floor((midnight.getTime() - now.getTime()) / 1000));
+  return {
+    hours: Math.floor(remaining / 3600),
+    minutes: Math.floor((remaining % 3600) / 60),
+    seconds: remaining % 60,
+    totalSeconds: remaining,
+    progressPercent: Math.min(100, (elapsed / totalSecondsInDay) * 100),
+  };
+}
+
+/**
+ * Generates a one-line daily energy advisory synthesising the year pillar,
+ * sexagenary day, Xiu, Day Officer, and Solar Term.
+ */
+export function generateDailyEnergySummary(energy: ChineseTimeEnergy): string {
+  const { yearPillar, lunarMansion, dayOfficer, solarTerm, dayElement, dayPolarity } = energy;
+
+  const yearEl = yearPillar.stem.element;
+  const yearAnimal = yearPillar.branch.animal;
+  const polarity = dayPolarity === "Yang" ? "yang" : "yin";
+
+  // Officer phrasing
+  const officerPhrase =
+    dayOfficer.nature === "auspicious"
+      ? `${dayOfficer.name} Officer favors ${dayOfficer.recommended[0]}`
+      : dayOfficer.nature === "inauspicious"
+      ? `${dayOfficer.name} Officer counsels restraint — avoid ${dayOfficer.avoid[0] ?? "hasty moves"}`
+      : `${dayOfficer.name} Officer supports ${dayOfficer.recommended[0] ?? "steady effort"}`;
+
+  const xiuTheme = lunarMansion.themes[0] ?? lunarMansion.name;
+  const season = solarTerm.season;
+
+  return (
+    `The ${yearEl} ${yearAnimal} year channels its influence through today's ${polarity} ${dayElement} current — ` +
+    `${lunarMansion.name} Mansion (${lunarMansion.chinese}) draws energy toward ${xiuTheme}; ` +
+    `${officerPhrase} in this ${season} season.`
+  );
+}
+
 export function getChineseTimeEnergy(date: Date): ChineseTimeEnergy {
   const sexIndex = getSexagenaryDayIndex(date);
   const stemIndex = sexIndex % 10;

@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { ChineseTimeEnergy } from "@/lib/chinese-astro";
+import { ChineseTimeEnergy, XiuCountdown, getXiuCountdown, generateDailyEnergySummary } from "@/lib/chinese-astro";
 import { GROUP_COLORS, ELEMENT_ICONS, OFFICER_STYLES, FIVE_ELEMENTS } from "@/data/chinese-astro";
-import { ChevronDown, ChevronUp, Check, X } from "lucide-react";
-import { useState } from "react";
+import { ChevronDown, ChevronUp, Check, X, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
 
 interface ChineseAstroDisplayProps {
   timeEnergy: ChineseTimeEnergy;
@@ -10,6 +10,15 @@ interface ChineseAstroDisplayProps {
 
 export function ChineseAstroDisplay({ timeEnergy }: ChineseAstroDisplayProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [countdown, setCountdown] = useState<XiuCountdown>(getXiuCountdown());
+
+  // Live countdown to next Xiu (ticks every second)
+  useEffect(() => {
+    const timer = setInterval(() => setCountdown(getXiuCountdown()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const dailySummary = generateDailyEnergySummary(timeEnergy);
 
   const { lunarMansion, heavenlyStem, earthlyBranch, sexagenaryDay, sexagenaryChinese, dayOfficer, solarTerm, dayElement, dayPolarity } = timeEnergy;
   const groupStyle = GROUP_COLORS[lunarMansion.group] || GROUP_COLORS["Azure Dragon"];
@@ -17,8 +26,52 @@ export function ChineseAstroDisplay({ timeEnergy }: ChineseAstroDisplayProps) {
   const elementIcon = ELEMENT_ICONS[dayElement] || "⚡";
   const elementData = FIVE_ELEMENTS[dayElement];
 
+  const pad = (n: number) => String(n).padStart(2, "0");
+
   return (
     <div className="space-y-3" data-testid="chinese-astro-display">
+
+      {/* Daily Energy Summary */}
+      <motion.div
+        initial={{ opacity: 0, y: -6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="relative rounded-lg border border-primary/20 bg-primary/5 px-3 py-2.5 text-center"
+        data-testid="daily-energy-summary"
+      >
+        <div className="text-[9px] uppercase tracking-widest text-primary/60 mb-1 font-medium">
+          Daily Energy · 日能量總覽
+        </div>
+        <p className="text-xs text-foreground/80 leading-relaxed italic">
+          {dailySummary}
+        </p>
+      </motion.div>
+
+      {/* Countdown to Next Xiu */}
+      <div className="rounded-lg border border-border bg-foreground/5 px-3 py-2" data-testid="xiu-countdown">
+        <div className="flex items-center justify-between mb-1.5">
+          <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+            <Clock className="w-3 h-3" />
+            <span>Next Xiu in</span>
+          </div>
+          <span className="text-xs font-mono font-medium text-primary tabular-nums">
+            {pad(countdown.hours)}:{pad(countdown.minutes)}:{pad(countdown.seconds)}
+          </span>
+        </div>
+        <div className="w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden">
+          <motion.div
+            className="h-full bg-primary/70 rounded-full"
+            animate={{ width: `${countdown.progressPercent}%` }}
+            transition={{ duration: 0.8 }}
+          />
+        </div>
+        <div className="flex items-center justify-between mt-1 text-[9px] text-muted-foreground/60">
+          <span>Dawn · 子時</span>
+          <span>{Math.round(countdown.progressPercent)}% of day elapsed</span>
+          <span>Midnight · 夜半</span>
+        </div>
+      </div>
+
       <div className="relative flex flex-col items-center justify-center py-2">
         <motion.div
           className="absolute inset-0 bg-primary/5 blur-[100px] rounded-full"
