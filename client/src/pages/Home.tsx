@@ -17,6 +17,7 @@ import { NakshatraDisplay } from "@/components/NakshatraDisplay";
 import { ChineseAstroDisplay } from "@/components/ChineseAstroDisplay";
 import { Footer } from "@/components/Footer";
 import { TableOfContents, TOCSection } from "@/components/TableOfContents";
+import { SectionCard, SectionHeader } from "@/components/SectionCard";
 import { CrescentStarIcon, LanternIcon, EightPointedStarIcon, IslamicPatternIcon, ZodiacWheelIcon } from "@/components/icons/IslamicIcons";
 import { MapPin, Calendar as CalendarIcon, Clock, RotateCcw, Moon, Sun, AlertTriangle, Flame, Mountain, Wind, Droplets, Flower2, Leaf, Snowflake, Triangle, CircleDot, Mars, Sparkles, Crown, BookOpen, Info, Bell, BellOff, Zap } from "lucide-react";
 import { format } from "date-fns";
@@ -306,40 +307,25 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
 
           {/* Current Station Card */}
-          <section id="lunar-mansion" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-            <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
-              <h2 className="text-base sm:text-lg font-serif text-foreground/80">
-                Current Lunar Mansion <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">المنزلة القمرية الحالية</span>
-              </h2>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
-                    <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-lunar-mansion" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-80" align="end">
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.lunarMansion.title}</h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.lunarMansion.description}</p>
-                    <Link href="/instructions#lunar-mansions" className="text-xs text-primary hover:underline block pt-1">Learn more →</Link>
-                  </div>
-                </PopoverContent>
-              </Popover>
-            </div>
+          <SectionCard id="lunar-mansion">
+            <SectionHeader
+              title="Current Lunar Mansion"
+              subtitle="المنزلة القمرية الحالية"
+              infoTestId="info-lunar-mansion"
+              popoverTitle={SECTION_INFO.lunarMansion.title}
+              popoverDescription={SECTION_INFO.lunarMansion.description}
+              learnMoreHref="/instructions#lunar-mansions"
+            />
             <div className="relative z-10">
               <MansionCard mansion={mansion} progress={mansionProgress ?? undefined} moonPhase={moonPhase ?? undefined} />
             </div>
             <div className="mt-4 relative z-10">
               <OptimalDates currentMansionNumber={mansion.number} isWaning={moonPhase ? !moonPhase.isWaxing : false} />
             </div>
-          </section>
+          </SectionCard>
 
           {/* Planetary Hour Card */}
-          <section id="planetary-hours" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <SectionCard id="planetary-hours">
 
             {/* Header with date/time picker */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2 sm:mb-3 relative z-10">
@@ -509,129 +495,76 @@ export default function Home() {
                 </div>
               </div>
             )}
-          </section>
+          </SectionCard>
         </div>
 
         {/* ── Row 2: Celestial Dignities + Elemental Balance ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
 
-          <section id="celestial-dignities" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-            <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
-              <h2 className="text-base sm:text-lg font-serif text-foreground/80">
-                Celestial Dignities <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">الكرامات السماوية</span>
-              </h2>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
-                    <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-dignities" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-80" align="end">
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.dignities.title}</h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.dignities.description}</p>
-                    <Link href="/instructions#celestial-dignities" className="text-xs text-primary hover:underline block pt-1">Learn more →</Link>
-                  </div>
-                </PopoverContent>
-              </Popover>
-            </div>
+          <SectionCard id="celestial-dignities">
+            <SectionHeader
+              title="Celestial Dignities"
+              subtitle="الكرامات السماوية"
+              infoTestId="info-dignities"
+              popoverTitle={SECTION_INFO.dignities.title}
+              popoverDescription={SECTION_INFO.dignities.description}
+              learnMoreHref="/instructions#celestial-dignities"
+            />
             <div className="relative z-10 overflow-x-auto">
               <PlanetaryTable planets={planets} useSidereal={useSidereal} onToggleSystem={setUseSidereal} />
             </div>
-          </section>
+          </SectionCard>
 
-          <section id="elemental-balance" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-            <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
-              <h2 className="text-base sm:text-lg font-serif text-foreground/80">
-                Elemental Balance <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">توازن العناصر</span>
-              </h2>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
-                    <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-elements" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-80" align="end">
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.elements.title}</h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.elements.description}</p>
-                    <Link href="/instructions#elemental-balance" className="text-xs text-primary hover:underline block pt-1">Learn more →</Link>
-                  </div>
-                </PopoverContent>
-              </Popover>
-            </div>
+          <SectionCard id="elemental-balance">
+            <SectionHeader
+              title="Elemental Balance"
+              subtitle="توازن العناصر"
+              infoTestId="info-elements"
+              popoverTitle={SECTION_INFO.elements.title}
+              popoverDescription={SECTION_INFO.elements.description}
+              learnMoreHref="/instructions#elemental-balance"
+            />
             <div className="relative z-10">
               <ElementalBalance planets={planets} />
             </div>
-          </section>
+          </SectionCard>
         </div>
 
         {/* ── Row 3: Nakshatra ── */}
         {nakshatraInfo && (
-          <section id="nakshatra" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden mb-4 sm:mb-6">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-            <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
-              <h2 className="text-base sm:text-lg font-serif text-foreground/80">
-                Nakshatra <span className="font-arabic text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">النكشترا</span>
-              </h2>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
-                    <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-nakshatra" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-80" align="end">
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.nakshatra.title}</h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.nakshatra.description}</p>
-                  </div>
-                </PopoverContent>
-              </Popover>
-            </div>
+          <SectionCard id="nakshatra" className="mb-4 sm:mb-6">
+            <SectionHeader
+              title="Nakshatra"
+              subtitle="النكشترا"
+              infoTestId="info-nakshatra"
+              popoverTitle={SECTION_INFO.nakshatra.title}
+              popoverDescription={SECTION_INFO.nakshatra.description}
+            />
             <div className="relative z-10">
               <NakshatraDisplay nakshatraInfo={nakshatraInfo} planetNakshatras={planetNakshatras} />
             </div>
-          </section>
+          </SectionCard>
         )}
 
         {/* ── Row 4: Feng Shui Time Energy ── */}
         {chineseTimeEnergy && (
-          <section id="chinese-astro" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden mb-4 sm:mb-6">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-            <div className="flex items-center justify-between mb-2 sm:mb-3 relative z-10">
-              <h2 className="text-base sm:text-lg font-serif text-foreground/80">
-                Feng Shui Time Energy <span className="text-sm sm:text-base text-foreground/60 ml-1 sm:ml-2">風水時能</span>
-              </h2>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-6 w-6 p-0">
-                    <Info className="w-4 h-4 text-muted-foreground hover:text-primary cursor-pointer transition-colors" data-testid="info-chinese-astro" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-80" align="end">
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-medium text-foreground">{SECTION_INFO.chineseAstro.title}</h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{SECTION_INFO.chineseAstro.description}</p>
-                  </div>
-                </PopoverContent>
-              </Popover>
-            </div>
+          <SectionCard id="chinese-astro" className="mb-4 sm:mb-6">
+            <SectionHeader
+              title="Feng Shui Time Energy"
+              subtitle="風水時能"
+              subtitleIsArabic={false}
+              infoTestId="info-chinese-astro"
+              popoverTitle={SECTION_INFO.chineseAstro.title}
+              popoverDescription={SECTION_INFO.chineseAstro.description}
+            />
             <div className="relative z-10">
               <ChineseAstroDisplay timeEnergy={chineseTimeEnergy} />
             </div>
-          </section>
+          </SectionCard>
         )}
 
         {/* ── Row 5: Celestial Zodiac Wheel ── */}
-        <section id="sky-map" className="glass-card rounded-xl sm:rounded-2xl p-3 sm:p-5 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        <SectionCard id="sky-map">
 
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3 relative z-10">
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 order-first sm:order-2 flex-1">
@@ -694,7 +627,7 @@ export default function Home() {
           <div className="relative z-10">
             <ZodiacWheel planets={planets} variant="expanded" ingresses={ingresses} />
           </div>
-        </section>
+        </SectionCard>
 
         {/* Footer */}
         <Footer />
