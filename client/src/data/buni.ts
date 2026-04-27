@@ -1,185 +1,10 @@
 // data/buni.ts
-// Buni framework data based on Shams al-Ma'arif al-Kubra
-// Planetary angels, incense, jinn kings, divine names, and mansion guidelines
+// Al-Buni framework data (Shams al-Ma'arif al-Kubra) — electional layer only.
+// Removed 2026-04-28: angel names, jinn kings, incense, metals, ink recipes.
+// These belong to ilm al-hikmah (talismanic operations), not electional timing.
+// What remains: Sa'd/Nahs nature, divine names (from Ibn Arabi PDF), and
+// practical activity guidelines for electional timing.
 
-export interface PlanetarySpirit {
-  angel: string;
-  angelArabic: string;
-  incense: string;
-  incenseArabic: string;
-  jinnKing: string;
-  jinnKingArabic: string;
-  dayOfWeek: string;
-  metal: string;
-  metalArabic: string;
-  ink: string;
-  inkArabic: string;
-  color: string;
-}
-
-export const PLANETARY_SPIRITS: Record<string, PlanetarySpirit> = {
-  Saturn: {
-    angel: "Kassfiyail",
-    angelArabic: "كسفياييل",
-    incense: "Myrrh / Storax",
-    incenseArabic: "مر / اصطرك",
-    jinnKing: "Maymun",
-    jinnKingArabic: "ميمون",
-    dayOfWeek: "Saturday",
-    metal: "Lead",
-    metalArabic: "رصاص",
-    ink: "Black Ink / Soot",
-    inkArabic: "حبر أسود",
-    color: "Black",
-  },
-  Jupiter: {
-    angel: "Sarfiyail",
-    angelArabic: "صرفياييل",
-    incense: "Oudh / Aloeswood",
-    incenseArabic: "عود",
-    jinnKing: "Shamhurash",
-    jinnKingArabic: "شمهورش",
-    dayOfWeek: "Thursday",
-    metal: "Tin / Bronze",
-    metalArabic: "قصدير",
-    ink: "Saffron & Musk",
-    inkArabic: "زعفران ومسك",
-    color: "Blue",
-  },
-  Mars: {
-    angel: "Samsamail",
-    angelArabic: "سمسماييل",
-    incense: "Asafoetida / Sulfur",
-    incenseArabic: "حلتيت / كبريت",
-    jinnKing: "Al-Ahmar",
-    jinnKingArabic: "الأحمر",
-    dayOfWeek: "Tuesday",
-    metal: "Iron",
-    metalArabic: "حديد",
-    ink: "Red Ink (Cinnabar)",
-    inkArabic: "حبر أحمر",
-    color: "Red",
-  },
-  Sun: {
-    angel: "Ruqiyail",
-    angelArabic: "روقياييل",
-    incense: "Sandalwood",
-    incenseArabic: "صندل",
-    jinnKing: "Mudhib",
-    jinnKingArabic: "مذهب",
-    dayOfWeek: "Sunday",
-    metal: "Gold",
-    metalArabic: "ذهب",
-    ink: "Saffron & Rosewater",
-    inkArabic: "زعفران وماء ورد",
-    color: "Yellow",
-  },
-  Venus: {
-    angel: "Anyail",
-    angelArabic: "عنياييل",
-    incense: "White Sandalwood",
-    incenseArabic: "صندل أبيض",
-    jinnKing: "Zawba'ah",
-    jinnKingArabic: "زوبعة",
-    dayOfWeek: "Friday",
-    metal: "Copper",
-    metalArabic: "نحاس",
-    ink: "Rosewater & Saffron",
-    inkArabic: "ماء ورد وزعفران",
-    color: "Green",
-  },
-  Mercury: {
-    angel: "Mikail",
-    angelArabic: "ميكاييل",
-    incense: "Mastic",
-    incenseArabic: "مصطكى",
-    jinnKing: "Barqan",
-    jinnKingArabic: "برقان",
-    dayOfWeek: "Wednesday",
-    metal: "Mercury / Tin",
-    metalArabic: "زئبق",
-    ink: "Mixed Colors / Gallnut",
-    inkArabic: "ألوان مختلطة",
-    color: "Mixed",
-  },
-  Moon: {
-    angel: "Jibrail",
-    angelArabic: "جبراييل",
-    incense: "Camphor",
-    incenseArabic: "كافور",
-    jinnKing: "Murrah",
-    jinnKingArabic: "مرة",
-    dayOfWeek: "Monday",
-    metal: "Silver",
-    metalArabic: "فضة",
-    ink: "Camphor & White Musk",
-    inkArabic: "كافور ومسك أبيض",
-    color: "White",
-  },
-};
-
-export interface MansionGroup {
-  mansions: number[];
-  letters: string;
-  angelicGroup: string;
-  angelicGroupArabic: string;
-  nature: string;
-  inkLogic: string;
-}
-
-export const MANSION_GROUPS: MansionGroup[] = [
-  {
-    mansions: [1, 2, 3, 4, 5, 6, 7],
-    letters: "ا to ز",
-    angelicGroup: "Israfayail",
-    angelicGroupArabic: "إسرافياييل",
-    nature: "Fire/Air",
-    inkLogic: "Use Gold-leaf or Saffron on White Paper.",
-  },
-  {
-    mansions: [8, 9, 10, 11, 12, 13, 14],
-    letters: "ح to ن",
-    angelicGroup: "Jibrail",
-    angelicGroupArabic: "جبراييل",
-    nature: "Water/Earth",
-    inkLogic: "Use Silver-leaf or Camphor-based Ink.",
-  },
-  {
-    mansions: [15, 16, 17, 18, 19, 20, 21],
-    letters: "س to ق",
-    angelicGroup: "Mikail",
-    angelicGroupArabic: "ميكاييل",
-    nature: "Fire/Air",
-    inkLogic: "Use Copper-tinted or Red Saffron Ink.",
-  },
-  {
-    mansions: [22, 23, 24, 25, 26, 27, 28],
-    letters: "ر to غ",
-    angelicGroup: "Kassfiyail",
-    angelicGroupArabic: "كسفياييل",
-    nature: "Earth/Water",
-    inkLogic: "Use Black Ink or Lead-point on Iron.",
-  },
-];
-
-export function getMansionGroup(mansionNumber: number): MansionGroup | undefined {
-  return MANSION_GROUPS.find(g => g.mansions.includes(mansionNumber));
-}
-
-export const INK_RULES = {
-  sad: {
-    name: "Living Ink (Sa'd)",
-    nameArabic: "حبر حي",
-    description: "Mixture of Saffron (1 part), Musk (1 part), and Rosewater (3 parts).",
-    use: "For fortunate/increase works",
-  },
-  nahs: {
-    name: "Dark Ink (Nahs)",
-    nameArabic: "حبر مظلم",
-    description: "Black soot mixed with juice of Onion or Vinegar.",
-    use: "Only for binding/protection works",
-  },
-};
 
 export type MansionNature = "sad" | "nahs";
 
@@ -596,16 +421,6 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   },
 ];
 
-export interface MaterialRequirements {
-  metal: string;
-  metalArabic: string;
-  metalInstruction: string;
-  ink: string;
-  inkArabic: string;
-  incense: string;
-  incenseArabic: string;
-}
-
 export interface CategoryOptimalMansions {
   category: string;
   categoryArabic: string;
@@ -625,7 +440,6 @@ export interface CategoryOptimalMansions {
   planetaryHour: string;
   affectedByWaning?: boolean;
   blockedInScorpio?: boolean;
-  materials: MaterialRequirements;
 }
 
 export const WORK_CATEGORIES: CategoryOptimalMansions[] = [
@@ -648,15 +462,6 @@ export const WORK_CATEGORIES: CategoryOptimalMansions[] = [
     planetaryHour: "Venus",
     affectedByWaning: true,
     blockedInScorpio: true,
-    materials: {
-      metal: "Copper",
-      metalArabic: "نحاس",
-      metalInstruction: "Engrave on Copper plate or write on Green silk",
-      ink: "Saffron & Rosewater",
-      inkArabic: "زعفران وماء ورد",
-      incense: "Mastic",
-      incenseArabic: "مصطكى",
-    },
   },
   {
     category: "Wealth & Business",
@@ -676,15 +481,6 @@ export const WORK_CATEGORIES: CategoryOptimalMansions[] = [
     guideline: "Best used during the Hour of Jupiter while the Moon is waxing.",
     planetaryHour: "Jupiter",
     affectedByWaning: true,
-    materials: {
-      metal: "Tin / Bronze",
-      metalArabic: "قصدير",
-      metalInstruction: "Engrave on Tin or write on Yellow silk",
-      ink: "Musk & Saffron",
-      inkArabic: "مسك وزعفران",
-      incense: "Oudh / Aloeswood",
-      incenseArabic: "عود",
-    },
   },
   {
     category: "Authority & Leadership",
@@ -703,15 +499,6 @@ export const WORK_CATEGORIES: CategoryOptimalMansions[] = [
     letterValue: 1,
     guideline: "Use during the Hour of the Sun for charisma or Jupiter for rank.",
     planetaryHour: "Sun",
-    materials: {
-      metal: "Gold",
-      metalArabic: "ذهب",
-      metalInstruction: "Engrave on Gold or write on Yellow/Orange silk",
-      ink: "Saffron & Rosewater",
-      inkArabic: "زعفران وماء ورد",
-      incense: "Sandalwood",
-      incenseArabic: "صندل",
-    },
   },
   {
     category: "Protection & Safety",
@@ -730,15 +517,6 @@ export const WORK_CATEGORIES: CategoryOptimalMansions[] = [
     letterValue: 90,
     guideline: "Use Hour of Saturn for binding enemies or Mars for active defense.",
     planetaryHour: "Saturn",
-    materials: {
-      metal: "Lead",
-      metalArabic: "رصاص",
-      metalInstruction: "Engrave on Lead plate or write on Black cloth",
-      ink: "Black soot ink",
-      inkArabic: "حبر أسود من السخام",
-      incense: "Myrrh / Storax",
-      incenseArabic: "مر / اصطرك",
-    },
   },
   {
     category: "Health & Healing",
@@ -758,15 +536,6 @@ export const WORK_CATEGORIES: CategoryOptimalMansions[] = [
     guideline: "Use the Hour of the Moon. Never perform surgery during Mansion 19 (Al-Shawla).",
     planetaryHour: "Moon",
     blockedInScorpio: true,
-    materials: {
-      metal: "Silver",
-      metalArabic: "فضة",
-      metalInstruction: "Engrave on Silver or write on White paper",
-      ink: "Camphor & White Musk",
-      inkArabic: "كافور ومسك أبيض",
-      incense: "Camphor",
-      incenseArabic: "كافور",
-    },
   },
   {
     category: "Knowledge & Learning",
@@ -785,15 +554,6 @@ export const WORK_CATEGORIES: CategoryOptimalMansions[] = [
     letterValue: 10,
     guideline: "Best used during the Hour of Mercury.",
     planetaryHour: "Mercury",
-    materials: {
-      metal: "Mercury / Tin",
-      metalArabic: "زئبق / قصدير",
-      metalInstruction: "Write on mixed-color paper or Yellow parchment",
-      ink: "Mixed Colors / Gallnut",
-      inkArabic: "ألوان مختلطة / عفص",
-      incense: "Mastic",
-      incenseArabic: "مصطكى",
-    },
   },
   {
     category: "Conflict & Victory",
@@ -812,15 +572,6 @@ export const WORK_CATEGORIES: CategoryOptimalMansions[] = [
     letterValue: 100,
     guideline: "Use for subduing internal ego or external oppression during the Hour of Mars.",
     planetaryHour: "Mars",
-    materials: {
-      metal: "Iron",
-      metalArabic: "حديد",
-      metalInstruction: "Engrave on Iron plate or write on Red cloth",
-      ink: "Red Ink (Cinnabar)",
-      inkArabic: "حبر أحمر (زنجفر)",
-      incense: "Asafoetida / Sulfur",
-      incenseArabic: "حلتيت / كبريت",
-    },
   },
 ];
 

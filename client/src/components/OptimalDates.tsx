@@ -101,9 +101,9 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                   </TooltipTrigger>
                   <TooltipContent side="bottom" className="max-w-xs">
                     <div className="text-xs space-y-1.5">
-                      <p className="font-medium">Combined Frameworks:</p>
-                      <p><strong>Ibn Arabi:</strong> Spiritual nature of the hour.</p>
-                      <p><strong>Al-Buni:</strong> Practical Abjad, metals, and inks.</p>
+                      <p className="font-medium">Electional Timing:</p>
+                      <p><strong>Ibn Arabi:</strong> Mansion nature and spiritual quality.</p>
+                      <p><strong>Abu Mashar:</strong> Sa'd / Nahs classification and optimal activity windows.</p>
                     </div>
                   </TooltipContent>
                 </Tooltip>
@@ -238,24 +238,6 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                           <div className="p-2 rounded bg-muted/30 border border-border">
                             <div className="text-[9px] text-primary uppercase mb-1">Al-Buni Guideline</div>
                             <div className="text-xs text-foreground/80">{catData.guideline}</div>
-                          </div>
-
-                          <div className="p-2 rounded bg-muted/30 border border-border">
-                            <div className="text-[9px] text-primary uppercase mb-2">Material Requirements</div>
-                            <div className="grid grid-cols-3 gap-2">
-                              <div>
-                                <div className="text-[9px] text-muted-foreground">Metal</div>
-                                <div className="text-xs text-foreground font-medium">{catData.materials?.metal}</div>
-                              </div>
-                              <div>
-                                <div className="text-[9px] text-muted-foreground">Ink</div>
-                                <div className="text-xs text-foreground font-medium">{catData.materials?.ink}</div>
-                              </div>
-                              <div>
-                                <div className="text-[9px] text-muted-foreground">Incense</div>
-                                <div className="text-xs text-foreground font-medium">{catData.materials?.incense}</div>
-                              </div>
-                            </div>
                           </div>
 
                           {optimalInfo && optimalInfo.nextOptimal !== currentMansionNumber && (
