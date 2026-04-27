@@ -323,12 +323,12 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                       </div>
                   </div>
 
-                  {/* Buni Guidelines Card */}
+                  {/* Electional Notes Card */}
                   <div className="mb-3 p-3 rounded-lg bg-indigo-500/5 border border-indigo-500/20" data-testid="buni-guidelines-card">
                     <div className="flex items-center gap-2 mb-2">
                       <BookOpen className="w-4 h-4 text-indigo-400" />
-                      <span className="text-xs font-medium text-foreground uppercase tracking-wide">Buni Guidelines</span>
-                      <span className="text-[9px] font-arabic text-muted-foreground">توجيهات البوني</span>
+                      <span className="text-xs font-medium text-foreground uppercase tracking-wide">Electional Notes</span>
+                      <span className="text-[9px] text-muted-foreground">Abu Mashar</span>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
                       <div className="flex items-start gap-2">
