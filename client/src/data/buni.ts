@@ -198,6 +198,9 @@ export interface MansionBuniData {
   };
 }
 
+// Sa'd / Nahs values below follow Abu Mashar (Kitab al-Madkhal al-Kabir).
+// 11 values corrected 2026-04-28 from undocumented prior assignments.
+// "sad" mirrors nature:"blessed" in ibn-arabi-mansions.ts; "nahs" mirrors "challenging".
 export const MANSION_BUNI_DATA: MansionBuniData[] = [
   {
     id: 1,
@@ -215,7 +218,7 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   },
   {
     id: 2,
-    nature: "nahs",
+    nature: "sad",
     divineName: "Al-Ba'ith",
     divineNameArabic: "الباعث",
     divineNameCount: 573,
@@ -243,7 +246,7 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   },
   {
     id: 4,
-    nature: "sad",
+    nature: "nahs",
     divineName: "Al-Akhir",
     divineNameArabic: "الآخر",
     divineNameCount: 801,
@@ -257,7 +260,7 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   },
   {
     id: 5,
-    nature: "nahs",
+    nature: "sad",
     divineName: "Al-Zahir",
     divineNameArabic: "الظاهر",
     divineNameCount: 1106,
@@ -299,7 +302,7 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   },
   {
     id: 8,
-    nature: "nahs",
+    nature: "sad",
     divineName: "Al-Shakur",
     divineNameArabic: "الشكور",
     divineNameCount: 526,
@@ -383,7 +386,7 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   },
   {
     id: 14,
-    nature: "nahs",
+    nature: "sad",
     divineName: "Al-Nur",
     divineNameArabic: "النور",
     divineNameCount: 256,
@@ -411,7 +414,7 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   },
   {
     id: 16,
-    nature: "sad",
+    nature: "nahs",
     divineName: "Al-Muhsi",
     divineNameArabic: "المحصي",
     divineNameCount: 148,
@@ -467,7 +470,7 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   },
   {
     id: 20,
-    nature: "nahs",
+    nature: "sad",
     divineName: "Al-Muhyi",
     divineNameArabic: "المحيي",
     divineNameCount: 68,
@@ -495,7 +498,7 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   },
   {
     id: 22,
-    nature: "nahs",
+    nature: "sad",
     divineName: "Al-'Aziz",
     divineNameArabic: "العزيز",
     divineNameCount: 94,
@@ -523,7 +526,7 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   },
   {
     id: 24,
-    nature: "nahs",
+    nature: "sad",
     divineName: "Al-Mudhill",
     divineNameArabic: "المذل",
     divineNameCount: 770,
@@ -551,7 +554,7 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   },
   {
     id: 26,
-    nature: "nahs",
+    nature: "sad",
     divineName: "Al-Latif",
     divineNameArabic: "اللطيف",
     divineNameCount: 129,
@@ -579,7 +582,7 @@ export const MANSION_BUNI_DATA: MansionBuniData[] = [
   },
   {
     id: 28,
-    nature: "nahs",
+    nature: "sad",
     divineName: "Al-Rafi' al-Darajat",
     divineNameArabic: "الرافع الدرجات",
     divineNameCount: 351,

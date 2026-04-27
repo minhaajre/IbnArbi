@@ -5,6 +5,18 @@
  * runtime lookup tables rather than large static datasets.
  * The canonical consumer is data/mansions.ts which merges this with three
  * other frameworks into the unified `Mansion` type.
+ *
+ * ── Field sources ────────────────────────────────────────────────────────────
+ * name / arabic / sphere / attribute / letter / degrees
+ *   → Ibn Arabi, Futuhat al-Makkiyya Ch. 198
+ *   → PDF: "Ibn Arabi Moon Mansion Contemplation 2026, Ibn Arabi Cosmology.pdf"
+ *      collated by Latifa Shahab Laker (astro-seek.com)
+ *
+ * nature ("blessed" | "challenging")  — Sa'd / Nahs electional classification
+ *   → Abu Mashar, Kitab al-Madkhal al-Kabir (Great Introduction to Astrology)
+ *   → Cross-checked against classical Arabic tradition (Al-Biruni, Ibn Qayyim)
+ *   → Corrected 2026-04-28: 11 mansions fixed from undocumented prior values
+ *   → "mixed" (M1, M21, M25) mapped to "blessed" as the app uses a binary field
  */
 
 export const IBN_ARABI_MANSIONS = [
@@ -36,8 +48,8 @@ export const IBN_ARABI_MANSIONS = [
     letter: "Hā'",
     letterArabic: "ه",
     degrees: "12°51' Aries",
-    nature: "challenging" as const,
-    activities: "This mansion may support introspection and recording intentions. Major ventures may benefit from waiting.",
+    nature: "blessed" as const, // Sa'd — Abu Mashar; corrected 2026-04-28
+    activities: "This mansion supports awakening what lies latent. Setting intentions from a place of inner readiness tends to harmonize here.",
     description: "The Guarded Tablet upon which all destinies are inscribed. The repository of divine decrees."
   },
   {
@@ -68,8 +80,8 @@ export const IBN_ARABI_MANSIONS = [
     letter: "Hā (stressed)",
     letterArabic: "ح",
     degrees: "8°34' Taurus",
-    nature: "blessed" as const,
-    activities: "This mansion may support completing tasks and following through with patience. Steady effort tends to settle well here.",
+    nature: "challenging" as const, // Nahs — Abu Mashar (ABSOLUTE VETO: Aldebaran α Tau, malefic royal star); corrected 2026-04-28
+    activities: "This mansion carries the intensity of Aldebaran. Patience and restraint serve better than new initiatives; avoid contracts and major decisions.",
     description: "Al-jawhar al-hayūlī. The primordial matter from which all material forms arise."
   },
   {
@@ -84,8 +96,8 @@ export const IBN_ARABI_MANSIONS = [
     letter: "Ghayn",
     letterArabic: "غ",
     degrees: "21°25' Taurus",
-    nature: "challenging" as const,
-    activities: "This mansion invites caution. Quiet contemplation may serve better than outward striving.",
+    nature: "blessed" as const, // Sa'd — Abu Mashar; corrected 2026-04-28
+    activities: "This mansion supports manifestation and outward expression. Making intentions visible and taking measured action tends to harmonize here.",
     description: "The luminous mark signifying the manifestation of the divine in material form."
   },
   {
@@ -132,8 +144,8 @@ export const IBN_ARABI_MANSIONS = [
     letter: "Kāf",
     letterArabic: "ك",
     degrees: "0° Cancer",
-    nature: "challenging" as const,
-    activities: "This mansion invites gratitude and thankfulness. Expectations may not harmonize well with this time.",
+    nature: "blessed" as const, // Sa'd — Abu Mashar (Praesepe M44, Beehive Cluster); corrected 2026-04-28
+    activities: "This mansion supports abundance work and gratitude practices. Setting intentions from a place of thankfulness tends to harmonize here.",
     description: "The Kursi. The pedestal of divine governance over the heavens and earth."
   },
   {
@@ -228,8 +240,8 @@ export const IBN_ARABI_MANSIONS = [
     letter: "Nūn",
     letterArabic: "ن",
     degrees: "17°08' Virgo",
-    nature: "challenging" as const,
-    activities: "This mansion invites seeking illumination through humility. Study may settle well; confrontation may not harmonize.",
+    nature: "blessed" as const, // Sa'd — Abu Mashar (Spica α Vir, most benefic fixed star; HIGHEST rated); corrected 2026-04-28
+    activities: "This mansion contains Spica, the most benefic fixed star. Study, healing, spiritual illumination, and fortune-activation settle exceptionally well here.",
     description: "The Sun's celestial domain. The abode of Prophet Idris, master of sacred sciences."
   },
   {
@@ -260,8 +272,8 @@ export const IBN_ARABI_MANSIONS = [
     letter: "Tā (stressed)",
     letterArabic: "ط",
     degrees: "12°51' Libra",
-    nature: "blessed" as const,
-    activities: "This mansion is traditionally associated with organization and communication. Healing work may settle well here.",
+    nature: "challenging" as const, // Nahs — Abu Mashar (Zubenelgenubi α Lib, malefic); corrected 2026-04-28
+    activities: "This mansion invites caution with contracts and commitments. Observation and inner work serve better than outward action here.",
     description: "Mercury's celestial domain. The abode of Prophet 'Isa, the living word."
   },
   {
@@ -324,8 +336,8 @@ export const IBN_ARABI_MANSIONS = [
     letter: "Sīn",
     letterArabic: "س",
     degrees: "4°17' Sagittarius",
-    nature: "challenging" as const,
-    activities: "This mansion may support nurturing what is valuable. Healing and purification practices tend to harmonize here.",
+    nature: "blessed" as const, // Sa'd — Abu Mashar; corrected 2026-04-28
+    activities: "This mansion supports healing, nourishment, and life-giving practices. Water-element and purification work tend to harmonize here.",
     description: "The realm of the water element. Source of all life and sustenance."
   },
   {
@@ -356,8 +368,8 @@ export const IBN_ARABI_MANSIONS = [
     letter: "Zā (stressed)",
     letterArabic: "ظ",
     degrees: "0° Capricorn",
-    nature: "challenging" as const,
-    activities: "This mansion invites sacrifice and generosity. Releasing what no longer serves may harmonize here.",
+    nature: "blessed" as const, // Sa'd — Abu Mashar; corrected 2026-04-28
+    activities: "This mansion supports commerce, material crystallisation, and acts of noble generosity. Fortunate for business and mineral-kingdom work.",
     description: "The mineral kingdom. Hidden treasures and precious substances of the earth."
   },
   {
@@ -388,8 +400,8 @@ export const IBN_ARABI_MANSIONS = [
     letter: "Dhāl",
     letterArabic: "ذ",
     degrees: "25°42' Capricorn",
-    nature: "challenging" as const,
-    activities: "This mansion invites humility and care for creatures. Pride may not harmonize well with this time.",
+    nature: "blessed" as const, // Sa'd — Abu Mashar (Sadalsuud β Aqr, benefic); corrected 2026-04-28
+    activities: "This mansion supports grounding, animal care, and drawing down celestial blessing. Humility and care for living things tend to harmonize here.",
     description: "The animal kingdom. Creatures of instinct and embodied souls."
   },
   {
@@ -420,8 +432,8 @@ export const IBN_ARABI_MANSIONS = [
     letter: "Bā",
     letterArabic: "ب",
     degrees: "21°25' Aquarius",
-    nature: "challenging" as const,
-    activities: "This mansion invites spiritual vigilance. Subtle awareness and protection practices may harmonize here.",
+    nature: "blessed" as const, // Sa'd — Abu Mashar; corrected 2026-04-28
+    activities: "This mansion supports subtle spiritual work and protective practices. Gentle attunement and inner-realm awareness tend to harmonize here.",
     description: "The realm of the jinn. Beings of smokeless fire dwelling between worlds."
   },
   {
@@ -452,8 +464,8 @@ export const IBN_ARABI_MANSIONS = [
     letter: "Wāw",
     letterArabic: "و",
     degrees: "17°08' Pisces",
-    nature: "challenging" as const,
-    activities: "This mansion invites deep reflection on spiritual station. Surrender and cycle completion may harmonize here.",
+    nature: "blessed" as const, // Sa'd — Abu Mashar; corrected 2026-04-28
+    activities: "This mansion completes the lunar cycle. Surrender, healing completion, and elevation of spiritual station settle well here.",
     description: "The completion of the cycle. The hidden order underlying all manifest existence."
   }
 ] as const;

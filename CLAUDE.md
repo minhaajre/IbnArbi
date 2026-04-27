@@ -18,6 +18,7 @@ Every field in `data/ibn-arabi-mansions.ts`, `data/buni.ts`, and related files
 |---|---|
 | Divine names per mansion (`divineName`, `divineNameArabic`) | Ibn Arabi — *Futuhat al-Makkiyya*, Chapter 198. PDF on file: `Ibn Arabi Moon Mansion Contemplation 2026, Ibn Arabi Cosmology.pdf` |
 | Mansion names, letters, spheres, attributes (`attribute`, `attributeArabic`) | Ibn Arabi — *Futuhat al-Makkiyya*, Chapter 198 (same PDF) |
+| Sa'd / Nahs nature (`nature`, `buniNature`) | Abu Mashar — *Kitab al-Madkhal al-Kabir* (Great Introduction to Astrology), cross-checked against Al-Biruni and Ibn Qayyim. 11 values corrected 2026-04-28 (prior values had no cited source). "mixed" mansions (M1, M21, M25) mapped to "blessed" as the field is binary. |
 | Abjad counts (`divineNameCount`) | Standard Abjad (حروف الأبجد) — verify with: ء=1 ب=2 ج=3 د=4 ه=5 و=6 ز=7 ح=8 ط=9 ي=10 ك=20 ل=30 م=40 ن=50 س=60 ع=70 ف=80 ص=90 ق=100 ر=200 ش=300 ت=400 ث=500 خ=600 ذ=700 ض=800 ظ=900 غ=1000 |
 
 **Rule:** If no authoritative source can be cited, the field must not be added.
