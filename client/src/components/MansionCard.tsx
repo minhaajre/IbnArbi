@@ -136,12 +136,23 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
               <span className="text-xs font-mono text-primary">{Math.round(progress.progressPercent)}%</span>
             </div>
             <div className="w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden mb-2">
-              <motion.div 
+              <motion.div
                 className="h-full bg-primary rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: `${progress.progressPercent}%` }}
                 transition={{ duration: 0.5 }}
               />
+            </div>
+            {/* Entry / exit strip */}
+            <div className="flex items-center justify-between text-[10px] text-muted-foreground/70 mb-2">
+              <div className="flex items-center gap-1">
+                <Clock className="w-2.5 h-2.5" />
+                <span>Entered {format(progress.entryDate, "MMM d, h:mm a")}</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <span>Exits {format(progress.nextMansionDate, "MMM d, h:mm a")}</span>
+                <Clock className="w-2.5 h-2.5" />
+              </div>
             </div>
             <div className="flex items-center justify-between text-xs">
               <div className="flex items-center gap-1.5 text-muted-foreground">
@@ -152,9 +163,6 @@ export function MansionCard({ mansion: originalMansion, progress, moonPhase }: M
                 <ArrowRight className="w-3 h-3" />
                 <span className="text-foreground/70">{progress.nextMansion.name}</span>
               </div>
-            </div>
-            <div className="text-[10px] text-muted-foreground/60 mt-1 text-right">
-              {format(progress.nextMansionDate, "MMM d, h:mm a")}
             </div>
           </div>
         )}

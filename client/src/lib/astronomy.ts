@@ -389,6 +389,7 @@ export function getHijriDate(date: Date) {
 export interface MansionProgress {
   currentMansionIndex: number;
   progressPercent: number;
+  entryDate: Date;
   nextMansionDate: Date;
   timeUntilNext: string;
   nextMansion: Mansion;
@@ -418,7 +419,9 @@ export function getLunarMansionProgress(date: Date, useSidereal: boolean = true)
   const avgMoonSpeedPerHour = 13.0 / 24; // degrees per hour
   const degreesToNext = mansionSize - positionInMansion;
   const hoursUntilNext = degreesToNext / avgMoonSpeedPerHour;
-  
+  const hoursElapsed = positionInMansion / avgMoonSpeedPerHour;
+
+  const entryDate = new Date(date.getTime() - hoursElapsed * 60 * 60 * 1000);
   const nextMansionDate = new Date(date.getTime() + hoursUntilNext * 60 * 60 * 1000);
   
   // Format time until next
@@ -438,6 +441,7 @@ export function getLunarMansionProgress(date: Date, useSidereal: boolean = true)
   return {
     currentMansionIndex: safeIndex,
     progressPercent,
+    entryDate,
     nextMansionDate,
     timeUntilNext,
     nextMansion: MANSIONS[nextIndex],
@@ -515,6 +519,7 @@ export interface NakshatraInfo {
   progressPercent: number;
   degreesRemaining: number;
   hoursUntilNext: number;
+  entryDate: Date;
   nextTransitDate: Date;
 }
 
@@ -535,6 +540,8 @@ export function getNakshatraInfo(date: Date): NakshatraInfo {
 
   const avgMoonSpeedPerHour = 13.0 / 24;
   const hoursUntilNext = degreesRemaining / avgMoonSpeedPerHour;
+  const hoursElapsed = positionInNakshatra / avgMoonSpeedPerHour;
+  const entryDate = new Date(date.getTime() - hoursElapsed * 60 * 60 * 1000);
   const nextTransitDate = new Date(date.getTime() + hoursUntilNext * 60 * 60 * 1000);
 
   return {
@@ -543,6 +550,7 @@ export function getNakshatraInfo(date: Date): NakshatraInfo {
     progressPercent,
     degreesRemaining,
     hoursUntilNext,
+    entryDate,
     nextTransitDate
   };
 }
