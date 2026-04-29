@@ -575,22 +575,51 @@ export const WORK_CATEGORIES: CategoryOptimalMansions[] = [
   },
 ];
 
-export const SCORPIO_MANSIONS = [16, 17, 18, 19, 20, 21];
+// Favourability score for a category given current conditions (0–100).
+// Zones mirror the classical five-level ahkam framework applied to electional timing:
+//   0        → hard interdiction (Moon in Scorpio for Love/Health)
+//   1–30     → avoid (makruh)
+//   31–55    → neutral — proceed with awareness
+//   56–80    → favourable (mustahabb)
+//   81–100   → optimal — best window
+export function getCategoryScore(
+  category: string,
+  currentMansion: number,
+  isWaning: boolean,
+  moonSign: string | null,
+  currentPlanetaryHour: string | null
+): number {
+  const cat = WORK_CATEGORIES.find(c => c.category === category);
+  if (!cat) return 30;
 
-export function isInScorpio(mansionNumber: number): boolean {
-  return SCORPIO_MANSIONS.includes(mansionNumber);
+  // Hard interdiction — Moon in Scorpio for sensitive categories
+  if (cat.blockedInScorpio && moonSign === "Scorpio") return 0;
+
+  // Base score from mansion position
+  let score = 30; // neutral baseline
+  if (cat.optimalMansions.includes(currentMansion)) score += 55;
+  else if (cat.avoidMansions.includes(currentMansion)) score -= 25;
+
+  // Moon phase penalty for expansive activities
+  if (cat.affectedByWaning && isWaning) score -= 15;
+
+  // Planetary hour bonus
+  if (currentPlanetaryHour && currentPlanetaryHour === cat.planetaryHour) score += 15;
+
+  return Math.max(0, Math.min(100, score));
 }
 
 export function isCategoryBlocked(
   category: string,
   currentMansion: number,
-  isWaning: boolean
+  isWaning: boolean,
+  moonSign: string | null
 ): { blocked: boolean; reason?: string } {
   const categoryData = WORK_CATEGORIES.find(c => c.category === category);
   if (!categoryData) return { blocked: false };
 
-  if (categoryData.blockedInScorpio && isInScorpio(currentMansion)) {
-    return { blocked: true, reason: "Blocked: Moon in Scorpio (Mansions 16-21)" };
+  if (categoryData.blockedInScorpio && moonSign === "Scorpio") {
+    return { blocked: true, reason: "Caution: Moon in Scorpio" };
   }
 
   if (categoryData.affectedByWaning && isWaning) {

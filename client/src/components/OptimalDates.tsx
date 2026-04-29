@@ -4,13 +4,13 @@ import {
   WORK_CATEGORIES,
   getOptimalDatesForCategory,
   isCategoryBlocked,
-  isInScorpio
+  getCategoryScore,
 } from "@/data/buni";
 import { MANSIONS } from "@/data/mansions";
-import { 
-  Calendar, Heart, Crown, Shield, Coins, Stethoscope, 
-  BookOpen, Sword, ChevronDown, ChevronUp, Check, X, 
-  AlertTriangle, Clock, Info, Snowflake 
+import {
+  Calendar, Heart, Crown, Shield, Coins, Stethoscope,
+  BookOpen, Sword, ChevronDown, ChevronUp, Check, X,
+  AlertTriangle, Clock, Info,
 } from "lucide-react";
 import {
   Tooltip,
@@ -18,6 +18,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { FavorabilityGauge } from "@/components/ui/FavorabilityGauge";
 
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   "Love & Relationships": <Heart className="w-4 h-4" />,
@@ -29,19 +30,24 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   "Conflict & Victory": <Sword className="w-4 h-4" />,
 };
 
-const CATEGORY_CARD_CLASS = "text-foreground bg-card border-primary/30 hover:border-primary/50";
-
 interface OptimalDatesProps {
   currentMansionNumber: number;
   isWaning?: boolean;
+  moonSign?: string | null;
+  currentPlanetaryHour?: string | null;
 }
 
-export function OptimalDates({ currentMansionNumber, isWaning = false }: OptimalDatesProps) {
+export function OptimalDates({
+  currentMansionNumber,
+  isWaning = false,
+  moonSign = null,
+  currentPlanetaryHour = null,
+}: OptimalDatesProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const currentMansion = MANSIONS[currentMansionNumber - 1];
-  const inScorpio = isInScorpio(currentMansionNumber);
+  const moonInScorpio = moonSign === "Scorpio";
 
   return (
     <div className="rounded-lg border border-border bg-card/50 overflow-hidden" data-testid="optimal-dates-section">
@@ -77,6 +83,9 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                   <div>
                     <span className="text-sm font-medium text-foreground">{currentMansion?.name || "Unknown"}</span>
                     <span className="text-xs text-muted-foreground ml-2">#{currentMansionNumber}</span>
+                    {moonSign && (
+                      <span className="text-xs text-muted-foreground ml-2">· Moon in {moonSign}</span>
+                    )}
                   </div>
                   {currentMansion && (
                     <div className="flex flex-wrap gap-1">
@@ -110,12 +119,14 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
               </TooltipProvider>
 
               {/* Warnings */}
-              {inScorpio && (
-                <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/30 flex items-start gap-2">
-                  <AlertTriangle className="w-4 h-4 text-destructive mt-0.5 shrink-0" />
+              {moonInScorpio && (
+                <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-start gap-2">
+                  <AlertTriangle className="w-4 h-4 text-amber-500 mt-0.5 shrink-0" />
                   <div>
                     <div className="text-xs font-medium text-foreground">Moon in Scorpio</div>
-                    <div className="text-[10px] text-muted-foreground">Love & Health activities are blocked.</div>
+                    <div className="text-[10px] text-muted-foreground">
+                      The classical authorities caution extra care for love matters and medical treatments at this time. Other activities proceed normally.
+                    </div>
                   </div>
                 </div>
               )}
@@ -125,7 +136,7 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                   <AlertTriangle className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
                   <div>
                     <div className="text-xs font-medium text-foreground">Moon is Waning</div>
-                    <div className="text-[10px] text-muted-foreground">Expansion activities are weakened.</div>
+                    <div className="text-[10px] text-muted-foreground">Expansion activities are weakened. Favour endings, release, and inward work.</div>
                   </div>
                 </div>
               )}
@@ -135,44 +146,46 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                 {WORK_CATEGORIES.map((cat) => {
                   const optimalInfo = getOptimalDatesForCategory(cat.category, currentMansionNumber);
                   const isSelected = selectedCategory === cat.category;
-                  const colorClass = CATEGORY_CARD_CLASS;
                   const isCurrentOptimal = cat.optimalMansions.includes(currentMansionNumber);
                   const isCurrentAvoid = cat.avoidMansions.includes(currentMansionNumber);
-                  const blockStatus = isCategoryBlocked(cat.category, currentMansionNumber, isWaning);
+                  const blockStatus = isCategoryBlocked(cat.category, currentMansionNumber, isWaning, moonSign);
+                  const score = getCategoryScore(cat.category, currentMansionNumber, isWaning, moonSign, currentPlanetaryHour);
 
                   return (
                     <button
                       key={cat.category}
                       onClick={() => setSelectedCategory(isSelected ? null : cat.category)}
-                      className={`p-3 rounded-lg border text-left transition-all ${colorClass} ${
-                        isSelected ? 'ring-2 ring-primary/50' : ''
-                      } ${blockStatus.blocked ? 'opacity-50' : ''}`}
+                      className={`p-3 rounded-lg border text-left transition-all text-foreground bg-card border-primary/30 hover:border-primary/50 ${
+                        isSelected ? "ring-2 ring-primary/50" : ""
+                      } ${blockStatus.blocked ? "opacity-60" : ""}`}
                     >
                       <div className="flex items-center gap-2 mb-1">
                         {CATEGORY_ICONS[cat.category]}
-                        <span className="text-xs font-medium truncate">{cat.category.split(' & ')[0]}</span>
+                        <span className="text-xs font-medium truncate">{cat.category.split(" & ")[0]}</span>
                       </div>
                       <div className="text-[9px] font-arabic text-muted-foreground truncate">{cat.categoryArabic}</div>
-                      
-                      {blockStatus.blocked ? (
-                        <div className="mt-1 flex items-center gap-1 text-[9px] text-destructive font-medium">
-                          <X className="w-3 h-3" /> Blocked
+
+                      {/* Gauge replaces "~Nd to optimal" */}
+                      <div className="mt-2 flex flex-col items-start gap-0.5">
+                        <FavorabilityGauge score={score} size="sm" />
+                        <div className="text-[9px] text-muted-foreground leading-none">
+                          {blockStatus.blocked ? (
+                            <span className="text-amber-500 font-medium flex items-center gap-0.5">
+                              <AlertTriangle className="w-2.5 h-2.5" /> Caution
+                            </span>
+                          ) : isCurrentOptimal ? (
+                            <span className="text-green-500 font-medium flex items-center gap-0.5">
+                              <Check className="w-2.5 h-2.5" /> Now optimal
+                            </span>
+                          ) : isCurrentAvoid ? (
+                            <span className="text-destructive font-medium flex items-center gap-0.5">
+                              <X className="w-2.5 h-2.5" /> Avoid now
+                            </span>
+                          ) : optimalInfo ? (
+                            <span>Next: M{optimalInfo.nextOptimal} (~{optimalInfo.daysUntil}d)</span>
+                          ) : null}
                         </div>
-                      ) : isCurrentOptimal ? (
-                        <div className="mt-1 flex items-center gap-1 text-[9px] text-primary font-medium">
-                          <Check className="w-3 h-3" /> Now optimal
-                        </div>
-                      ) : isCurrentAvoid ? (
-                        <div className="mt-1 flex items-center gap-1 text-[9px] text-destructive font-medium">
-                          <X className="w-3 h-3" /> Avoid now
-                        </div>
-                      ) : (
-                        optimalInfo && (
-                          <div className="mt-1 text-[9px] text-muted-foreground">
-                            ~{optimalInfo.daysUntil}d to optimal
-                          </div>
-                        )
-                      )}
+                      </div>
                     </button>
                   );
                 })}
@@ -191,7 +204,7 @@ export function OptimalDates({ currentMansionNumber, isWaning = false }: Optimal
                       const catData = WORK_CATEGORIES.find(c => c.category === selectedCategory);
                       if (!catData) return null;
                       const optimalInfo = getOptimalDatesForCategory(selectedCategory, currentMansionNumber);
-                      
+
                       return (
                         <div className="p-3 rounded-lg bg-foreground/5 border border-border space-y-3 mt-2">
                           <div>

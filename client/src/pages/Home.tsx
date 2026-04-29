@@ -316,7 +316,12 @@ export default function Home() {
               <MansionCard mansion={mansion} progress={mansionProgress ?? undefined} moonPhase={moonPhase ?? undefined} />
             </div>
             <div className="mt-4 relative z-10">
-              <OptimalDates currentMansionNumber={mansion.number} isWaning={moonPhase ? !moonPhase.isWaxing : false} />
+              <OptimalDates
+                currentMansionNumber={mansion.number}
+                isWaning={moonPhase ? !moonPhase.isWaxing : false}
+                moonSign={moonPlanet?.sign ?? null}
+                currentPlanetaryHour={hoursData?.currentHour?.planet ?? null}
+              />
             </div>
           </SectionCard>
 
